@@ -15,14 +15,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/jzim4/brickRoad"
+    "url": "https://github.com/jzim4/Brick-Road"
   },
   "author": "Jonah Zimmer",
   "license": "ISC",
   "bugs": {
     "url": ""
   },
-  "homepage": "jzim4.github.io/brickRoad",
+  "homepage": "jzim4.github.io/Brick-Road",
   "devDependencies": {
     "@babel/cli": "^7.25.7",
     "@babel/core": "^7.26.0",
