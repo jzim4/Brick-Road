@@ -1,3 +1,7 @@
+* {
+    all: revert;
+}
+
 #selectedBrickContainer {
     width: 500px;
     height: 300px;
