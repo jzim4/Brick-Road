@@ -1,5 +1,5 @@
 {
-  "name": "brickRoad",
+  "name": "brick-road",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
@@ -15,14 +15,14 @@
   },
   "repository": {
     "type": "git",
-    "url": ""
+    "url": "https://github.com/jzim4/brickRoad"
   },
   "author": "Jonah Zimmer",
   "license": "ISC",
   "bugs": {
     "url": ""
   },
-  "homepage": "jzim4.github.io",
+  "homepage": "jzim4.github.io/brickRoad",
   "devDependencies": {
     "@babel/cli": "^7.25.7",
     "@babel/core": "^7.26.0",

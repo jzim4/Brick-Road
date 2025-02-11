@@ -43182,7 +43182,21 @@ exports.clearImmediate = typeof clearImmediate === "function" ? clearImmediate :
 },{"process/browser.js":2,"timers":19}],20:[function(require,module,exports){
 "use strict";
 
-},{}],21:[function(require,module,exports){
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports["default"] = BrickPath;
+var _react = _interopRequireDefault(require("react"));
+function _interopRequireDefault(e) {
+  return e && e.__esModule ? e : {
+    "default": e
+  };
+}
+function BrickPath() {
+  return /*#__PURE__*/_react["default"].createElement("table", null, /*#__PURE__*/_react["default"].createElement("tr", null, /*#__PURE__*/_react["default"].createElement("th", null, "Company"), /*#__PURE__*/_react["default"].createElement("th", null, "Contact"), /*#__PURE__*/_react["default"].createElement("th", null, "Country")), /*#__PURE__*/_react["default"].createElement("tr", null, /*#__PURE__*/_react["default"].createElement("td", null, "Alfreds Futterkiste"), /*#__PURE__*/_react["default"].createElement("td", null, "Maria Anders"), /*#__PURE__*/_react["default"].createElement("td", null, "Germany")), /*#__PURE__*/_react["default"].createElement("tr", null, /*#__PURE__*/_react["default"].createElement("td", null, "Centro comercial Moctezuma"), /*#__PURE__*/_react["default"].createElement("td", null, "Francisco Chang"), /*#__PURE__*/_react["default"].createElement("td", null, "Mexico")));
+}
+
+},{"react":15}],21:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -43199,7 +43213,7 @@ function _interopRequireDefault(e) {
   };
 }
 function BrickRoadSite() {
-  return /*#__PURE__*/_react["default"].createElement("h1", null, "Hello World");
+  return /*#__PURE__*/_react["default"].createElement(_react["default"].Fragment, null, /*#__PURE__*/_react["default"].createElement(_search["default"], null), /*#__PURE__*/_react["default"].createElement(_selectedBrick["default"], null));
 }
 
 },{"./brickPath.js":20,"./search.js":23,"./selectedBrick.js":24,"react":15}],22:[function(require,module,exports){
@@ -43226,7 +43240,43 @@ root.render(/*#__PURE__*/_react["default"].createElement(_react["default"].Stric
 },{"./brickRoadSite.js":21,"react":15,"react-dom/client":5,"react-router-dom":7}],23:[function(require,module,exports){
 "use strict";
 
-},{}],24:[function(require,module,exports){
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports["default"] = Search;
+var _react = _interopRequireDefault(require("react"));
+function _interopRequireDefault(e) {
+  return e && e.__esModule ? e : {
+    "default": e
+  };
+}
+function Search() {
+  return /*#__PURE__*/_react["default"].createElement(_react["default"].Fragment, null, /*#__PURE__*/_react["default"].createElement("label", {
+    "for": "fname"
+  }, "Name of donor: "), /*#__PURE__*/_react["default"].createElement("input", {
+    type: "text",
+    id: "fname",
+    name: "fname"
+  }));
+}
+
+},{"react":15}],24:[function(require,module,exports){
 "use strict";
 
-},{}]},{},[22]);
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports["default"] = SelectedBrick;
+var _react = _interopRequireDefault(require("react"));
+function _interopRequireDefault(e) {
+  return e && e.__esModule ? e : {
+    "default": e
+  };
+}
+function SelectedBrick() {
+  return /*#__PURE__*/_react["default"].createElement("div", {
+    id: "selectedBrickContainer"
+  });
+}
+
+},{"react":15}]},{},[22]);
