@@ -43643,8 +43643,8 @@ function submitButton(setCurrentBrick) {
   var brick = {
     name: "none",
     message: "none",
-    row: -1,
-    col: -1
+    row: 50,
+    col: 100
   };
   var val = document.getElementById("fname").value;
   for (var i in _brickData["default"]) {
@@ -43676,10 +43676,14 @@ This single component shows the selected brick
 
 function SelectedBrick(_ref) {
   var brick = _ref.brick;
-  if (brick == null) {
+  if (brick.col == 50) {
     return /*#__PURE__*/_react["default"].createElement("div", {
       id: "selectedBrickContainer"
-    }, /*#__PURE__*/_react["default"].createElement("p", null), /*#__PURE__*/_react["default"].createElement("p", null));
+    }, /*#__PURE__*/_react["default"].createElement("p", null));
+  } else if (brick.col == 100) {
+    return /*#__PURE__*/_react["default"].createElement("div", {
+      id: "selectedBrickContainer"
+    }, /*#__PURE__*/_react["default"].createElement("p", null, "There is not a brick that corresponds with that name."));
   }
   return /*#__PURE__*/_react["default"].createElement("div", {
     id: "selectedBrickContainer"

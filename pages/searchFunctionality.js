@@ -36,8 +36,8 @@ export function submitButton(setCurrentBrick) {
     let brick = {
         name: "none",
         message: "none",
-        row: -1,
-        col: -1
+        row: 50,
+        col: 100
     }
     let val = document.getElementById("fname").value;
     for (let i in data) {
