@@ -43634,6 +43634,7 @@ function ClickOnBrick(_ref) {
     if (clicked.classList.contains("existingBrick")) {
       setCurrentBrick(getBrick(row, col));
     }
+    document.getElementById('fname').value = "";
   });
 }
 

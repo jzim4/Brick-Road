@@ -27,6 +27,7 @@ export function ClickOnBrick({setCurrentBrick}) {
         if (clicked.classList.contains("existingBrick")) {
             setCurrentBrick(getBrick(row,col));
         }
+        document.getElementById('fname').value = "";
     })
 }
 
