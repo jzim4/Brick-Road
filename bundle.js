@@ -43364,6 +43364,7 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports["default"] = BrickRoadSite;
 var _react = _interopRequireWildcard(require("react"));
+var _brickData = _interopRequireDefault(require("../brickData.json"));
 var _search = _interopRequireDefault(require("./search.js"));
 var _selectedBrick = _interopRequireDefault(require("./selectedBrick.js"));
 var _brickPath = _interopRequireDefault(require("./brickPath.js"));
@@ -43397,6 +43398,54 @@ function _interopRequireWildcard(e, r) {
     i && (i.get || i.set) ? Object.defineProperty(n, u, i) : n[u] = e[u];
   }
   return n["default"] = e, t && t.set(e, n), n;
+}
+function _createForOfIteratorHelper(r, e) {
+  var t = "undefined" != typeof Symbol && r[Symbol.iterator] || r["@@iterator"];
+  if (!t) {
+    if (Array.isArray(r) || (t = _unsupportedIterableToArray(r)) || e && r && "number" == typeof r.length) {
+      t && (r = t);
+      var _n = 0,
+        F = function F() {};
+      return {
+        s: F,
+        n: function n() {
+          return _n >= r.length ? {
+            done: !0
+          } : {
+            done: !1,
+            value: r[_n++]
+          };
+        },
+        e: function e(r) {
+          throw r;
+        },
+        f: F
+      };
+    }
+    throw new TypeError("Invalid attempt to iterate non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method.");
+  }
+  var o,
+    a = !0,
+    u = !1;
+  return {
+    s: function s() {
+      t = t.call(r);
+    },
+    n: function n() {
+      var r = t.next();
+      return a = r.done, r;
+    },
+    e: function e(r) {
+      u = !0, o = r;
+    },
+    f: function f() {
+      try {
+        a || null == t["return"] || t["return"]();
+      } finally {
+        if (u) throw o;
+      }
+    }
+  };
 }
 function _slicedToArray(r, e) {
   return _arrayWithHoles(r) || _iterableToArrayLimit(r, e) || _unsupportedIterableToArray(r, e) || _nonIterableRest();
@@ -43460,7 +43509,37 @@ function BrickRoadSite() {
     var brick = (0, _searchFunctionality["default"])();
     setCurrentBrick(brick);
   }
-  return /*#__PURE__*/_react["default"].createElement(_react["default"].Fragment, null, /*#__PURE__*/_react["default"].createElement(_search["default"], null), /*#__PURE__*/_react["default"].createElement("button", {
+  function brickExists(brick) {
+    var bricks = [];
+    var _iterator = _createForOfIteratorHelper(_brickData["default"]),
+      _step;
+    try {
+      for (_iterator.s(); !(_step = _iterator.n()).done;) {
+        var b = _step.value;
+        if (b.row == brick.row && b.col == brick.col) {
+          return brick;
+        }
+      }
+    } catch (err) {
+      _iterator.e(err);
+    } finally {
+      _iterator.f();
+    }
+    return null;
+  }
+  function ClickBrick() {
+    document.addEventListener("click", function (e) {
+      var clicked = e.target;
+      var col = Array.prototype.indexOf.call(clicked.parentElement.children, clicked);
+      var row = Array.prototype.indexOf.call(clicked.parentElement.parentElement.children, clicked.parentElement);
+      console.log(col);
+      var brick = brickExists([row, col]);
+      if (brick) {
+        setCurrentBrick(brick);
+      }
+    });
+  }
+  return /*#__PURE__*/_react["default"].createElement(_react["default"].Fragment, null, /*#__PURE__*/_react["default"].createElement(ClickBrick, null), /*#__PURE__*/_react["default"].createElement(_search["default"], null), /*#__PURE__*/_react["default"].createElement("button", {
     onClick: submitSearch
   }, "Search"), /*#__PURE__*/_react["default"].createElement(_selectedBrick["default"], {
     brick: currentBrick
@@ -43470,7 +43549,7 @@ function BrickRoadSite() {
   }));
 }
 
-},{"./brickPath.js":21,"./search.js":24,"./searchFunctionality.js":25,"./selectedBrick.js":26,"react":16}],23:[function(require,module,exports){
+},{"../brickData.json":1,"./brickPath.js":21,"./search.js":24,"./searchFunctionality.js":25,"./selectedBrick.js":26,"react":16}],23:[function(require,module,exports){
 "use strict";
 
 var _brickRoadSite = _interopRequireDefault(require("./brickRoadSite.js"));

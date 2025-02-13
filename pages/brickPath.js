@@ -32,7 +32,8 @@ export default function BrickPath({ row, col }) {
     {Array(numCols).fill(0).map((_, rowIndex) => (
       <tr key={rowIndex}>
         {Array(numRows).fill(0).map((_, colIndex) => (
-          <td className={brickExists([rowIndex,colIndex]) ? 'existingBrick' : ''} key={colIndex}></td>
+          <td className={brickExists([rowIndex,colIndex]) ? 'existingBrick' : ''} key={colIndex}>
+          </td>
         ))}
       </tr>
     ))}
