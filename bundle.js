@@ -5,35 +5,35 @@ module.exports=[
         "name": "Anne",
         "message": "Alphabet",
         "row": 1,
-        "col": 1
+        "col": 15
     },
     {
         "id": 2,
         "name": "Bob",
         "message": "Bkladfgla",
-        "row": 1,
-        "col": 2
+        "row": 4,
+        "col": 30
     },
     {
         "id": 3,
         "name": "Carl",
         "message": "Ckajrnkanf",
-        "row": 1,
-        "col": 3
+        "row": 9,
+        "col": 32
     },
     {
         "id": 4,
         "name": "Dan",
         "message": "Dkjabdfglkasf",
-        "row": 1,
-        "col": 4
+        "row": 6,
+        "col": 9
     },
     {
         "id": 5,
         "name": "Eric",
         "message": "Eklajsbglkasdf",
-        "row": 1,
-        "col": 5
+        "row": 7,
+        "col": 35
     }
 ]
 },{}],2:[function(require,module,exports){
@@ -43290,7 +43290,10 @@ function _arrayLikeToArray(r, a) {
   (null == a || a > r.length) && (a = r.length);
   for (var e = 0, n = Array(a); e < a; e++) n[e] = r[e];
   return n;
-}
+} /* 
+  Author: Jonah Zimmer
+  This file draws the brick path, setting class names of existing and selected bricks
+  */
 function saveAllBricks() {
   var bricks = [];
   var _iterator = _createForOfIteratorHelper(_brickData["default"]),
@@ -43311,8 +43314,8 @@ function BrickPath(_ref) {
   var row = _ref.row,
     col = _ref.col;
   var allBricks = saveAllBricks();
-  var numRows = 40;
-  var numCols = 10;
+  var numRows = 10;
+  var numCols = 40;
   var bricks = document.getElementsByTagName('td');
   var _iterator2 = _createForOfIteratorHelper(bricks),
     _step2;
@@ -43335,10 +43338,10 @@ function BrickPath(_ref) {
       return JSON.stringify(i) === JSON.stringify(brick);
     });
   }
-  return /*#__PURE__*/_react["default"].createElement("table", null, " ", /*#__PURE__*/_react["default"].createElement("tbody", null, Array(numCols).fill(0).map(function (_, rowIndex) {
+  return /*#__PURE__*/_react["default"].createElement("table", null, " ", /*#__PURE__*/_react["default"].createElement("tbody", null, Array(numRows).fill(0).map(function (_, rowIndex) {
     return /*#__PURE__*/_react["default"].createElement("tr", {
       key: rowIndex
-    }, Array(numRows).fill(0).map(function (_, colIndex) {
+    }, Array(numCols).fill(0).map(function (_, colIndex) {
       return /*#__PURE__*/_react["default"].createElement("td", {
         className: brickExists([rowIndex, colIndex]) ? 'existingBrick' : '',
         key: colIndex
@@ -43364,11 +43367,10 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports["default"] = BrickRoadSite;
 var _react = _interopRequireWildcard(require("react"));
-var _brickData = _interopRequireDefault(require("../brickData.json"));
 var _search = _interopRequireDefault(require("./search.js"));
 var _selectedBrick = _interopRequireDefault(require("./selectedBrick.js"));
 var _brickPath = _interopRequireDefault(require("./brickPath.js"));
-var _searchFunctionality = _interopRequireDefault(require("./searchFunctionality.js"));
+var _searchFunctionality = require("./searchFunctionality.js");
 function _interopRequireDefault(e) {
   return e && e.__esModule ? e : {
     "default": e
@@ -43398,6 +43400,146 @@ function _interopRequireWildcard(e, r) {
     i && (i.get || i.set) ? Object.defineProperty(n, u, i) : n[u] = e[u];
   }
   return n["default"] = e, t && t.set(e, n), n;
+}
+function _slicedToArray(r, e) {
+  return _arrayWithHoles(r) || _iterableToArrayLimit(r, e) || _unsupportedIterableToArray(r, e) || _nonIterableRest();
+}
+function _nonIterableRest() {
+  throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method.");
+}
+function _unsupportedIterableToArray(r, a) {
+  if (r) {
+    if ("string" == typeof r) return _arrayLikeToArray(r, a);
+    var t = {}.toString.call(r).slice(8, -1);
+    return "Object" === t && r.constructor && (t = r.constructor.name), "Map" === t || "Set" === t ? Array.from(r) : "Arguments" === t || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(t) ? _arrayLikeToArray(r, a) : void 0;
+  }
+}
+function _arrayLikeToArray(r, a) {
+  (null == a || a > r.length) && (a = r.length);
+  for (var e = 0, n = Array(a); e < a; e++) n[e] = r[e];
+  return n;
+}
+function _iterableToArrayLimit(r, l) {
+  var t = null == r ? null : "undefined" != typeof Symbol && r[Symbol.iterator] || r["@@iterator"];
+  if (null != t) {
+    var e,
+      n,
+      i,
+      u,
+      a = [],
+      f = !0,
+      o = !1;
+    try {
+      if (i = (t = t.call(r)).next, 0 === l) {
+        if (Object(t) !== t) return;
+        f = !1;
+      } else for (; !(f = (e = i.call(t)).done) && (a.push(e.value), a.length !== l); f = !0);
+    } catch (r) {
+      o = !0, n = r;
+    } finally {
+      try {
+        if (!f && null != t["return"] && (u = t["return"](), Object(u) !== u)) return;
+      } finally {
+        if (o) throw n;
+      }
+    }
+    return a;
+  }
+}
+function _arrayWithHoles(r) {
+  if (Array.isArray(r)) return r;
+} /* 
+  Author: Jonah Zimmer
+  This is the main file. It holds the state changes, and brings together the components
+  */
+function BrickRoadSite() {
+  var defaultBrick = {
+    name: "none",
+    message: "none",
+    row: 50,
+    col: 50
+  };
+  var _useState = (0, _react.useState)(defaultBrick),
+    _useState2 = _slicedToArray(_useState, 2),
+    currentBrick = _useState2[0],
+    setCurrentBrick = _useState2[1];
+  return /*#__PURE__*/_react["default"].createElement(_react["default"].Fragment, null, /*#__PURE__*/_react["default"].createElement(_searchFunctionality.ClickOnBrick, {
+    setCurrentBrick: setCurrentBrick
+  }), /*#__PURE__*/_react["default"].createElement(_search["default"], null), /*#__PURE__*/_react["default"].createElement("button", {
+    onClick: function onClick() {
+      return (0, _searchFunctionality.submitButton)(setCurrentBrick);
+    }
+  }, "Search"), /*#__PURE__*/_react["default"].createElement(_selectedBrick["default"], {
+    brick: currentBrick
+  }), /*#__PURE__*/_react["default"].createElement(_brickPath["default"], {
+    col: currentBrick.col,
+    row: currentBrick.row
+  }));
+}
+
+},{"./brickPath.js":21,"./search.js":24,"./searchFunctionality.js":25,"./selectedBrick.js":26,"react":16}],23:[function(require,module,exports){
+"use strict";
+
+var _brickRoadSite = _interopRequireDefault(require("./brickRoadSite.js"));
+var _reactRouterDom = require("react-router-dom");
+var _react = _interopRequireDefault(require("react"));
+var _client = _interopRequireDefault(require("react-dom/client"));
+function _interopRequireDefault(e) {
+  return e && e.__esModule ? e : {
+    "default": e
+  };
+}
+var root = _client["default"].createRoot(document.getElementById('mainContent'));
+root.render(/*#__PURE__*/_react["default"].createElement(_react["default"].StrictMode, null, /*#__PURE__*/_react["default"].createElement(_reactRouterDom.HashRouter, null, /*#__PURE__*/_react["default"].createElement(_reactRouterDom.Routes, null, /*#__PURE__*/_react["default"].createElement(_reactRouterDom.Route, {
+  path: "/",
+  element: /*#__PURE__*/_react["default"].createElement(_brickRoadSite["default"], null)
+}), /*#__PURE__*/_react["default"].createElement(_reactRouterDom.Route, {
+  path: "*",
+  element: /*#__PURE__*/_react["default"].createElement(_brickRoadSite["default"], null)
+})))));
+
+},{"./brickRoadSite.js":22,"react":16,"react-dom/client":6,"react-router-dom":8}],24:[function(require,module,exports){
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports["default"] = Search;
+var _react = _interopRequireDefault(require("react"));
+function _interopRequireDefault(e) {
+  return e && e.__esModule ? e : {
+    "default": e
+  };
+}
+/* 
+Author: Jonah Zimmer
+
+This single component holds the search bar
+*/
+
+function Search() {
+  return /*#__PURE__*/_react["default"].createElement(_react["default"].Fragment, null, /*#__PURE__*/_react["default"].createElement("label", {
+    htmlFor: "fname"
+  }, "Name of donor: "), /*#__PURE__*/_react["default"].createElement("input", {
+    type: "text",
+    id: "fname",
+    name: "fname"
+  }));
+}
+
+},{"react":16}],25:[function(require,module,exports){
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.ClickOnBrick = ClickOnBrick;
+exports.submitButton = submitButton;
+var _brickData = _interopRequireDefault(require("../brickData.json"));
+function _interopRequireDefault(e) {
+  return e && e.__esModule ? e : {
+    "default": e
+  };
 }
 function _createForOfIteratorHelper(r, e) {
   var t = "undefined" != typeof Symbol && r[Symbol.iterator] || r["@@iterator"];
@@ -43447,12 +43589,6 @@ function _createForOfIteratorHelper(r, e) {
     }
   };
 }
-function _slicedToArray(r, e) {
-  return _arrayWithHoles(r) || _iterableToArrayLimit(r, e) || _unsupportedIterableToArray(r, e) || _nonIterableRest();
-}
-function _nonIterableRest() {
-  throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method.");
-}
 function _unsupportedIterableToArray(r, a) {
   if (r) {
     if ("string" == typeof r) return _arrayLikeToArray(r, a);
@@ -43464,60 +43600,23 @@ function _arrayLikeToArray(r, a) {
   (null == a || a > r.length) && (a = r.length);
   for (var e = 0, n = Array(a); e < a; e++) n[e] = r[e];
   return n;
-}
-function _iterableToArrayLimit(r, l) {
-  var t = null == r ? null : "undefined" != typeof Symbol && r[Symbol.iterator] || r["@@iterator"];
-  if (null != t) {
-    var e,
-      n,
-      i,
-      u,
-      a = [],
-      f = !0,
-      o = !1;
-    try {
-      if (i = (t = t.call(r)).next, 0 === l) {
-        if (Object(t) !== t) return;
-        f = !1;
-      } else for (; !(f = (e = i.call(t)).done) && (a.push(e.value), a.length !== l); f = !0);
-    } catch (r) {
-      o = !0, n = r;
-    } finally {
-      try {
-        if (!f && null != t["return"] && (u = t["return"](), Object(u) !== u)) return;
-      } finally {
-        if (o) throw n;
-      }
-    }
-    return a;
-  }
-}
-function _arrayWithHoles(r) {
-  if (Array.isArray(r)) return r;
-}
-function BrickRoadSite() {
-  var _useState = (0, _react.useState)({
-      name: "none",
-      message: "none",
-      row: 50,
-      col: 50
-    }),
-    _useState2 = _slicedToArray(_useState, 2),
-    currentBrick = _useState2[0],
-    setCurrentBrick = _useState2[1];
-  function submitSearch() {
-    var brick = (0, _searchFunctionality["default"])();
-    setCurrentBrick(brick);
-  }
-  function brickExists(brick) {
-    var bricks = [];
+} /* 
+  Author: Jonah Zimmer
+  This file handles two ways to search for brick: search bar and click
+  It then sets the current brick state, which is on the file brickRoadSite
+  */
+// Handles clicking on bricks
+function ClickOnBrick(_ref) {
+  var setCurrentBrick = _ref.setCurrentBrick;
+  // Finds and returns data from brickData about brick at coordinates
+  function getBrick(row, col) {
     var _iterator = _createForOfIteratorHelper(_brickData["default"]),
       _step;
     try {
       for (_iterator.s(); !(_step = _iterator.n()).done;) {
         var b = _step.value;
-        if (b.row == brick.row && b.col == brick.col) {
-          return brick;
+        if (b.row == row && b.col == col) {
+          return b;
         }
       }
     } catch (err) {
@@ -43525,100 +43624,35 @@ function BrickRoadSite() {
     } finally {
       _iterator.f();
     }
-    return null;
   }
-  function ClickBrick() {
-    document.addEventListener("click", function (e) {
-      var clicked = e.target;
-      var col = Array.prototype.indexOf.call(clicked.parentElement.children, clicked);
-      var row = Array.prototype.indexOf.call(clicked.parentElement.parentElement.children, clicked.parentElement);
-      console.log(col);
-      var brick = brickExists([row, col]);
-      if (brick) {
-        setCurrentBrick(brick);
-      }
-    });
-  }
-  return /*#__PURE__*/_react["default"].createElement(_react["default"].Fragment, null, /*#__PURE__*/_react["default"].createElement(ClickBrick, null), /*#__PURE__*/_react["default"].createElement(_search["default"], null), /*#__PURE__*/_react["default"].createElement("button", {
-    onClick: submitSearch
-  }, "Search"), /*#__PURE__*/_react["default"].createElement(_selectedBrick["default"], {
-    brick: currentBrick
-  }), /*#__PURE__*/_react["default"].createElement(_brickPath["default"], {
-    col: currentBrick.col,
-    row: currentBrick.row
-  }));
+
+  // Click event handler that determines the location of the selected brick and changes state if it exists
+  document.addEventListener("click", function (e) {
+    var clicked = e.target;
+    var col = Array.prototype.indexOf.call(clicked.parentElement.children, clicked);
+    var row = Array.prototype.indexOf.call(clicked.parentElement.parentElement.children, clicked.parentElement);
+    if (clicked.classList.contains("existingBrick")) {
+      setCurrentBrick(getBrick(row, col));
+    }
+  });
 }
 
-},{"../brickData.json":1,"./brickPath.js":21,"./search.js":24,"./searchFunctionality.js":25,"./selectedBrick.js":26,"react":16}],23:[function(require,module,exports){
-"use strict";
-
-var _brickRoadSite = _interopRequireDefault(require("./brickRoadSite.js"));
-var _reactRouterDom = require("react-router-dom");
-var _react = _interopRequireDefault(require("react"));
-var _client = _interopRequireDefault(require("react-dom/client"));
-function _interopRequireDefault(e) {
-  return e && e.__esModule ? e : {
-    "default": e
+// takes input, and changes state to either be default or highlight the searched-for brick
+function submitButton(setCurrentBrick) {
+  // default brick
+  var brick = {
+    name: "none",
+    message: "none",
+    row: -1,
+    col: -1
   };
-}
-var root = _client["default"].createRoot(document.getElementById('mainContent'));
-root.render(/*#__PURE__*/_react["default"].createElement(_react["default"].StrictMode, null, /*#__PURE__*/_react["default"].createElement(_reactRouterDom.HashRouter, null, /*#__PURE__*/_react["default"].createElement(_reactRouterDom.Routes, null, /*#__PURE__*/_react["default"].createElement(_reactRouterDom.Route, {
-  path: "/",
-  element: /*#__PURE__*/_react["default"].createElement(_brickRoadSite["default"], null)
-}), /*#__PURE__*/_react["default"].createElement(_reactRouterDom.Route, {
-  path: "*",
-  element: /*#__PURE__*/_react["default"].createElement(_brickRoadSite["default"], null)
-})))));
-
-},{"./brickRoadSite.js":22,"react":16,"react-dom/client":6,"react-router-dom":8}],24:[function(require,module,exports){
-"use strict";
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports["default"] = Search;
-var _react = _interopRequireDefault(require("react"));
-function _interopRequireDefault(e) {
-  return e && e.__esModule ? e : {
-    "default": e
-  };
-}
-function Search() {
-  return /*#__PURE__*/_react["default"].createElement(_react["default"].Fragment, null, /*#__PURE__*/_react["default"].createElement("label", {
-    htmlFor: "fname"
-  }, "Name of donor: "), /*#__PURE__*/_react["default"].createElement("input", {
-    type: "text",
-    id: "fname",
-    name: "fname"
-  }));
-}
-
-},{"react":16}],25:[function(require,module,exports){
-"use strict";
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports["default"] = searchFunctionality;
-var _brickData = _interopRequireDefault(require("../brickData.json"));
-function _interopRequireDefault(e) {
-  return e && e.__esModule ? e : {
-    "default": e
-  };
-}
-function searchFunctionality() {
   var val = document.getElementById("fname").value;
   for (var i in _brickData["default"]) {
     if (val == _brickData["default"][i].name) {
-      return _brickData["default"][i];
+      brick = _brickData["default"][i];
     }
   }
-  return {
-    name: "none",
-    message: "none",
-    row: 50,
-    col: 50
-  };
+  setCurrentBrick(brick);
 }
 
 },{"../brickData.json":1}],26:[function(require,module,exports){
@@ -43634,6 +43668,12 @@ function _interopRequireDefault(e) {
     "default": e
   };
 }
+/* 
+Author: Jonah Zimmer
+
+This single component shows the selected brick
+*/
+
 function SelectedBrick(_ref) {
   var brick = _ref.brick;
   if (brick == null) {

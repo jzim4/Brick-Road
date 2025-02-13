@@ -1,3 +1,9 @@
+/* 
+Author: Jonah Zimmer
+
+This file draws the brick path, setting class names of existing and selected bricks
+*/
+
 import React from 'react';
 import data from '../brickData.json';
 
@@ -12,8 +18,8 @@ function saveAllBricks() {
 export default function BrickPath({ row, col }) {
   const allBricks = saveAllBricks();
 
-  const numRows = 40;
-  const numCols = 10;
+  const numRows = 10;
+  const numCols = 40;
   const bricks = document.getElementsByTagName('td');
   for (let i of bricks) {
     i.classList.remove("selectedBrick");
@@ -29,9 +35,9 @@ export default function BrickPath({ row, col }) {
   }
 
   return <table> <tbody>
-    {Array(numCols).fill(0).map((_, rowIndex) => (
+    {Array(numRows).fill(0).map((_, rowIndex) => (
       <tr key={rowIndex}>
-        {Array(numRows).fill(0).map((_, colIndex) => (
+        {Array(numCols).fill(0).map((_, colIndex) => (
           <td className={brickExists([rowIndex,colIndex]) ? 'existingBrick' : ''} key={colIndex}>
           </td>
         ))}

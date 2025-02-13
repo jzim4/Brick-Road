@@ -1,3 +1,9 @@
+/* 
+Author: Jonah Zimmer
+
+This single component holds the search bar
+*/
+
 import React from 'react';
 
 export default function Search() {

@@ -1,3 +1,8 @@
+/* 
+Author: Jonah Zimmer
+
+This single component shows the selected brick
+*/
 import React from 'react';
 
 export default function SelectedBrick({brick}) {
