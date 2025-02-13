@@ -43225,6 +43225,7 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports["default"] = BrickPath;
 var _react = _interopRequireDefault(require("react"));
+var _brickData = _interopRequireDefault(require("../brickData.json"));
 function _interopRequireDefault(e) {
   return e && e.__esModule ? e : {
     "default": e
@@ -43290,40 +43291,63 @@ function _arrayLikeToArray(r, a) {
   for (var e = 0, n = Array(a); e < a; e++) n[e] = r[e];
   return n;
 }
-function BrickPath(_ref) {
-  var row = _ref.row,
-    col = _ref.col;
-  var numRows = 40;
-  var numCols = 10;
-  var bricks = document.getElementsByTagName('td');
-  var _iterator = _createForOfIteratorHelper(bricks),
+function saveAllBricks() {
+  var bricks = [];
+  var _iterator = _createForOfIteratorHelper(_brickData["default"]),
     _step;
   try {
     for (_iterator.s(); !(_step = _iterator.n()).done;) {
-      var i = _step.value;
-      i.style.backgroundColor = "white";
+      var brick = _step.value;
+      bricks.push([brick.row, brick.col]);
     }
   } catch (err) {
     _iterator.e(err);
   } finally {
     _iterator.f();
   }
+  return bricks;
+}
+function BrickPath(_ref) {
+  var row = _ref.row,
+    col = _ref.col;
+  var allBricks = saveAllBricks();
+  var numRows = 40;
+  var numCols = 10;
+  var bricks = document.getElementsByTagName('td');
+  var _iterator2 = _createForOfIteratorHelper(bricks),
+    _step2;
+  try {
+    for (_iterator2.s(); !(_step2 = _iterator2.n()).done;) {
+      var i = _step2.value;
+      i.classList.remove("selectedBrick");
+    }
+  } catch (err) {
+    _iterator2.e(err);
+  } finally {
+    _iterator2.f();
+  }
   if (row <= numRows && col <= numCols) {
-    var cell = document.querySelectorAll("tr td:nth-child(".concat(col))[row];
-    cell.style.backgroundColor = "red";
+    var cell = document.querySelectorAll("tr td:nth-child(".concat(col + 1))[row];
+    cell.classList.add("selectedBrick");
+  }
+  function brickExists(brick) {
+    return allBricks.some(function (i) {
+      return JSON.stringify(i) === JSON.stringify(brick);
+    });
   }
   return /*#__PURE__*/_react["default"].createElement("table", null, " ", /*#__PURE__*/_react["default"].createElement("tbody", null, Array(numCols).fill(0).map(function (_, rowIndex) {
     return /*#__PURE__*/_react["default"].createElement("tr", {
       key: rowIndex
     }, Array(numRows).fill(0).map(function (_, colIndex) {
       return /*#__PURE__*/_react["default"].createElement("td", {
+        className: brickExists([rowIndex, colIndex]) ? 'existingBrick' : '',
         key: colIndex
       });
     }));
   })));
 }
 
-},{"react":16}],22:[function(require,module,exports){
+},{"../brickData.json":1,"react":16}],22:[function(require,module,exports){
 "use strict";
 
 function _typeof(o) {
