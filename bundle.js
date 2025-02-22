@@ -43367,6 +43367,7 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports["default"] = BrickRoadSite;
 var _react = _interopRequireWildcard(require("react"));
+var _header = _interopRequireDefault(require("./header.js"));
 var _search = _interopRequireDefault(require("./search.js"));
 var _selectedBrick = _interopRequireDefault(require("./selectedBrick.js"));
 var _brickPath = _interopRequireDefault(require("./brickPath.js"));
@@ -43465,11 +43466,9 @@ function BrickRoadSite() {
     setCurrentBrick = _useState2[1];
   return /*#__PURE__*/_react["default"].createElement(_react["default"].Fragment, null, /*#__PURE__*/_react["default"].createElement(_searchFunctionality.ClickOnBrick, {
     setCurrentBrick: setCurrentBrick
-  }), /*#__PURE__*/_react["default"].createElement(_search["default"], null), /*#__PURE__*/_react["default"].createElement("button", {
-    onClick: function onClick() {
-      return (0, _searchFunctionality.submitButton)(setCurrentBrick);
-    }
-  }, "Search"), /*#__PURE__*/_react["default"].createElement(_selectedBrick["default"], {
+  }), /*#__PURE__*/_react["default"].createElement(_header["default"], null), /*#__PURE__*/_react["default"].createElement(_search["default"], {
+    setCurrentBrick: setCurrentBrick
+  }), /*#__PURE__*/_react["default"].createElement(_selectedBrick["default"], {
     brick: currentBrick
   }), /*#__PURE__*/_react["default"].createElement(_brickPath["default"], {
     col: currentBrick.col,
@@ -43477,7 +43476,32 @@ function BrickRoadSite() {
   }));
 }
 
-},{"./brickPath.js":21,"./search.js":24,"./searchFunctionality.js":25,"./selectedBrick.js":26,"react":16}],23:[function(require,module,exports){
+},{"./brickPath.js":21,"./header.js":23,"./search.js":25,"./searchFunctionality.js":26,"./selectedBrick.js":27,"react":16}],23:[function(require,module,exports){
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports["default"] = Header;
+var _react = _interopRequireDefault(require("react"));
+function _interopRequireDefault(e) {
+  return e && e.__esModule ? e : {
+    "default": e
+  };
+}
+/* 
+Author: Jonah Zimmer
+
+This single component holds the header
+*/
+
+function Header() {
+  return /*#__PURE__*/_react["default"].createElement("header", null, /*#__PURE__*/_react["default"].createElement("div", {
+    id: "headerSpaceHolder"
+  }), /*#__PURE__*/_react["default"].createElement("h1", null, "Rondo Commemorative Plaza"), /*#__PURE__*/_react["default"].createElement("a", null, "About"));
+}
+
+},{"react":16}],24:[function(require,module,exports){
 "use strict";
 
 var _brickRoadSite = _interopRequireDefault(require("./brickRoadSite.js"));
@@ -43498,7 +43522,7 @@ root.render(/*#__PURE__*/_react["default"].createElement(_react["default"].Stric
   element: /*#__PURE__*/_react["default"].createElement(_brickRoadSite["default"], null)
 })))));
 
-},{"./brickRoadSite.js":22,"react":16,"react-dom/client":6,"react-router-dom":8}],24:[function(require,module,exports){
+},{"./brickRoadSite.js":22,"react":16,"react-dom/client":6,"react-router-dom":8}],25:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -43506,6 +43530,7 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports["default"] = Search;
 var _react = _interopRequireDefault(require("react"));
+var _searchFunctionality = require("./searchFunctionality.js");
 function _interopRequireDefault(e) {
   return e && e.__esModule ? e : {
     "default": e
@@ -43517,17 +43542,48 @@ Author: Jonah Zimmer
 This single component holds the search bar
 */
 
-function Search() {
-  return /*#__PURE__*/_react["default"].createElement(_react["default"].Fragment, null, /*#__PURE__*/_react["default"].createElement("label", {
+function Search(_ref) {
+  var setCurrentBrick = _ref.setCurrentBrick;
+  return /*#__PURE__*/_react["default"].createElement("div", {
+    id: "searchContainer"
+  }, /*#__PURE__*/_react["default"].createElement("div", {
+    id: "sectionSearchContainer"
+  }, "Search by section:", /*#__PURE__*/_react["default"].createElement("div", {
+    id: "sectionSearchButtons"
+  }, /*#__PURE__*/_react["default"].createElement("button", {
+    id: "century",
+    className: "sectionSearchButton"
+  }, "Century Club"), /*#__PURE__*/_react["default"].createElement("button", {
+    id: "heros",
+    className: "sectionSearchButton"
+  }, "Heroes"), /*#__PURE__*/_react["default"].createElement("button", {
+    id: "women",
+    className: "sectionSearchButton"
+  }, "Golden Women of Rondo"), /*#__PURE__*/_react["default"].createElement("button", {
+    id: "friends",
+    className: "sectionSearchButton"
+  }, "Family/Friends"), /*#__PURE__*/_react["default"].createElement("button", {
+    id: "businesses",
+    className: "sectionSearchButton"
+  }, "Businesses/Organizations"))), /*#__PURE__*/_react["default"].createElement("div", {
+    id: "nameSearchContainer"
+  }, /*#__PURE__*/_react["default"].createElement("label", {
     htmlFor: "fname"
-  }, "Name of donor: "), /*#__PURE__*/_react["default"].createElement("input", {
+  }, "Search by name of donor:"), /*#__PURE__*/_react["default"].createElement("div", {
+    id: "searchInputsContainer"
+  }, /*#__PURE__*/_react["default"].createElement("input", {
     type: "text",
     id: "fname",
     name: "fname"
-  }));
+  }), /*#__PURE__*/_react["default"].createElement("button", {
+    id: "submitSearch",
+    onClick: function onClick() {
+      return (0, _searchFunctionality.submitButton)(setCurrentBrick);
+    }
+  }, "Search"))));
 }
 
-},{"react":16}],25:[function(require,module,exports){
+},{"./searchFunctionality.js":26,"react":16}],26:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -43656,7 +43712,7 @@ function submitButton(setCurrentBrick) {
   setCurrentBrick(brick);
 }
 
-},{"../brickData.json":1}],26:[function(require,module,exports){
+},{"../brickData.json":1}],27:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -43691,4 +43747,4 @@ function SelectedBrick(_ref) {
   }, /*#__PURE__*/_react["default"].createElement("p", null, "Name: ", brick.name), /*#__PURE__*/_react["default"].createElement("p", null, "Message: ", brick.message));
 }
 
-},{"react":16}]},{},[23]);
+},{"react":16}]},{},[24]);

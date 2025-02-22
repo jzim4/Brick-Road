@@ -6,10 +6,11 @@ This is the main file. It holds the state changes, and brings together the compo
 
 import React, { useState } from 'react';
 
+import Header from './header.js';
 import Search from './search.js';
 import SelectedBrick from './selectedBrick.js';
 import BrickPath from './brickPath.js';
-import { ClickOnBrick, submitButton } from './searchFunctionality.js';
+import { ClickOnBrick } from './searchFunctionality.js';
 
 export default function BrickRoadSite() {
     const defaultBrick = {
@@ -22,8 +23,10 @@ export default function BrickRoadSite() {
 
     return <>
         <ClickOnBrick setCurrentBrick={setCurrentBrick}/>
-        <Search/>
-        <button onClick={() => submitButton(setCurrentBrick)}>Search</button>
+
+        <Header/>
+        <Search setCurrentBrick={setCurrentBrick}/>
+        
         <SelectedBrick brick={currentBrick}/>
         <BrickPath col={currentBrick.col} row={currentBrick.row}/>
     </>
