@@ -7,6 +7,25 @@ This file draws the brick path, setting class names of existing and selected bri
 import React from 'react';
 import data from '../brickData.json';
 
+
+function Panels() {
+  return <div id="panelsContainer">
+    <img width="400" height="350" src="null"></img>
+    <img width="400" height="350" src="null"></img>
+    <img width="400" height="350" src="null"></img>
+    <img width="400" height="350" src="null"></img>
+    <img width="400" height="350" src="null"></img>
+    <img width="400" height="350" src="null"></img>
+    <img width="400" height="350" src="null"></img>
+    <img width="400" height="350" src="null"></img>
+    <img width="400" height="350" src="null"></img>
+    <img width="400" height="350" src="null"></img>
+    <img width="400" height="350" src="null"></img>
+    <img width="400" height="350" src="null"></img>
+    <img width="400" height="350" src="null"></img>
+  </div>
+}
+
 function saveAllBricks() {
   let bricks = [];
   for (let brick of data) {
@@ -19,30 +38,33 @@ export default function BrickPath({ row, col }) {
   const allBricks = saveAllBricks();
 
   const numRows = 10;
-  const numCols = 40;
+  const numCols = 192;
   const bricks = document.getElementsByTagName('td');
   for (let i of bricks) {
     i.classList.remove("selectedBrick");
   }
 
   if (row <= numRows && col <= numCols) {
-      let cell = document.querySelectorAll(`tr td:nth-child(${col + 1}`)[row];
-      cell.classList.add("selectedBrick");
+    let cell = document.querySelectorAll(`tr td:nth-child(${col + 1}`)[row];
+    cell.classList.add("selectedBrick");
   }
 
   function brickExists(brick) {
     return allBricks.some(i => JSON.stringify(i) === JSON.stringify(brick));
   }
 
-  return <table> <tbody>
-    {Array(numRows).fill(0).map((_, rowIndex) => (
-      <tr key={rowIndex}>
-        {Array(numCols).fill(0).map((_, colIndex) => (
-          <td className={brickExists([rowIndex,colIndex]) ? 'existingBrick' : ''} key={colIndex}>
-          </td>
-        ))}
-      </tr>
-    ))}
-  </tbody>
-  </table>
+  return <div id="scrollContainer">
+    <Panels />
+    <table>   <tbody>
+      {Array(numRows).fill(0).map((_, rowIndex) => (
+        <tr key={rowIndex}>
+          {Array(numCols).fill(0).map((_, colIndex) => (
+            <td className={brickExists([rowIndex, colIndex]) ? 'existingBrick' : ''} key={colIndex}>
+            </td>
+          ))}
+        </tr>
+      ))}
+    </tbody>
+    </table>
+  </div>
 }

@@ -59,10 +59,32 @@ a {
     background-color: brown;
 }
 
+
+/* SCROLLABLE */
+
+#scrollContainer {
+    margin: 0 auto;
+    width: 95vw;
+    height: fit-content;
+    overflow-x: scroll;
+    white-space: nowrap;
+}
+
+/* PANELS */
+#panelsContainer {
+    display: flex;
+    gap: 15px;
+}
+
+/* PATH */
+table {
+    width:100%;
+}
+
 td {
     border: 2px solid black;
-    width: 50px;
-    height: 20px;
+    min-width: 20px;
+    height: 10px;
 }
 
 .existingBrick {

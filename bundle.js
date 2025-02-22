@@ -43294,6 +43294,63 @@ function _arrayLikeToArray(r, a) {
   Author: Jonah Zimmer
   This file draws the brick path, setting class names of existing and selected bricks
   */
+function Panels() {
+  return /*#__PURE__*/_react["default"].createElement("div", {
+    id: "panelsContainer"
+  }, /*#__PURE__*/_react["default"].createElement("img", {
+    width: "400",
+    height: "350",
+    src: "null"
+  }), /*#__PURE__*/_react["default"].createElement("img", {
+    width: "400",
+    height: "350",
+    src: "null"
+  }), /*#__PURE__*/_react["default"].createElement("img", {
+    width: "400",
+    height: "350",
+    src: "null"
+  }), /*#__PURE__*/_react["default"].createElement("img", {
+    width: "400",
+    height: "350",
+    src: "null"
+  }), /*#__PURE__*/_react["default"].createElement("img", {
+    width: "400",
+    height: "350",
+    src: "null"
+  }), /*#__PURE__*/_react["default"].createElement("img", {
+    width: "400",
+    height: "350",
+    src: "null"
+  }), /*#__PURE__*/_react["default"].createElement("img", {
+    width: "400",
+    height: "350",
+    src: "null"
+  }), /*#__PURE__*/_react["default"].createElement("img", {
+    width: "400",
+    height: "350",
+    src: "null"
+  }), /*#__PURE__*/_react["default"].createElement("img", {
+    width: "400",
+    height: "350",
+    src: "null"
+  }), /*#__PURE__*/_react["default"].createElement("img", {
+    width: "400",
+    height: "350",
+    src: "null"
+  }), /*#__PURE__*/_react["default"].createElement("img", {
+    width: "400",
+    height: "350",
+    src: "null"
+  }), /*#__PURE__*/_react["default"].createElement("img", {
+    width: "400",
+    height: "350",
+    src: "null"
+  }), /*#__PURE__*/_react["default"].createElement("img", {
+    width: "400",
+    height: "350",
+    src: "null"
+  }));
+}
 function saveAllBricks() {
   var bricks = [];
   var _iterator = _createForOfIteratorHelper(_brickData["default"]),
@@ -43315,7 +43372,7 @@ function BrickPath(_ref) {
     col = _ref.col;
   var allBricks = saveAllBricks();
   var numRows = 10;
-  var numCols = 40;
+  var numCols = 192;
   var bricks = document.getElementsByTagName('td');
   var _iterator2 = _createForOfIteratorHelper(bricks),
     _step2;
@@ -43338,7 +43395,9 @@ function BrickPath(_ref) {
       return JSON.stringify(i) === JSON.stringify(brick);
     });
   }
-  return /*#__PURE__*/_react["default"].createElement("table", null, " ", /*#__PURE__*/_react["default"].createElement("tbody", null, Array(numRows).fill(0).map(function (_, rowIndex) {
+  return /*#__PURE__*/_react["default"].createElement("div", {
+    id: "scrollContainer"
+  }, /*#__PURE__*/_react["default"].createElement(Panels, null), /*#__PURE__*/_react["default"].createElement("table", null, "   ", /*#__PURE__*/_react["default"].createElement("tbody", null, Array(numRows).fill(0).map(function (_, rowIndex) {
     return /*#__PURE__*/_react["default"].createElement("tr", {
       key: rowIndex
     }, Array(numCols).fill(0).map(function (_, colIndex) {
@@ -43347,7 +43406,7 @@ function BrickPath(_ref) {
         key: colIndex
       });
     }));
-  })));
+  }))));
 }
 
 },{"../brickData.json":1,"react":16}],22:[function(require,module,exports){
@@ -43468,8 +43527,6 @@ function BrickRoadSite() {
     setCurrentBrick: setCurrentBrick
   }), /*#__PURE__*/_react["default"].createElement(_header["default"], null), /*#__PURE__*/_react["default"].createElement(_search["default"], {
     setCurrentBrick: setCurrentBrick
-  }), /*#__PURE__*/_react["default"].createElement(_selectedBrick["default"], {
-    brick: currentBrick
   }), /*#__PURE__*/_react["default"].createElement(_brickPath["default"], {
     col: currentBrick.col,
     row: currentBrick.row

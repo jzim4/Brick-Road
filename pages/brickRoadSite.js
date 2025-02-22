@@ -27,7 +27,7 @@ export default function BrickRoadSite() {
         <Header/>
         <Search setCurrentBrick={setCurrentBrick}/>
         
-        <SelectedBrick brick={currentBrick}/>
+        {/* <SelectedBrick brick={currentBrick}/> */}
         <BrickPath col={currentBrick.col} row={currentBrick.row}/>
     </>
 }
