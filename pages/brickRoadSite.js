@@ -12,6 +12,13 @@ import SelectedBrick from './selectedBrick.js';
 import BrickPath from './brickPath.js';
 import { ClickOnBrick } from './searchFunctionality.js';
 
+export const defaultBrick = {
+    name: "none",
+    message: "none",
+    row: 50,
+    col: 50
+}
+
 export default function BrickRoadSite() {
     const defaultBrick = {
         name: "none",
@@ -27,7 +34,7 @@ export default function BrickRoadSite() {
         <Header/>
         <Search setCurrentBrick={setCurrentBrick}/>
         
-        {/* <SelectedBrick brick={currentBrick}/> */}
+        <SelectedBrick brick={currentBrick} setCurrentBrick={setCurrentBrick}/>
         <BrickPath col={currentBrick.col} row={currentBrick.row}/>
     </>
 }

@@ -43425,6 +43425,7 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 exports["default"] = BrickRoadSite;
+exports.defaultBrick = void 0;
 var _react = _interopRequireWildcard(require("react"));
 var _header = _interopRequireDefault(require("./header.js"));
 var _search = _interopRequireDefault(require("./search.js"));
@@ -43512,6 +43513,12 @@ function _arrayWithHoles(r) {
   Author: Jonah Zimmer
   This is the main file. It holds the state changes, and brings together the components
   */
+var defaultBrick = exports.defaultBrick = {
+  name: "none",
+  message: "none",
+  row: 50,
+  col: 50
+};
 function BrickRoadSite() {
   var defaultBrick = {
     name: "none",
@@ -43526,6 +43533,9 @@ function BrickRoadSite() {
   return /*#__PURE__*/_react["default"].createElement(_react["default"].Fragment, null, /*#__PURE__*/_react["default"].createElement(_searchFunctionality.ClickOnBrick, {
     setCurrentBrick: setCurrentBrick
   }), /*#__PURE__*/_react["default"].createElement(_header["default"], null), /*#__PURE__*/_react["default"].createElement(_search["default"], {
+    setCurrentBrick: setCurrentBrick
+  }), /*#__PURE__*/_react["default"].createElement(_selectedBrick["default"], {
+    brick: currentBrick,
     setCurrentBrick: setCurrentBrick
   }), /*#__PURE__*/_react["default"].createElement(_brickPath["default"], {
     col: currentBrick.col,
@@ -43649,6 +43659,7 @@ Object.defineProperty(exports, "__esModule", {
 exports.ClickOnBrick = ClickOnBrick;
 exports.submitButton = submitButton;
 var _brickData = _interopRequireDefault(require("../brickData.json"));
+var _brickRoadSite = _interopRequireDefault(require("./brickRoadSite.js"));
 function _interopRequireDefault(e) {
   return e && e.__esModule ? e : {
     "default": e
@@ -43745,6 +43756,7 @@ function ClickOnBrick(_ref) {
     var col = Array.prototype.indexOf.call(clicked.parentElement.children, clicked);
     var row = Array.prototype.indexOf.call(clicked.parentElement.parentElement.children, clicked.parentElement);
     if (clicked.classList.contains("existingBrick")) {
+      document.getElementById("selectedBrickContainer").style.visibility = "visible";
       setCurrentBrick(getBrick(row, col));
     }
     document.getElementById('fname').value = "";
@@ -43754,12 +43766,7 @@ function ClickOnBrick(_ref) {
 // takes input, and changes state to either be default or highlight the searched-for brick
 function submitButton(setCurrentBrick) {
   // default brick
-  var brick = {
-    name: "none",
-    message: "none",
-    row: 50,
-    col: 100
-  };
+  var brick = _brickRoadSite["default"];
   var val = document.getElementById("fname").value;
   for (var i in _brickData["default"]) {
     if (val == _brickData["default"][i].name) {
@@ -43769,7 +43776,7 @@ function submitButton(setCurrentBrick) {
   setCurrentBrick(brick);
 }
 
-},{"../brickData.json":1}],27:[function(require,module,exports){
+},{"../brickData.json":1,"./brickRoadSite.js":22}],27:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -43777,6 +43784,7 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports["default"] = SelectedBrick;
 var _react = _interopRequireDefault(require("react"));
+var _brickRoadSite = require("./brickRoadSite.js");
 function _interopRequireDefault(e) {
   return e && e.__esModule ? e : {
     "default": e
@@ -43789,19 +43797,30 @@ This single component shows the selected brick
 */
 
 function SelectedBrick(_ref) {
-  var brick = _ref.brick;
+  var brick = _ref.brick,
+    setCurrentBrick = _ref.setCurrentBrick;
+  function closeBrick() {
+    setCurrentBrick(_brickRoadSite.defaultBrick);
+    document.getElementById("selectedBrickContainer").style.visibility = "hidden";
+  }
   if (brick.col == 50) {
     return /*#__PURE__*/_react["default"].createElement("div", {
       id: "selectedBrickContainer"
-    }, /*#__PURE__*/_react["default"].createElement("p", null));
+    }, /*#__PURE__*/_react["default"].createElement("button", {
+      onClick: closeBrick
+    }, "Close"), /*#__PURE__*/_react["default"].createElement("p", null));
   } else if (brick.col == 100) {
     return /*#__PURE__*/_react["default"].createElement("div", {
       id: "selectedBrickContainer"
-    }, /*#__PURE__*/_react["default"].createElement("p", null, "There is not a brick that corresponds with that name."));
+    }, /*#__PURE__*/_react["default"].createElement("button", {
+      onClick: closeBrick
+    }, "Close"), /*#__PURE__*/_react["default"].createElement("p", null, "There is not a brick that corresponds with that name."));
   }
   return /*#__PURE__*/_react["default"].createElement("div", {
     id: "selectedBrickContainer"
-  }, /*#__PURE__*/_react["default"].createElement("p", null, "Name: ", brick.name), /*#__PURE__*/_react["default"].createElement("p", null, "Message: ", brick.message));
+  }, /*#__PURE__*/_react["default"].createElement("button", {
+    onClick: closeBrick
+  }, "Close"), /*#__PURE__*/_react["default"].createElement("p", null, "Name: ", brick.name), /*#__PURE__*/_react["default"].createElement("p", null, "Message: ", brick.message));
 }
 
-},{"react":16}]},{},[24]);
+},{"./brickRoadSite.js":22,"react":16}]},{},[24]);

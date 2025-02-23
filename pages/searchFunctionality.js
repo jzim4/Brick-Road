@@ -5,7 +5,8 @@ This file handles two ways to search for brick: search bar and click
 It then sets the current brick state, which is on the file brickRoadSite
 */
 
-import data from '../brickData.json'
+import data from '../brickData.json';
+import defaultBrick from './brickRoadSite.js'
 
 // Handles clicking on bricks
 export function ClickOnBrick({setCurrentBrick}) {
@@ -25,6 +26,7 @@ export function ClickOnBrick({setCurrentBrick}) {
         let col = Array.prototype.indexOf.call(clicked.parentElement.children, clicked);
         let row = Array.prototype.indexOf.call(clicked.parentElement.parentElement.children, clicked.parentElement);
         if (clicked.classList.contains("existingBrick")) {
+            document.getElementById("selectedBrickContainer").style.visibility = "visible";
             setCurrentBrick(getBrick(row,col));
         }
         document.getElementById('fname').value = "";
@@ -34,12 +36,7 @@ export function ClickOnBrick({setCurrentBrick}) {
 // takes input, and changes state to either be default or highlight the searched-for brick
 export function submitButton(setCurrentBrick) {
     // default brick
-    let brick = {
-        name: "none",
-        message: "none",
-        row: 50,
-        col: 100
-    }
+    let brick = defaultBrick;
     let val = document.getElementById("fname").value;
     for (let i in data) {
         if (val == data[i].name) {

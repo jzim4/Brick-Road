@@ -54,9 +54,14 @@ a {
 
 /* SELECTED BRICK */
 #selectedBrickContainer {
+    position: fixed;
+    top: 200px;
+    left: 50%;
+    transform: translateX(-50%);
     width: 500px;
     height: 300px;
     background-color: brown;
+    visibility: hidden;
 }
 
 
