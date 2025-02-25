@@ -43226,6 +43226,7 @@ Object.defineProperty(exports, "__esModule", {
 exports["default"] = BrickPath;
 var _react = _interopRequireDefault(require("react"));
 var _brickData = _interopRequireDefault(require("../brickData.json"));
+var _panels = _interopRequireDefault(require("./panels.js"));
 function _interopRequireDefault(e) {
   return e && e.__esModule ? e : {
     "default": e
@@ -43294,63 +43295,6 @@ function _arrayLikeToArray(r, a) {
   Author: Jonah Zimmer
   This file draws the brick path, setting class names of existing and selected bricks
   */
-function Panels() {
-  return /*#__PURE__*/_react["default"].createElement("div", {
-    id: "panelsContainer"
-  }, /*#__PURE__*/_react["default"].createElement("img", {
-    width: "400",
-    height: "363",
-    src: "null"
-  }), /*#__PURE__*/_react["default"].createElement("img", {
-    width: "400",
-    height: "363",
-    src: "null"
-  }), /*#__PURE__*/_react["default"].createElement("img", {
-    width: "400",
-    height: "363",
-    src: "null"
-  }), /*#__PURE__*/_react["default"].createElement("img", {
-    width: "400",
-    height: "363",
-    src: "null"
-  }), /*#__PURE__*/_react["default"].createElement("img", {
-    width: "400",
-    height: "363",
-    src: "null"
-  }), /*#__PURE__*/_react["default"].createElement("img", {
-    width: "400",
-    height: "363",
-    src: "null"
-  }), /*#__PURE__*/_react["default"].createElement("img", {
-    width: "400",
-    height: "363",
-    src: "null"
-  }), /*#__PURE__*/_react["default"].createElement("img", {
-    width: "400",
-    height: "363",
-    src: "null"
-  }), /*#__PURE__*/_react["default"].createElement("img", {
-    width: "400",
-    height: "363",
-    src: "null"
-  }), /*#__PURE__*/_react["default"].createElement("img", {
-    width: "400",
-    height: "363",
-    src: "null"
-  }), /*#__PURE__*/_react["default"].createElement("img", {
-    width: "400",
-    height: "363",
-    src: "null"
-  }), /*#__PURE__*/_react["default"].createElement("img", {
-    width: "400",
-    height: "363",
-    src: "null"
-  }), /*#__PURE__*/_react["default"].createElement("img", {
-    width: "400",
-    height: "363",
-    src: "null"
-  }));
-}
 function saveAllBricks() {
   var bricks = [];
   var _iterator = _createForOfIteratorHelper(_brickData["default"]),
@@ -43402,7 +43346,7 @@ function BrickPath(_ref) {
     id: "leftScroll"
   }, " Left "), /*#__PURE__*/_react["default"].createElement("div", {
     id: "scrollContainer"
-  }, /*#__PURE__*/_react["default"].createElement(Panels, null), Array(numRows).fill(0).map(function (_, rowIndex) {
+  }, /*#__PURE__*/_react["default"].createElement(_panels["default"], null), Array(numRows).fill(0).map(function (_, rowIndex) {
     return /*#__PURE__*/_react["default"].createElement("div", {
       className: rowIndex % 2 == 0 ? 'brickRow offsetBrickRow' : 'brickRow',
       key: rowIndex
@@ -43418,7 +43362,7 @@ function BrickPath(_ref) {
   }, "Right "));
 }
 
-},{"../brickData.json":1,"react":16}],22:[function(require,module,exports){
+},{"../brickData.json":1,"./panels.js":25,"react":16}],22:[function(require,module,exports){
 "use strict";
 
 function _typeof(o) {
@@ -43529,12 +43473,6 @@ var defaultBrick = exports.defaultBrick = {
   col: 50
 };
 function BrickRoadSite() {
-  var defaultBrick = {
-    name: "none",
-    message: "none",
-    row: 50,
-    col: 50
-  };
   var _useState = (0, _react.useState)(defaultBrick),
     _useState2 = _slicedToArray(_useState, 2),
     currentBrick = _useState2[0],
@@ -43552,7 +43490,7 @@ function BrickRoadSite() {
   }));
 }
 
-},{"./brickPath.js":21,"./header.js":23,"./search.js":25,"./searchFunctionality.js":26,"./selectedBrick.js":27,"react":16}],23:[function(require,module,exports){
+},{"./brickPath.js":21,"./header.js":23,"./search.js":26,"./searchFunctionality.js":27,"./selectedBrick.js":28,"react":16}],23:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -43599,6 +43537,77 @@ root.render(/*#__PURE__*/_react["default"].createElement(_react["default"].Stric
 })))));
 
 },{"./brickRoadSite.js":22,"react":16,"react-dom/client":6,"react-router-dom":8}],25:[function(require,module,exports){
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports["default"] = Panels;
+var _react = _interopRequireDefault(require("react"));
+function _interopRequireDefault(e) {
+  return e && e.__esModule ? e : {
+    "default": e
+  };
+}
+function Panels() {
+  return /*#__PURE__*/_react["default"].createElement("div", {
+    id: "panelsContainer"
+  }, /*#__PURE__*/_react["default"].createElement("img", {
+    width: "400",
+    height: "363",
+    src: "null"
+  }), /*#__PURE__*/_react["default"].createElement("img", {
+    width: "400",
+    height: "363",
+    src: "null"
+  }), /*#__PURE__*/_react["default"].createElement("img", {
+    width: "400",
+    height: "363",
+    src: "null"
+  }), /*#__PURE__*/_react["default"].createElement("img", {
+    width: "400",
+    height: "363",
+    src: "null"
+  }), /*#__PURE__*/_react["default"].createElement("img", {
+    width: "400",
+    height: "363",
+    src: "null"
+  }), /*#__PURE__*/_react["default"].createElement("img", {
+    width: "400",
+    height: "363",
+    src: "null"
+  }), /*#__PURE__*/_react["default"].createElement("img", {
+    width: "400",
+    height: "363",
+    src: "null"
+  }), /*#__PURE__*/_react["default"].createElement("img", {
+    width: "400",
+    height: "363",
+    src: "null"
+  }), /*#__PURE__*/_react["default"].createElement("img", {
+    width: "400",
+    height: "363",
+    src: "null"
+  }), /*#__PURE__*/_react["default"].createElement("img", {
+    width: "400",
+    height: "363",
+    src: "null"
+  }), /*#__PURE__*/_react["default"].createElement("img", {
+    width: "400",
+    height: "363",
+    src: "null"
+  }), /*#__PURE__*/_react["default"].createElement("img", {
+    width: "400",
+    height: "363",
+    src: "null"
+  }), /*#__PURE__*/_react["default"].createElement("img", {
+    width: "400",
+    height: "363",
+    src: "null"
+  }));
+}
+
+},{"react":16}],26:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -43654,12 +43663,14 @@ function Search(_ref) {
   }), /*#__PURE__*/_react["default"].createElement("button", {
     id: "submitSearch",
     onClick: function onClick() {
-      return (0, _searchFunctionality.submitButton)(setCurrentBrick);
+      return (0, _searchFunctionality.submitButton)({
+        setCurrentBrick: setCurrentBrick
+      });
     }
   }, "Search"))));
 }
 
-},{"./searchFunctionality.js":26,"react":16}],26:[function(require,module,exports){
+},{"./searchFunctionality.js":27,"react":16}],27:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -43668,7 +43679,7 @@ Object.defineProperty(exports, "__esModule", {
 exports.ClickOnBrick = ClickOnBrick;
 exports.submitButton = submitButton;
 var _brickData = _interopRequireDefault(require("../brickData.json"));
-var _brickRoadSite = _interopRequireDefault(require("./brickRoadSite.js"));
+var _brickRoadSite = require("./brickRoadSite.js");
 function _interopRequireDefault(e) {
   return e && e.__esModule ? e : {
     "default": e
@@ -43762,31 +43773,45 @@ function ClickOnBrick(_ref) {
   // Click event handler that determines the location of the selected brick and changes state if it exists
   document.addEventListener("click", function (e) {
     var clicked = e.target;
-    var col = Array.prototype.indexOf.call(clicked.parentElement.children, clicked);
-    var row = Array.prototype.indexOf.call(clicked.parentElement.parentElement.children, clicked.parentElement) - 1;
     if (clicked.classList.contains("existingBrick")) {
+      var col = Array.prototype.indexOf.call(clicked.parentElement.children, clicked);
+      var row = Array.prototype.indexOf.call(clicked.parentElement.parentElement.children, clicked.parentElement) - 1;
       document.getElementById("selectedBrickContainer").style.visibility = "visible";
-      console.log(getBrick(row, col));
       setCurrentBrick(getBrick(row, col));
     }
+    // else if (clicked.id == "submitSearch") {
+    //     let val = document.getElementById("fname").value;
+    //     console.log(getBrick(val))
+    //     // setCurrentBrick(getBrick(val));
+    // }
     document.getElementById('fname').value = "";
   });
 }
 
 // takes input, and changes state to either be default or highlight the searched-for brick
-function submitButton(setCurrentBrick) {
+function submitButton(_ref2) {
+  var setCurrentBrick = _ref2.setCurrentBrick;
   // default brick
-  var brick = _brickRoadSite["default"];
+  var brick = _brickRoadSite.defaultBrick;
   var val = document.getElementById("fname").value;
-  for (var i in _brickData["default"]) {
-    if (val == _brickData["default"][i].name) {
-      brick = _brickData["default"][i];
+  var _iterator2 = _createForOfIteratorHelper(_brickData["default"]),
+    _step2;
+  try {
+    for (_iterator2.s(); !(_step2 = _iterator2.n()).done;) {
+      var b = _step2.value;
+      if (val == b.name) {
+        brick = b;
+      }
     }
+  } catch (err) {
+    _iterator2.e(err);
+  } finally {
+    _iterator2.f();
   }
   setCurrentBrick(brick);
 }
 
-},{"../brickData.json":1,"./brickRoadSite.js":22}],27:[function(require,module,exports){
+},{"../brickData.json":1,"./brickRoadSite.js":22}],28:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {

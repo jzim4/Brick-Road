@@ -8,6 +8,7 @@ import React from 'react';
 import { submitButton } from './searchFunctionality.js';
 
 export default function Search({ setCurrentBrick }) {
+
     return <div id="searchContainer">
         <div id="sectionSearchContainer">
             Search by section:
@@ -24,7 +25,7 @@ export default function Search({ setCurrentBrick }) {
             <label htmlFor="fname">Search by name of donor:</label>
             <div id="searchInputsContainer">
             <input type="text" id="fname" name="fname"></input>
-            <button id="submitSearch" onClick={() => submitButton(setCurrentBrick)}>Search</button>
+            <button id="submitSearch" onClick={() => submitButton( {setCurrentBrick} )}>Search</button>
             </div>
         </div>
     </div>

@@ -6,25 +6,7 @@ This file draws the brick path, setting class names of existing and selected bri
 
 import React from 'react';
 import data from '../brickData.json';
-
-
-function Panels() {
-  return <div id="panelsContainer">
-    <img width="400" height="363" src="null"></img>
-    <img width="400" height="363" src="null"></img>
-    <img width="400" height="363" src="null"></img>
-    <img width="400" height="363" src="null"></img>
-    <img width="400" height="363" src="null"></img>
-    <img width="400" height="363" src="null"></img>
-    <img width="400" height="363" src="null"></img>
-    <img width="400" height="363" src="null"></img>
-    <img width="400" height="363" src="null"></img>
-    <img width="400" height="363" src="null"></img>
-    <img width="400" height="363" src="null"></img>
-    <img width="400" height="363" src="null"></img>
-    <img width="400" height="363" src="null"></img>
-  </div>
-}
+import Panels from './panels.js';
 
 function saveAllBricks() {
   let bricks = [];
@@ -68,6 +50,5 @@ export default function BrickPath({ row, col }) {
       ))}
   </div>
   <div className = "scrollButton" id="rightScroll">Right </div>
-
   </div>
 }

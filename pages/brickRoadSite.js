@@ -20,12 +20,6 @@ export const defaultBrick = {
 }
 
 export default function BrickRoadSite() {
-    const defaultBrick = {
-        name: "none",
-        message: "none",
-        row: 50,
-        col: 50
-    }
     const [currentBrick, setCurrentBrick] = useState(defaultBrick);
 
     return <>
