@@ -10,19 +10,19 @@ import data from '../brickData.json';
 
 function Panels() {
   return <div id="panelsContainer">
-    <img width="400" height="350" src="null"></img>
-    <img width="400" height="350" src="null"></img>
-    <img width="400" height="350" src="null"></img>
-    <img width="400" height="350" src="null"></img>
-    <img width="400" height="350" src="null"></img>
-    <img width="400" height="350" src="null"></img>
-    <img width="400" height="350" src="null"></img>
-    <img width="400" height="350" src="null"></img>
-    <img width="400" height="350" src="null"></img>
-    <img width="400" height="350" src="null"></img>
-    <img width="400" height="350" src="null"></img>
-    <img width="400" height="350" src="null"></img>
-    <img width="400" height="350" src="null"></img>
+    <img width="400" height="363" src="null"></img>
+    <img width="400" height="363" src="null"></img>
+    <img width="400" height="363" src="null"></img>
+    <img width="400" height="363" src="null"></img>
+    <img width="400" height="363" src="null"></img>
+    <img width="400" height="363" src="null"></img>
+    <img width="400" height="363" src="null"></img>
+    <img width="400" height="363" src="null"></img>
+    <img width="400" height="363" src="null"></img>
+    <img width="400" height="363" src="null"></img>
+    <img width="400" height="363" src="null"></img>
+    <img width="400" height="363" src="null"></img>
+    <img width="400" height="363" src="null"></img>
   </div>
 }
 
@@ -37,15 +37,15 @@ function saveAllBricks() {
 export default function BrickPath({ row, col }) {
   const allBricks = saveAllBricks();
 
-  const numRows = 10;
-  const numCols = 192;
-  const bricks = document.getElementsByTagName('td');
+  const numRows = 15;
+  const numCols = 134;
+  const bricks = document.getElementsByClassName('brick');
   for (let i of bricks) {
     i.classList.remove("selectedBrick");
   }
 
   if (row <= numRows && col <= numCols) {
-    let cell = document.querySelectorAll(`tr td:nth-child(${col + 1}`)[row];
+    let cell = document.querySelectorAll(`.brick:nth-child(${col + 1}`)[row];
     cell.classList.add("selectedBrick");
   }
 
@@ -53,18 +53,21 @@ export default function BrickPath({ row, col }) {
     return allBricks.some(i => JSON.stringify(i) === JSON.stringify(brick));
   }
 
-  return <div id="scrollContainer">
+  return <div id="fullPathContainer">
+  <div className = "scrollButton" id="leftScroll"> Left </div>
+
+  <div id="scrollContainer">
     <Panels />
-    <table>   <tbody>
       {Array(numRows).fill(0).map((_, rowIndex) => (
-        <tr key={rowIndex}>
+        <div className={rowIndex % 2 == 0 ? 'brickRow offsetBrickRow' : 'brickRow'} key={rowIndex}>
           {Array(numCols).fill(0).map((_, colIndex) => (
-            <td className={brickExists([rowIndex, colIndex]) ? 'existingBrick' : ''} key={colIndex}>
-            </td>
+            <div className={brickExists([rowIndex, colIndex]) ? 'existingBrick brick' : 'brick'} key={100*rowIndex + colIndex}>
+            </div>
           ))}
-        </tr>
+        </div>
       ))}
-    </tbody>
-    </table>
+  </div>
+  <div className = "scrollButton" id="rightScroll">Right </div>
+
   </div>
 }

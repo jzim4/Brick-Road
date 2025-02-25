@@ -24,9 +24,10 @@ export function ClickOnBrick({setCurrentBrick}) {
     document.addEventListener("click", (e) => {
         const clicked = e.target;
         let col = Array.prototype.indexOf.call(clicked.parentElement.children, clicked);
-        let row = Array.prototype.indexOf.call(clicked.parentElement.parentElement.children, clicked.parentElement);
+        let row = Array.prototype.indexOf.call(clicked.parentElement.parentElement.children, clicked.parentElement) - 1;
         if (clicked.classList.contains("existingBrick")) {
             document.getElementById("selectedBrickContainer").style.visibility = "visible";
+            console.log(getBrick(row,col))
             setCurrentBrick(getBrick(row,col));
         }
         document.getElementById('fname').value = "";

@@ -67,18 +67,32 @@ a {
 
 /* SCROLLABLE */
 
+#fullPathContainer {
+    display: flex;
+    flex-direction: row;
+    width: calc(100% - 20px);
+}
+.scrollButton {
+    width: 30px;
+}
+
 #scrollContainer {
+    padding: 10px;
+    border: #dd7e6bff solid 10px;
     margin: 0 auto;
-    width: 95vw;
-    height: fit-content;
+    height: 550px;
+    width: 90vw;
     overflow-x: scroll;
+    scrollbar-width: thin;
+    overflow-y:hidden;
     white-space: nowrap;
 }
 
 /* PANELS */
 #panelsContainer {
     display: flex;
-    gap: 15px;
+    gap: 36px;
+    margin-bottom: 10px;
 }
 
 /* PATH */
@@ -86,14 +100,24 @@ table {
     width:100%;
 }
 
-td {
+.brickRow {
+    height: 12px;
+}
+.offsetBrickRow {
+    margin-left: 20px;
+}
+
+.brick {
+    background-color: #d9d9d9ff;
+    margin-right: -2px;
+    display: inline-block;
     border: 2px solid black;
-    min-width: 20px;
+    width: 40px;
     height: 10px;
 }
 
 .existingBrick {
-    background-color: grey;
+    background-color: #dd7e6bff;
 }
 
 .selectedBrick {

@@ -43299,55 +43299,55 @@ function Panels() {
     id: "panelsContainer"
   }, /*#__PURE__*/_react["default"].createElement("img", {
     width: "400",
-    height: "350",
+    height: "363",
     src: "null"
   }), /*#__PURE__*/_react["default"].createElement("img", {
     width: "400",
-    height: "350",
+    height: "363",
     src: "null"
   }), /*#__PURE__*/_react["default"].createElement("img", {
     width: "400",
-    height: "350",
+    height: "363",
     src: "null"
   }), /*#__PURE__*/_react["default"].createElement("img", {
     width: "400",
-    height: "350",
+    height: "363",
     src: "null"
   }), /*#__PURE__*/_react["default"].createElement("img", {
     width: "400",
-    height: "350",
+    height: "363",
     src: "null"
   }), /*#__PURE__*/_react["default"].createElement("img", {
     width: "400",
-    height: "350",
+    height: "363",
     src: "null"
   }), /*#__PURE__*/_react["default"].createElement("img", {
     width: "400",
-    height: "350",
+    height: "363",
     src: "null"
   }), /*#__PURE__*/_react["default"].createElement("img", {
     width: "400",
-    height: "350",
+    height: "363",
     src: "null"
   }), /*#__PURE__*/_react["default"].createElement("img", {
     width: "400",
-    height: "350",
+    height: "363",
     src: "null"
   }), /*#__PURE__*/_react["default"].createElement("img", {
     width: "400",
-    height: "350",
+    height: "363",
     src: "null"
   }), /*#__PURE__*/_react["default"].createElement("img", {
     width: "400",
-    height: "350",
+    height: "363",
     src: "null"
   }), /*#__PURE__*/_react["default"].createElement("img", {
     width: "400",
-    height: "350",
+    height: "363",
     src: "null"
   }), /*#__PURE__*/_react["default"].createElement("img", {
     width: "400",
-    height: "350",
+    height: "363",
     src: "null"
   }));
 }
@@ -43371,9 +43371,9 @@ function BrickPath(_ref) {
   var row = _ref.row,
     col = _ref.col;
   var allBricks = saveAllBricks();
-  var numRows = 10;
-  var numCols = 192;
-  var bricks = document.getElementsByTagName('td');
+  var numRows = 15;
+  var numCols = 134;
+  var bricks = document.getElementsByClassName('brick');
   var _iterator2 = _createForOfIteratorHelper(bricks),
     _step2;
   try {
@@ -43387,7 +43387,7 @@ function BrickPath(_ref) {
     _iterator2.f();
   }
   if (row <= numRows && col <= numCols) {
-    var cell = document.querySelectorAll("tr td:nth-child(".concat(col + 1))[row];
+    var cell = document.querySelectorAll(".brick:nth-child(".concat(col + 1))[row];
     cell.classList.add("selectedBrick");
   }
   function brickExists(brick) {
@@ -43396,17 +43396,26 @@ function BrickPath(_ref) {
     });
   }
   return /*#__PURE__*/_react["default"].createElement("div", {
+    id: "fullPathContainer"
+  }, /*#__PURE__*/_react["default"].createElement("div", {
+    className: "scrollButton",
+    id: "leftScroll"
+  }, " Left "), /*#__PURE__*/_react["default"].createElement("div", {
     id: "scrollContainer"
-  }, /*#__PURE__*/_react["default"].createElement(Panels, null), /*#__PURE__*/_react["default"].createElement("table", null, "   ", /*#__PURE__*/_react["default"].createElement("tbody", null, Array(numRows).fill(0).map(function (_, rowIndex) {
-    return /*#__PURE__*/_react["default"].createElement("tr", {
+  }, /*#__PURE__*/_react["default"].createElement(Panels, null), Array(numRows).fill(0).map(function (_, rowIndex) {
+    return /*#__PURE__*/_react["default"].createElement("div", {
+      className: rowIndex % 2 == 0 ? 'brickRow offsetBrickRow' : 'brickRow',
       key: rowIndex
     }, Array(numCols).fill(0).map(function (_, colIndex) {
-      return /*#__PURE__*/_react["default"].createElement("td", {
-        className: brickExists([rowIndex, colIndex]) ? 'existingBrick' : '',
-        key: colIndex
+      return /*#__PURE__*/_react["default"].createElement("div", {
+        className: brickExists([rowIndex, colIndex]) ? 'existingBrick brick' : 'brick',
+        key: 100 * rowIndex + colIndex
       });
     }));
-  }))));
+  })), /*#__PURE__*/_react["default"].createElement("div", {
+    className: "scrollButton",
+    id: "rightScroll"
+  }, "Right "));
 }
 
 },{"../brickData.json":1,"react":16}],22:[function(require,module,exports){
@@ -43754,9 +43763,10 @@ function ClickOnBrick(_ref) {
   document.addEventListener("click", function (e) {
     var clicked = e.target;
     var col = Array.prototype.indexOf.call(clicked.parentElement.children, clicked);
-    var row = Array.prototype.indexOf.call(clicked.parentElement.parentElement.children, clicked.parentElement);
+    var row = Array.prototype.indexOf.call(clicked.parentElement.parentElement.children, clicked.parentElement) - 1;
     if (clicked.classList.contains("existingBrick")) {
       document.getElementById("selectedBrickContainer").style.visibility = "visible";
+      console.log(getBrick(row, col));
       setCurrentBrick(getBrick(row, col));
     }
     document.getElementById('fname').value = "";
