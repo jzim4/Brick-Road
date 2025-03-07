@@ -1,0 +1,190 @@
+body {
+    margin: 0;
+}
+
+/* HEADING */
+header {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    align-items: center;
+    background-color: lightblue;
+}
+a {
+    border: black solid 2px;
+    border-radius: 4px;
+    padding: 5px 0;
+    text-align: center;
+    width: 100px;
+}
+#headerSpaceHolder {
+    width: 104px;
+}
+
+/* SEARCH */
+
+#searchHeader {
+    margin: 20px 0;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+}
+
+#keysContainer {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+.keyContainer {
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+}
+.keyBox {
+    width: 40px;
+    height: 20px;
+    border: black solid 2px;
+}
+#redKeyBox {
+    background-color: #dd7e6bff;
+}
+#greyKeyBox {
+    background-color: lightgrey;
+}
+
+    /* DROP DROWN */
+        /* https://www.w3schools.com/howto/howto_js_accordion.asp */
+
+.accordion {
+    border-radius: 8px;
+    border: black solid 2px;
+    cursor: pointer;
+    padding: 10px;
+    text-align: left;
+    outline: none;
+    font-size: 15px;
+    transition: 0.4s;
+  }
+  
+.active, .accordion:hover {
+background-color: #ccc; 
+}
+
+.searchDropdown {
+    position: absolute;
+    width: 80%;
+    padding: 5px 15px;
+    margin: auto;
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.4s ease-out;
+}
+
+#searchContainer {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    margin: 10px auto;
+    width: fit-content;
+    background-color: lightgrey;
+    padding: 15px;
+}
+#sectionSearchContainer {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+}
+#sectionSearchButtons {
+    margin-top: 5px;
+    display: flex;
+    flex-direction: row;
+    gap: 15px;
+}
+#submitSearch {
+    margin-left: 5px;
+}
+#nameSearchContainer {
+    justify-content: center;
+    display: flex;
+    flex-direction: column;
+}
+
+/* SELECTED BRICK */
+#selectedBrickContainer {
+    position: fixed;
+    top: 200px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 500px;
+    height: 300px;
+    background-color: brown;
+    visibility: hidden;
+}
+
+
+/* SCROLLABLE */
+
+#fullPathContainer {
+    display: flex;
+    flex-direction: row;
+    width: calc(100% - 20px);
+}
+.scrollButton {
+    width: 30px;
+}
+
+#scrollContainer {
+    padding: 10px 20px;
+    border: #dd7e6bff solid 10px;
+    margin: 0 auto;
+    height: 560px;
+    width: 90vw;
+    overflow-x: scroll;
+    scrollbar-width: thin;
+    overflow-y:hidden;
+    white-space: nowrap;
+}
+
+/* PANELS */
+#panelsContainer {
+    display: inline-block;
+    margin-bottom: 10px;
+    width: fit-content;
+}
+.panel {
+    margin-right: 36px;
+}
+
+/* PATH */
+#path {
+    width: fit-content;
+
+}
+.brickRow {
+    height: 12px;
+}
+.leftShiftRow {
+    margin-left: -10px;
+}
+.rightShiftRow {
+    margin-left: 10px;
+}
+
+.brick {
+    background-color: #d9d9d9ff;
+    margin-right: -2px;
+    display: inline-block;
+    border: 2px solid black;
+    width: 41.6px;
+    height: 10px;
+}
+
+.existingBrick {
+    background-color: #dd7e6bff;
+}
+
+.selectedBrick {
+    background-color: red;
+}
