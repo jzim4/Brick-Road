@@ -24,15 +24,17 @@ a {
 /* SEARCH */
 
 #searchHeader {
+    position: relative;
     margin: 20px 0;
     display: flex;
     flex-direction: row;
-    align-items: center;
+    align-items: start;
     justify-content: center;
     gap: 10px;
 }
 
 #keysContainer {
+    padding-top: 5px;
     display: flex;
     flex-direction: column;
     gap: 10px;
@@ -61,25 +63,26 @@ a {
     border-radius: 8px;
     border: black solid 2px;
     cursor: pointer;
-    padding: 10px;
+    padding: 5px;
     text-align: left;
     outline: none;
     font-size: 15px;
     transition: 0.4s;
-  }
+}
   
-.active, .accordion:hover {
+.active, .accordion:hover, .accordion:focus {
 background-color: #ccc; 
 }
-
 .searchDropdown {
     position: absolute;
+    top: 40px;
+    right: 0;
     width: 80%;
+    height: 0;
+    overflow: hidden;
     padding: 5px 15px;
     margin: auto;
-    max-height: 0;
-    overflow: hidden;
-    transition: max-height 0.4s ease-out;
+    transition: all 0.4s ease-out;
 }
 
 #searchContainer {
@@ -123,16 +126,36 @@ background-color: #ccc;
     visibility: hidden;
 }
 
-
 /* SCROLLABLE */
 
 #fullPathContainer {
     display: flex;
     flex-direction: row;
-    width: calc(100% - 20px);
+    width: 100%;
+}
+.scrollButtonContainer {
+    display: flex;
+    align-items: center;
+    padding: 0 5px;
 }
 .scrollButton {
-    width: 30px;
+    border-radius: 50%;
+    background-color: #eee;
+    margin: 5px;
+    width: 40px;
+    height: 40px;
+    font-size: 30px;
+    border: unset;
+}
+.scrollButton:hover {
+    background-color: #ccc;
+    cursor: pointer;
+}
+#leftScroll {
+    transform: rotate(-90deg) translateX(3px);
+}
+#rightScroll {
+    transform: rotate(90deg)  translateX(-3px);
 }
 
 #scrollContainer {
@@ -183,8 +206,54 @@ background-color: #ccc;
 
 .existingBrick {
     background-color: #dd7e6bff;
+    position: relative;
 }
 
 .selectedBrick {
     background-color: red;
 }
+
+/* Popup */
+
+.popupText {
+    display: none;
+    width: fit-content;
+    background-color: grey;
+    color: #fff;
+    text-align: left;
+    border-radius: 6px;
+    padding: 5px;
+    position: absolute;
+    z-index: 1;
+    bottom: 150%;
+    left: 50%;
+    transform: translateX(-50%);
+}
+.popupTextLeft {
+    left: 0%;
+    transform: translateX(0);
+}
+.popupTextRight {
+    left: 100%;
+    transform: translateX(-100%);
+}
+
+.popupText::after {
+    content: "";
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    margin-left: -5px;
+    border-width: 5px;
+    border-style: solid;
+    border-color: grey transparent transparent transparent;
+}
+.popupTextLeft::after {
+    left: 10%;
+}
+.popupTextRight::after {
+    left: 90%;
+}
+.existingBrick:hover .popupText {
+    display: block;
+  }

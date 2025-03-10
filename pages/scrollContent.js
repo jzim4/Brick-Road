@@ -5,23 +5,25 @@ This file draws the brick path, setting class names of existing and selected bri
 */
 
 import React from 'react';
-import data from '../db.json';
 import Panels from './panels.js';
 import Path from './path.js';
 
-function saveAllBricks() {
-  const bricksPerPanel = 10;
 
-  let bricks = [];
-  for (let brick of data) {
-    bricks.push([brick.Row_Number, (brick.Panel_Number-1) * bricksPerPanel + brick.Col_Number])
+function scrollButtonFunction(goLeft) {
+  const scroll = document.getElementById("scrollContainer");
+  let dist = scroll.scrollLeft + 436;
+  if (goLeft) {
+    dist = scroll.scrollLeft - 436;
   }
-  return bricks;
+  scroll.scroll({
+    left: dist,
+    top: 0,
+    behavior: "smooth"
+  })
 }
 
-export default function ScrollContent({ currentBrick }) {
+export default function ScrollContent({ highlight, currentBrick }) {
   const bricksPerPanel = 10;
-  const allBricks = saveAllBricks();
 
   const bricks = document.getElementsByClassName('brick');
   for (let i of bricks) {
@@ -35,13 +37,17 @@ export default function ScrollContent({ currentBrick }) {
   }
 
   return <div id="fullPathContainer">
-    <div className="scrollButton" id="leftScroll"> Left </div>
+    <div className="scrollButtonContainer">
+      <button onClick={() => scrollButtonFunction(true)} tabIndex={0} className="scrollButton" id="leftScroll"> &#8679; </button>
+    </div>
 
     <div id="scrollContainer">
       <Panels />
-      <Path bricks={allBricks} />
+      <Path highlight={highlight}/>
     </div>
-    <div className="scrollButton" id="rightScroll">Right </div>
+    <div className="scrollButtonContainer">
+      <button onClick={() => scrollButtonFunction(false)} tabIndex={0} className="scrollButton" id="rightScroll"> &#8679; </button>
+    </div>
   </div>
 }
 

@@ -12,14 +12,12 @@ export default function Search({ setCurrentBrick, highlight, setHighlight }) {
     function handleDropdownClick(e) {
         const clicked = e.target;
         clicked.classList.toggle("active");
-        var panel = clicked.parentElement.nextElementSibling;
-        console.log(panel);
-        if (panel.style.maxHeight) {
-            panel.style.maxHeight = null;
+        const panel = document.getElementsByClassName("searchDropdown")[0];
+        if (panel.style.height != "0px") {
+            panel.style.height = "0px";
             panel.style.paddingBottom = "5px";
         } else {
-            panel.style.maxHeight = panel.scrollHeight + "px";
-            panel.style.paddingBottom = "25px";
+            panel.style.height = "200px";
         }
     }
 
@@ -70,9 +68,8 @@ export default function Search({ setCurrentBrick, highlight, setHighlight }) {
                     <div id="greyKeyText">All other bricks</div>
                 </div>
             </div>
-            <button onClick={handleDropdownClick} className="accordion">Filter</button>
-        </div>
-        <div className="searchDropdown">
+            <button onClick={handleDropdownClick} tabIndex={0} className="accordion">Filter</button>
+        <div className="searchDropdown" style={{height:0 +"px"}}>
             <div id="searchContainer">
                 <div id="sectionSearchContainer">
                     <div id="sectionSearchButtons">
@@ -84,6 +81,7 @@ export default function Search({ setCurrentBrick, highlight, setHighlight }) {
                         <button id="businesses" className="sectionSearchButton" onClick={() => handleSectionClick("Businesses/Organizations")}>Businesses/Organizations</button>
                     </div>
                 </div>
+        
 
                 <div id="nameSearchContainer">
                     <div id="searchInputsContainer">
@@ -96,6 +94,7 @@ export default function Search({ setCurrentBrick, highlight, setHighlight }) {
                 <button id="businesses" className="sectionSearchButton" onClick={() => handleSectionClick("all")}>Clear all filters</button>
 
             </div>
+        </div>
         </div>
     </>
 }

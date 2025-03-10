@@ -13,7 +13,6 @@ import SelectedBrick from './selectedBrick.js';
 import ScrollContent from './scrollContent.js';
 import { ClickOnBrick } from './searchFunctionality.js';
 
-
 export const defaultBrick = {
     Panel_Number: 14,
     Row_Number: 16,
@@ -31,6 +30,6 @@ export default function BrickRoadSite() {
         <Search setCurrentBrick={setCurrentBrick} highlight={highlight} setHighlight={setHighlight}/>
         
         <SelectedBrick brick={currentBrick} setCurrentBrick={setCurrentBrick}/>
-        <ScrollContent currentBrick = {currentBrick}/>
+        <ScrollContent highlight={highlight} currentBrick = {currentBrick}/>
     </>
 }
