@@ -43598,7 +43598,7 @@ function Path(_ref) {
         key: 100 * rowIndex + colIndex
       }, /*#__PURE__*/_react["default"].createElement("span", {
         className: "popupText " + (col < 3 ? "popupTextLeft" : col > numCols - 4 ? "popupTextRight" : "")
-      }, "Donor: ", bData.Purchaser_Name, /*#__PURE__*/_react["default"].createElement("br", null), "Year: ", bData.Naming_Year, /*#__PURE__*/_react["default"].createElement("br", null), "Click on brick for more info!"));
+      }, "Donor: ", bData.Purchaser_Name, /*#__PURE__*/_react["default"].createElement("br", null), "Year: ", bData.Naming_Year, /*#__PURE__*/_react["default"].createElement("br", null), "Click for more info!"));
     } else {
       return /*#__PURE__*/_react["default"].createElement("div", {
         className: "brick",
@@ -43606,7 +43606,6 @@ function Path(_ref) {
       });
     }
   }
-  console.log("rebuild path");
   return /*#__PURE__*/_react["default"].createElement("div", {
     id: "path"
   }, Array(numRows).fill(0).map(function (_, rowIndex) {
@@ -44019,6 +44018,10 @@ function ClickOnBrick(_ref) {
   // Click event handler that determines the location of the selected brick and changes state if it exists
   document.addEventListener("click", function (e) {
     var clicked = e.target;
+    if (clicked.classList.contains("popupText")) {
+      clicked = clicked.parentElement;
+      console.log(clicked);
+    }
     if (clicked.classList.contains("existingBrick")) {
       var col = Array.prototype.indexOf.call(clicked.parentElement.children, clicked) + 1;
       var row = Array.prototype.indexOf.call(clicked.parentElement.parentElement.children, clicked.parentElement) + 1;
@@ -44033,7 +44036,6 @@ function ClickOnBrick(_ref) {
 
 // takes list of brick objects and changes color of those bricks
 function highlightSelectedElements(selected) {
-  console.log(selected);
   var bricksPerPanel = 10;
   var numRows = document.getElementsByClassName("brickRow").length;
   var numCols = document.getElementsByClassName("brickRow")[0].children.length;
@@ -44060,7 +44062,6 @@ function highlightSelectedElements(selected) {
   try {
     for (_iterator3.s(); !(_step3 = _iterator3.n()).done;) {
       var _b = _step3.value;
-      console.log(_b);
       var _col = (_b.Panel_Number - 1) * bricksPerPanel + _b.Col_Number;
       var _cell = document.querySelectorAll(".brick:nth-child(".concat(_col))[_b.Row_Number - 1];
       _cell.classList.add("existingBrick");

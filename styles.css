@@ -257,3 +257,6 @@ background-color: #ccc;
 .existingBrick:hover .popupText {
     display: block;
   }
+.existingBrick:hover {
+    cursor: pointer;
+}

@@ -23,8 +23,11 @@ export function ClickOnBrick({ setCurrentBrick }) {
 
     // Click event handler that determines the location of the selected brick and changes state if it exists
     document.addEventListener("click", (e) => {
-        const clicked = e.target;
-
+        let clicked = e.target;
+        if (clicked.classList.contains("popupText")) {
+            clicked = clicked.parentElement;
+            console.log(clicked);
+        }
         if (clicked.classList.contains("existingBrick")) {
             let col = Array.prototype.indexOf.call(clicked.parentElement.children, clicked) + 1;
             const row = Array.prototype.indexOf.call(clicked.parentElement.parentElement.children, clicked.parentElement) + 1;
@@ -39,7 +42,6 @@ export function ClickOnBrick({ setCurrentBrick }) {
 
 // takes list of brick objects and changes color of those bricks
 function highlightSelectedElements(selected) {
-    console.log(selected);
     const bricksPerPanel = 10;
     const numRows = document.getElementsByClassName("brickRow").length;
     const numCols = document.getElementsByClassName("brickRow")[0].children.length;
@@ -53,7 +55,6 @@ function highlightSelectedElements(selected) {
 
     // highlight selected bricks
     for (let b of selected) {
-        console.log(b);
         const col = (b.Panel_Number - 1) * bricksPerPanel + b.Col_Number;
         let cell = document.querySelectorAll(`.brick:nth-child(${col}`)[b.Row_Number - 1];
         cell.classList.add("existingBrick");
