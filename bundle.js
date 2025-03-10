@@ -43784,6 +43784,15 @@ function Search(_ref) {
   var setCurrentBrick = _ref.setCurrentBrick,
     highlight = _ref.highlight,
     setHighlight = _ref.setHighlight;
+  document.addEventListener("click", function (e) {
+    var panel = document.getElementsByClassName("searchDropdown")[0];
+    if (!panel.contains(e.target) && !e.target.classList.contains("accordion")) {
+      if (panel.style.height != "0px") {
+        panel.style.height = "0px";
+        panel.style.paddingBottom = "5px";
+      }
+    }
+  });
   function handleDropdownClick(e) {
     var clicked = e.target;
     clicked.classList.toggle("active");
@@ -43799,7 +43808,7 @@ function Search(_ref) {
     var dropdown = document.getElementsByClassName("searchDropdown")[0];
     var btn = document.getElementsByClassName("accordion")[0];
     btn.classList.toggle("active");
-    dropdown.style.maxHeight = null;
+    dropdown.style.height = 0;
     dropdown.style.paddingBottom = "5px";
     setHighlight(section);
     (0, _searchFunctionality.selectSection)(section);
