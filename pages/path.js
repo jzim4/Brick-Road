@@ -5,7 +5,6 @@ export default function Path({ highlight, currentBrick }) {
   const numRows = 15;
   const numCols = 130;
   const bricksPerPanel = 10;
-
   function Brick({ rowIndex, colIndex }) {
     let bData = null;
     for (let b of data) {
@@ -19,7 +18,6 @@ export default function Path({ highlight, currentBrick }) {
       }
     }
     if (bData) {
-      
       const col = (bData.Panel_Number - 1) * bricksPerPanel + bData.Col_Number;
       return <div className={'existingBrick brick ' + (bData == currentBrick ? "clickedBrick" : "")} key={100 * rowIndex + colIndex}>
         <span className={"popupText " + (col < 3 ? "popupTextLeft" : col > numCols - 4 ? "popupTextRight" : "")}>

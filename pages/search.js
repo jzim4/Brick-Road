@@ -1,83 +1,87 @@
 /* 
 Author: Jonah Zimmer
 
-This single component holds the search bar
+This single component holds the search bar and includes all functionality for buttons within search bar
 */
 
-import React from 'react';
 import data from '../db.json';
-import { submitButton, selectSection } from './searchFunctionality.js';
+import React from 'react';
+
+export function collapseSearch() {
+    const dropdown = document.getElementsByClassName("searchDropdown")[0];
+    const btn = document.getElementsByClassName("accordion")[0];
+    btn.classList.remove("active");
+    dropdown.style.height = "0px";
+    dropdown.style.paddingBottom = "5px";
+}
 
 export default function Search({ highlight, setHighlight }) {
+
+    // collapse search if click outside of search
     document.addEventListener("click", (e) => {
         const panel = document.getElementsByClassName("searchDropdown")[0];
         if (!panel.contains(e.target) && !e.target.classList.contains("accordion")) {
-            if (panel.style.height != "0px") {
-                panel.style.height = "0px";
-                panel.style.paddingBottom = "5px";
-            }
+            collapseSearch();
         }
     })
-
-    // TODO: Give feedback about number of results!!!
-    function CountResults() {
-        for (let b of data) {
-            const col = (b.Panel_Number - 1) * bricksPerPanel + b.Col_Number;
-            const sections = ["Centenarian", "Heroes", "Golden Women", "Family/Friends", "Businesses/Organizations"];
-      
-            if (!sections.includes(highlight) || b.Paver_Assigned_Section == highlight) {
-              if (b.Row_Number == rowIndex + 1 && col == colIndex + 1) {
-                bData = b;
-                break;
-              }
-            }
-          }
-    }
 
     function handleDropdownClick(e) {
         const clicked = e.target;
         clicked.classList.toggle("active");
         const panel = document.getElementsByClassName("searchDropdown")[0];
         if (panel.style.height != "0px") {
-            panel.style.height = "0px";
-            panel.style.paddingBottom = "5px";
-        } else {
+            collapseSearch();
+        }
+        else {
             panel.style.height = "200px";
         }
     }
+    // takes text field input, and finds which bricks match that name
+    function searchButton({setHighlight}) {
+        console.log(setHighlight);
+        let val = document.getElementById("fname").value;
+        collapseSearch();
+        setHighlight(val);
+    }
 
-    function handleSectionClick(section) {
-        const dropdown = document.getElementsByClassName("searchDropdown")[0];
-        const btn = document.getElementsByClassName("accordion")[0];
-        btn.classList.toggle("active");
-        dropdown.style.height = "0px";
-        dropdown.style.paddingBottom = "5px";
-
+    function handleSectionSearch(section) {
+        collapseSearch();
         setHighlight(section);
         selectSection(section);
     }
 
     function Label({ section }) {
+        let num = 0;
+        for (let b of data) {
+            if (highlight == "all" || b.Paver_Assigned_Section == highlight || b.Purchaser_Name == highlight) {
+                num ++;
+            }
+        }
+        let countPhrase = "[" + num + " bricks]";
+        if (num == 1) {
+            countPhrase = "[1 brick]";
+        }
+
         if (section == "all") {
-            return <span>All purchased bricks</span>
+            return <span>All purchased bricks {countPhrase}</span>
         }
         else if (section == "Centenarian") {
-            return <span>Bricks in the section Centenarian</span>
+            return <span>Bricks in the section Centenarian {countPhrase}</span>
         }
         else if (section == "Heroes") {
-            return <span>Bricks in the section Heroes</span>
+            return <span>Bricks in the section Heroes {countPhrase}</span>
         }
         else if (section == "Golden Women") {
-            return <span>Bricks in the section Golden Women</span>
+            return <span>Bricks in the section Golden Women {countPhrase}</span>
         }
         else if (section == "Family/Friends") {
-            return <span>Bricks in the section Family/Friends</span>
+            return <span>Bricks in the section Family/Friends {countPhrase}</span>
         }
         else if (section == "Businesses/Organizations") {
-            return <span>Bricks in the section Family/Friends</span>
+            return <span>Bricks in the section Family/Friends {countPhrase}</span>
         }
         else {
-            return <span>Bricks purchased by {section}</span>
+            return <span>Bricks purchased by {section} {countPhrase}</span>
         }
     }
 
@@ -99,11 +103,11 @@ export default function Search({ highlight, setHighlight }) {
                     <div id="sectionSearchContainer">
                         <div id="sectionSearchButtons">
                             Search by section:
-                            <button id="century" className="sectionSearchButton" onClick={() => handleSectionClick("Centenarian")}>Century Club</button>
-                            <button id="heros" className="sectionSearchButton" onClick={() => handleSectionClick("Heroes")}>Heroes</button>
-                            <button id="women" className="sectionSearchButton" onClick={() => handleSectionClick("Golden Women")}>Golden Women of Rondo</button>
-                            <button id="friends" className="sectionSearchButton" onClick={() => handleSectionClick("Family/Friends")}>Family/Friends</button>
-                            <button id="businesses" className="sectionSearchButton" onClick={() => handleSectionClick("Businesses/Organizations")}>Businesses/Organizations</button>
+                            <button id="century" className="sectionSearchButton" onClick={() => handleSectionSearch("Centenarian")}>Century Club</button>
+                            <button id="heros" className="sectionSearchButton" onClick={() => handleSectionSearch("Heroes")}>Heroes</button>
+                            <button id="women" className="sectionSearchButton" onClick={() => handleSectionSearch("Golden Women")}>Golden Women of Rondo</button>
+                            <button id="friends" className="sectionSearchButton" onClick={() => handleSectionSearch("Family/Friends")}>Family/Friends</button>
+                            <button id="businesses" className="sectionSearchButton" onClick={() => handleSectionSearch("Businesses/Organizations")}>Businesses/Organizations</button>
                         </div>
                     </div>
 
@@ -111,11 +115,11 @@ export default function Search({ highlight, setHighlight }) {
                         <div id="searchInputsContainer">
                             <label htmlFor="fname">Search by name of donor:</label>
                             <input type="text" id="fname" name="fname"></input>
-                            <button id="submitSearch" onClick={() => submitButton( {setHighlight} )}>Search</button>
+                            <button id="submitSearch" onClick={() => searchButton( {setHighlight} )}>Search</button>
                         </div>
                     </div>
 
-                    <button id="businesses" className="sectionSearchButton" onClick={() => handleSectionClick("all")}>Clear all filters</button>
+                    <button id="businesses" className="sectionSearchButton" onClick={() => handleSectionSearch("all")}>Clear all filters</button>
 
                 </div>
             </div>

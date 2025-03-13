@@ -9,7 +9,7 @@ import data from '../db.json';
 import { defaultBrick } from './brickRoadSite.js'
 
 // Handles clicking on bricks: sets pop-up brick and changes selected brick color
-export function ClickOnBrick({ setCurrentBrick, setHighlight }) {
+export function ClickOnBrick({ setCurrentBrick }) {
 
     // Finds and returns data from brickData about brick at coordinates
     function getBrick(row, col, pan) {
@@ -38,32 +38,4 @@ export function ClickOnBrick({ setCurrentBrick, setHighlight }) {
         }
         document.getElementById('fname').value = "";
     })
-}
-
-// takes text field input, and finds which bricks match that name
-export function submitButton({setHighlight}) {
-    console.log(setHighlight);
-    let val = document.getElementById("fname").value;
-    const dropdown = document.getElementsByClassName("searchDropdown")[0];
-    const btn = document.getElementsByClassName("accordion")[0];
-    btn.classList.toggle("active");
-    dropdown.style.height = "0px";
-    dropdown.style.paddingBottom = "5px";
-    setHighlight(val);
-}
-
-// takes section name as input, and finds which bricks are in that section
-export function selectSection(section) {
-    let selected = [];
-    if (section == "all") {
-        selected = data;
-    }
-    else {
-        for (let b of data) {
-            if (b.Paver_Assigned_Section == section) {
-                selected.push(b);
-            }
-        }
-    }
-    // highlightSelectedElements(selected);
 }
