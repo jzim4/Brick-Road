@@ -24,10 +24,10 @@ export default function BrickRoadSite() {
     const [highlight, setHighlight] = useState("all");
 
     return <>
-        <ClickOnBrick setCurrentBrick={setCurrentBrick}/>
+        <ClickOnBrick setHighlight={setHighlight} setCurrentBrick={setCurrentBrick}/>
 
         <Header/>
-        <Search setCurrentBrick={setCurrentBrick} highlight={highlight} setHighlight={setHighlight}/>
+        <Search highlight={highlight} setHighlight={setHighlight}/>
         
         <SelectedBrick brick={currentBrick} setCurrentBrick={setCurrentBrick}/>
         <ScrollContent highlight={highlight} currentBrick = {currentBrick}/>

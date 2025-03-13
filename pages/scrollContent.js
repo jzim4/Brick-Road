@@ -43,7 +43,7 @@ export default function ScrollContent({ highlight, currentBrick }) {
 
     <div id="scrollContainer">
       <Panels />
-      <Path highlight={highlight}/>
+      <Path highlight={highlight} currentBrick={currentBrick}/>
     </div>
     <div className="scrollButtonContainer">
       <button onClick={() => scrollButtonFunction(false)} tabIndex={0} className="scrollButton" id="rightScroll"> &#8679; </button>

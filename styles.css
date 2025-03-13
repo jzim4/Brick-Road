@@ -260,3 +260,6 @@ background-color: #ccc;
 .existingBrick:hover {
     cursor: pointer;
 }
+.clickedBrick {
+    background-color: red;
+}

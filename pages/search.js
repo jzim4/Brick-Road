@@ -5,9 +5,10 @@ This single component holds the search bar
 */
 
 import React from 'react';
+import data from '../db.json';
 import { submitButton, selectSection } from './searchFunctionality.js';
 
-export default function Search({ setCurrentBrick, highlight, setHighlight }) {
+export default function Search({ highlight, setHighlight }) {
     document.addEventListener("click", (e) => {
         const panel = document.getElementsByClassName("searchDropdown")[0];
         if (!panel.contains(e.target) && !e.target.classList.contains("accordion")) {
@@ -17,6 +18,21 @@ export default function Search({ setCurrentBrick, highlight, setHighlight }) {
             }
         }
     })
+
+    // TODO: Give feedback about number of results!!!
+    function CountResults() {
+        for (let b of data) {
+            const col = (b.Panel_Number - 1) * bricksPerPanel + b.Col_Number;
+            const sections = ["Centenarian", "Heroes", "Golden Women", "Family/Friends", "Businesses/Organizations"];
+      
+            if (!sections.includes(highlight) || b.Paver_Assigned_Section == highlight) {
+              if (b.Row_Number == rowIndex + 1 && col == colIndex + 1) {
+                bData = b;
+                break;
+              }
+            }
+          }
+    }
 
     function handleDropdownClick(e) {
         const clicked = e.target;
@@ -34,7 +50,7 @@ export default function Search({ setCurrentBrick, highlight, setHighlight }) {
         const dropdown = document.getElementsByClassName("searchDropdown")[0];
         const btn = document.getElementsByClassName("accordion")[0];
         btn.classList.toggle("active");
-        dropdown.style.height = 0;
+        dropdown.style.height = "0px";
         dropdown.style.paddingBottom = "5px";
 
         setHighlight(section);
@@ -61,7 +77,7 @@ export default function Search({ setCurrentBrick, highlight, setHighlight }) {
             return <span>Bricks in the section Family/Friends</span>
         }
         else {
-            return <span>Bricks purchased by abc</span>
+            return <span>Bricks purchased by {section}</span>
         }
     }
 
@@ -95,7 +111,7 @@ export default function Search({ setCurrentBrick, highlight, setHighlight }) {
                         <div id="searchInputsContainer">
                             <label htmlFor="fname">Search by name of donor:</label>
                             <input type="text" id="fname" name="fname"></input>
-                            <button id="submitSearch" onClick={() => submitButton({ setCurrentBrick })}>Search</button>
+                            <button id="submitSearch" onClick={() => submitButton( {setHighlight} )}>Search</button>
                         </div>
                     </div>
 

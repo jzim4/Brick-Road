@@ -9,7 +9,7 @@ import data from '../db.json';
 import { defaultBrick } from './brickRoadSite.js'
 
 // Handles clicking on bricks: sets pop-up brick and changes selected brick color
-export function ClickOnBrick({ setCurrentBrick }) {
+export function ClickOnBrick({ setCurrentBrick, setHighlight }) {
 
     // Finds and returns data from brickData about brick at coordinates
     function getBrick(row, col, pan) {
@@ -26,51 +26,30 @@ export function ClickOnBrick({ setCurrentBrick }) {
         let clicked = e.target;
         if (clicked.classList.contains("popupText")) {
             clicked = clicked.parentElement;
-            console.log(clicked);
         }
         if (clicked.classList.contains("existingBrick")) {
             let col = Array.prototype.indexOf.call(clicked.parentElement.children, clicked) + 1;
             const row = Array.prototype.indexOf.call(clicked.parentElement.parentElement.children, clicked.parentElement) + 1;
             const pan = Math.floor(col / 10) + 1;
             col = col - ((pan - 1) * 10);
-            setCurrentBrick(getBrick(row, col, pan));
+            const b = getBrick(row, col, pan);
+            setCurrentBrick(b);
             document.getElementById("selectedBrickContainer").style.visibility = "visible";
         }
         document.getElementById('fname').value = "";
     })
 }
 
-// takes list of brick objects and changes color of those bricks
-function highlightSelectedElements(selected) {
-    const bricksPerPanel = 10;
-    const numRows = document.getElementsByClassName("brickRow").length;
-    const numCols = document.getElementsByClassName("brickRow")[0].children.length;
-    // clear all formatting
-    for (let b of data) {
-        /* nth-child is 1-indexed, so use col_number instead of col_number - 1 */
-        const col = (b.Panel_Number - 1) * bricksPerPanel + (b.Col_Number);
-        let cell = document.querySelectorAll(`.brick:nth-child(${col}`)[b.Row_Number - 1];
-        cell.classList.remove("existingBrick");
-    }
-
-    // highlight selected bricks
-    for (let b of selected) {
-        const col = (b.Panel_Number - 1) * bricksPerPanel + b.Col_Number;
-        let cell = document.querySelectorAll(`.brick:nth-child(${col}`)[b.Row_Number - 1];
-        cell.classList.add("existingBrick");
-    }
-}
-
 // takes text field input, and finds which bricks match that name
-export function submitButton() {
-    let selected = [];
+export function submitButton({setHighlight}) {
+    console.log(setHighlight);
     let val = document.getElementById("fname").value;
-    for (let b of data) {
-        if (val == b.Purchaser_Name) {
-            selected.push(b);
-        }
-    }
-    highlightSelectedElements(selected);
+    const dropdown = document.getElementsByClassName("searchDropdown")[0];
+    const btn = document.getElementsByClassName("accordion")[0];
+    btn.classList.toggle("active");
+    dropdown.style.height = "0px";
+    dropdown.style.paddingBottom = "5px";
+    setHighlight(val);
 }
 
 // takes section name as input, and finds which bricks are in that section
@@ -86,5 +65,5 @@ export function selectSection(section) {
             }
         }
     }
-    highlightSelectedElements(selected);
+    // highlightSelectedElements(selected);
 }

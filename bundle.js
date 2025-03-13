@@ -43345,9 +43345,9 @@ function BrickRoadSite() {
     highlight = _useState4[0],
     setHighlight = _useState4[1];
   return /*#__PURE__*/_react["default"].createElement(_react["default"].Fragment, null, /*#__PURE__*/_react["default"].createElement(_searchFunctionality.ClickOnBrick, {
+    setHighlight: setHighlight,
     setCurrentBrick: setCurrentBrick
   }), /*#__PURE__*/_react["default"].createElement(_header["default"], null), /*#__PURE__*/_react["default"].createElement(_search["default"], {
-    setCurrentBrick: setCurrentBrick,
     highlight: highlight,
     setHighlight: setHighlight
   }), /*#__PURE__*/_react["default"].createElement(_selectedBrick["default"], {
@@ -43564,7 +43564,8 @@ function _arrayLikeToArray(r, a) {
   return n;
 }
 function Path(_ref) {
-  var highlight = _ref.highlight;
+  var highlight = _ref.highlight,
+    currentBrick = _ref.currentBrick;
   var numRows = 15;
   var numCols = 130;
   var bricksPerPanel = 10;
@@ -43578,8 +43579,7 @@ function Path(_ref) {
       for (_iterator.s(); !(_step = _iterator.n()).done;) {
         var b = _step.value;
         var _col = (b.Panel_Number - 1) * bricksPerPanel + b.Col_Number;
-        var sections = ["Centenarian", "Heroes", "Golden Women", "Family/Friends", "Businesses/Organizations"];
-        if (!sections.includes(highlight) || b.Paver_Assigned_Section == highlight) {
+        if (highlight == "all" || b.Paver_Assigned_Section == highlight || b.Purchaser_Name == highlight) {
           if (b.Row_Number == rowIndex + 1 && _col == colIndex + 1) {
             bData = b;
             break;
@@ -43594,7 +43594,7 @@ function Path(_ref) {
     if (bData) {
       var col = (bData.Panel_Number - 1) * bricksPerPanel + bData.Col_Number;
       return /*#__PURE__*/_react["default"].createElement("div", {
-        className: "existingBrick brick",
+        className: 'existingBrick brick ' + (bData == currentBrick ? "clickedBrick" : ""),
         key: 100 * rowIndex + colIndex
       }, /*#__PURE__*/_react["default"].createElement("span", {
         className: "popupText " + (col < 3 ? "popupTextLeft" : col > numCols - 4 ? "popupTextRight" : "")
@@ -43747,7 +43747,8 @@ function ScrollContent(_ref) {
   }, " \u21E7 ")), /*#__PURE__*/_react["default"].createElement("div", {
     id: "scrollContainer"
   }, /*#__PURE__*/_react["default"].createElement(_panels["default"], null), /*#__PURE__*/_react["default"].createElement(_path["default"], {
-    highlight: highlight
+    highlight: highlight,
+    currentBrick: currentBrick
   })), /*#__PURE__*/_react["default"].createElement("div", {
     className: "scrollButtonContainer"
   }, /*#__PURE__*/_react["default"].createElement("button", {
@@ -43768,21 +43769,78 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports["default"] = Search;
 var _react = _interopRequireDefault(require("react"));
+var _db = _interopRequireDefault(require("../db.json"));
 var _searchFunctionality = require("./searchFunctionality.js");
 function _interopRequireDefault(e) {
   return e && e.__esModule ? e : {
     "default": e
   };
 }
-/* 
-Author: Jonah Zimmer
-
-This single component holds the search bar
-*/
-
+function _createForOfIteratorHelper(r, e) {
+  var t = "undefined" != typeof Symbol && r[Symbol.iterator] || r["@@iterator"];
+  if (!t) {
+    if (Array.isArray(r) || (t = _unsupportedIterableToArray(r)) || e && r && "number" == typeof r.length) {
+      t && (r = t);
+      var _n = 0,
+        F = function F() {};
+      return {
+        s: F,
+        n: function n() {
+          return _n >= r.length ? {
+            done: !0
+          } : {
+            done: !1,
+            value: r[_n++]
+          };
+        },
+        e: function e(r) {
+          throw r;
+        },
+        f: F
+      };
+    }
+    throw new TypeError("Invalid attempt to iterate non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method.");
+  }
+  var o,
+    a = !0,
+    u = !1;
+  return {
+    s: function s() {
+      t = t.call(r);
+    },
+    n: function n() {
+      var r = t.next();
+      return a = r.done, r;
+    },
+    e: function e(r) {
+      u = !0, o = r;
+    },
+    f: function f() {
+      try {
+        a || null == t["return"] || t["return"]();
+      } finally {
+        if (u) throw o;
+      }
+    }
+  };
+}
+function _unsupportedIterableToArray(r, a) {
+  if (r) {
+    if ("string" == typeof r) return _arrayLikeToArray(r, a);
+    var t = {}.toString.call(r).slice(8, -1);
+    return "Object" === t && r.constructor && (t = r.constructor.name), "Map" === t || "Set" === t ? Array.from(r) : "Arguments" === t || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(t) ? _arrayLikeToArray(r, a) : void 0;
+  }
+}
+function _arrayLikeToArray(r, a) {
+  (null == a || a > r.length) && (a = r.length);
+  for (var e = 0, n = Array(a); e < a; e++) n[e] = r[e];
+  return n;
+} /* 
+  Author: Jonah Zimmer
+  This single component holds the search bar
+  */
 function Search(_ref) {
-  var setCurrentBrick = _ref.setCurrentBrick,
-    highlight = _ref.highlight,
+  var highlight = _ref.highlight,
     setHighlight = _ref.setHighlight;
   document.addEventListener("click", function (e) {
     var panel = document.getElementsByClassName("searchDropdown")[0];
@@ -43793,6 +43851,29 @@ function Search(_ref) {
       }
     }
   });
+
+  // TODO: Give feedback about number of results!!!
+  function CountResults() {
+    var _iterator = _createForOfIteratorHelper(_db["default"]),
+      _step;
+    try {
+      for (_iterator.s(); !(_step = _iterator.n()).done;) {
+        var b = _step.value;
+        var col = (b.Panel_Number - 1) * bricksPerPanel + b.Col_Number;
+        var sections = ["Centenarian", "Heroes", "Golden Women", "Family/Friends", "Businesses/Organizations"];
+        if (!sections.includes(highlight) || b.Paver_Assigned_Section == highlight) {
+          if (b.Row_Number == rowIndex + 1 && col == colIndex + 1) {
+            bData = b;
+            break;
+          }
+        }
+      }
+    } catch (err) {
+      _iterator.e(err);
+    } finally {
+      _iterator.f();
+    }
+  }
   function handleDropdownClick(e) {
     var clicked = e.target;
     clicked.classList.toggle("active");
@@ -43808,7 +43889,7 @@ function Search(_ref) {
     var dropdown = document.getElementsByClassName("searchDropdown")[0];
     var btn = document.getElementsByClassName("accordion")[0];
     btn.classList.toggle("active");
-    dropdown.style.height = 0;
+    dropdown.style.height = "0px";
     dropdown.style.paddingBottom = "5px";
     setHighlight(section);
     (0, _searchFunctionality.selectSection)(section);
@@ -43828,7 +43909,7 @@ function Search(_ref) {
     } else if (section == "Businesses/Organizations") {
       return /*#__PURE__*/_react["default"].createElement("span", null, "Bricks in the section Family/Friends");
     } else {
-      return /*#__PURE__*/_react["default"].createElement("span", null, "Bricks purchased by abc");
+      return /*#__PURE__*/_react["default"].createElement("span", null, "Bricks purchased by ", section);
     }
   }
   return /*#__PURE__*/_react["default"].createElement(_react["default"].Fragment, null, /*#__PURE__*/_react["default"].createElement("div", {
@@ -43910,7 +43991,7 @@ function Search(_ref) {
     id: "submitSearch",
     onClick: function onClick() {
       return (0, _searchFunctionality.submitButton)({
-        setCurrentBrick: setCurrentBrick
+        setHighlight: setHighlight
       });
     }
   }, "Search"))), /*#__PURE__*/_react["default"].createElement("button", {
@@ -43922,7 +44003,7 @@ function Search(_ref) {
   }, "Clear all filters")))));
 }
 
-},{"./searchFunctionality.js":28,"react":16}],28:[function(require,module,exports){
+},{"../db.json":1,"./searchFunctionality.js":28,"react":16}],28:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -44004,7 +44085,8 @@ function _arrayLikeToArray(r, a) {
   */
 // Handles clicking on bricks: sets pop-up brick and changes selected brick color
 function ClickOnBrick(_ref) {
-  var setCurrentBrick = _ref.setCurrentBrick;
+  var setCurrentBrick = _ref.setCurrentBrick,
+    setHighlight = _ref.setHighlight;
   // Finds and returns data from brickData about brick at coordinates
   function getBrick(row, col, pan) {
     var _iterator = _createForOfIteratorHelper(_db["default"]),
@@ -44029,78 +44111,31 @@ function ClickOnBrick(_ref) {
     var clicked = e.target;
     if (clicked.classList.contains("popupText")) {
       clicked = clicked.parentElement;
-      console.log(clicked);
     }
     if (clicked.classList.contains("existingBrick")) {
       var col = Array.prototype.indexOf.call(clicked.parentElement.children, clicked) + 1;
       var row = Array.prototype.indexOf.call(clicked.parentElement.parentElement.children, clicked.parentElement) + 1;
       var pan = Math.floor(col / 10) + 1;
       col = col - (pan - 1) * 10;
-      setCurrentBrick(getBrick(row, col, pan));
+      var b = getBrick(row, col, pan);
+      setCurrentBrick(b);
       document.getElementById("selectedBrickContainer").style.visibility = "visible";
     }
     document.getElementById('fname').value = "";
   });
 }
 
-// takes list of brick objects and changes color of those bricks
-function highlightSelectedElements(selected) {
-  var bricksPerPanel = 10;
-  var numRows = document.getElementsByClassName("brickRow").length;
-  var numCols = document.getElementsByClassName("brickRow")[0].children.length;
-  // clear all formatting
-  var _iterator2 = _createForOfIteratorHelper(_db["default"]),
-    _step2;
-  try {
-    for (_iterator2.s(); !(_step2 = _iterator2.n()).done;) {
-      var b = _step2.value;
-      /* nth-child is 1-indexed, so use col_number instead of col_number - 1 */
-      var col = (b.Panel_Number - 1) * bricksPerPanel + b.Col_Number;
-      var cell = document.querySelectorAll(".brick:nth-child(".concat(col))[b.Row_Number - 1];
-      cell.classList.remove("existingBrick");
-    }
-
-    // highlight selected bricks
-  } catch (err) {
-    _iterator2.e(err);
-  } finally {
-    _iterator2.f();
-  }
-  var _iterator3 = _createForOfIteratorHelper(selected),
-    _step3;
-  try {
-    for (_iterator3.s(); !(_step3 = _iterator3.n()).done;) {
-      var _b = _step3.value;
-      var _col = (_b.Panel_Number - 1) * bricksPerPanel + _b.Col_Number;
-      var _cell = document.querySelectorAll(".brick:nth-child(".concat(_col))[_b.Row_Number - 1];
-      _cell.classList.add("existingBrick");
-    }
-  } catch (err) {
-    _iterator3.e(err);
-  } finally {
-    _iterator3.f();
-  }
-}
-
 // takes text field input, and finds which bricks match that name
-function submitButton() {
-  var selected = [];
+function submitButton(_ref2) {
+  var setHighlight = _ref2.setHighlight;
+  console.log(setHighlight);
   var val = document.getElementById("fname").value;
-  var _iterator4 = _createForOfIteratorHelper(_db["default"]),
-    _step4;
-  try {
-    for (_iterator4.s(); !(_step4 = _iterator4.n()).done;) {
-      var b = _step4.value;
-      if (val == b.Purchaser_Name) {
-        selected.push(b);
-      }
-    }
-  } catch (err) {
-    _iterator4.e(err);
-  } finally {
-    _iterator4.f();
-  }
-  highlightSelectedElements(selected);
+  var dropdown = document.getElementsByClassName("searchDropdown")[0];
+  var btn = document.getElementsByClassName("accordion")[0];
+  btn.classList.toggle("active");
+  dropdown.style.height = "0px";
+  dropdown.style.paddingBottom = "5px";
+  setHighlight(val);
 }
 
 // takes section name as input, and finds which bricks are in that section
@@ -44109,22 +44144,22 @@ function selectSection(section) {
   if (section == "all") {
     selected = _db["default"];
   } else {
-    var _iterator5 = _createForOfIteratorHelper(_db["default"]),
-      _step5;
+    var _iterator2 = _createForOfIteratorHelper(_db["default"]),
+      _step2;
     try {
-      for (_iterator5.s(); !(_step5 = _iterator5.n()).done;) {
-        var b = _step5.value;
+      for (_iterator2.s(); !(_step2 = _iterator2.n()).done;) {
+        var b = _step2.value;
         if (b.Paver_Assigned_Section == section) {
           selected.push(b);
         }
       }
     } catch (err) {
-      _iterator5.e(err);
+      _iterator2.e(err);
     } finally {
-      _iterator5.f();
+      _iterator2.f();
     }
   }
-  highlightSelectedElements(selected);
+  // highlightSelectedElements(selected);
 }
 
 },{"../db.json":1,"./brickRoadSite.js":21}],29:[function(require,module,exports){
