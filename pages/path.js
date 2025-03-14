@@ -5,6 +5,9 @@ export default function Path({ highlight, currentBrick }) {
   const numRows = 15;
   const numCols = 130;
   const bricksPerPanel = 10;
+
+  // this component determines if the brick should be highlighted or shown as the selected brick to determine 
+  // class names and conditionally add the pop-up
   function Brick({ rowIndex, colIndex }) {
     let bData = null;
     for (let b of data) {
@@ -17,6 +20,7 @@ export default function Path({ highlight, currentBrick }) {
         }
       }
     }
+    // if brick should be highlighted, either return the existing or clicked format
     if (bData) {
       const col = (bData.Panel_Number - 1) * bricksPerPanel + bData.Col_Number;
       return <div className={'existingBrick brick ' + (bData == currentBrick ? "clickedBrick" : "")} key={100 * rowIndex + colIndex}>
@@ -27,11 +31,13 @@ export default function Path({ highlight, currentBrick }) {
         </span>
       </div>
     }
+    // otherwise just return default brick
     else {
       return <div className='brick' key={100 * rowIndex + colIndex}></div>
     }
   }
   
+  // this component is the entire path with every other row offset in the opposite direction
   return <div id="path">
     {Array(numRows).fill(0).map((_, rowIndex) => (
       <div className={rowIndex % 2 == 0 ? 'brickRow leftShiftRow' : 'brickRow rightShiftRow'} key={"row" + rowIndex}>

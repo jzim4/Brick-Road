@@ -17,7 +17,7 @@ a {
     text-align: center;
     width: 100px;
 }
-#headerSpaceHolder {
+#accessibilityButton {
     width: 104px;
 }
 
@@ -262,4 +262,25 @@ background-color: #ccc;
 }
 .clickedBrick {
     background-color: red;
+}
+
+/* Static Display */
+#accessibleBricksContainer {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+}
+.accessibleBrick {
+    width: 400px;
+    max-width: 90vw;
+    padding: 10px;
+    background-color: #dd7e6b;
+    color: white;
+}
+#staticSearchLabel {
+    text-align: center;
+    padding: 10px;
+    font-size: 1.5em;
 }

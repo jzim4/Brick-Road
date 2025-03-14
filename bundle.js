@@ -43229,6 +43229,122 @@ exports.clearImmediate = typeof clearImmediate === "function" ? clearImmediate :
 },{"process/browser.js":3,"timers":20}],21:[function(require,module,exports){
 "use strict";
 
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports["default"] = AcessibleContent;
+var _react = _interopRequireDefault(require("react"));
+var _db = _interopRequireDefault(require("../db.json"));
+function _interopRequireDefault(e) {
+  return e && e.__esModule ? e : {
+    "default": e
+  };
+}
+function _createForOfIteratorHelper(r, e) {
+  var t = "undefined" != typeof Symbol && r[Symbol.iterator] || r["@@iterator"];
+  if (!t) {
+    if (Array.isArray(r) || (t = _unsupportedIterableToArray(r)) || e && r && "number" == typeof r.length) {
+      t && (r = t);
+      var _n = 0,
+        F = function F() {};
+      return {
+        s: F,
+        n: function n() {
+          return _n >= r.length ? {
+            done: !0
+          } : {
+            done: !1,
+            value: r[_n++]
+          };
+        },
+        e: function e(r) {
+          throw r;
+        },
+        f: F
+      };
+    }
+    throw new TypeError("Invalid attempt to iterate non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method.");
+  }
+  var o,
+    a = !0,
+    u = !1;
+  return {
+    s: function s() {
+      t = t.call(r);
+    },
+    n: function n() {
+      var r = t.next();
+      return a = r.done, r;
+    },
+    e: function e(r) {
+      u = !0, o = r;
+    },
+    f: function f() {
+      try {
+        a || null == t["return"] || t["return"]();
+      } finally {
+        if (u) throw o;
+      }
+    }
+  };
+}
+function _unsupportedIterableToArray(r, a) {
+  if (r) {
+    if ("string" == typeof r) return _arrayLikeToArray(r, a);
+    var t = {}.toString.call(r).slice(8, -1);
+    return "Object" === t && r.constructor && (t = r.constructor.name), "Map" === t || "Set" === t ? Array.from(r) : "Arguments" === t || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(t) ? _arrayLikeToArray(r, a) : void 0;
+  }
+}
+function _arrayLikeToArray(r, a) {
+  (null == a || a > r.length) && (a = r.length);
+  for (var e = 0, n = Array(a); e < a; e++) n[e] = r[e];
+  return n;
+} /* 
+  Author: Jonah Zimmer
+  This version of the site does not have the scrolling bricks, making it accessible for screen readers and phone compatible.
+  */
+function AcessibleContent(_ref) {
+  var highlight = _ref.highlight;
+  var sections = ["Centenarian", "Heroes", "Golden Women", "Family/Friends", "Businesses/Organizations"];
+  var bricks = [];
+  var _iterator = _createForOfIteratorHelper(_db["default"]),
+    _step;
+  try {
+    for (_iterator.s(); !(_step = _iterator.n()).done;) {
+      var b = _step.value;
+      if (highlight == "all") {
+        bricks.push(b);
+      } else if (sections.includes(highlight) && b.Paver_Assigned_Section == highlight) {
+        bricks.push(b);
+      } else if (b.Purchaser_Name == highlight) {
+        bricks.push(b);
+      }
+    }
+  } catch (err) {
+    _iterator.e(err);
+  } finally {
+    _iterator.f();
+  }
+  console.log(bricks);
+  return /*#__PURE__*/_react["default"].createElement("div", {
+    id: "accessibleBricksContainer"
+  }, Array(bricks.length).fill(0).map(function (_, b) {
+    return /*#__PURE__*/_react["default"].createElement(Brick, {
+      brick: bricks[b],
+      key: bricks[b].Panel_Number.toString() + bricks[b].Row_Number.toString() + bricks[b].Col_Number.toString()
+    });
+  }));
+}
+function Brick(_ref2) {
+  var brick = _ref2.brick;
+  return /*#__PURE__*/_react["default"].createElement("div", {
+    className: "accessibleBrick"
+  }, /*#__PURE__*/_react["default"].createElement("p", null, "Naming Year: ", brick.Naming_Year), /*#__PURE__*/_react["default"].createElement("p", null, "Purchaser Name: ", brick.Purchaser_Name), /*#__PURE__*/_react["default"].createElement("p", null, "Section: ", brick.Paver_Assigned_Section), /*#__PURE__*/_react["default"].createElement("p", null, "Located in front of panel ", brick.Panel_Number, " in row ", brick.Row_Number), brick.Inscription_Line_1 ? /*#__PURE__*/_react["default"].createElement("p", null, brick.Inscription_Line_1) : "", brick.Inscription_Line_2 ? /*#__PURE__*/_react["default"].createElement("p", null, brick.Inscription_Line_2) : "", brick.Inscription_Line_3 ? /*#__PURE__*/_react["default"].createElement("p", null, brick.Inscription_Line_3) : "", brick.link ? /*#__PURE__*/_react["default"].createElement("p", null, brick.link) : "");
+}
+
+},{"../db.json":1,"react":16}],22:[function(require,module,exports){
+"use strict";
+
 function _typeof(o) {
   "@babel/helpers - typeof";
 
@@ -43248,7 +43364,7 @@ var _header = _interopRequireDefault(require("./header.js"));
 var _search = _interopRequireDefault(require("./search.js"));
 var _selectedBrick = _interopRequireDefault(require("./selectedBrick.js"));
 var _scrollContent = _interopRequireDefault(require("./scrollContent.js"));
-var _searchFunctionality = require("./searchFunctionality.js");
+var _accessibleContent = _interopRequireDefault(require("./accessibleContent.js"));
 function _interopRequireDefault(e) {
   return e && e.__esModule ? e : {
     "default": e
@@ -43336,30 +43452,39 @@ var defaultBrick = exports.defaultBrick = {
   Col_Number: 11
 };
 function BrickRoadSite() {
+  // this state is used to show extra info about a brick. It takes an object from the db.json file or the default brick shown above
   var _useState = (0, _react.useState)(defaultBrick),
     _useState2 = _slicedToArray(_useState, 2),
     currentBrick = _useState2[0],
     setCurrentBrick = _useState2[1];
+  // this state is used to show which bricks are red versus grey. It is either one of the sections, a donor, or "all"
   var _useState3 = (0, _react.useState)("all"),
     _useState4 = _slicedToArray(_useState3, 2),
     highlight = _useState4[0],
     setHighlight = _useState4[1];
-  return /*#__PURE__*/_react["default"].createElement(_react["default"].Fragment, null, /*#__PURE__*/_react["default"].createElement(_searchFunctionality.ClickOnBrick, {
-    setHighlight: setHighlight,
-    setCurrentBrick: setCurrentBrick
-  }), /*#__PURE__*/_react["default"].createElement(_header["default"], null), /*#__PURE__*/_react["default"].createElement(_search["default"], {
+  var _useState5 = (0, _react.useState)("scroll"),
+    _useState6 = _slicedToArray(_useState5, 2),
+    display = _useState6[0],
+    setDisplay = _useState6[1];
+  return /*#__PURE__*/_react["default"].createElement(_react["default"].Fragment, null, /*#__PURE__*/_react["default"].createElement(_header["default"], {
+    display: display,
+    setDisplay: setDisplay
+  }), /*#__PURE__*/_react["default"].createElement(_search["default"], {
     highlight: highlight,
-    setHighlight: setHighlight
+    setHighlight: setHighlight,
+    display: display
   }), /*#__PURE__*/_react["default"].createElement(_selectedBrick["default"], {
     brick: currentBrick,
     setCurrentBrick: setCurrentBrick
-  }), /*#__PURE__*/_react["default"].createElement(_scrollContent["default"], {
+  }), display == "scroll" ? /*#__PURE__*/_react["default"].createElement(_scrollContent["default"], {
     highlight: highlight,
     currentBrick: currentBrick
+  }) : /*#__PURE__*/_react["default"].createElement(_accessibleContent["default"], {
+    highlight: highlight
   }));
 }
 
-},{"./header.js":22,"./scrollContent.js":26,"./search.js":27,"./searchFunctionality.js":28,"./selectedBrick.js":29,"react":16}],22:[function(require,module,exports){
+},{"./accessibleContent.js":21,"./header.js":23,"./scrollContent.js":27,"./search.js":28,"./selectedBrick.js":29,"react":16}],23:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -43378,13 +43503,23 @@ Author: Jonah Zimmer
 This single component holds the header
 */
 
-function Header() {
-  return /*#__PURE__*/_react["default"].createElement("header", null, /*#__PURE__*/_react["default"].createElement("div", {
-    id: "headerSpaceHolder"
-  }), /*#__PURE__*/_react["default"].createElement("h1", null, "Rondo Commemorative Plaza"), /*#__PURE__*/_react["default"].createElement("a", null, "About"));
+function Header(_ref) {
+  var display = _ref.display,
+    setDisplay = _ref.setDisplay;
+  function toggleDisplay() {
+    if (display == "scroll") {
+      setDisplay("static");
+    } else if (display == "static") {
+      setDisplay("scroll");
+    }
+  }
+  return /*#__PURE__*/_react["default"].createElement("header", null, /*#__PURE__*/_react["default"].createElement("button", {
+    id: "headerSpaceHolder",
+    onClick: toggleDisplay
+  }, "Toggle Accessible Mode"), /*#__PURE__*/_react["default"].createElement("h1", null, "Rondo Commemorative Plaza"), /*#__PURE__*/_react["default"].createElement("a", null, "About"));
 }
 
-},{"react":16}],23:[function(require,module,exports){
+},{"react":16}],24:[function(require,module,exports){
 "use strict";
 
 var _brickRoadSite = _interopRequireDefault(require("./brickRoadSite.js"));
@@ -43405,7 +43540,7 @@ root.render(/*#__PURE__*/_react["default"].createElement(_react["default"].Stric
   element: /*#__PURE__*/_react["default"].createElement(_brickRoadSite["default"], null)
 })))));
 
-},{"./brickRoadSite.js":21,"react":16,"react-dom/client":6,"react-router-dom":8}],24:[function(require,module,exports){
+},{"./brickRoadSite.js":22,"react":16,"react-dom/client":6,"react-router-dom":8}],25:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -43489,7 +43624,7 @@ function Panel() {
   }));
 }
 
-},{"react":16}],25:[function(require,module,exports){
+},{"react":16}],26:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -43569,6 +43704,9 @@ function Path(_ref) {
   var numRows = 15;
   var numCols = 130;
   var bricksPerPanel = 10;
+
+  // this component determines if the brick should be highlighted or shown as the selected brick to determine 
+  // class names and conditionally add the pop-up
   function Brick(_ref2) {
     var rowIndex = _ref2.rowIndex,
       colIndex = _ref2.colIndex;
@@ -43586,6 +43724,7 @@ function Path(_ref) {
           }
         }
       }
+      // if brick should be highlighted, either return the existing or clicked format
     } catch (err) {
       _iterator.e(err);
     } finally {
@@ -43599,13 +43738,17 @@ function Path(_ref) {
       }, /*#__PURE__*/_react["default"].createElement("span", {
         className: "popupText " + (col < 3 ? "popupTextLeft" : col > numCols - 4 ? "popupTextRight" : "")
       }, "Donor: ", bData.Purchaser_Name, /*#__PURE__*/_react["default"].createElement("br", null), "Year: ", bData.Naming_Year, /*#__PURE__*/_react["default"].createElement("br", null), "Click for more info!"));
-    } else {
+    }
+    // otherwise just return default brick
+    else {
       return /*#__PURE__*/_react["default"].createElement("div", {
         className: "brick",
         key: 100 * rowIndex + colIndex
       });
     }
   }
+
+  // this component is the entire path with every other row offset in the opposite direction
   return /*#__PURE__*/_react["default"].createElement("div", {
     id: "path"
   }, Array(numRows).fill(0).map(function (_, rowIndex) {
@@ -43621,7 +43764,7 @@ function Path(_ref) {
   }));
 }
 
-},{"../db.json":1,"react":16}],26:[function(require,module,exports){
+},{"../db.json":1,"react":16}],27:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -43636,69 +43779,13 @@ function _interopRequireDefault(e) {
     "default": e
   };
 }
-function _createForOfIteratorHelper(r, e) {
-  var t = "undefined" != typeof Symbol && r[Symbol.iterator] || r["@@iterator"];
-  if (!t) {
-    if (Array.isArray(r) || (t = _unsupportedIterableToArray(r)) || e && r && "number" == typeof r.length) {
-      t && (r = t);
-      var _n = 0,
-        F = function F() {};
-      return {
-        s: F,
-        n: function n() {
-          return _n >= r.length ? {
-            done: !0
-          } : {
-            done: !1,
-            value: r[_n++]
-          };
-        },
-        e: function e(r) {
-          throw r;
-        },
-        f: F
-      };
-    }
-    throw new TypeError("Invalid attempt to iterate non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method.");
-  }
-  var o,
-    a = !0,
-    u = !1;
-  return {
-    s: function s() {
-      t = t.call(r);
-    },
-    n: function n() {
-      var r = t.next();
-      return a = r.done, r;
-    },
-    e: function e(r) {
-      u = !0, o = r;
-    },
-    f: function f() {
-      try {
-        a || null == t["return"] || t["return"]();
-      } finally {
-        if (u) throw o;
-      }
-    }
-  };
-}
-function _unsupportedIterableToArray(r, a) {
-  if (r) {
-    if ("string" == typeof r) return _arrayLikeToArray(r, a);
-    var t = {}.toString.call(r).slice(8, -1);
-    return "Object" === t && r.constructor && (t = r.constructor.name), "Map" === t || "Set" === t ? Array.from(r) : "Arguments" === t || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(t) ? _arrayLikeToArray(r, a) : void 0;
-  }
-}
-function _arrayLikeToArray(r, a) {
-  (null == a || a > r.length) && (a = r.length);
-  for (var e = 0, n = Array(a); e < a; e++) n[e] = r[e];
-  return n;
-} /* 
-  Author: Jonah Zimmer
-  This file draws the brick path, setting class names of existing and selected bricks
-  */
+/* 
+Author: Jonah Zimmer
+
+This component contains the content that is scrollable as well as the buttons to scroll.
+It imports the path and panel subcomponents
+*/
+
 function scrollButtonFunction(goLeft) {
   var scroll = document.getElementById("scrollContainer");
   var dist = scroll.scrollLeft + 436;
@@ -43714,25 +43801,6 @@ function scrollButtonFunction(goLeft) {
 function ScrollContent(_ref) {
   var highlight = _ref.highlight,
     currentBrick = _ref.currentBrick;
-  var bricksPerPanel = 10;
-  var bricks = document.getElementsByClassName('brick');
-  var _iterator = _createForOfIteratorHelper(bricks),
-    _step;
-  try {
-    for (_iterator.s(); !(_step = _iterator.n()).done;) {
-      var i = _step.value;
-      i.classList.remove("selectedBrick");
-    }
-  } catch (err) {
-    _iterator.e(err);
-  } finally {
-    _iterator.f();
-  }
-  if (currentBrick.Panel_Number < 13) {
-    var col = (currentBrick.Panel_Number - 1) * bricksPerPanel + currentBrick.Col_Number;
-    var cell = document.querySelectorAll(".brick:nth-child(".concat(col))[currentBrick.Row_Number - 1];
-    cell.classList.add("selectedBrick");
-  }
   return /*#__PURE__*/_react["default"].createElement("div", {
     id: "fullPathContainer"
   }, /*#__PURE__*/_react["default"].createElement("div", {
@@ -43761,13 +43829,12 @@ function ScrollContent(_ref) {
   }, " \u21E7 ")));
 }
 
-},{"./panels.js":24,"./path.js":25,"react":16}],27:[function(require,module,exports){
+},{"./panels.js":25,"./path.js":26,"react":16}],28:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.collapseSearch = collapseSearch;
 exports["default"] = Search;
 var _db = _interopRequireDefault(require("../db.json"));
 var _react = _interopRequireDefault(require("react"));
@@ -43839,23 +43906,28 @@ function _arrayLikeToArray(r, a) {
   Author: Jonah Zimmer
   This single component holds the search bar and includes all functionality for buttons within search bar
   */
-function collapseSearch() {
-  var dropdown = document.getElementsByClassName("searchDropdown")[0];
-  var btn = document.getElementsByClassName("accordion")[0];
-  btn.classList.remove("active");
-  dropdown.style.height = "0px";
-  dropdown.style.paddingBottom = "5px";
-}
 function Search(_ref) {
   var highlight = _ref.highlight,
-    setHighlight = _ref.setHighlight;
-  // collapse search if click outside of search
+    setHighlight = _ref.setHighlight,
+    display = _ref.display;
+  // hide search section
+  function collapseSearch() {
+    var dropdown = document.getElementsByClassName("searchDropdown")[0];
+    var btn = document.getElementsByClassName("accordion")[0];
+    btn.classList.remove("active");
+    dropdown.style.height = "0px";
+    dropdown.style.paddingBottom = "5px";
+  }
+
+  // collapse search section if click outside of search
   document.addEventListener("click", function (e) {
     var panel = document.getElementsByClassName("searchDropdown")[0];
-    if (!panel.contains(e.target) && !e.target.classList.contains("accordion")) {
+    if (display == "scroll" && !panel.contains(e.target) && !e.target.classList.contains("accordion")) {
       collapseSearch();
     }
   });
+
+  // either open or close search section when "filter" button is clicked
   function handleDropdownClick(e) {
     var clicked = e.target;
     clicked.classList.toggle("active");
@@ -43866,21 +43938,30 @@ function Search(_ref) {
       panel.style.height = "200px";
     }
   }
-  // takes text field input, and finds which bricks match that name
+
+  // takes text field input then sets the highlight value to update other components
   function searchButton(_ref2) {
     var setHighlight = _ref2.setHighlight;
     console.log(setHighlight);
     var val = document.getElementById("fname").value;
-    collapseSearch();
+    if (display == "scroll") {
+      collapseSearch();
+    }
     setHighlight(val);
   }
+
+  // takes section name then sets the highlight value to update other components
   function handleSectionSearch(section) {
-    collapseSearch();
+    if (display == "scroll") {
+      collapseSearch();
+    }
     setHighlight(section);
-    selectSection(section);
   }
+
+  // Component that labels the red brick in the key
   function Label(_ref3) {
     var section = _ref3.section;
+    var sections = ["Centenarian", "Heroes", "Golden Women", "Family/Friends", "Businesses/Organizations"];
     var num = 0;
     var _iterator = _createForOfIteratorHelper(_db["default"]),
       _step;
@@ -43902,120 +43983,124 @@ function Search(_ref) {
     }
     if (section == "all") {
       return /*#__PURE__*/_react["default"].createElement("span", null, "All purchased bricks ", countPhrase);
-    } else if (section == "Centenarian") {
-      return /*#__PURE__*/_react["default"].createElement("span", null, "Bricks in the section Centenarian ", countPhrase);
-    } else if (section == "Heroes") {
-      return /*#__PURE__*/_react["default"].createElement("span", null, "Bricks in the section Heroes ", countPhrase);
-    } else if (section == "Golden Women") {
-      return /*#__PURE__*/_react["default"].createElement("span", null, "Bricks in the section Golden Women ", countPhrase);
-    } else if (section == "Family/Friends") {
-      return /*#__PURE__*/_react["default"].createElement("span", null, "Bricks in the section Family/Friends ", countPhrase);
-    } else if (section == "Businesses/Organizations") {
-      return /*#__PURE__*/_react["default"].createElement("span", null, "Bricks in the section Family/Friends ", countPhrase);
+    } else if (sections.includes(section)) {
+      return /*#__PURE__*/_react["default"].createElement("span", null, "Bricks in the section ", section, " ", countPhrase);
     } else {
       return /*#__PURE__*/_react["default"].createElement("span", null, "Bricks purchased by ", section, " ", countPhrase);
     }
   }
-  return /*#__PURE__*/_react["default"].createElement(_react["default"].Fragment, null, /*#__PURE__*/_react["default"].createElement("div", {
-    id: "searchHeader"
-  }, /*#__PURE__*/_react["default"].createElement("div", {
-    id: "keysContainer"
-  }, /*#__PURE__*/_react["default"].createElement("div", {
-    className: "keyContainer"
-  }, /*#__PURE__*/_react["default"].createElement("div", {
-    id: "redKeyBox",
-    className: "keyBox"
-  }), /*#__PURE__*/_react["default"].createElement("div", {
-    id: "redKeyText"
-  }, /*#__PURE__*/_react["default"].createElement(Label, {
-    section: highlight
-  }))), /*#__PURE__*/_react["default"].createElement("div", {
-    className: "keyContainer"
-  }, /*#__PURE__*/_react["default"].createElement("div", {
-    id: "greyKeyBox",
-    className: "keyBox"
-  }), /*#__PURE__*/_react["default"].createElement("div", {
-    id: "greyKeyText"
-  }, "All other bricks"))), /*#__PURE__*/_react["default"].createElement("button", {
-    onClick: handleDropdownClick,
-    tabIndex: 0,
-    className: "accordion"
-  }, "Filter"), /*#__PURE__*/_react["default"].createElement("div", {
-    className: "searchDropdown",
-    style: {
-      height: 0 + "px"
-    }
-  }, /*#__PURE__*/_react["default"].createElement("div", {
-    id: "searchContainer"
-  }, /*#__PURE__*/_react["default"].createElement("div", {
-    id: "sectionSearchContainer"
-  }, /*#__PURE__*/_react["default"].createElement("div", {
-    id: "sectionSearchButtons"
-  }, "Search by section:", /*#__PURE__*/_react["default"].createElement("button", {
-    id: "century",
-    className: "sectionSearchButton",
-    onClick: function onClick() {
-      return handleSectionSearch("Centenarian");
-    }
-  }, "Century Club"), /*#__PURE__*/_react["default"].createElement("button", {
-    id: "heros",
-    className: "sectionSearchButton",
-    onClick: function onClick() {
-      return handleSectionSearch("Heroes");
-    }
-  }, "Heroes"), /*#__PURE__*/_react["default"].createElement("button", {
-    id: "women",
-    className: "sectionSearchButton",
-    onClick: function onClick() {
-      return handleSectionSearch("Golden Women");
-    }
-  }, "Golden Women of Rondo"), /*#__PURE__*/_react["default"].createElement("button", {
-    id: "friends",
-    className: "sectionSearchButton",
-    onClick: function onClick() {
-      return handleSectionSearch("Family/Friends");
-    }
-  }, "Family/Friends"), /*#__PURE__*/_react["default"].createElement("button", {
-    id: "businesses",
-    className: "sectionSearchButton",
-    onClick: function onClick() {
-      return handleSectionSearch("Businesses/Organizations");
-    }
-  }, "Businesses/Organizations"))), /*#__PURE__*/_react["default"].createElement("div", {
-    id: "nameSearchContainer"
-  }, /*#__PURE__*/_react["default"].createElement("div", {
-    id: "searchInputsContainer"
-  }, /*#__PURE__*/_react["default"].createElement("label", {
-    htmlFor: "fname"
-  }, "Search by name of donor:"), /*#__PURE__*/_react["default"].createElement("input", {
-    type: "text",
-    id: "fname",
-    name: "fname"
-  }), /*#__PURE__*/_react["default"].createElement("button", {
-    id: "submitSearch",
-    onClick: function onClick() {
-      return searchButton({
-        setHighlight: setHighlight
-      });
-    }
-  }, "Search"))), /*#__PURE__*/_react["default"].createElement("button", {
-    id: "businesses",
-    className: "sectionSearchButton",
-    onClick: function onClick() {
-      return handleSectionSearch("all");
-    }
-  }, "Clear all filters")))));
+  function SearchBox() {
+    return /*#__PURE__*/_react["default"].createElement("div", {
+      id: "searchContainer"
+    }, /*#__PURE__*/_react["default"].createElement("div", {
+      id: "sectionSearchContainer"
+    }, /*#__PURE__*/_react["default"].createElement("div", {
+      id: "sectionSearchButtons"
+    }, "Search by section:", /*#__PURE__*/_react["default"].createElement("button", {
+      id: "century",
+      className: "sectionSearchButton",
+      onClick: function onClick() {
+        return handleSectionSearch("Centenarian");
+      }
+    }, "Century Club"), /*#__PURE__*/_react["default"].createElement("button", {
+      id: "heros",
+      className: "sectionSearchButton",
+      onClick: function onClick() {
+        return handleSectionSearch("Heroes");
+      }
+    }, "Heroes"), /*#__PURE__*/_react["default"].createElement("button", {
+      id: "women",
+      className: "sectionSearchButton",
+      onClick: function onClick() {
+        return handleSectionSearch("Golden Women");
+      }
+    }, "Golden Women of Rondo"), /*#__PURE__*/_react["default"].createElement("button", {
+      id: "friends",
+      className: "sectionSearchButton",
+      onClick: function onClick() {
+        return handleSectionSearch("Family/Friends");
+      }
+    }, "Family/Friends"), /*#__PURE__*/_react["default"].createElement("button", {
+      id: "businesses",
+      className: "sectionSearchButton",
+      onClick: function onClick() {
+        return handleSectionSearch("Businesses/Organizations");
+      }
+    }, "Businesses/Organizations"))), /*#__PURE__*/_react["default"].createElement("div", {
+      id: "nameSearchContainer"
+    }, /*#__PURE__*/_react["default"].createElement("div", {
+      id: "searchInputsContainer"
+    }, /*#__PURE__*/_react["default"].createElement("label", {
+      htmlFor: "fname"
+    }, "Search by name of donor:"), /*#__PURE__*/_react["default"].createElement("input", {
+      type: "text",
+      id: "fname",
+      name: "fname"
+    }), /*#__PURE__*/_react["default"].createElement("button", {
+      id: "submitSearch",
+      onClick: function onClick() {
+        return searchButton({
+          setHighlight: setHighlight
+        });
+      }
+    }, "Search"))), /*#__PURE__*/_react["default"].createElement("button", {
+      id: "businesses",
+      className: "sectionSearchButton",
+      onClick: function onClick() {
+        return handleSectionSearch("all");
+      }
+    }, "Clear all filters"));
+  }
+  if (display == "scroll") {
+    return /*#__PURE__*/_react["default"].createElement(_react["default"].Fragment, null, /*#__PURE__*/_react["default"].createElement("div", {
+      id: "searchHeader"
+    }, /*#__PURE__*/_react["default"].createElement("div", {
+      id: "keysContainer"
+    }, /*#__PURE__*/_react["default"].createElement("div", {
+      className: "keyContainer"
+    }, /*#__PURE__*/_react["default"].createElement("div", {
+      id: "redKeyBox",
+      className: "keyBox"
+    }), /*#__PURE__*/_react["default"].createElement("div", {
+      id: "redKeyText"
+    }, /*#__PURE__*/_react["default"].createElement(Label, {
+      section: highlight
+    }))), /*#__PURE__*/_react["default"].createElement("div", {
+      className: "keyContainer"
+    }, /*#__PURE__*/_react["default"].createElement("div", {
+      id: "greyKeyBox",
+      className: "keyBox"
+    }), /*#__PURE__*/_react["default"].createElement("div", {
+      id: "greyKeyText"
+    }, "All other bricks"))), /*#__PURE__*/_react["default"].createElement("button", {
+      onClick: handleDropdownClick,
+      tabIndex: 0,
+      className: "accordion"
+    }, "Filter"), /*#__PURE__*/_react["default"].createElement("div", {
+      className: "searchDropdown",
+      style: {
+        height: 0 + "px"
+      }
+    }, /*#__PURE__*/_react["default"].createElement(SearchBox, null))));
+  } else {
+    return /*#__PURE__*/_react["default"].createElement(_react["default"].Fragment, null, /*#__PURE__*/_react["default"].createElement(SearchBox, null), /*#__PURE__*/_react["default"].createElement("div", {
+      id: "staticSearchLabel"
+    }, /*#__PURE__*/_react["default"].createElement(Label, {
+      section: highlight
+    })));
+  }
 }
 
-},{"../db.json":1,"react":16}],28:[function(require,module,exports){
+},{"../db.json":1,"react":16}],29:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.ClickOnBrick = ClickOnBrick;
-var _db = _interopRequireDefault(require("../db.json"));
+exports["default"] = SelectedBrick;
+var _react = _interopRequireDefault(require("react"));
 var _brickRoadSite = require("./brickRoadSite.js");
+var _db = _interopRequireDefault(require("../db.json"));
 function _interopRequireDefault(e) {
   return e && e.__esModule ? e : {
     "default": e
@@ -44082,12 +44167,17 @@ function _arrayLikeToArray(r, a) {
   return n;
 } /* 
   Author: Jonah Zimmer
-  This file handles two ways to search for brick: search bar and click
-  It then sets the current brick state, which is on the file brickRoadSite
+  This component shows the selected brick, and includes a click event listener to choose the selected brick
   */
-// Handles clicking on bricks: sets pop-up brick and changes selected brick color
-function ClickOnBrick(_ref) {
-  var setCurrentBrick = _ref.setCurrentBrick;
+function closeBrick(setCurrentBrick) {
+  setCurrentBrick(_brickRoadSite.defaultBrick);
+  document.getElementById("selectedBrickContainer").style.visibility = "hidden";
+}
+
+// content within selected brick
+function SelectedBrick(_ref) {
+  var brick = _ref.brick,
+    setCurrentBrick = _ref.setCurrentBrick;
   // Finds and returns data from brickData about brick at coordinates
   function getBrick(row, col, pan) {
     var _iterator = _createForOfIteratorHelper(_db["default"]),
@@ -44124,77 +44214,13 @@ function ClickOnBrick(_ref) {
     }
     document.getElementById('fname').value = "";
   });
-}
-
-},{"../db.json":1,"./brickRoadSite.js":21}],29:[function(require,module,exports){
-"use strict";
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports["default"] = SelectedBrick;
-var _react = _interopRequireDefault(require("react"));
-var _brickRoadSite = require("./brickRoadSite.js");
-function _interopRequireDefault(e) {
-  return e && e.__esModule ? e : {
-    "default": e
-  };
-}
-/* 
-Author: Jonah Zimmer
-
-This single component shows the selected brick
-*/
-
-function closeBrick(setCurrentBrick) {
-  setCurrentBrick(_brickRoadSite.defaultBrick);
-  document.getElementById("selectedBrickContainer").style.visibility = "hidden";
-}
-function SelectedBrick(_ref) {
-  var brick = _ref.brick,
-    setCurrentBrick = _ref.setCurrentBrick;
   return /*#__PURE__*/_react["default"].createElement("div", {
     id: "selectedBrickContainer"
   }, /*#__PURE__*/_react["default"].createElement("button", {
     onClick: function onClick() {
       return closeBrick(setCurrentBrick);
     }
-  }, "Close"), /*#__PURE__*/_react["default"].createElement(SelectedBrickContent, {
-    brick: brick
-  }));
-}
-function SelectedBrickContent(_ref2) {
-  var brick = _ref2.brick;
-  return /*#__PURE__*/_react["default"].createElement(_react["default"].Fragment, null, /*#__PURE__*/_react["default"].createElement("p", null, "Naming Year: ", brick.Naming_Year), /*#__PURE__*/_react["default"].createElement("p", null, "Purchaser Name: ", brick.Purchaser_Name), /*#__PURE__*/_react["default"].createElement("p", null, "Section: ", brick.Paver_Assigned_Section), /*#__PURE__*/_react["default"].createElement(InscriptionLine1, {
-    brick: brick
-  }), /*#__PURE__*/_react["default"].createElement(InscriptionLine2, {
-    brick: brick
-  }), /*#__PURE__*/_react["default"].createElement(InscriptionLine3, {
-    brick: brick
-  }), /*#__PURE__*/_react["default"].createElement(Link, null));
-}
-function InscriptionLine1(_ref3) {
-  var brick = _ref3.brick;
-  if (brick.Inscription_Line_1) {
-    return /*#__PURE__*/_react["default"].createElement("p", null, brick.Inscription_Line_1);
-  }
-}
-function InscriptionLine2(_ref4) {
-  var brick = _ref4.brick;
-  if (brick.Inscription_Line_2) {
-    return /*#__PURE__*/_react["default"].createElement("p", null, brick.Inscription_Line_2);
-  }
-}
-function InscriptionLine3(_ref5) {
-  var brick = _ref5.brick;
-  if (brick.Inscription_Line_3) {
-    return /*#__PURE__*/_react["default"].createElement("p", null, brick.Inscription_Line_3);
-  }
-}
-function Link(brick) {
-  if (brick.link) {
-    return /*#__PURE__*/_react["default"].createElement("p", null, brick.link);
-  }
+  }, "Close"), /*#__PURE__*/_react["default"].createElement("p", null, "Naming Year: ", brick.Naming_Year), /*#__PURE__*/_react["default"].createElement("p", null, "Purchaser Name: ", brick.Purchaser_Name), /*#__PURE__*/_react["default"].createElement("p", null, "Section: ", brick.Paver_Assigned_Section), brick.Inscription_Line_1 ? /*#__PURE__*/_react["default"].createElement("p", null, brick.Inscription_Line_1) : "", brick.Inscription_Line_2 ? /*#__PURE__*/_react["default"].createElement("p", null, brick.Inscription_Line_2) : "", brick.Inscription_Line_3 ? /*#__PURE__*/_react["default"].createElement("p", null, brick.Inscription_Line_3) : "", brick.link ? /*#__PURE__*/_react["default"].createElement("p", null, brick.link) : "");
 }
 
-},{"./brickRoadSite.js":21,"react":16}]},{},[23]);
+},{"../db.json":1,"./brickRoadSite.js":22,"react":16}]},{},[24]);

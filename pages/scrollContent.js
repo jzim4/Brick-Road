@@ -1,7 +1,8 @@
 /* 
 Author: Jonah Zimmer
 
-This file draws the brick path, setting class names of existing and selected bricks
+This component contains the content that is scrollable as well as the buttons to scroll.
+It imports the path and panel subcomponents
 */
 
 import React from 'react';
@@ -23,19 +24,6 @@ function scrollButtonFunction(goLeft) {
 }
 
 export default function ScrollContent({ highlight, currentBrick }) {
-  const bricksPerPanel = 10;
-
-  const bricks = document.getElementsByClassName('brick');
-  for (let i of bricks) {
-    i.classList.remove("selectedBrick");
-  }
-
-  if (currentBrick.Panel_Number < 13) {
-    const col = (currentBrick.Panel_Number-1) * bricksPerPanel + currentBrick.Col_Number;
-    let cell = document.querySelectorAll(`.brick:nth-child(${col}`)[currentBrick.Row_Number - 1];
-    cell.classList.add("selectedBrick");
-  }
-
   return <div id="fullPathContainer">
     <div className="scrollButtonContainer">
       <button onClick={() => scrollButtonFunction(true)} tabIndex={0} className="scrollButton" id="leftScroll"> &#8679; </button>
