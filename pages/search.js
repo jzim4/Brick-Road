@@ -7,7 +7,7 @@ This single component holds the search bar and includes all functionality for bu
 import data from '../db.json';
 import React from 'react';
 
-export default function Search({ highlight, setHighlight, display }) {
+export default function Search({ highlight, setHighlight, display, setDisplay }) {
 
     // hide search section
     function collapseSearch() {
@@ -36,6 +36,15 @@ export default function Search({ highlight, setHighlight, display }) {
         }
         else {
             panel.style.height = "200px";
+        }
+    }
+
+    function toggleDisplay() {
+        if (display == "scroll") {
+            setDisplay("static");
+        }
+        else if (display == "static") {
+            setDisplay("scroll");
         }
     }
 
@@ -83,8 +92,8 @@ export default function Search({ highlight, setHighlight, display }) {
     function SearchBox() {
         return <div id="searchContainer">
             <div id="sectionSearchContainer">
+                <span>Search by section:</span>
                 <div id="sectionSearchButtons">
-                    Search by section:
                     <button id="century" className="sectionSearchButton" onClick={() => handleSectionSearch("Centenarian")}>Century Club</button>
                     <button id="heros" className="sectionSearchButton" onClick={() => handleSectionSearch("Heroes")}>Heroes</button>
                     <button id="women" className="sectionSearchButton" onClick={() => handleSectionSearch("Golden Women")}>Golden Women of Rondo</button>
@@ -96,12 +105,13 @@ export default function Search({ highlight, setHighlight, display }) {
             <div id="nameSearchContainer">
                 <div id="searchInputsContainer">
                     <label htmlFor="fname">Search by name of donor:</label>
+                    <br></br>
                     <input type="text" id="fname" name="fname"></input>
                     <button id="submitSearch" onClick={() => searchButton({ setHighlight })}>Search</button>
                 </div>
             </div>
 
-            <button id="businesses" className="sectionSearchButton" onClick={() => handleSectionSearch("all")}>Clear all filters</button>
+            <button id="clearSearch" className="sectionSearchButton" onClick={() => handleSectionSearch("all")}>Clear all filters</button>
 
         </div>
     }
@@ -109,17 +119,19 @@ export default function Search({ highlight, setHighlight, display }) {
     if (display == "scroll") {
         return <>
             <div id="searchHeader">
+                <button id="displayToggle" className="headerButton" onClick={toggleDisplay}>{display == "scroll" ? "Show brick list" : "Show scrolling path"}</button>
+                    
                 <div id="keysContainer">
                     <div className="keyContainer">
                         <div id="redKeyBox" className="keyBox"></div>
-                        <div id="redKeyText"><Label section={highlight} /></div>
+                        <div id="redKeyText"><Label section={highlight} /></div> <button onClick={handleDropdownClick} tabIndex={0} className="accordion">Filter</button>
                     </div>
                     <div className="keyContainer">
                         <div id="greyKeyBox" className="keyBox"></div>
                         <div id="greyKeyText">All other bricks</div>
                     </div>
                 </div>
-                <button onClick={handleDropdownClick} tabIndex={0} className="accordion">Filter</button>
+
                 <div className="searchDropdown" style={{ height: 0 + "px" }}>
                     <SearchBox />
                 </div>
@@ -128,6 +140,9 @@ export default function Search({ highlight, setHighlight, display }) {
     }
     else {
         return <>
+            <div id="customizeButtons">
+                <button id="displayToggle" className="headerButton" onClick={toggleDisplay}>{display == "scroll" ? "Show brick list" : "Show scrolling path"}</button>
+            </div>
             <SearchBox />
             <div id="staticSearchLabel">
                 <Label section={highlight} />

@@ -36,13 +36,15 @@ export default function Path({ highlight, currentBrick }) {
       return <div className='brick' key={100 * rowIndex + colIndex}></div>
     }
   }
+
+  console.log("path Updated");
   
   // this component is the entire path with every other row offset in the opposite direction
   return <div id="path">
     {Array(numRows).fill(0).map((_, rowIndex) => (
       <div className={rowIndex % 2 == 0 ? 'brickRow leftShiftRow' : 'brickRow rightShiftRow'} key={"row" + rowIndex}>
         {Array(numCols).fill(0).map((_, colIndex) => (
-          <Brick rowIndex={rowIndex} colIndex={colIndex} />
+          <Brick rowIndex={rowIndex} colIndex={colIndex} key={"row"+rowIndex+"col"+colIndex}/>
         ))}
       </div>
     ))}

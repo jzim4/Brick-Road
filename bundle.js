@@ -43338,8 +43338,10 @@ function AcessibleContent(_ref) {
 function Brick(_ref2) {
   var brick = _ref2.brick;
   return /*#__PURE__*/_react["default"].createElement("div", {
+    className: "accessibleBrickContainer"
+  }, /*#__PURE__*/_react["default"].createElement("div", {
     className: "accessibleBrick"
-  }, /*#__PURE__*/_react["default"].createElement("p", null, "Naming Year: ", brick.Naming_Year), /*#__PURE__*/_react["default"].createElement("p", null, "Purchaser Name: ", brick.Purchaser_Name), /*#__PURE__*/_react["default"].createElement("p", null, "Section: ", brick.Paver_Assigned_Section), /*#__PURE__*/_react["default"].createElement("p", null, "Located in front of panel ", brick.Panel_Number, " in row ", brick.Row_Number), brick.Inscription_Line_1 ? /*#__PURE__*/_react["default"].createElement("p", null, brick.Inscription_Line_1) : "", brick.Inscription_Line_2 ? /*#__PURE__*/_react["default"].createElement("p", null, brick.Inscription_Line_2) : "", brick.Inscription_Line_3 ? /*#__PURE__*/_react["default"].createElement("p", null, brick.Inscription_Line_3) : "", brick.link ? /*#__PURE__*/_react["default"].createElement("p", null, brick.link) : "");
+  }, brick.Inscription_Line_1 ? /*#__PURE__*/_react["default"].createElement("p", null, brick.Inscription_Line_1) : "", brick.Inscription_Line_2 ? /*#__PURE__*/_react["default"].createElement("p", null, brick.Inscription_Line_2) : "", brick.Inscription_Line_3 ? /*#__PURE__*/_react["default"].createElement("p", null, brick.Inscription_Line_3) : ""), /*#__PURE__*/_react["default"].createElement("p", null, "Naming Year: ", brick.Naming_Year), /*#__PURE__*/_react["default"].createElement("p", null, "Purchaser Name: ", brick.Purchaser_Name), /*#__PURE__*/_react["default"].createElement("p", null, "Section: ", brick.Paver_Assigned_Section), /*#__PURE__*/_react["default"].createElement("p", null, "Located in front of panel ", brick.Panel_Number, " in row ", brick.Row_Number), brick.link ? /*#__PURE__*/_react["default"].createElement("p", null, brick.link) : "");
 }
 
 },{"../db.json":1,"react":16}],22:[function(require,module,exports){
@@ -43466,13 +43468,29 @@ function BrickRoadSite() {
     _useState6 = _slicedToArray(_useState5, 2),
     display = _useState6[0],
     setDisplay = _useState6[1];
+
+  // if window starts out small, make it static
+  if (window.innerWidth < 1000 && display != "static") {
+    setDisplay("static");
+  }
+  // if window becomes small, make it static
+  window.onresize = function () {
+    if (window.innerWidth < 1000) {
+      setDisplay("static");
+      setCurrentBrick(defaultBrick);
+      document.getElementById("selectedBrickPageCover").style.display = "none";
+      document.body.style.overflow = 'auto';
+      document.getElementById("scrollContainer").style.overflowX = 'scroll';
+    }
+  };
   return /*#__PURE__*/_react["default"].createElement(_react["default"].Fragment, null, /*#__PURE__*/_react["default"].createElement(_header["default"], {
     display: display,
     setDisplay: setDisplay
   }), /*#__PURE__*/_react["default"].createElement(_search["default"], {
     highlight: highlight,
     setHighlight: setHighlight,
-    display: display
+    display: display,
+    setDisplay: setDisplay
   }), /*#__PURE__*/_react["default"].createElement(_selectedBrick["default"], {
     brick: currentBrick,
     setCurrentBrick: setCurrentBrick
@@ -43506,17 +43524,11 @@ This single component holds the header
 function Header(_ref) {
   var display = _ref.display,
     setDisplay = _ref.setDisplay;
-  function toggleDisplay() {
-    if (display == "scroll") {
-      setDisplay("static");
-    } else if (display == "static") {
-      setDisplay("scroll");
-    }
-  }
-  return /*#__PURE__*/_react["default"].createElement("header", null, /*#__PURE__*/_react["default"].createElement("button", {
-    id: "headerSpaceHolder",
-    onClick: toggleDisplay
-  }, "Toggle Accessible Mode"), /*#__PURE__*/_react["default"].createElement("h1", null, "Rondo Commemorative Plaza"), /*#__PURE__*/_react["default"].createElement("a", null, "About"));
+  return /*#__PURE__*/_react["default"].createElement("header", null, /*#__PURE__*/_react["default"].createElement("div", {
+    width: "100"
+  }), /*#__PURE__*/_react["default"].createElement("h1", null, "Rondo Commemorative Plaza"), /*#__PURE__*/_react["default"].createElement("button", {
+    className: "headerButton"
+  }, "About"));
 }
 
 },{"react":16}],24:[function(require,module,exports){
@@ -43747,6 +43759,7 @@ function Path(_ref) {
       });
     }
   }
+  console.log("path Updated");
 
   // this component is the entire path with every other row offset in the opposite direction
   return /*#__PURE__*/_react["default"].createElement("div", {
@@ -43758,7 +43771,8 @@ function Path(_ref) {
     }, Array(numCols).fill(0).map(function (_, colIndex) {
       return /*#__PURE__*/_react["default"].createElement(Brick, {
         rowIndex: rowIndex,
-        colIndex: colIndex
+        colIndex: colIndex,
+        key: "row" + rowIndex + "col" + colIndex
       });
     }));
   }));
@@ -43798,9 +43812,11 @@ function scrollButtonFunction(goLeft) {
     behavior: "smooth"
   });
 }
+console.log("scroll content Updated");
 function ScrollContent(_ref) {
   var highlight = _ref.highlight,
-    currentBrick = _ref.currentBrick;
+    currentBrick = _ref.currentBrick,
+    setCurrentBrick = _ref.setCurrentBrick;
   return /*#__PURE__*/_react["default"].createElement("div", {
     id: "fullPathContainer"
   }, /*#__PURE__*/_react["default"].createElement("div", {
@@ -43811,12 +43827,14 @@ function ScrollContent(_ref) {
     },
     tabIndex: 0,
     className: "scrollButton",
-    id: "leftScroll"
+    id: "leftScroll",
+    "aria-label": "Scroll path left"
   }, " \u21E7 ")), /*#__PURE__*/_react["default"].createElement("div", {
     id: "scrollContainer"
   }, /*#__PURE__*/_react["default"].createElement(_panels["default"], null), /*#__PURE__*/_react["default"].createElement(_path["default"], {
     highlight: highlight,
-    currentBrick: currentBrick
+    currentBrick: currentBrick,
+    setCurrentBrick: setCurrentBrick
   })), /*#__PURE__*/_react["default"].createElement("div", {
     className: "scrollButtonContainer"
   }, /*#__PURE__*/_react["default"].createElement("button", {
@@ -43825,7 +43843,8 @@ function ScrollContent(_ref) {
     },
     tabIndex: 0,
     className: "scrollButton",
-    id: "rightScroll"
+    id: "rightScroll",
+    "aria-label": "Scroll path right"
   }, " \u21E7 ")));
 }
 
@@ -43909,7 +43928,8 @@ function _arrayLikeToArray(r, a) {
 function Search(_ref) {
   var highlight = _ref.highlight,
     setHighlight = _ref.setHighlight,
-    display = _ref.display;
+    display = _ref.display,
+    setDisplay = _ref.setDisplay;
   // hide search section
   function collapseSearch() {
     var dropdown = document.getElementsByClassName("searchDropdown")[0];
@@ -43936,6 +43956,13 @@ function Search(_ref) {
       collapseSearch();
     } else {
       panel.style.height = "200px";
+    }
+  }
+  function toggleDisplay() {
+    if (display == "scroll") {
+      setDisplay("static");
+    } else if (display == "static") {
+      setDisplay("scroll");
     }
   }
 
@@ -43994,9 +44021,9 @@ function Search(_ref) {
       id: "searchContainer"
     }, /*#__PURE__*/_react["default"].createElement("div", {
       id: "sectionSearchContainer"
-    }, /*#__PURE__*/_react["default"].createElement("div", {
+    }, /*#__PURE__*/_react["default"].createElement("span", null, "Search by section:"), /*#__PURE__*/_react["default"].createElement("div", {
       id: "sectionSearchButtons"
-    }, "Search by section:", /*#__PURE__*/_react["default"].createElement("button", {
+    }, /*#__PURE__*/_react["default"].createElement("button", {
       id: "century",
       className: "sectionSearchButton",
       onClick: function onClick() {
@@ -44032,7 +44059,7 @@ function Search(_ref) {
       id: "searchInputsContainer"
     }, /*#__PURE__*/_react["default"].createElement("label", {
       htmlFor: "fname"
-    }, "Search by name of donor:"), /*#__PURE__*/_react["default"].createElement("input", {
+    }, "Search by name of donor:"), /*#__PURE__*/_react["default"].createElement("br", null), /*#__PURE__*/_react["default"].createElement("input", {
       type: "text",
       id: "fname",
       name: "fname"
@@ -44044,7 +44071,7 @@ function Search(_ref) {
         });
       }
     }, "Search"))), /*#__PURE__*/_react["default"].createElement("button", {
-      id: "businesses",
+      id: "clearSearch",
       className: "sectionSearchButton",
       onClick: function onClick() {
         return handleSectionSearch("all");
@@ -44054,7 +44081,11 @@ function Search(_ref) {
   if (display == "scroll") {
     return /*#__PURE__*/_react["default"].createElement(_react["default"].Fragment, null, /*#__PURE__*/_react["default"].createElement("div", {
       id: "searchHeader"
-    }, /*#__PURE__*/_react["default"].createElement("div", {
+    }, /*#__PURE__*/_react["default"].createElement("button", {
+      id: "displayToggle",
+      className: "headerButton",
+      onClick: toggleDisplay
+    }, display == "scroll" ? "Show brick list" : "Show scrolling path"), /*#__PURE__*/_react["default"].createElement("div", {
       id: "keysContainer"
     }, /*#__PURE__*/_react["default"].createElement("div", {
       className: "keyContainer"
@@ -44065,25 +44096,31 @@ function Search(_ref) {
       id: "redKeyText"
     }, /*#__PURE__*/_react["default"].createElement(Label, {
       section: highlight
-    }))), /*#__PURE__*/_react["default"].createElement("div", {
+    })), " ", /*#__PURE__*/_react["default"].createElement("button", {
+      onClick: handleDropdownClick,
+      tabIndex: 0,
+      className: "accordion"
+    }, "Filter")), /*#__PURE__*/_react["default"].createElement("div", {
       className: "keyContainer"
     }, /*#__PURE__*/_react["default"].createElement("div", {
       id: "greyKeyBox",
       className: "keyBox"
     }), /*#__PURE__*/_react["default"].createElement("div", {
       id: "greyKeyText"
-    }, "All other bricks"))), /*#__PURE__*/_react["default"].createElement("button", {
-      onClick: handleDropdownClick,
-      tabIndex: 0,
-      className: "accordion"
-    }, "Filter"), /*#__PURE__*/_react["default"].createElement("div", {
+    }, "All other bricks"))), /*#__PURE__*/_react["default"].createElement("div", {
       className: "searchDropdown",
       style: {
         height: 0 + "px"
       }
     }, /*#__PURE__*/_react["default"].createElement(SearchBox, null))));
   } else {
-    return /*#__PURE__*/_react["default"].createElement(_react["default"].Fragment, null, /*#__PURE__*/_react["default"].createElement(SearchBox, null), /*#__PURE__*/_react["default"].createElement("div", {
+    return /*#__PURE__*/_react["default"].createElement(_react["default"].Fragment, null, /*#__PURE__*/_react["default"].createElement("div", {
+      id: "customizeButtons"
+    }, /*#__PURE__*/_react["default"].createElement("button", {
+      id: "displayToggle",
+      className: "headerButton",
+      onClick: toggleDisplay
+    }, display == "scroll" ? "Show brick list" : "Show scrolling path")), /*#__PURE__*/_react["default"].createElement(SearchBox, null), /*#__PURE__*/_react["default"].createElement("div", {
       id: "staticSearchLabel"
     }, /*#__PURE__*/_react["default"].createElement(Label, {
       section: highlight
@@ -44171,7 +44208,9 @@ function _arrayLikeToArray(r, a) {
   */
 function closeBrick(setCurrentBrick) {
   setCurrentBrick(_brickRoadSite.defaultBrick);
-  document.getElementById("selectedBrickContainer").style.visibility = "hidden";
+  document.getElementById("selectedBrickPageCover").style.display = "none";
+  document.body.style.overflow = 'auto';
+  document.getElementById("scrollContainer").style.overflowX = 'scroll';
 }
 
 // content within selected brick
@@ -44210,17 +44249,27 @@ function SelectedBrick(_ref) {
       col = col - (pan - 1) * 10;
       var b = getBrick(row, col, pan);
       setCurrentBrick(b);
-      document.getElementById("selectedBrickContainer").style.visibility = "visible";
+      document.getElementById("selectedBrickPageCover").style.display = "block";
+      document.body.style.overflow = 'hidden';
+      document.getElementById("scrollContainer").style.overflow = 'hidden';
     }
     document.getElementById('fname').value = "";
   });
+  console.log("selected Brick Updated");
   return /*#__PURE__*/_react["default"].createElement("div", {
+    id: "selectedBrickPageCover"
+  }, /*#__PURE__*/_react["default"].createElement("div", {
     id: "selectedBrickContainer"
   }, /*#__PURE__*/_react["default"].createElement("button", {
+    id: "selectedCloseButton",
     onClick: function onClick() {
       return closeBrick(setCurrentBrick);
     }
-  }, "Close"), /*#__PURE__*/_react["default"].createElement("p", null, "Naming Year: ", brick.Naming_Year), /*#__PURE__*/_react["default"].createElement("p", null, "Purchaser Name: ", brick.Purchaser_Name), /*#__PURE__*/_react["default"].createElement("p", null, "Section: ", brick.Paver_Assigned_Section), brick.Inscription_Line_1 ? /*#__PURE__*/_react["default"].createElement("p", null, brick.Inscription_Line_1) : "", brick.Inscription_Line_2 ? /*#__PURE__*/_react["default"].createElement("p", null, brick.Inscription_Line_2) : "", brick.Inscription_Line_3 ? /*#__PURE__*/_react["default"].createElement("p", null, brick.Inscription_Line_3) : "", brick.link ? /*#__PURE__*/_react["default"].createElement("p", null, brick.link) : "");
+  }, "Close"), /*#__PURE__*/_react["default"].createElement("div", {
+    id: "selectedBrick"
+  }, brick.Inscription_Line_1 ? /*#__PURE__*/_react["default"].createElement("p", null, brick.Inscription_Line_1) : "", brick.Inscription_Line_2 ? /*#__PURE__*/_react["default"].createElement("p", null, brick.Inscription_Line_2) : "", brick.Inscription_Line_3 ? /*#__PURE__*/_react["default"].createElement("p", null, brick.Inscription_Line_3) : ""), /*#__PURE__*/_react["default"].createElement("div", {
+    id: "selectedBrickDescr"
+  }, /*#__PURE__*/_react["default"].createElement("p", null, "Naming Year: ", brick.Naming_Year), /*#__PURE__*/_react["default"].createElement("p", null, "Purchaser Name: ", brick.Purchaser_Name), /*#__PURE__*/_react["default"].createElement("p", null, "Section: ", brick.Paver_Assigned_Section), brick.link ? /*#__PURE__*/_react["default"].createElement("p", null, brick.link) : "")));
 }
 
 },{"../db.json":1,"./brickRoadSite.js":22,"react":16}]},{},[24]);

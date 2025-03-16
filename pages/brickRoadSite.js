@@ -27,9 +27,24 @@ export default function BrickRoadSite() {
 
     const [display, setDisplay] = useState("scroll");
 
+    // if window starts out small, make it static
+    if (window.innerWidth < 1000 && display != "static") {
+        setDisplay("static");
+    }
+    // if window becomes small, make it static
+    window.onresize = function() {
+        if (window.innerWidth < 1000) {
+            setDisplay("static");
+            setCurrentBrick(defaultBrick);
+            document.getElementById("selectedBrickPageCover").style.display = "none";
+            document.body.style.overflow = 'auto';
+            document.getElementById("scrollContainer").style.overflowX = 'scroll';
+        }
+    }
+
     return <>
         <Header display={display} setDisplay={setDisplay}/>
-        <Search highlight={highlight} setHighlight={setHighlight} display={display}/>
+        <Search highlight={highlight} setHighlight={setHighlight} display={display} setDisplay={setDisplay}/>
         
         <SelectedBrick brick={currentBrick} setCurrentBrick={setCurrentBrick}/>
         {display == "scroll" ? 

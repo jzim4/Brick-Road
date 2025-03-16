@@ -30,14 +30,16 @@ export default function AcessibleContent({ highlight }) {
 }
 
 function Brick({brick}) {
-    return <div className="accessibleBrick">
+    return <div className="accessibleBrickContainer">
+        <div className="accessibleBrick">
+            {brick.Inscription_Line_1 ? <p>{brick.Inscription_Line_1}</p> : ""}
+            {brick.Inscription_Line_2 ? <p>{brick.Inscription_Line_2}</p> : ""}
+            {brick.Inscription_Line_3 ? <p>{brick.Inscription_Line_3}</p> : ""}
+        </div>
         <p>Naming Year: {brick.Naming_Year}</p>
         <p>Purchaser Name: {brick.Purchaser_Name}</p>
         <p>Section: {brick.Paver_Assigned_Section}</p>
         <p>Located in front of panel {brick.Panel_Number} in row {brick.Row_Number}</p>
-        {brick.Inscription_Line_1 ? <p>{brick.Inscription_Line_1}</p> : ""}
-        {brick.Inscription_Line_2 ? <p>{brick.Inscription_Line_2}</p> : ""}
-        {brick.Inscription_Line_3 ? <p>{brick.Inscription_Line_3}</p> : ""}
         {brick.link ? <p>{brick.link}</p> : ""}
     </div>
 }

@@ -9,7 +9,9 @@ import data from '../db.json';
 
 function closeBrick(setCurrentBrick) {
     setCurrentBrick(defaultBrick);
-    document.getElementById("selectedBrickContainer").style.visibility = "hidden";
+    document.getElementById("selectedBrickPageCover").style.display = "none";
+    document.body.style.overflow = 'auto';
+    document.getElementById("scrollContainer").style.overflowX = 'scroll';
 }
 
 // content within selected brick
@@ -38,19 +40,28 @@ export default function SelectedBrick({ brick, setCurrentBrick }) {
             col = col - ((pan - 1) * 10);
             const b = getBrick(row, col, pan);
             setCurrentBrick(b);
-            document.getElementById("selectedBrickContainer").style.visibility = "visible";
+            document.getElementById("selectedBrickPageCover").style.display = "block";
+            document.body.style.overflow = 'hidden';
+            document.getElementById("scrollContainer").style.overflow = 'hidden';
         }
         document.getElementById('fname').value = "";
     })
+    console.log("selected Brick Updated");
 
-    return <div id="selectedBrickContainer">
-        <button onClick={() => closeBrick(setCurrentBrick)}>Close</button>
-        <p>Naming Year: {brick.Naming_Year}</p>
-        <p>Purchaser Name: {brick.Purchaser_Name}</p>
-        <p>Section: {brick.Paver_Assigned_Section}</p>
-        {brick.Inscription_Line_1 ? <p>{brick.Inscription_Line_1}</p> : ""}
-        {brick.Inscription_Line_2 ? <p>{brick.Inscription_Line_2}</p> : ""}
-        {brick.Inscription_Line_3 ? <p>{brick.Inscription_Line_3}</p> : ""}
-        {brick.link ? <p>{brick.link}</p> : ""}
+    return <div id="selectedBrickPageCover">
+        <div id="selectedBrickContainer">
+        <button id="selectedCloseButton" onClick={() => closeBrick(setCurrentBrick)}>Close</button>
+        <div id="selectedBrick">
+            {brick.Inscription_Line_1 ? <p>{brick.Inscription_Line_1}</p> : ""}
+            {brick.Inscription_Line_2 ? <p>{brick.Inscription_Line_2}</p> : ""}
+            {brick.Inscription_Line_3 ? <p>{brick.Inscription_Line_3}</p> : ""}
+        </div>
+        <div id="selectedBrickDescr">
+            <p>Naming Year: {brick.Naming_Year}</p>
+            <p>Purchaser Name: {brick.Purchaser_Name}</p>
+            <p>Section: {brick.Paver_Assigned_Section}</p>
+            {brick.link ? <p>{brick.link}</p> : ""}
+        </div>
+    </div>
     </div>
 }
