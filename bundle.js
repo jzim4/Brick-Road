@@ -43232,6 +43232,32 @@ exports.clearImmediate = typeof clearImmediate === "function" ? clearImmediate :
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
+exports["default"] = About;
+var _react = _interopRequireDefault(require("react"));
+var _header = _interopRequireDefault(require("./header.js"));
+function _interopRequireDefault(e) {
+  return e && e.__esModule ? e : {
+    "default": e
+  };
+}
+function About() {
+  return /*#__PURE__*/_react["default"].createElement(_react["default"].Fragment, null, /*#__PURE__*/_react["default"].createElement(_header["default"], null), /*#__PURE__*/_react["default"].createElement("h2", null, "About"), /*#__PURE__*/_react["default"].createElement(TheSite, null));
+}
+function TheSite() {
+  return /*#__PURE__*/_react["default"].createElement("div", {
+    className: "aboutComponent"
+  }, /*#__PURE__*/_react["default"].createElement("h3", {
+    className: "aboutHeader"
+  }, "How to Navigate the Site"));
+}
+function OtherStuff() {}
+
+},{"./header.js":24,"react":16}],22:[function(require,module,exports){
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
 exports["default"] = AcessibleContent;
 var _react = _interopRequireDefault(require("react"));
 var _db = _interopRequireDefault(require("../db.json"));
@@ -43344,7 +43370,7 @@ function Brick(_ref2) {
   }, brick.Inscription_Line_1 ? /*#__PURE__*/_react["default"].createElement("p", null, brick.Inscription_Line_1) : "", brick.Inscription_Line_2 ? /*#__PURE__*/_react["default"].createElement("p", null, brick.Inscription_Line_2) : "", brick.Inscription_Line_3 ? /*#__PURE__*/_react["default"].createElement("p", null, brick.Inscription_Line_3) : ""), /*#__PURE__*/_react["default"].createElement("p", null, "Naming Year: ", brick.Naming_Year), /*#__PURE__*/_react["default"].createElement("p", null, "Purchaser Name: ", brick.Purchaser_Name), /*#__PURE__*/_react["default"].createElement("p", null, "Section: ", brick.Paver_Assigned_Section), /*#__PURE__*/_react["default"].createElement("p", null, "Located in front of panel ", brick.Panel_Number, " in row ", brick.Row_Number), brick.link ? /*#__PURE__*/_react["default"].createElement("p", null, brick.link) : "");
 }
 
-},{"../db.json":1,"react":16}],22:[function(require,module,exports){
+},{"../db.json":1,"react":16}],23:[function(require,module,exports){
 "use strict";
 
 function _typeof(o) {
@@ -43502,7 +43528,7 @@ function BrickRoadSite() {
   }));
 }
 
-},{"./accessibleContent.js":21,"./header.js":23,"./scrollContent.js":27,"./search.js":28,"./selectedBrick.js":29,"react":16}],23:[function(require,module,exports){
+},{"./accessibleContent.js":22,"./header.js":24,"./scrollContent.js":28,"./search.js":29,"./selectedBrick.js":30,"react":16}],24:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -43510,6 +43536,7 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports["default"] = Header;
 var _react = _interopRequireDefault(require("react"));
+var _reactRouterDom = require("react-router-dom");
 function _interopRequireDefault(e) {
   return e && e.__esModule ? e : {
     "default": e
@@ -43521,20 +43548,21 @@ Author: Jonah Zimmer
 This single component holds the header
 */
 
-function Header(_ref) {
-  var display = _ref.display,
-    setDisplay = _ref.setDisplay;
-  return /*#__PURE__*/_react["default"].createElement("header", null, /*#__PURE__*/_react["default"].createElement("div", {
-    width: "100"
-  }), /*#__PURE__*/_react["default"].createElement("h1", null, "Rondo Commemorative Plaza"), /*#__PURE__*/_react["default"].createElement("button", {
+function Header() {
+  return /*#__PURE__*/_react["default"].createElement("header", null, /*#__PURE__*/_react["default"].createElement("h1", null, "Rondo Commemorative Plaza"), /*#__PURE__*/_react["default"].createElement(_reactRouterDom.Link, {
+    className: "headerButton",
+    to: "/"
+  }, "Home"), /*#__PURE__*/_react["default"].createElement(_reactRouterDom.Link, {
+    to: "/about",
     className: "headerButton"
   }, "About"));
 }
 
-},{"react":16}],24:[function(require,module,exports){
+},{"react":16,"react-router-dom":8}],25:[function(require,module,exports){
 "use strict";
 
 var _brickRoadSite = _interopRequireDefault(require("./brickRoadSite.js"));
+var _about = _interopRequireDefault(require("./about.js"));
 var _reactRouterDom = require("react-router-dom");
 var _react = _interopRequireDefault(require("react"));
 var _client = _interopRequireDefault(require("react-dom/client"));
@@ -43548,11 +43576,14 @@ root.render(/*#__PURE__*/_react["default"].createElement(_react["default"].Stric
   path: "/",
   element: /*#__PURE__*/_react["default"].createElement(_brickRoadSite["default"], null)
 }), /*#__PURE__*/_react["default"].createElement(_reactRouterDom.Route, {
+  path: "/about",
+  element: /*#__PURE__*/_react["default"].createElement(_about["default"], null)
+}), /*#__PURE__*/_react["default"].createElement(_reactRouterDom.Route, {
   path: "*",
   element: /*#__PURE__*/_react["default"].createElement(_brickRoadSite["default"], null)
 })))));
 
-},{"./brickRoadSite.js":22,"react":16,"react-dom/client":6,"react-router-dom":8}],25:[function(require,module,exports){
+},{"./about.js":21,"./brickRoadSite.js":23,"react":16,"react-dom/client":6,"react-router-dom":8}],26:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -43636,7 +43667,7 @@ function Panel() {
   }));
 }
 
-},{"react":16}],26:[function(require,module,exports){
+},{"react":16}],27:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -43778,7 +43809,7 @@ function Path(_ref) {
   }));
 }
 
-},{"../db.json":1,"react":16}],27:[function(require,module,exports){
+},{"../db.json":1,"react":16}],28:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -43848,7 +43879,7 @@ function ScrollContent(_ref) {
   }, " \u21E7 ")));
 }
 
-},{"./panels.js":25,"./path.js":26,"react":16}],28:[function(require,module,exports){
+},{"./panels.js":26,"./path.js":27,"react":16}],29:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -44128,7 +44159,7 @@ function Search(_ref) {
   }
 }
 
-},{"../db.json":1,"react":16}],29:[function(require,module,exports){
+},{"../db.json":1,"react":16}],30:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -44272,4 +44303,4 @@ function SelectedBrick(_ref) {
   }, /*#__PURE__*/_react["default"].createElement("p", null, "Naming Year: ", brick.Naming_Year), /*#__PURE__*/_react["default"].createElement("p", null, "Purchaser Name: ", brick.Purchaser_Name), /*#__PURE__*/_react["default"].createElement("p", null, "Section: ", brick.Paver_Assigned_Section), brick.link ? /*#__PURE__*/_react["default"].createElement("p", null, brick.link) : "")));
 }
 
-},{"../db.json":1,"./brickRoadSite.js":22,"react":16}]},{},[24]);
+},{"../db.json":1,"./brickRoadSite.js":23,"react":16}]},{},[25]);
