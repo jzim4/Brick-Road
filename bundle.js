@@ -43712,67 +43712,67 @@ function Panel() {
     className: "panel",
     width: "332.8",
     height: "363",
-    src: "../panels/IMG_2694.jpeg"
+    src: "panels/IMG_2694.jpeg"
   }), /*#__PURE__*/_react["default"].createElement("img", {
     className: "panel",
     width: "326",
     height: "363",
-    src: "../panels/IMG_2698.jpeg"
+    src: "panels/IMG_2698.jpeg"
   }), /*#__PURE__*/_react["default"].createElement("img", {
     className: "panel",
     width: "327",
     height: "363",
-    src: "../panels/IMG_2700.jpeg"
+    src: "panels/IMG_2700.jpeg"
   }), /*#__PURE__*/_react["default"].createElement("img", {
     className: "panel",
     width: "320.7",
     height: "363",
-    src: "../panels/IMG_2701.jpeg"
+    src: "panels/IMG_2701.jpeg"
   }), /*#__PURE__*/_react["default"].createElement("img", {
     className: "panel",
     width: "326.6",
     height: "363",
-    src: "../panels/IMG_2702.jpeg"
+    src: "panels/IMG_2702.jpeg"
   }), /*#__PURE__*/_react["default"].createElement("img", {
     className: "panel",
     width: "331",
     height: "363",
-    src: "../panels/IMG_2706.jpeg"
+    src: "panels/IMG_2706.jpeg"
   }), /*#__PURE__*/_react["default"].createElement("img", {
     className: "panel",
     width: "325",
     height: "363",
-    src: "../panels/IMG_2708.jpeg"
+    src: "panels/IMG_2708.jpeg"
   }), /*#__PURE__*/_react["default"].createElement("img", {
     className: "panel",
     width: "330",
     height: "363",
-    src: "../panels/IMG_2711.jpeg"
+    src: "panels/IMG_2711.jpeg"
   }), /*#__PURE__*/_react["default"].createElement("img", {
     className: "panel",
     width: "328",
     height: "363",
-    src: "../panels/IMG_2715.jpeg"
+    src: "panels/IMG_2715.jpeg"
   }), /*#__PURE__*/_react["default"].createElement("img", {
     className: "panel",
     width: "321",
     height: "363",
-    src: "../panels/IMG_2716.jpeg"
+    src: "panels/IMG_2716.jpeg"
   }), /*#__PURE__*/_react["default"].createElement("img", {
     className: "panel",
     width: "328",
     height: "363",
-    src: "../panels/IMG_2719.jpeg"
+    src: "panels/IMG_2719.jpeg"
   }), /*#__PURE__*/_react["default"].createElement("img", {
     className: "panel",
     width: "327",
     height: "363",
-    src: "../panels/IMG_2721.jpeg"
+    src: "panels/IMG_2721.jpeg"
   }), /*#__PURE__*/_react["default"].createElement("img", {
     className: "panel",
     width: "329",
     height: "363",
-    src: "../panels/IMG_2725.jpeg"
+    src: "panels/IMG_2725.jpeg"
   }));
 }
 
