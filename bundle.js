@@ -43706,69 +43706,204 @@ function _interopRequireDefault(e) {
   };
 }
 function Panel() {
+  function zoom(fileName, width) {
+    var zoomImg = document.getElementById("zoomImg");
+    var zoomImgContainer = document.getElementById("zoomImgContainer");
+    zoomImg.src = "panels/IMG_" + fileName + ".jpeg";
+    zoomImg.height = 100;
+    zoomImg.width = 363 / width * 100;
+    zoomImg.style.height = "80vh";
+    zoomImg.style.height = 363 / width * 80 + "vh";
+    zoomImgContainer.style.display = "flex";
+    magnify(3);
+  }
+  function closeZoom() {
+    var zoomImgContainer = document.getElementById("zoomImgContainer");
+    zoomImgContainer.style.display = "none";
+  }
+
+  // https://www.w3schools.com/howto/howto_js_image_magnifier_glass.asp
+  function magnify(zoom) {
+    var img, glass, w, h, bw;
+    img = document.getElementById("zoomImg");
+
+    /* Create magnifier glass: */
+    glass = document.getElementById("img-magnifier-glass");
+
+    /* Insert magnifier glass: */
+    img.parentElement.insertBefore(glass, img);
+
+    /* Set background properties for the magnifier glass: */
+    glass.style.backgroundImage = "url('" + img.src + "')";
+    glass.style.backgroundRepeat = "no-repeat";
+    glass.style.backgroundSize = img.width * zoom + "px " + img.height * zoom + "px";
+    bw = 3;
+    w = glass.offsetWidth / 2;
+    h = glass.offsetHeight / 2;
+
+    /* Execute a function when someone moves the magnifier glass over the image: */
+    glass.addEventListener("mousemove", moveMagnifier);
+    img.addEventListener("mousemove", moveMagnifier);
+
+    /*and also for touch screens:*/
+    glass.addEventListener("touchmove", moveMagnifier);
+    img.addEventListener("touchmove", moveMagnifier);
+    function moveMagnifier(e) {
+      var pos, x, y;
+      /* Prevent any other actions that may occur when moving over the image */
+      e.preventDefault();
+      /* Get the cursor's x and y positions: */
+      pos = getCursorPos(e);
+      x = pos.x;
+      y = pos.y;
+      /* Prevent the magnifier glass from being positioned outside the image: */
+      if (x > img.width - w / (2 * zoom)) {
+        glass.style.visibility = "hidden";
+      } else if (x < w / (2 * zoom)) {
+        glass.style.visibility = "hidden";
+      } else if (y > img.height - h / (2 * zoom)) {
+        glass.style.visibility = "hidden";
+      } else if (y < h / (2 * zoom)) {
+        glass.style.visibility = "hidden";
+      } else {
+        glass.style.visibility = "visible";
+      }
+      /* Set the position of the magnifier glass: */
+      glass.style.left = x + img.width / 2 + "px";
+      glass.style.top = y + "px";
+      /* Display what the magnifier glass "sees": */
+      glass.style.backgroundPosition = "-" + (x * zoom - w + bw) + "px -" + (y * zoom - h + bw) + "px";
+    }
+    function getCursorPos(e) {
+      var a,
+        x = 0,
+        y = 0;
+      e = e || window.event;
+      /* Get the x and y positions of the image: */
+      a = img.getBoundingClientRect();
+      /* Calculate the cursor's x and y coordinates, relative to the image: */
+      x = e.pageX - a.left;
+      y = e.pageY - a.top;
+      /* Consider any page scrolling: */
+      x = x - window.pageXOffset;
+      y = y - window.pageYOffset;
+      return {
+        x: x,
+        y: y
+      };
+    }
+  }
   return /*#__PURE__*/_react["default"].createElement("div", {
     id: "panelsContainer"
-  }, /*#__PURE__*/_react["default"].createElement("img", {
+  }, /*#__PURE__*/_react["default"].createElement("div", {
+    id: "zoomImgContainer"
+  }, /*#__PURE__*/_react["default"].createElement("button", {
+    onClick: closeZoom,
+    id: "closeZoom"
+  }, "Close"), /*#__PURE__*/_react["default"].createElement("div", {
+    id: "img-magnifier-glass"
+  }), /*#__PURE__*/_react["default"].createElement("img", {
+    id: "zoomImg"
+  })), /*#__PURE__*/_react["default"].createElement("img", {
+    onClick: function onClick() {
+      return zoom(2694, 332.8);
+    },
     className: "panel",
     width: "332.8",
     height: "363",
     src: "panels/IMG_2694.jpeg"
   }), /*#__PURE__*/_react["default"].createElement("img", {
+    onClick: function onClick() {
+      return zoom(2698, 326);
+    },
     className: "panel",
     width: "326",
     height: "363",
     src: "panels/IMG_2698.jpeg"
   }), /*#__PURE__*/_react["default"].createElement("img", {
+    onClick: function onClick() {
+      return zoom(2700, 326);
+    },
     className: "panel",
     width: "327",
     height: "363",
     src: "panels/IMG_2700.jpeg"
   }), /*#__PURE__*/_react["default"].createElement("img", {
+    onClick: function onClick() {
+      return zoom(2701, 326);
+    },
     className: "panel",
     width: "320.7",
     height: "363",
     src: "panels/IMG_2701.jpeg"
   }), /*#__PURE__*/_react["default"].createElement("img", {
+    onClick: function onClick() {
+      return zoom(2702, 326);
+    },
     className: "panel",
     width: "326.6",
     height: "363",
     src: "panels/IMG_2702.jpeg"
   }), /*#__PURE__*/_react["default"].createElement("img", {
+    onClick: function onClick() {
+      return zoom(2706, 326);
+    },
     className: "panel",
     width: "331",
     height: "363",
     src: "panels/IMG_2706.jpeg"
   }), /*#__PURE__*/_react["default"].createElement("img", {
+    onClick: function onClick() {
+      return zoom(2708, 326);
+    },
     className: "panel",
     width: "325",
     height: "363",
     src: "panels/IMG_2708.jpeg"
   }), /*#__PURE__*/_react["default"].createElement("img", {
+    onClick: function onClick() {
+      return zoom(2711, 326);
+    },
     className: "panel",
     width: "330",
     height: "363",
     src: "panels/IMG_2711.jpeg"
   }), /*#__PURE__*/_react["default"].createElement("img", {
+    onClick: function onClick() {
+      return zoom(2715, 326);
+    },
     className: "panel",
     width: "328",
     height: "363",
     src: "panels/IMG_2715.jpeg"
   }), /*#__PURE__*/_react["default"].createElement("img", {
+    onClick: function onClick() {
+      return zoom(2716, 326);
+    },
     className: "panel",
     width: "321",
     height: "363",
     src: "panels/IMG_2716.jpeg"
   }), /*#__PURE__*/_react["default"].createElement("img", {
+    onClick: function onClick() {
+      return zoom(2719, 326);
+    },
     className: "panel",
     width: "328",
     height: "363",
     src: "panels/IMG_2719.jpeg"
   }), /*#__PURE__*/_react["default"].createElement("img", {
+    onClick: function onClick() {
+      return zoom(2721, 326);
+    },
     className: "panel",
     width: "327",
     height: "363",
     src: "panels/IMG_2721.jpeg"
   }), /*#__PURE__*/_react["default"].createElement("img", {
+    onClick: function onClick() {
+      return zoom(2725, 326);
+    },
     className: "panel",
     width: "329",
     height: "363",
