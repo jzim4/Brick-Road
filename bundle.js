@@ -43706,6 +43706,8 @@ function _interopRequireDefault(e) {
   };
 }
 function Panel() {
+  var currentDir = window.location.pathname;
+  console.log(currentDir);
   return /*#__PURE__*/_react["default"].createElement("div", {
     id: "panelsContainer"
   }, /*#__PURE__*/_react["default"].createElement("img", {
