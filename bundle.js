@@ -43,6 +43,116 @@ module.exports=[
     "Inscription_Line_3": "RONDO FOREVER",
     "Purchaser_Name": "Joyce Williams",
     "Paver_Assigned_Section": "Heroes"
+  },
+  {
+    "Naming_Year": 2024,
+    "Panel_Number": 4,
+    "Row_Number": 1,
+    "Col_Number": 1,
+    "Inscription_Line_1": "asdf",
+    "Inscription_Line_2": "asdf",
+    "Inscription_Line_3": "asdf",
+    "Purchaser_Name": "asdf",
+    "Paver_Assigned_Section": "Heroes"
+  },
+  {
+    "Naming_Year": 2024,
+    "Panel_Number": 5,
+    "Row_Number": 1,
+    "Col_Number": 1,
+    "Inscription_Line_1": "asdf",
+    "Inscription_Line_2": "asdf",
+    "Inscription_Line_3": "asdf",
+    "Purchaser_Name": "asdf",
+    "Paver_Assigned_Section": "Heroes"
+  },
+  {
+    "Naming_Year": 2024,
+    "Panel_Number": 6,
+    "Row_Number": 1,
+    "Col_Number": 1,
+    "Inscription_Line_1": "asdf",
+    "Inscription_Line_2": "asdf",
+    "Inscription_Line_3": "asdf",
+    "Purchaser_Name": "asdf",
+    "Paver_Assigned_Section": "Heroes"
+  },
+  {
+    "Naming_Year": 2024,
+    "Panel_Number": 7,
+    "Row_Number": 1,
+    "Col_Number": 1,
+    "Inscription_Line_1": "asdf",
+    "Inscription_Line_2": "asdf",
+    "Inscription_Line_3": "asdf",
+    "Purchaser_Name": "asdf",
+    "Paver_Assigned_Section": "Heroes"
+  },
+  {
+    "Naming_Year": 2024,
+    "Panel_Number": 8,
+    "Row_Number": 1,
+    "Col_Number": 1,
+    "Inscription_Line_1": "asdf",
+    "Inscription_Line_2": "asdf",
+    "Inscription_Line_3": "asdf",
+    "Purchaser_Name": "asdf",
+    "Paver_Assigned_Section": "Heroes"
+  },
+  {
+    "Naming_Year": 2024,
+    "Panel_Number": 9,
+    "Row_Number": 1,
+    "Col_Number": 1,
+    "Inscription_Line_1": "asdf",
+    "Inscription_Line_2": "asdf",
+    "Inscription_Line_3": "asdf",
+    "Purchaser_Name": "asdf",
+    "Paver_Assigned_Section": "Heroes"
+  },
+  {
+    "Naming_Year": 2024,
+    "Panel_Number": 10,
+    "Row_Number": 1,
+    "Col_Number": 1,
+    "Inscription_Line_1": "asdf",
+    "Inscription_Line_2": "asdf",
+    "Inscription_Line_3": "asdf",
+    "Purchaser_Name": "asdf",
+    "Paver_Assigned_Section": "Heroes"
+  },
+  {
+    "Naming_Year": 2024,
+    "Panel_Number": 11,
+    "Row_Number": 1,
+    "Col_Number": 1,
+    "Inscription_Line_1": "asdf",
+    "Inscription_Line_2": "asdf",
+    "Inscription_Line_3": "asdf",
+    "Purchaser_Name": "asdf",
+    "Paver_Assigned_Section": "Heroes"
+  },
+  {
+    "Naming_Year": 2024,
+    "Panel_Number": 12,
+    "Row_Number": 1,
+    "Col_Number": 1,
+    "Inscription_Line_1": "asdf",
+    "Inscription_Line_2": "asdf",
+    "Inscription_Line_3": "asdf",
+    "Purchaser_Name": "asdf",
+    "Paver_Assigned_Section": "Heroes"
+  },
+  {
+    "Naming_Year": 2024,
+    "Panel_Number": 13,
+    "Row_Number": 1,
+    "Col_Number": 1,
+    "Inscription_Line_1": "asdf",
+    "Inscription_Line_2": "asdf",
+    "Inscription_Line_3": "asdf",
+    "Purchaser_Name": "asdf",
+    "Paver_Assigned_Section": "Heroes"
   }
 ]
 },{}],2:[function(require,module,exports){
@@ -43351,7 +43461,6 @@ function AcessibleContent(_ref) {
   } finally {
     _iterator.f();
   }
-  console.log(bricks);
   return /*#__PURE__*/_react["default"].createElement("div", {
     id: "accessibleBricksContainer"
   }, Array(bricks.length).fill(0).map(function (_, b) {
@@ -43601,69 +43710,69 @@ function Panel() {
     id: "panelsContainer"
   }, /*#__PURE__*/_react["default"].createElement("img", {
     className: "panel",
-    width: "400",
+    width: "332.8",
     height: "363",
-    src: "none"
+    src: "../panels/IMG_2694.jpeg"
   }), /*#__PURE__*/_react["default"].createElement("img", {
     className: "panel",
-    width: "400",
+    width: "326",
     height: "363",
-    src: "none"
+    src: "../panels/IMG_2698.jpeg"
   }), /*#__PURE__*/_react["default"].createElement("img", {
     className: "panel",
-    width: "400",
+    width: "327",
     height: "363",
-    src: "none"
+    src: "../panels/IMG_2700.jpeg"
   }), /*#__PURE__*/_react["default"].createElement("img", {
     className: "panel",
-    width: "400",
+    width: "320.7",
     height: "363",
-    src: "none"
+    src: "../panels/IMG_2701.jpeg"
   }), /*#__PURE__*/_react["default"].createElement("img", {
     className: "panel",
-    width: "400",
+    width: "326.6",
     height: "363",
-    src: "none"
+    src: "../panels/IMG_2702.jpeg"
   }), /*#__PURE__*/_react["default"].createElement("img", {
     className: "panel",
-    width: "400",
+    width: "331",
     height: "363",
-    src: "none"
+    src: "../panels/IMG_2706.jpeg"
   }), /*#__PURE__*/_react["default"].createElement("img", {
     className: "panel",
-    width: "400",
+    width: "325",
     height: "363",
-    src: "none"
+    src: "../panels/IMG_2708.jpeg"
   }), /*#__PURE__*/_react["default"].createElement("img", {
     className: "panel",
-    width: "400",
+    width: "330",
     height: "363",
-    src: "none"
+    src: "../panels/IMG_2711.jpeg"
   }), /*#__PURE__*/_react["default"].createElement("img", {
     className: "panel",
-    width: "400",
+    width: "328",
     height: "363",
-    src: "none"
+    src: "../panels/IMG_2715.jpeg"
   }), /*#__PURE__*/_react["default"].createElement("img", {
     className: "panel",
-    width: "400",
+    width: "321",
     height: "363",
-    src: "none"
+    src: "../panels/IMG_2716.jpeg"
   }), /*#__PURE__*/_react["default"].createElement("img", {
     className: "panel",
-    width: "400",
+    width: "328",
     height: "363",
-    src: "none"
+    src: "../panels/IMG_2719.jpeg"
   }), /*#__PURE__*/_react["default"].createElement("img", {
     className: "panel",
-    width: "400",
+    width: "327",
     height: "363",
-    src: "none"
+    src: "../panels/IMG_2721.jpeg"
   }), /*#__PURE__*/_react["default"].createElement("img", {
     className: "panel",
-    width: "400",
+    width: "329",
     height: "363",
-    src: "none"
+    src: "../panels/IMG_2725.jpeg"
   }));
 }
 

@@ -20,7 +20,6 @@ export default function AcessibleContent({ highlight }) {
             bricks.push(b);
         }
     }
-    console.log(bricks);
 
     return <div id="accessibleBricksContainer">
         {Array(bricks.length).fill(0).map((_, b) => (
