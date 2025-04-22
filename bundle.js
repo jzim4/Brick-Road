@@ -43706,8 +43706,6 @@ function _interopRequireDefault(e) {
   };
 }
 function Panel() {
-  var currentDir = window.location.pathname;
-  console.log(currentDir);
   return /*#__PURE__*/_react["default"].createElement("div", {
     id: "panelsContainer"
   }, /*#__PURE__*/_react["default"].createElement("img", {
@@ -44097,7 +44095,7 @@ function Search(_ref) {
     if (panel.style.height != "0px") {
       collapseSearch();
     } else {
-      panel.style.height = "200px";
+      panel.style.height = "400px";
     }
   }
   function toggleDisplay() {

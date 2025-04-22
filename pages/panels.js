@@ -1,8 +1,6 @@
 import React from 'react';
 
 export default function Panel() {
-  const currentDir = window.location.pathname;
-  console.log(currentDir);
   return <div id="panelsContainer">
       <img className="panel" width="332.8" height="363" src="panels/IMG_2694.jpeg"></img>
       <img className="panel" width="326" height="363" src="panels/IMG_2698.jpeg"></img>

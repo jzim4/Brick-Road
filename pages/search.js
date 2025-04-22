@@ -35,7 +35,7 @@ export default function Search({ highlight, setHighlight, display, setDisplay })
             collapseSearch();
         }
         else {
-            panel.style.height = "200px";
+            panel.style.height = "400px";
         }
     }
 
