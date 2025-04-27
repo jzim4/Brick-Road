@@ -35,10 +35,10 @@ function Brick({brick}) {
             {brick.Inscription_Line_2 ? <p>{brick.Inscription_Line_2}</p> : ""}
             {brick.Inscription_Line_3 ? <p>{brick.Inscription_Line_3}</p> : ""}
         </div>
-        <p>Naming Year: {brick.Naming_Year}</p>
-        <p>Purchaser Name: {brick.Purchaser_Name}</p>
-        <p>Section: {brick.Paver_Assigned_Section}</p>
-        <p>Located in front of panel {brick.Panel_Number} in row {brick.Row_Number}</p>
+        <p className="brickDataText">Naming Year: {brick.Naming_Year}</p>
+        <p className="brickDataText">Purchaser:<br></br>&nbsp;&nbsp;&nbsp;{brick.Purchaser_Name}</p>
+        <p className="brickDataText">Section: {brick.Paver_Assigned_Section}</p>
+        <p className="brickDataText">In front of panel {brick.Panel_Number}</p>
         {brick.link ? <p>{brick.link}</p> : ""}
     </div>
 }

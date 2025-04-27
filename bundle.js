@@ -103,7 +103,7 @@ module.exports=[
     "Naming_Year": 2024,
     "Panel_Number": 4,
     "Row_Number": 1,
-    "Col_Number": 5,
+    "Col_Number": 6,
     "Inscription_Line_1": "THE GILBREATHS",
     "Inscription_Line_2": "ISABELLA ELBERT",
     "Inscription_Line_3": "DEB DWAYNE DALE",
@@ -114,7 +114,7 @@ module.exports=[
     "Naming_Year": 2024,
     "Panel_Number": 4,
     "Row_Number": 1,
-    "Col_Number": 6,
+    "Col_Number": 7,
     "Inscription_Line_1": "978 ST. ANTHONY",
     "Inscription_Line_2": "RONDO STRONG",
     "Inscription_Line_3": "FOREVER",
@@ -354,9 +354,9 @@ module.exports=[
   },
   {
     "Naming_Year": 2024,
-    "Panel_Number": "",
-    "Row_Number": "",
-    "Col_Number": "",
+    "Panel_Number": 5,
+    "Row_Number": 1,
+    "Col_Number": 2,
     "Inscription_Line_1": "PAULOS KIDS",
     "Inscription_Line_2": "TONY JIM ANNE",
     "Inscription_Line_3": "PETE MARIA",
@@ -365,11 +365,11 @@ module.exports=[
   },
   {
     "Naming_Year": 2024,
-    "Panel_Number": "",
-    "Row_Number": "",
-    "Col_Number": "",
+    "Panel_Number": 5,
+    "Row_Number": 1,
+    "Col_Number": 1,
     "Inscription_Line_1": "147 IGLEHART",
-    "Inscription_Line_2": "ZARCHAROULA &",
+    "Inscription_Line_2": "ZACHAROULA &",
     "Inscription_Line_3": "GEORGW PAULOS",
     "Purchaser_Name": "Marilun Paulos",
     "Paver_Assigned_Section": ""
@@ -761,10 +761,10 @@ module.exports=[
   },
   {
     "Naming_Year": 2024,
-    "Panel_Number": "",
-    "Row_Number": "",
-    "Col_Number": "",
-    "Inscription_Line_1": "An SHAVEN",
+    "Panel_Number": 6,
+    "Row_Number": 7,
+    "Col_Number": 9,
+    "Inscription_Line_1": "AN SHAVEN",
     "Inscription_Line_2": "LAMONT' ANGELO",
     "Inscription_Line_3": "BETHANY MAYS",
     "Purchaser_Name": "An MAys",
@@ -829,7 +829,7 @@ module.exports=[
     "Naming_Year": 2024,
     "Panel_Number": 4,
     "Row_Number": 6,
-    "Col_Number": 5,
+    "Col_Number": 6,
     "Inscription_Line_1": "TUBBY & CONNIE",
     "Inscription_Line_2": "GRAHAM",
     "Inscription_Line_3": "LOVED FOREVER <3",
@@ -1091,9 +1091,9 @@ module.exports=[
   },
   {
     "Naming_Year": 2021,
-    "Panel_Number": "",
-    "Row_Number": "",
-    "Col_Number": "",
+    "Panel_Number": 5,
+    "Row_Number": 5,
+    "Col_Number": 6,
     "Inscription_Line_1": "RICHARD AND",
     "Inscription_Line_2": "GEORGETTE KLEINBAUM",
     "Inscription_Line_3": "",
@@ -1168,9 +1168,9 @@ module.exports=[
   },
   {
     "Naming_Year": 2021,
-    "Panel_Number": "",
-    "Row_Number": "",
-    "Col_Number": "",
+    "Panel_Number": 5,
+    "Row_Number": 1,
+    "Col_Number": 9,
     "Inscription_Line_1": "BOB MUSCHEWSKE",
     "Inscription_Line_2": "RONDO LIVES",
     "Inscription_Line_3": "",
@@ -1179,9 +1179,9 @@ module.exports=[
   },
   {
     "Naming_Year": 2021,
-    "Panel_Number": "",
-    "Row_Number": "",
-    "Col_Number": "",
+    "Panel_Number": 6,
+    "Row_Number": 1,
+    "Col_Number": 1,
     "Inscription_Line_1": "LEAETTA HOUGH",
     "Inscription_Line_2": "RONDO LIVES",
     "Inscription_Line_3": "",
@@ -1190,9 +1190,9 @@ module.exports=[
   },
   {
     "Naming_Year": 2021,
-    "Panel_Number": "",
-    "Row_Number": "",
-    "Col_Number": "",
+    "Panel_Number": 6,
+    "Row_Number": 1,
+    "Col_Number": 0,
     "Inscription_Line_1": "BOB MUSCHEWSKE",
     "Inscription_Line_2": "LEAETTA HOUGH",
     "Inscription_Line_3": "RONDO LIVES",
@@ -1201,9 +1201,9 @@ module.exports=[
   },
   {
     "Naming_Year": 2021,
-    "Panel_Number": "",
-    "Row_Number": "",
-    "Col_Number": "",
+    "Panel_Number": 5,
+    "Row_Number": 2,
+    "Col_Number": 8,
     "Inscription_Line_1": "BILLIE YOUNG",
     "Inscription_Line_2": "IN MEMORIAM BY",
     "Inscription_Line_3": "LEAETTA & BOB",
@@ -1212,9 +1212,9 @@ module.exports=[
   },
   {
     "Naming_Year": 2021,
-    "Panel_Number": "",
-    "Row_Number": "",
-    "Col_Number": "",
+    "Panel_Number": 6,
+    "Row_Number": 2,
+    "Col_Number": 0,
     "Inscription_Line_1": "MERVYN AND",
     "Inscription_Line_2": "MARGIOLINA",
     "Inscription_Line_3": "HOUGH",
@@ -1346,7 +1346,7 @@ module.exports=[
     "Naming_Year": 2023,
     "Panel_Number": 4,
     "Row_Number": 3,
-    "Col_Number": 6,
+    "Col_Number": 7,
     "Inscription_Line_1": "IN MEMORY OF",
     "Inscription_Line_2": "GEORGE CLARDY",
     "Inscription_Line_3": "1930 - 2021",
@@ -1388,9 +1388,9 @@ module.exports=[
   },
   {
     "Naming_Year": 2023,
-    "Panel_Number": "",
-    "Row_Number": "",
-    "Col_Number": "",
+    "Panel_Number": 6,
+    "Row_Number": 4,
+    "Col_Number": 5,
     "Inscription_Line_1": "FEDERICO MELO",
     "Inscription_Line_2": "AND FLORINDA",
     "Inscription_Line_3": "BETHENCOURT",
@@ -1399,9 +1399,9 @@ module.exports=[
   },
   {
     "Naming_Year": 2023,
-    "Panel_Number": "",
-    "Row_Number": "",
-    "Col_Number": "",
+    "Panel_Number": 6,
+    "Row_Number": 6,
+    "Col_Number": 8,
     "Inscription_Line_1": "LUCILLE MAYS",
     "Inscription_Line_2": "POKEY",
     "Inscription_Line_3": "AND FAMILY",
@@ -1410,10 +1410,10 @@ module.exports=[
   },
   {
     "Naming_Year": 2023,
-    "Panel_Number": "",
-    "Row_Number": "",
-    "Col_Number": "",
-    "Inscription_Line_1": "KATE TRAVELED",
+    "Panel_Number": 5,
+    "Row_Number": 1,
+    "Col_Number": 5,
+    "Inscription_Line_1": "KATIE TRAVELED",
     "Inscription_Line_2": "THE WORLD, HER",
     "Inscription_Line_3": "HEART IN RONDO",
     "Purchaser_Name": "Jordanna Malton",
@@ -1489,7 +1489,7 @@ module.exports=[
     "Naming_Year": 2023,
     "Panel_Number": 4,
     "Row_Number": 2,
-    "Col_Number": 7,
+    "Col_Number": 8,
     "Inscription_Line_1": "MR & MRS GRIFFEN",
     "Inscription_Line_2": "CARL & CORRINE",
     "Inscription_Line_3": "796 RONDO AVE",
@@ -1498,9 +1498,9 @@ module.exports=[
   },
   {
     "Naming_Year": 2023,
-    "Panel_Number": "",
-    "Row_Number": "",
-    "Col_Number": "",
+    "Panel_Number": 5,
+    "Row_Number": 2,
+    "Col_Number": 0,
     "Inscription_Line_1": "JOHN H GRIFFEN",
     "Inscription_Line_2": "796 RONDO AvE",
     "Inscription_Line_3": "SON OF RONDO",
@@ -1597,10 +1597,10 @@ module.exports=[
   },
   {
     "Naming_Year": 2019,
-    "Panel_Number": "",
-    "Row_Number": "",
-    "Col_Number": "",
-    "Inscription_Line_1": "ROY AND STELLA",
+    "Panel_Number": 6,
+    "Row_Number": 2,
+    "Col_Number": 1,
+    "Inscription_Line_1": "ROY & STELLA",
     "Inscription_Line_2": "MOODY FAMILY",
     "Inscription_Line_3": "503 ST. ANTHONY",
     "Purchaser_Name": "Debra Terry",
@@ -1630,9 +1630,9 @@ module.exports=[
   },
   {
     "Naming_Year": 2019,
-    "Panel_Number": "",
-    "Row_Number": "",
-    "Col_Number": "",
+    "Panel_Number": 5,
+    "Row_Number": 2,
+    "Col_Number": 9,
     "Inscription_Line_1": "LEATTA HOUGH",
     "Inscription_Line_2": "BOB MUSCHEWKE",
     "Inscription_Line_3": "",
@@ -1817,9 +1817,9 @@ module.exports=[
   },
   {
     "Naming_Year": 2019,
-    "Panel_Number": "",
-    "Row_Number": "",
-    "Col_Number": "",
+    "Panel_Number": 6,
+    "Row_Number": 3,
+    "Col_Number": 1,
     "Inscription_Line_1": "RUSS STARK AND",
     "Inscription_Line_2": "BETSY MURRAY",
     "Inscription_Line_3": "",
@@ -1852,7 +1852,7 @@ module.exports=[
     "Naming_Year": 2019,
     "Panel_Number": 4,
     "Row_Number": 3,
-    "Col_Number": 8,
+    "Col_Number": 9,
     "Inscription_Line_1": "MANUEL",
     "Inscription_Line_2": "GUERRERO",
     "Inscription_Line_3": "MI CORAZON",
@@ -2028,7 +2028,7 @@ module.exports=[
     "Naming_Year": 2019,
     "Panel_Number": 4,
     "Row_Number": 2,
-    "Col_Number": 6,
+    "Col_Number": 7,
     "Inscription_Line_1": "REMEMBERING",
     "Inscription_Line_2": "LARRY ENGLUND",
     "Inscription_Line_3": "1945 - 2019",
@@ -2059,9 +2059,9 @@ module.exports=[
   },
   {
     "Naming_Year": 2019,
-    "Panel_Number": "",
-    "Row_Number": "",
-    "Col_Number": "",
+    "Panel_Number": 6,
+    "Row_Number": 2,
+    "Col_Number": 3,
     "Inscription_Line_1": "JAMES & WENDY",
     "Inscription_Line_2": "MULLANEY",
     "Inscription_Line_3": "ST. PAUL",
@@ -2103,9 +2103,9 @@ module.exports=[
   },
   {
     "Naming_Year": 2019,
-    "Panel_Number": "",
-    "Row_Number": "",
-    "Col_Number": "",
+    "Panel_Number": 6,
+    "Row_Number": 3,
+    "Col_Number": 2,
     "Inscription_Line_1": "ROLAND",
     "Inscription_Line_2": "MCFARLAND",
     "Inscription_Line_3": "FRIEND - ARTIST",
@@ -2191,9 +2191,9 @@ module.exports=[
   },
   {
     "Naming_Year": 2019,
-    "Panel_Number": "",
-    "Row_Number": "",
-    "Col_Number": "",
+    "Panel_Number": 5,
+    "Row_Number": 2,
+    "Col_Number": 6,
     "Inscription_Line_1": "1ST COMM'R OF",
     "Inscription_Line_2": "HUMAN RIGHTS",
     "Inscription_Line_3": "FRANK C. KENT",
@@ -2213,9 +2213,9 @@ module.exports=[
   },
   {
     "Naming_Year": 2019,
-    "Panel_Number": "",
-    "Row_Number": "",
-    "Col_Number": "",
+    "Panel_Number": 5,
+    "Row_Number": 2,
+    "Col_Number": 7,
     "Inscription_Line_1": "THE KENTS",
     "Inscription_Line_2": "FRANK CAROLE",
     "Inscription_Line_3": "ANGELA & TARA",
@@ -2325,7 +2325,7 @@ module.exports=[
     "Naming_Year": 2019,
     "Panel_Number": 4,
     "Row_Number": 4,
-    "Col_Number": 8,
+    "Col_Number": 9,
     "Inscription_Line_1": "LAPERCELL B.",
     "Inscription_Line_2": "GREENE RET MAJ",
     "Inscription_Line_3": "984 IGLEMART",
@@ -2422,12 +2422,12 @@ module.exports=[
   },
   {
     "Naming_Year": 2019,
-    "Panel_Number": "",
-    "Row_Number": "",
-    "Col_Number": "",
-    "Inscription_Line_1": "M LOUISE MOLIN 1 IN A MILLION",
-    "Inscription_Line_2": "11-1926-5-2005",
-    "Inscription_Line_3": "",
+    "Panel_Number": 6,
+    "Row_Number": 2,
+    "Col_Number": 2,
+    "Inscription_Line_1": "M LOUISE MOLIN",
+    "Inscription_Line_2": "1 IN A MILLION",
+    "Inscription_Line_3": "11/1926-5/2005",
     "Purchaser_Name": "Mary",
     "Paver_Assigned_Section": ""
   },
@@ -2675,9 +2675,9 @@ module.exports=[
   },
   {
     "Naming_Year": 2019,
-    "Panel_Number": "",
-    "Row_Number": "",
-    "Col_Number": "",
+    "Panel_Number": 5,
+    "Row_Number": 4,
+    "Col_Number": 0,
     "Inscription_Line_1": "REV. ROBERT B",
     "Inscription_Line_2": "GILES, SR",
     "Inscription_Line_3": "& DESCENDANTS",
@@ -2763,9 +2763,9 @@ module.exports=[
   },
   {
     "Naming_Year": 2019,
-    "Panel_Number": "",
-    "Row_Number": "",
-    "Col_Number": "",
+    "Panel_Number": 5,
+    "Row_Number": 2,
+    "Col_Number": 3,
     "Inscription_Line_1": "HONORING",
     "Inscription_Line_2": "KEMET IMHOTEP",
     "Inscription_Line_3": "WRITER",
@@ -2895,10 +2895,10 @@ module.exports=[
   },
   {
     "Naming_Year": 2019,
-    "Panel_Number": "",
-    "Row_Number": "",
-    "Col_Number": "",
-    "Inscription_Line_1": "SIDNEY& HATTIE",
+    "Panel_Number": 6,
+    "Row_Number": 3,
+    "Col_Number": 3,
+    "Inscription_Line_1": "SIDNEY & HATTIE",
     "Inscription_Line_2": "MILSAP",
     "Inscription_Line_3": "LOVE, SON JIMMY",
     "Purchaser_Name": "Marion Kennon",
@@ -2983,10 +2983,10 @@ module.exports=[
   },
   {
     "Naming_Year": 2019,
-    "Panel_Number": "",
-    "Row_Number": "",
-    "Col_Number": "",
-    "Inscription_Line_1": "GREG MASOn",
+    "Panel_Number": 6,
+    "Row_Number": 3,
+    "Col_Number": 4,
+    "Inscription_Line_1": "GREG MASON",
     "Inscription_Line_2": "MLK TENNIS",
     "Inscription_Line_3": "ENTHUSIAST",
     "Purchaser_Name": "Ruth Mason",
@@ -3170,9 +3170,9 @@ module.exports=[
   },
   {
     "Naming_Year": 2022,
-    "Panel_Number": "",
-    "Row_Number": "",
-    "Col_Number": "",
+    "Panel_Number": 5,
+    "Row_Number": 6,
+    "Col_Number": 3,
     "Inscription_Line_1": "944 ST ANTHONY",
     "Inscription_Line_2": "RAZED BY HATE",
     "Inscription_Line_3": "SAINT PAUL MN",
@@ -3247,9 +3247,9 @@ module.exports=[
   },
   {
     "Naming_Year": 2022,
-    "Panel_Number": "",
-    "Row_Number": "",
-    "Col_Number": "",
+    "Panel_Number": 5,
+    "Row_Number": 5,
+    "Col_Number": 3,
     "Inscription_Line_1": "BLANCHE MARIE",
     "Inscription_Line_2": "THOMAS-ISABELL",
     "Inscription_Line_3": "DUR MATRIARCH",
@@ -3258,10 +3258,10 @@ module.exports=[
   },
   {
     "Naming_Year": 2022,
-    "Panel_Number": "",
-    "Row_Number": "",
-    "Col_Number": "",
-    "Inscription_Line_1": "MAGARITA",
+    "Panel_Number": 5,
+    "Row_Number": 5,
+    "Col_Number": 2,
+    "Inscription_Line_1": "MARGARITA",
     "Inscription_Line_2": "GUZMAN-HILL",
     "Inscription_Line_3": "OUR MATRIARCH",
     "Purchaser_Name": "Ms Denis Graham",
@@ -3269,9 +3269,9 @@ module.exports=[
   },
   {
     "Naming_Year": 2022,
-    "Panel_Number": "",
-    "Row_Number": "",
-    "Col_Number": "",
+    "Panel_Number": 5,
+    "Row_Number": 6,
+    "Col_Number": 2,
     "Inscription_Line_1": "EMILE & LOIS",
     "Inscription_Line_2": "HILL FOREVER",
     "Inscription_Line_3": "IN OUR HEARTS",
@@ -3445,12 +3445,12 @@ module.exports=[
   },
   {
     "Naming_Year": "2016-2017",
-    "Panel_Number": "",
-    "Row_Number": "",
-    "Col_Number": "",
-    "Inscription_Line_1": "W MARLENE \"TOOTS",
-    "Inscription_Line_2": "(MCGEE) CARTER",
-    "Inscription_Line_3": "B. 1932",
+    "Panel_Number": 6,
+    "Row_Number": 5,
+    "Col_Number": 3,
+    "Inscription_Line_1": "W MARLENE",
+    "Inscription_Line_2": "\"TOOTS\" (MCGEE)",
+    "Inscription_Line_3": "CARTER B. 1932",
     "Purchaser_Name": "Maria Carter",
     "Paver_Assigned_Section": ""
   },
@@ -3610,9 +3610,9 @@ module.exports=[
   },
   {
     "Naming_Year": "2016-2017",
-    "Panel_Number": "",
-    "Row_Number": "",
-    "Col_Number": "",
+    "Panel_Number": 6,
+    "Row_Number": 4,
+    "Col_Number": 0,
     "Inscription_Line_1": "HELEN MCGEE",
     "Inscription_Line_2": "HJUDKINS KELLER",
     "Inscription_Line_3": "B 1923",
@@ -3626,15 +3626,15 @@ module.exports=[
     "Col_Number": "",
     "Inscription_Line_1": "FOR DWIGHT REED JR",
     "Inscription_Line_2": "MY SURROGATE DAD",
-    "Inscription_Line_3": "THANKS & LOVe, DON",
+    "Inscription_Line_3": "THANKS & LOVE, DON",
     "Purchaser_Name": "Don Kennedy",
     "Paver_Assigned_Section": ""
   },
   {
     "Naming_Year": "2016-2017",
-    "Panel_Number": "",
-    "Row_Number": "",
-    "Col_Number": "",
+    "Panel_Number": 5,
+    "Row_Number": 3,
+    "Col_Number": 7,
     "Inscription_Line_1": "TO MY DEAR MOTHER",
     "Inscription_Line_2": "LOUISE P KENNEDY",
     "Inscription_Line_3": "MUCH LOVE, DON",
@@ -3643,20 +3643,20 @@ module.exports=[
   },
   {
     "Naming_Year": "2016-2017",
-    "Panel_Number": "",
-    "Row_Number": "",
-    "Col_Number": "",
-    "Inscription_Line_1": "TO LAURA KEENDY",
-    "Inscription_Line_2": "WITGH MUCH LOVE",
+    "Panel_Number": 5,
+    "Row_Number": 3,
+    "Col_Number": 6,
+    "Inscription_Line_1": "TO LAURA KENNEDY",
+    "Inscription_Line_2": "WITH MUCH LOVE",
     "Inscription_Line_3": "YOUR FATHER, DON",
     "Purchaser_Name": "Don Kennedy",
     "Paver_Assigned_Section": ""
   },
   {
     "Naming_Year": "2016-2017",
-    "Panel_Number": "",
-    "Row_Number": "",
-    "Col_Number": "",
+    "Panel_Number": 5,
+    "Row_Number": 3,
+    "Col_Number": 5,
     "Inscription_Line_1": "TO BRIANA KENNEDY",
     "Inscription_Line_2": "I LOVE YOU!!!!",
     "Inscription_Line_3": "GRANDAD DON",
@@ -3731,9 +3731,9 @@ module.exports=[
   },
   {
     "Naming_Year": "2016-2017",
-    "Panel_Number": "",
-    "Row_Number": "",
-    "Col_Number": "",
+    "Panel_Number": 5,
+    "Row_Number": 4,
+    "Col_Number": 8,
     "Inscription_Line_1": "GRANVILLE &",
     "Inscription_Line_2": "JOSIE MCGEE",
     "Inscription_Line_3": "",
@@ -3742,9 +3742,9 @@ module.exports=[
   },
   {
     "Naming_Year": "2016-2017",
-    "Panel_Number": "",
-    "Row_Number": "",
-    "Col_Number": "",
+    "Panel_Number": 5,
+    "Row_Number": 4,
+    "Col_Number": 9,
     "Inscription_Line_1": "PERRY GLENNON",
     "Inscription_Line_2": "MCGEE",
     "Inscription_Line_3": "B 1921",
@@ -3764,9 +3764,9 @@ module.exports=[
   },
   {
     "Naming_Year": "2016-2017",
-    "Panel_Number": "",
-    "Row_Number": "",
-    "Col_Number": "",
+    "Panel_Number": 6,
+    "Row_Number": 4,
+    "Col_Number": 1,
     "Inscription_Line_1": "EARl & ANNA",
     "Inscription_Line_2": "(WOODS) MCGEE",
     "Inscription_Line_3": "B 1928 & 1929",
@@ -3797,10 +3797,10 @@ module.exports=[
   },
   {
     "Naming_Year": "2016-2017",
-    "Panel_Number": "",
-    "Row_Number": "",
-    "Col_Number": "",
-    "Inscription_Line_1": "CAROL DAID",
+    "Panel_Number": 6,
+    "Row_Number": 6,
+    "Col_Number": 1,
+    "Inscription_Line_1": "CAROL DAVID",
     "Inscription_Line_2": "WILLAIM BILLY",
     "Inscription_Line_3": "JONATHAN MCGEE",
     "Purchaser_Name": "Chioldren of Ealr & Anna",
@@ -3819,9 +3819,9 @@ module.exports=[
   },
   {
     "Naming_Year": "2016-2017",
-    "Panel_Number": "",
-    "Row_Number": "",
-    "Col_Number": "",
+    "Panel_Number": 6,
+    "Row_Number": 2,
+    "Col_Number": 8,
     "Inscription_Line_1": "BENETTA A EDWARDS",
     "Inscription_Line_2": "244 CENTRAL AVE",
     "Inscription_Line_3": "1913 -1989",
@@ -3830,9 +3830,9 @@ module.exports=[
   },
   {
     "Naming_Year": "2016-2017",
-    "Panel_Number": "",
-    "Row_Number": "",
-    "Col_Number": "",
+    "Panel_Number": 6,
+    "Row_Number": 2,
+    "Col_Number": 7,
     "Inscription_Line_1": "LES & REGINA MYLES",
     "Inscription_Line_2": "ROBERT & ED MYLES",
     "Inscription_Line_3": "",
@@ -4061,9 +4061,9 @@ module.exports=[
   },
   {
     "Naming_Year": "2016-2017",
-    "Panel_Number": "",
-    "Row_Number": "",
-    "Col_Number": "",
+    "Panel_Number": 5,
+    "Row_Number": 3,
+    "Col_Number": 1,
     "Inscription_Line_1": "MONICA HABIA",
     "Inscription_Line_2": "GHANA",
     "Inscription_Line_3": "",
@@ -4413,11 +4413,11 @@ module.exports=[
   },
   {
     "Naming_Year": "2016-2017",
-    "Panel_Number": "",
-    "Row_Number": "",
-    "Col_Number": "",
-    "Inscription_Line_1": "GRANVILLE SKIP",
-    "Inscription_Line_2": "MCGEE",
+    "Panel_Number": 6,
+    "Row_Number": 5,
+    "Col_Number": 4,
+    "Inscription_Line_1": "GRANVILLE",
+    "Inscription_Line_2": "\"SKIP\" MCGEE",
     "Inscription_Line_3": "b 1935",
     "Purchaser_Name": "Granville (Skip) Mcgee",
     "Paver_Assigned_Section": ""
@@ -4446,10 +4446,10 @@ module.exports=[
   },
   {
     "Naming_Year": "2016-2017",
-    "Panel_Number": "",
-    "Row_Number": "",
-    "Col_Number": "",
-    "Inscription_Line_1": "WILLIAM BILLY",
+    "Panel_Number": 6,
+    "Row_Number": 5,
+    "Col_Number": 2,
+    "Inscription_Line_1": "WILLIAM \"BILLY\"",
     "Inscription_Line_2": "McGEE",
     "Inscription_Line_3": "b 1952",
     "Purchaser_Name": "William Billy McGee",
@@ -4457,22 +4457,22 @@ module.exports=[
   },
   {
     "Naming_Year": "2016-2017",
-    "Panel_Number": "",
-    "Row_Number": "",
-    "Col_Number": "",
-    "Inscription_Line_1": "BERNADINE FOSTER",
-    "Inscription_Line_2": "& FAMILY",
+    "Panel_Number": 6,
+    "Row_Number": 6,
+    "Col_Number": 3,
+    "Inscription_Line_1": "BERNADINE",
+    "Inscription_Line_2": "FOSTER & FAMILY",
     "Inscription_Line_3": "460 RONDO",
     "Purchaser_Name": "Bernadine Foster",
     "Paver_Assigned_Section": ""
   },
   {
     "Naming_Year": "2016-2017",
-    "Panel_Number": "",
-    "Row_Number": "",
-    "Col_Number": "",
-    "Inscription_Line_1": "ORA LEE ANDERSON",
-    "Inscription_Line_2": "& FAMILY",
+    "Panel_Number": 6,
+    "Row_Number": 6,
+    "Col_Number": 2,
+    "Inscription_Line_1": "ORA LEE",
+    "Inscription_Line_2": "ANDERSON FAMILY",
     "Inscription_Line_3": "460 RONDO",
     "Purchaser_Name": "Ora Lee Anderson",
     "Paver_Assigned_Section": ""
@@ -47674,7 +47674,9 @@ function _interopRequireDefault(e) {
   };
 }
 function About() {
-  return /*#__PURE__*/_react["default"].createElement(_react["default"].Fragment, null, /*#__PURE__*/_react["default"].createElement(_header["default"], null), /*#__PURE__*/_react["default"].createElement("h2", null, "About"), /*#__PURE__*/_react["default"].createElement(TheSite, null));
+  return /*#__PURE__*/_react["default"].createElement(_react["default"].Fragment, null, /*#__PURE__*/_react["default"].createElement(_header["default"], null), /*#__PURE__*/_react["default"].createElement("div", {
+    id: "aboutPageContainer"
+  }, /*#__PURE__*/_react["default"].createElement(TheSite, null), /*#__PURE__*/_react["default"].createElement(OtherStuff, null)));
 }
 function TheSite() {
   return /*#__PURE__*/_react["default"].createElement("div", {
@@ -47683,7 +47685,74 @@ function TheSite() {
     className: "aboutHeader"
   }, "How to Navigate the Site"));
 }
-function OtherStuff() {}
+function OtherStuff() {
+  return /*#__PURE__*/_react["default"].createElement("div", {
+    id: "aboutRondoContainer"
+  }, /*#__PURE__*/_react["default"].createElement("h3", {
+    className: "aboutHeader"
+  }, "A Brief History of Rondo"), /*#__PURE__*/_react["default"].createElement("p", {
+    className: "aboutParagraph"
+  }, "In the mid to late 1800s, Joseph and Josephine Rondeau left Fort Snelling after experiencing racial discrimination due to Josephine\u2019s mixed white and indigenous heritage. The Rondeaus moved to an area close to downtown St. Paul, and the land took on an Anglicized version of their name: Rondo. The Rondo neighborhood was bordered by Selby Avenue to the south, University Avenue to the north, Lexington Parkway to the west, and Rice Street to the east. Though Joseph and Josephine moved away after four years, scores of immigrants continued to settle the Rondo area. French Canadian immigrants came in the nineteenth century, and later, German, Russian, Irish, Jewish, and Greek families made their home there. As Rondo\u2019s European immigrant community became economically successful, many left the neighborhood. During the Great Migration (1910-1970), six million African Americans moved from the Deep South to the North to escape racial violence and pursue educational and financial opportunity. Unlike the explicit violence and intense prejudice of the Jim Crow South, racism in St. Paul took on more implicit forms through redlining, racial covenants & housing discrimination, employment & financial lending discrimination, and social norms. Rondo became one of the few areas where an increasing number of African American migrants could live in the Twin Cities."), /*#__PURE__*/_react["default"].createElement("div", {
+    className: "aboutImgContainer floatLeft"
+  }, /*#__PURE__*/_react["default"].createElement("img", {
+    className: "aboutImg",
+    src: "../about/img1.jpg",
+    width: "1500",
+    height: "844"
+  }), /*#__PURE__*/_react["default"].createElement("p", {
+    className: "imgDescr"
+  }, "2024 Brick Ceremony, Image Credit: Katie Frye")), /*#__PURE__*/_react["default"].createElement("p", {
+    className: "aboutParagraph"
+  }, "By the 1930s, Rondo was the heart of St. Paul\u2019s African American community, with Rondo Street at its center. Journalist Roy Wilkins wrote of the main thoroughfare, \u201CIf New York has its Lenox Avenue, Chicago its State Street and Memphis its Beale Street, just as surely has St. Paul a riot of warmth, and color, and feeling and sound in Rondo Street.\u201D Residents were Pullman Porters and maids, doctors and lawyers, skilled tradesmen and laborers, civil rights leaders and business-owners. A wide variety of social and economic groups were included in the Rondo neighborhood."), /*#__PURE__*/_react["default"].createElement("div", {
+    className: "aboutImgContainer floatRight"
+  }, /*#__PURE__*/_react["default"].createElement("img", {
+    className: "aboutImg",
+    src: "../about/img3.jpg",
+    width: "1500",
+    height: "844"
+  }), /*#__PURE__*/_react["default"].createElement("p", {
+    className: "imgDescr"
+  }, "2024 Brick Ceremony, Image Credit: Katie Frye")), /*#__PURE__*/_react["default"].createElement("p", {
+    className: "aboutParagraph"
+  }, "The tight-knit community was served by a number of churches, social clubs, and political organizations, including the oldest African American church in Minnesota, Pilgrim Baptist Church. Other notable institutions include the Hallie Q. Brown Community Center & Penumbra Theatre, the Sterling Club, the Credjawfawn Social Club, the St. Paul chapter of the Urban League, and the Minnesota chapter of the NAACP. Residents enjoyed three newspapers, the Appeal, the Northwestern Bulletin, and the St. Paul Recorder, which often advocated for civil rights advancements. Music and theater flourished, public schools were integrated, and it was not uncommon to engage in intercultural and interracial relationships. By 1950, 80% of St. Paul\u2019s African American residents lived in Rondo."), /*#__PURE__*/_react["default"].createElement("div", {
+    className: "aboutImgContainer floatLeft"
+  }, /*#__PURE__*/_react["default"].createElement("img", {
+    className: "aboutImg",
+    src: "../about/img2.jpg",
+    width: "1500",
+    height: "844"
+  }), /*#__PURE__*/_react["default"].createElement("p", {
+    className: "imgDescr"
+  }, "2024 Brick Ceremony, Image Credit: Katie Frye")), /*#__PURE__*/_react["default"].createElement("p", {
+    className: "aboutParagraph"
+  }, "In the 1930s and 40s, city residents and officials called for a highway linking the city centers of St. Paul and Minneapolis. Though a route running alongside railroad lines was proposed (the Northern Route), the city ultimately decided to route the highway along St. Anthony Avenue (the St. Anthony Route), right through the Rondo neighborhood. The Federal Highway Act of 1956 provided the necessary funding to construct the highway. Resistance from the Rondo neighborhood came quickly. Reverend Floyd Massey Jr., Timothy Howard, and the Rondo-St. Anthony Improvement Association protested the proposed route. Their efforts led to I-94 being built below ground level, so that bridges could unite the two halves of the Rondo neighborhood. The construction of the Interstate led to the loss of seven hundred homes and three hundred businesses. One in every eight African Americans in St. Paul lost a home to I-94, and many businesses never recovered. There was a deliberate effort to minimize the value of resident\u2019s homes. Some displaced residents took the lowball offer and moved away; others fought through the legal system; still, others sat, armed, on their front porches and waited for the police."), /*#__PURE__*/_react["default"].createElement("p", {
+    className: "aboutParagraph"
+  }, "The area where Rondo once thrived is now known as the Summit-University neighborhood. Residents continue to commemorate the people, places, and memories of Rondo through organizations including the Rondo Avenue Inc., Rondo Commemorative Plaza (RCP), Rondo Center of Diverse Expressions (RCODE), ReConnect Rondo, and the Rondo Roundtable. Events such as Rondo Days, Juneteenth, and the Rondo Block Party are celebrated annually. Rondo\u2019s legacy continues to live on through memory, celebration, and efforts to reunite the neighborhood."), /*#__PURE__*/_react["default"].createElement("h3", {
+    className: "aboutHeader"
+  }, "About the Rondo Commemorative Plaza (2018-Present)"), /*#__PURE__*/_react["default"].createElement("div", {
+    className: "aboutImgContainer floatRight"
+  }, /*#__PURE__*/_react["default"].createElement("img", {
+    className: "aboutImg",
+    src: "../about/img4.jpg",
+    width: "2500",
+    height: "1667"
+  }), /*#__PURE__*/_react["default"].createElement("p", {
+    className: "imgDescr"
+  }, "2024 Brick Ceremony, Image Credit: Katie Frye")), /*#__PURE__*/_react["default"].createElement("p", {
+    className: "aboutParagraph"
+  }, "In 2013, the two-story building at 820 Concordia Street went up in flames. Over the years, the building had served as a VFW post, a dance parlor, a coffee shop, and a restaurant. Most importantly, it had been a Rondo landmark, a reminder of the historically-black neighborhood that once thrived where I-94 now sits. Marvin Anderson organized a wake for the building, and soon, he had a vision for the empty lot."), /*#__PURE__*/_react["default"].createElement("div", {
+    className: "aboutImgContainer floatLeft"
+  }, /*#__PURE__*/_react["default"].createElement("img", {
+    className: "aboutImg",
+    src: "../about/img5.jpg",
+    width: "2500",
+    height: "1667"
+  }), /*#__PURE__*/_react["default"].createElement("p", {
+    className: "imgDescr"
+  }, "2024 Brick Ceremony, Image Credit: Katie Frye")), /*#__PURE__*/_react["default"].createElement("p", {
+    className: "aboutParagraph"
+  }, "In 2016, Anderson and Floyd Smaller (both co-founders of the Rondo Days celebration), worked with architects from 4RM+ULA and Ten x Ten to create plans for a memorial plaza. Opened in July 2018, the Rondo Commemorative Plaza (RCP) is the first public memorial to the Black neighborhoods destroyed by interstate highways. The plaza includes a 26-panel History Wall that tells the story of Rondo, a commemorative brick path, eighteen community chimes, and a 30-ft lighted tower that is visible to anyone driving on I-94. The adjacent building is home to the Rondo Center of Diverse Expressions (RCODE), which offers an indoor space for events, preserves a small research collection, and provides administrative responsibility for the plaza. Rondo residents, visitors, community members, and organizations are invited to purchase bricks along the commemorative brick path. Bricks can recognize an address, a family member or friend, a memory, a business, or anything else held near and dear. Brick purchasers are celebrated during our annual \u201CEvery Brick Counts\u201D Ceremony in September, where each participant is given time to share about their story. For more information on RCODE\u2019s commemorative brick program, please email Katie at katie@rcodemn.org."));
+}
 
 },{"./header.js":24,"react":16}],22:[function(require,module,exports){
 "use strict";
@@ -47799,7 +47868,15 @@ function Brick(_ref2) {
     className: "accessibleBrickContainer"
   }, /*#__PURE__*/_react["default"].createElement("div", {
     className: "accessibleBrick"
-  }, brick.Inscription_Line_1 ? /*#__PURE__*/_react["default"].createElement("p", null, brick.Inscription_Line_1) : "", brick.Inscription_Line_2 ? /*#__PURE__*/_react["default"].createElement("p", null, brick.Inscription_Line_2) : "", brick.Inscription_Line_3 ? /*#__PURE__*/_react["default"].createElement("p", null, brick.Inscription_Line_3) : ""), /*#__PURE__*/_react["default"].createElement("p", null, "Naming Year: ", brick.Naming_Year), /*#__PURE__*/_react["default"].createElement("p", null, "Purchaser Name: ", brick.Purchaser_Name), /*#__PURE__*/_react["default"].createElement("p", null, "Section: ", brick.Paver_Assigned_Section), /*#__PURE__*/_react["default"].createElement("p", null, "Located in front of panel ", brick.Panel_Number, " in row ", brick.Row_Number), brick.link ? /*#__PURE__*/_react["default"].createElement("p", null, brick.link) : "");
+  }, brick.Inscription_Line_1 ? /*#__PURE__*/_react["default"].createElement("p", null, brick.Inscription_Line_1) : "", brick.Inscription_Line_2 ? /*#__PURE__*/_react["default"].createElement("p", null, brick.Inscription_Line_2) : "", brick.Inscription_Line_3 ? /*#__PURE__*/_react["default"].createElement("p", null, brick.Inscription_Line_3) : ""), /*#__PURE__*/_react["default"].createElement("p", {
+    className: "brickDataText"
+  }, "Naming Year: ", brick.Naming_Year), /*#__PURE__*/_react["default"].createElement("p", {
+    className: "brickDataText"
+  }, "Purchaser:", /*#__PURE__*/_react["default"].createElement("br", null), "\xA0\xA0\xA0", brick.Purchaser_Name), /*#__PURE__*/_react["default"].createElement("p", {
+    className: "brickDataText"
+  }, "Section: ", brick.Paver_Assigned_Section), /*#__PURE__*/_react["default"].createElement("p", {
+    className: "brickDataText"
+  }, "In front of panel ", brick.Panel_Number), brick.link ? /*#__PURE__*/_react["default"].createElement("p", null, brick.link) : "");
 }
 
 },{"../db.json":1,"react":16}],23:[function(require,module,exports){
