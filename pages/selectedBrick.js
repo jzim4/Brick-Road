@@ -34,7 +34,7 @@ export default function SelectedBrick({ brick, setCurrentBrick }) {
             clicked = clicked.parentElement;
         }
         if (clicked.classList.contains("existingBrick")) {
-            let col = Array.prototype.indexOf.call(clicked.parentElement.children, clicked) + 1;
+            let col = Array.prototype.indexOf.call(clicked.parentElement.children, clicked) - 7; // minus seven due to eight-brick offset
             const row = Array.prototype.indexOf.call(clicked.parentElement.parentElement.children, clicked.parentElement) + 1;
             const pan = Math.floor(col / 10) + 1;
             col = col - ((pan - 1) * 10);

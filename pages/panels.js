@@ -42,12 +42,10 @@ export default function Panel() {
     h = glass.offsetHeight / 2;
   
     /* Execute a function when someone moves the magnifier glass over the image: */
-    glass.addEventListener("mousemove", moveMagnifier);
-    img.addEventListener("mousemove", moveMagnifier);
+    document.addEventListener("mousemove", moveMagnifier);
   
     /*and also for touch screens:*/
-    glass.addEventListener("touchmove", moveMagnifier);
-    img.addEventListener("touchmove", moveMagnifier);
+    document.addEventListener("touchmove", moveMagnifier);
     function moveMagnifier(e) {
       var pos, x, y;
       /* Prevent any other actions that may occur when moving over the image */
@@ -100,7 +98,7 @@ export default function Panel() {
       <div id="img-magnifier-glass"></div>
       <img id="zoomImg"></img>
     </div>
-      <img onClick={() => zoom(2694, 332.8)} className="panel" width="332.8" height="363" src="panels/IMG_2694.jpeg"></img>
+      <img onClick={() => zoom(2694, 332.8)} className="panel" width="332.8" height="363" src="panels/IMG_2694.jpeg" style={{marginLeft:"283px"}}></img>
       <img onClick={() => zoom(2698, 326)} className="panel" width="326" height="363" src="panels/IMG_2698.jpeg"></img>
       <img onClick={() => zoom(2700, 326)}className="panel" width="327" height="363" src="panels/IMG_2700.jpeg"></img>
       <img onClick={() => zoom(2701, 326)} className="panel" width="320.7" height="363" src="panels/IMG_2701.jpeg"></img>

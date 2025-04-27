@@ -3,16 +3,17 @@ import data from '../db.json';
 
 export default function Path({ highlight, currentBrick }) {
   const numRows = 15;
-  const numCols = 130;
+  const numCols = 170;
   const bricksPerPanel = 10;
 
-  // this component determines if the brick should be highlighted or shown as the selected brick to determine 
-  // class names and conditionally add the pop-up
+  /* this component determines if the brick should be highlighted or shown as the selected brick to determine 
+    class names and conditionally add the pop-up
+  */
   function Brick({ rowIndex, colIndex }) {
     let bData = null;
+    // find selected brick
     for (let b of data) {
-      const col = (b.Panel_Number - 1) * bricksPerPanel + b.Col_Number;
-
+      const col = 8 + (b.Panel_Number - 1) * bricksPerPanel + b.Col_Number;
       if (highlight == "all" || b.Paver_Assigned_Section == highlight || b.Purchaser_Name == highlight) {
         if (b.Row_Number == rowIndex + 1 && col == colIndex + 1) {
           bData = b;
