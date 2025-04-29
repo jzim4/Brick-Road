@@ -14,7 +14,7 @@ import AcessibleContent from './accessibleContent.js';
 
 
 export const defaultBrick = {
-    Panel_Number: 14,
+    Panel_Number: 20,
     Row_Number: 16,
     Col_Number: 11
 }

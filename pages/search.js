@@ -50,7 +50,6 @@ export default function Search({ highlight, setHighlight, display, setDisplay })
 
     // takes text field input then sets the highlight value to update other components
     function searchButton({ setHighlight }) {
-        console.log(setHighlight);
         let val = document.getElementById("fname").value;
         if (display == "scroll") { collapseSearch(); }
         setHighlight(val);
@@ -68,7 +67,8 @@ export default function Search({ highlight, setHighlight, display, setDisplay })
 
         let num = 0;
         for (let b of data) {
-            if (highlight == "all" || b.Paver_Assigned_Section == highlight || b.Purchaser_Name == highlight) {
+            let highlightMatch = b.Purchaser_Name.toLowerCase().includes(highlight.toLowerCase());
+            if (highlight == "all" || b.Paver_Assigned_Section == highlight || highlightMatch) {
                 num++;
             }
         }

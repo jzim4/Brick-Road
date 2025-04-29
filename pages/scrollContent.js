@@ -23,8 +23,6 @@ function scrollButtonFunction(goLeft) {
   })
 }
 
-console.log("scroll content Updated");
-
 export default function ScrollContent({ highlight, currentBrick, setCurrentBrick }) {
   return <div id="fullPathContainer">
     <div className="scrollButtonContainer">

@@ -14,7 +14,8 @@ export default function Path({ highlight, currentBrick }) {
     // find selected brick
     for (let b of data) {
       const col = 8 + (b.Panel_Number - 1) * bricksPerPanel + b.Col_Number;
-      if (highlight == "all" || b.Paver_Assigned_Section == highlight || b.Purchaser_Name == highlight) {
+      let highlightMatch = b.Purchaser_Name.toLowerCase().includes(highlight.toLowerCase());
+      if (highlight == "all" || b.Paver_Assigned_Section == highlight || highlightMatch) {
         if (b.Row_Number == rowIndex + 1 && col == colIndex + 1) {
           bData = b;
           break;
@@ -37,8 +38,6 @@ export default function Path({ highlight, currentBrick }) {
       return <div className='brick' key={100 * rowIndex + colIndex}></div>
     }
   }
-
-  console.log("path Updated");
   
   // this component is the entire path with every other row offset in the opposite direction
   return <div id="path">

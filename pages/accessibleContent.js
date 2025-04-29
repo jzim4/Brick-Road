@@ -13,10 +13,11 @@ export default function AcessibleContent({ highlight }) {
         if (highlight == "all") {
             bricks.push(b);
         }
-        else if (sections.includes(highlight) && b.Paver_Assigned_Section == highlight) {
+        else if (b.Purchaser_Name.toLowerCase().includes(highlight.toLowerCase())) {
+            console.log(b.Purchaser_Name.toLowerCase());
             bricks.push(b);
         }
-        else if (b.Purchaser_Name == highlight) {
+        else if (sections.includes(highlight) && b.Paver_Assigned_Section == highlight) {
             bricks.push(b);
         }
     }

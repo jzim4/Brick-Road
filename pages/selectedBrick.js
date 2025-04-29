@@ -46,7 +46,6 @@ export default function SelectedBrick({ brick, setCurrentBrick }) {
         }
         document.getElementById('fname').value = "";
     })
-    console.log("selected Brick Updated");
 
     return <div id="selectedBrickPageCover">
         <div id="selectedBrickContainer">
