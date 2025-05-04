@@ -67,9 +67,11 @@ export default function Search({ highlight, setHighlight, display, setDisplay })
 
         let num = 0;
         for (let b of data) {
-            let highlightMatch = b.Purchaser_Name.toLowerCase().includes(highlight.toLowerCase());
-            if (highlight == "all" || b.Paver_Assigned_Section == highlight || highlightMatch) {
-                num++;
+            if (b.Panel_Number) {
+                let highlightMatch = b.Purchaser_Name.toLowerCase().includes(highlight.toLowerCase());
+                if (highlight == "all" || b.Paver_Assigned_Section == highlight || highlightMatch) {
+                    num++;
+                }
             }
         }
         let countPhrase = "[" + num + " bricks]";

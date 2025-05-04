@@ -327,7 +327,7 @@ module.exports=[
     "Inscription_Line_1": "JAMES W. PILLOW",
     "Inscription_Line_2": "HAIR LEGEND",
     "Inscription_Line_3": "1940-2024",
-    "Purchaser_Name": "Joseph Ray, Nicole Pillow",
+    "Purchaser_Name": "Joseph Ray & Nicole Pillow",
     "Paver_Assigned_Section": ""
   },
   {
@@ -2995,7 +2995,7 @@ module.exports=[
   {
     "Naming_Year": 2019,
     "Panel_Number": 7,
-    "Row_Number": 14,
+    "Row_Number": 13,
     "Col_Number": 9,
     "Inscription_Line_1": "BILLY & GWEN",
     "Inscription_Line_2": "BRITT & BRAIZ",
@@ -47760,7 +47760,7 @@ function OtherStuff() {
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports["default"] = AcessibleContent;
+exports["default"] = AccessibleContent;
 var _react = _interopRequireDefault(require("react"));
 var _db = _interopRequireDefault(require("../db.json"));
 function _interopRequireDefault(e) {
@@ -47831,7 +47831,7 @@ function _arrayLikeToArray(r, a) {
   Author: Jonah Zimmer
   This version of the site does not have the scrolling bricks, making it accessible for screen readers and phone compatible.
   */
-function AcessibleContent(_ref) {
+function AccessibleContent(_ref) {
   var highlight = _ref.highlight;
   var sections = ["Centenarian", "Heroes", "Golden Women", "Family/Friends", "Businesses/Organizations"];
   var bricks = [];
@@ -47840,13 +47840,14 @@ function AcessibleContent(_ref) {
   try {
     for (_iterator.s(); !(_step = _iterator.n()).done;) {
       var b = _step.value;
-      if (highlight == "all") {
-        bricks.push(b);
-      } else if (b.Purchaser_Name.toLowerCase().includes(highlight.toLowerCase())) {
-        console.log(b.Purchaser_Name.toLowerCase());
-        bricks.push(b);
-      } else if (sections.includes(highlight) && b.Paver_Assigned_Section == highlight) {
-        bricks.push(b);
+      if (b.Panel_Number) {
+        if (highlight == "all") {
+          bricks.push(b);
+        } else if (b.Purchaser_Name.toLowerCase().includes(highlight.toLowerCase())) {
+          bricks.push(b);
+        } else if (sections.includes(highlight) && b.Paver_Assigned_Section == highlight) {
+          bricks.push(b);
+        }
       }
     }
   } catch (err) {
@@ -48672,9 +48673,11 @@ function Search(_ref) {
     try {
       for (_iterator.s(); !(_step = _iterator.n()).done;) {
         var b = _step.value;
-        var highlightMatch = b.Purchaser_Name.toLowerCase().includes(highlight.toLowerCase());
-        if (highlight == "all" || b.Paver_Assigned_Section == highlight || highlightMatch) {
-          num++;
+        if (b.Panel_Number) {
+          var highlightMatch = b.Purchaser_Name.toLowerCase().includes(highlight.toLowerCase());
+          if (highlight == "all" || b.Paver_Assigned_Section == highlight || highlightMatch) {
+            num++;
+          }
         }
       }
     } catch (err) {
