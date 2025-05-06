@@ -6,7 +6,8 @@ export default function About() {
         <Header />
         <div id="aboutPageContainer">
         <TheSite />
-        <OtherStuff/>
+        <AboutRondo/>
+        <TheTeam/>
         </div>
     </>
 }
@@ -14,10 +15,23 @@ export default function About() {
 function TheSite() {
     return <div className="aboutComponent">
         <h3 className="aboutHeader">How to Navigate the Site</h3>
+        <p>On the home page, there are two views: scrollable path and brick list. The full path is only available on larger devices. 
+            To navigate the path, you can hover over the bricks to see their messages, and click to learn more information about the purchaser.
+            For the brick list, you are able to simply see all of the bricks expanded at once. This view is accessible on both smaller and larger devices.
+            In either view, you can click the "filter" dropdown in order to show only bricks within a donor group or purchased by a specific purchaser.
+            If you are interested in learning more about Rondo, in addition to this page, you can click on the panels on the full path in order to zoom in and read.
+        </p>
     </div>
 }
 
-function OtherStuff() {
+function TheTeam() {
+    return <div className="aboutComponent">
+        <h3 className="aboutHeader">About the Site</h3>
+        <p>This site was designed and built by sophomore Macalester College student, Jonah Zimmer, advising and funding by Macalester Professor Getiria Onsongo, and the guidance of Rondo Commemorative Plaza representative Katherine Frye.</p>
+    </div>
+}
+
+function AboutRondo() {
     return <div id="aboutRondoContainer">
 
         <h3 className="aboutHeader">A Brief History of Rondo</h3>

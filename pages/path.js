@@ -27,8 +27,9 @@ export default function Path({ highlight, currentBrick }) {
       const col = (bData.Panel_Number - 1) * bricksPerPanel + bData.Col_Number;
       return <div className={'existingBrick brick ' + (bData == currentBrick ? "clickedBrick" : "")} key={100 * rowIndex + colIndex}>
         <span className={"popupText " + (col < 3 ? "popupTextLeft" : col > numCols - 4 ? "popupTextRight" : "")}>
-          Donor: {bData.Purchaser_Name}<br></br>
-          Year: {bData.Naming_Year}<br></br>
+          {bData.Inscription_Line_1}<br></br>
+          {bData.Inscription_Line_2}<br></br>
+          {bData.Inscription_Line_3}<br></br>
           Click for more info!
         </span>
       </div>

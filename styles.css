@@ -22,10 +22,13 @@ header {
     padding: 0 60px;
     display: flex;
     flex-direction: row;
-    justify-content: start;
+    justify-content: space-between;
     align-items: center;
     background-color: lightblue;
-    gap: 20px;
+}
+#navLinks {
+    display: flex;
+    gap: 15px;
 }
 .headerButton {
     background-color: unset;
@@ -40,6 +43,9 @@ header {
 .headerButton:hover {
     background-color: var(--brick-red);
     cursor: pointer;
+}
+.activeNav {
+    background-color: var(--brick-red);
 }
 
 /* SEARCH */
@@ -236,7 +242,7 @@ header {
 #scrollContainer {
     padding: 10px 20px;
     border: var(--brick-red) solid 10px;
-    margin: 0 auto;
+    margin: 0 auto 40px auto;
     height: 560px;
     width: 90vw;
     overflow-x: scroll;
