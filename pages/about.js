@@ -1,5 +1,6 @@
 import React from 'react';
 import Header from './header.js';
+import Footer from './footer.js';
 
 export default function About() {
     return <>
@@ -9,12 +10,13 @@ export default function About() {
         <AboutRondo/>
         <TheTeam/>
         </div>
+        <Footer/>
     </>
 }
 
 function TheSite() {
     return <div className="aboutComponent">
-        <h3 className="aboutHeader">How to Navigate the Site</h3>
+        <h3 className="aboutHeader">How to navigate the site</h3>
         <p>On the home page, there are two views: scrollable path and brick list. The full path is only available on larger devices. 
             To navigate the path, you can hover over the bricks to see their messages, and click to learn more information about the purchaser.
             For the brick list, you are able to simply see all of the bricks expanded at once. This view is accessible on both smaller and larger devices.
@@ -26,15 +28,18 @@ function TheSite() {
 
 function TheTeam() {
     return <div className="aboutComponent">
-        <h3 className="aboutHeader">About the Site</h3>
-        <p>This site was designed and built by sophomore Macalester College student, Jonah Zimmer, advising and funding by Macalester Professor Getiria Onsongo, and the guidance of Rondo Commemorative Plaza representative Katherine Frye.</p>
+        <h3 className="aboutHeader">A note from the site developer</h3>
+        <p>This site was designed and built by sophomore Macalester College student, Jonah Zimmer. If you would like to see 
+            more of my work, please check out <a href="https://jzim4.github.io" target="_blank">my portfolio</a>! <br></br>
+            A special thanks to Professor Getiria Onsongo and Katie Frye for their support and guidance.
+            Thank you to the generous donors who have purchased bricks and to the folks who work to keep the plaza a beautiful, welcoming space.</p>
     </div>
 }
 
 function AboutRondo() {
     return <div id="aboutRondoContainer">
 
-        <h3 className="aboutHeader">A Brief History of Rondo</h3>
+        <h3 className="aboutHeader">A brief history of Rondo</h3>
 
         <p className="aboutParagraph">
             In the mid to late 1800s, Joseph and Josephine Rondeau left Fort Snelling after
@@ -144,6 +149,5 @@ function AboutRondo() {
             participant is given time to share about their story. For more information on RCODE’s
             commemorative brick program, please email Katie at katie@rcodemn.org.
         </p>
-
     </div>
 }

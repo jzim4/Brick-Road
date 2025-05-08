@@ -7,17 +7,16 @@ import React from 'react';
 import data from '../db.json';
 
 export default function AccessibleContent({ highlight }) {
-    const sections = ["Centenarian", "Heroes", "Golden Women", "Family/Friends", "Businesses/Organizations"];
     let bricks = []
     for (let b of data) {
-        if (b.Panel_Number) {
+        if (typeof(b.Panel_Number) == "number") {
             if (highlight == "all") {
                 bricks.push(b);
             }
             else if (b.Purchaser_Name.toLowerCase().includes(highlight.toLowerCase())) {
                 bricks.push(b);
             }
-            else if (sections.includes(highlight) && b.Paver_Assigned_Section == highlight) {
+            else if (b.Paver_Assigned_Section == highlight) {
                 bricks.push(b);
             }
         }

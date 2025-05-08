@@ -11,6 +11,7 @@ import Search from './search.js';
 import SelectedBrick from './selectedBrick.js';
 import ScrollContent from './scrollContent.js';
 import AccessibleContent from './accessibleContent.js';
+import Footer from './footer.js';
 
 
 export const defaultBrick = {
@@ -51,6 +52,7 @@ export default function BrickRoadSite() {
             <ScrollContent highlight={highlight} currentBrick = {currentBrick}/> : 
             <AccessibleContent highlight={highlight} />
         }
+        <Footer/>
         
     </>
 }

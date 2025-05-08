@@ -48,6 +48,14 @@ header {
     background-color: var(--brick-red);
 }
 
+/* FOOTER */
+footer {
+    background-color: lightblue;
+    padding: 15px 30px;
+    font-size: 17px;
+    min-height: 40px;
+}
+
 /* SEARCH */
 
 #displayToggle {
@@ -392,6 +400,8 @@ header {
     display: flex;
     flex-direction: column;
     gap: 5px;
+    width: 320px;
+    text-wrap: wrap;
 }
 .accessibleBrickContainer > p {
     margin: 0 0 0 10px;

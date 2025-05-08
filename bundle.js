@@ -2,22 +2,22 @@
 module.exports=[
   {
     "Naming_Year": 2024,
-    "Panel_Number": "",
-    "Row_Number": "",
-    "Col_Number": "",
-    "Inscription_Line_1": "From your",
-    "Inscription_Line_2": "Family in",
-    "Inscription_Line_3": "Baltimore",
+    "Panel_Number": 2,
+    "Row_Number": 14,
+    "Col_Number": 5,
+    "Inscription_Line_1": "FROM YOUR",
+    "Inscription_Line_2": "FAMILY IN",
+    "Inscription_Line_3": "BALTIMORE",
     "Purchaser_Name": "Brittany Young",
     "Paver_Assigned_Section": ""
   },
   {
     "Naming_Year": 2024,
-    "Panel_Number": "",
-    "Row_Number": "",
-    "Col_Number": "",
-    "Inscription_Line_1": "From B-360",
-    "Inscription_Line_2": "With Love",
+    "Panel_Number": 2,
+    "Row_Number": 14,
+    "Col_Number": 4,
+    "Inscription_Line_1": "FROM B-360",
+    "Inscription_Line_2": "WITH LOVE",
     "Inscription_Line_3": "",
     "Purchaser_Name": "Brittany Young",
     "Paver_Assigned_Section": ""
@@ -26,7 +26,7 @@ module.exports=[
     "Naming_Year": 2024,
     "Panel_Number": 4,
     "Row_Number": 10,
-    "Col_Number": 4,
+    "Col_Number": 2,
     "Inscription_Line_1": "NICHOLS - BURDEN",
     "Inscription_Line_2": "439 CARROLL",
     "Inscription_Line_3": "RONDO SPIRIT",
@@ -37,7 +37,7 @@ module.exports=[
     "Naming_Year": 2024,
     "Panel_Number": 4,
     "Row_Number": 10,
-    "Col_Number": 5,
+    "Col_Number": 3,
     "Inscription_Line_1": "DODSON FAMILY",
     "Inscription_Line_2": "528 CARROLL",
     "Inscription_Line_3": "RONDO FOREVER",
@@ -354,243 +354,232 @@ module.exports=[
   },
   {
     "Naming_Year": 2024,
-    "Panel_Number": "",
-    "Row_Number": "",
-    "Col_Number": "",
+    "Panel_Number": 1,
+    "Row_Number": 14,
+    "Col_Number": 8,
     "Inscription_Line_1": "GOLDEN WOMEN",
     "Inscription_Line_2": "OF RONDO",
-    "Inscription_Line_3": "",
+    "Inscription_Line_3": "<3 2024 <3",
     "Purchaser_Name": "Geneva Gill",
     "Paver_Assigned_Section": "Golden Women"
   },
   {
     "Naming_Year": 2024,
-    "Panel_Number": "",
-    "Row_Number": "",
-    "Col_Number": "",
+    "Panel_Number": 1,
+    "Row_Number": 13,
+    "Col_Number": 8,
     "Inscription_Line_1": "THELMA ROSE",
     "Inscription_Line_2": "BIVENS",
-    "Inscription_Line_3": "HONOREE",
+    "Inscription_Line_3": "<3 HONOREE <3",
     "Purchaser_Name": "Geneva Gill",
     "Paver_Assigned_Section": "Golden Women"
   },
   {
     "Naming_Year": 2024,
-    "Panel_Number": "",
-    "Row_Number": "",
-    "Col_Number": "",
+    "Panel_Number": 2,
+    "Row_Number": 13,
+    "Col_Number": 0,
     "Inscription_Line_1": "PATRICIA",
     "Inscription_Line_2": "LOUISE ALLEN",
-    "Inscription_Line_3": "HONOREE",
+    "Inscription_Line_3": "<3 HONOREE <3",
     "Purchaser_Name": "Geneva Gill",
     "Paver_Assigned_Section": "Golden Women"
   },
   {
     "Naming_Year": 2024,
-    "Panel_Number": "",
-    "Row_Number": "",
-    "Col_Number": "",
+    "Panel_Number": 1,
+    "Row_Number": 13,
+    "Col_Number": 9,
     "Inscription_Line_1": "NINA BLACK",
     "Inscription_Line_2": "ZACHARY",
-    "Inscription_Line_3": "HONOREE",
+    "Inscription_Line_3": "<3 HONOREE <3",
     "Purchaser_Name": "Geneva Gill",
     "Paver_Assigned_Section": "Golden Women"
   },
   {
     "Naming_Year": 2024,
-    "Panel_Number": "",
-    "Row_Number": "",
-    "Col_Number": "",
+    "Panel_Number": 2,
+    "Row_Number": 12,
+    "Col_Number": 0,
     "Inscription_Line_1": "VERLENE PRICE",
     "Inscription_Line_2": "BOOKER",
-    "Inscription_Line_3": "HONOREE",
+    "Inscription_Line_3": "<3 HONOREE <3",
     "Purchaser_Name": "Geneva Gill",
     "Paver_Assigned_Section": "Golden Women"
   },
   {
     "Naming_Year": 2024,
-    "Panel_Number": "",
-    "Row_Number": "",
-    "Col_Number": "",
+    "Panel_Number": 1,
+    "Row_Number": 12,
+    "Col_Number": 9,
     "Inscription_Line_1": "DOROTHEA J.",
     "Inscription_Line_2": "BURNS",
-    "Inscription_Line_3": "HONOREE",
+    "Inscription_Line_3": "<3 HONOREE <3",
     "Purchaser_Name": "Geneva Gill",
     "Paver_Assigned_Section": "Golden Women"
   },
   {
     "Naming_Year": 2024,
-    "Panel_Number": "",
-    "Row_Number": "",
-    "Col_Number": "",
+    "Panel_Number": 1,
+    "Row_Number": 12,
+    "Col_Number": 8,
     "Inscription_Line_1": "MARTHA NAOMI",
     "Inscription_Line_2": "COBB",
-    "Inscription_Line_3": "HONOREE",
+    "Inscription_Line_3": "<3 HONOREE <3",
     "Purchaser_Name": "Geneva Gill",
     "Paver_Assigned_Section": "Golden Women"
   },
   {
     "Naming_Year": 2024,
-    "Panel_Number": "",
-    "Row_Number": "",
-    "Col_Number": "",
-    "Inscription_Line_1": "MARTHA NAOMI",
-    "Inscription_Line_2": "COBB",
-    "Inscription_Line_3": "HONOREE",
-    "Purchaser_Name": "Geneva Gill",
-    "Paver_Assigned_Section": "Golden Women"
-  },
-  {
-    "Naming_Year": 2024,
-    "Panel_Number": "",
-    "Row_Number": "",
-    "Col_Number": "",
+    "Panel_Number": 1,
+    "Row_Number": 12,
+    "Col_Number": 7,
     "Inscription_Line_1": "NELLIE",
     "Inscription_Line_2": "COTTON",
-    "Inscription_Line_3": "HONOREE",
+    "Inscription_Line_3": "<3 HONOREE <3",
     "Purchaser_Name": "Geneva Gill",
     "Paver_Assigned_Section": "Golden Women"
   },
   {
     "Naming_Year": 2024,
-    "Panel_Number": "",
-    "Row_Number": "",
-    "Col_Number": "",
-    "Inscription_Line_1": "CRYSTA PEAL",
+    "Panel_Number": 1,
+    "Row_Number": 12,
+    "Col_Number": 6,
+    "Inscription_Line_1": "CRYSTAL PEARL",
     "Inscription_Line_2": "DURHAM",
-    "Inscription_Line_3": "HONOREE",
+    "Inscription_Line_3": "<3 HONOREE <3",
     "Purchaser_Name": "Geneva Gill",
     "Paver_Assigned_Section": "Golden Women"
   },
   {
     "Naming_Year": 2024,
-    "Panel_Number": "",
-    "Row_Number": "",
-    "Col_Number": "",
+    "Panel_Number": 2,
+    "Row_Number": 11,
+    "Col_Number": 0,
     "Inscription_Line_1": "VELMA",
     "Inscription_Line_2": "FRENCH",
-    "Inscription_Line_3": "HONOREE",
+    "Inscription_Line_3": "<3 HONOREE <3",
     "Purchaser_Name": "Geneva Gill",
     "Paver_Assigned_Section": "Golden Women"
   },
   {
     "Naming_Year": 2024,
-    "Panel_Number": "",
-    "Row_Number": "",
-    "Col_Number": "",
+    "Panel_Number": 1,
+    "Row_Number": 11,
+    "Col_Number": 9,
     "Inscription_Line_1": "CONNIE",
     "Inscription_Line_2": "GRAHAM",
-    "Inscription_Line_3": "HONOREE",
+    "Inscription_Line_3": "<3 HONOREE <3",
     "Purchaser_Name": "Geneva Gill",
     "Paver_Assigned_Section": "Golden Women"
   },
   {
     "Naming_Year": 2024,
-    "Panel_Number": "",
-    "Row_Number": "",
-    "Col_Number": "",
+    "Panel_Number": 1,
+    "Row_Number": 11,
+    "Col_Number": 8,
     "Inscription_Line_1": "SALLIE MAE",
     "Inscription_Line_2": "GRAY - FRELIX",
-    "Inscription_Line_3": "HONOREE",
+    "Inscription_Line_3": "<3 HONOREE <3",
     "Purchaser_Name": "Geneva Gill",
     "Paver_Assigned_Section": "Golden Women"
   },
   {
     "Naming_Year": 2024,
-    "Panel_Number": "",
-    "Row_Number": "",
-    "Col_Number": "",
+    "Panel_Number": 2,
+    "Row_Number": 10,
+    "Col_Number": 0,
     "Inscription_Line_1": "CASSIE BEA",
     "Inscription_Line_2": "LYNN",
-    "Inscription_Line_3": "HONOREE",
+    "Inscription_Line_3": "<3 HONOREE <3",
     "Purchaser_Name": "Geneva Gill",
     "Paver_Assigned_Section": "Golden Women"
   },
   {
     "Naming_Year": 2024,
-    "Panel_Number": "",
-    "Row_Number": "",
-    "Col_Number": "",
-    "Inscription_Line_1": "BERANDINE",
+    "Panel_Number": 1,
+    "Row_Number": 10,
+    "Col_Number": 9,
+    "Inscription_Line_1": "BERNADINE",
     "Inscription_Line_2": "DELVEETA McGEE",
-    "Inscription_Line_3": "HONOREE",
+    "Inscription_Line_3": "<3 HONOREE <3",
     "Purchaser_Name": "Geneva Gill",
     "Paver_Assigned_Section": "Golden Women"
   },
   {
     "Naming_Year": 2024,
-    "Panel_Number": "",
-    "Row_Number": "",
-    "Col_Number": "",
+    "Panel_Number": 1,
+    "Row_Number": 10,
+    "Col_Number": 8,
     "Inscription_Line_1": "KAZZIE MARIE",
     "Inscription_Line_2": "NEAL",
-    "Inscription_Line_3": "HONOREE",
+    "Inscription_Line_3": "<3 HONOREE <3",
     "Purchaser_Name": "Geneva Gill",
     "Paver_Assigned_Section": "Golden Women"
   },
   {
     "Naming_Year": 2024,
-    "Panel_Number": "",
-    "Row_Number": "",
-    "Col_Number": "",
+    "Panel_Number": 1,
+    "Row_Number": 10,
+    "Col_Number": 7,
     "Inscription_Line_1": "YVONNE",
     "Inscription_Line_2": "ROBONSON",
-    "Inscription_Line_3": "HONOREE",
+    "Inscription_Line_3": "<3 HONOREE <3",
     "Purchaser_Name": "Geneva Gill",
     "Paver_Assigned_Section": "Golden Women"
   },
   {
     "Naming_Year": 2024,
-    "Panel_Number": "",
-    "Row_Number": "",
-    "Col_Number": "",
+    "Panel_Number": 1,
+    "Row_Number": 10,
+    "Col_Number": 6,
     "Inscription_Line_1": "CHRISTINE",
     "Inscription_Line_2": "ERCEIL THOMAS",
-    "Inscription_Line_3": "HONOREE",
+    "Inscription_Line_3": "<3 HONOREE <3",
     "Purchaser_Name": "Geneva Gill",
     "Paver_Assigned_Section": "Golden Women"
   },
   {
     "Naming_Year": 2024,
-    "Panel_Number": "",
-    "Row_Number": "",
-    "Col_Number": "",
+    "Panel_Number": 2,
+    "Row_Number": 9,
+    "Col_Number": 0,
     "Inscription_Line_1": "JOAN PERTEET",
     "Inscription_Line_2": "THOMPSON",
-    "Inscription_Line_3": "HONOREE",
+    "Inscription_Line_3": "<3 HONOREE <3",
     "Purchaser_Name": "Geneva Gill",
     "Paver_Assigned_Section": "Golden Women"
   },
   {
     "Naming_Year": 2024,
-    "Panel_Number": "",
-    "Row_Number": "",
-    "Col_Number": "",
+    "Panel_Number": 1,
+    "Row_Number": 9,
+    "Col_Number": 9,
     "Inscription_Line_1": "GLORIA ELLEN",
     "Inscription_Line_2": "WILSON",
-    "Inscription_Line_3": "HONOREE",
+    "Inscription_Line_3": "<3 HONOREE <3",
     "Purchaser_Name": "Geneva Gill",
     "Paver_Assigned_Section": "Golden Women"
   },
   {
     "Naming_Year": 2024,
-    "Panel_Number": "",
-    "Row_Number": "",
-    "Col_Number": "",
+    "Panel_Number": 1,
+    "Row_Number": 9,
+    "Col_Number": 8,
     "Inscription_Line_1": "LOUISE YVONNE",
     "Inscription_Line_2": "WOODS",
-    "Inscription_Line_3": "HONOREE",
+    "Inscription_Line_3": "<3 HONOREE <3",
     "Purchaser_Name": "Geneva Gill",
     "Paver_Assigned_Section": "Golden Women"
   },
   {
     "Naming_Year": 2024,
-    "Panel_Number": "",
-    "Row_Number": "",
-    "Col_Number": "",
-    "Inscription_Line_1": "BREWN",
+    "Panel_Number": 3,
+    "Row_Number": 14,
+    "Col_Number": 4,
+    "Inscription_Line_1": "BREWIN",
     "Inscription_Line_2": "BETTY & IRVIN",
-    "Inscription_Line_3": "4EVER IN OUR HEARTS",
+    "Inscription_Line_3": "4EVER IN OUR <3",
     "Purchaser_Name": "Karen Brewin House",
     "Paver_Assigned_Section": ""
   },
@@ -642,7 +631,7 @@ module.exports=[
     "Naming_Year": 2024,
     "Panel_Number": 6,
     "Row_Number": 9,
-    "Col_Number": 0,
+    "Col_Number": 1,
     "Inscription_Line_1": "LORRAINE",
     "Inscription_Line_2": "HARPER",
     "Inscription_Line_3": "CARRIGER <3",
@@ -838,9 +827,9 @@ module.exports=[
   },
   {
     "Naming_Year": 2024,
-    "Panel_Number": 4,
+    "Panel_Number": 3,
     "Row_Number": 10,
-    "Col_Number": 2,
+    "Col_Number": 9,
     "Inscription_Line_1": "FOR BLUE OUR",
     "Inscription_Line_2": "KIND & NOBlE",
     "Inscription_Line_3": "BOY",
@@ -981,9 +970,9 @@ module.exports=[
   },
   {
     "Naming_Year": 2024,
-    "Panel_Number": "",
-    "Row_Number": "",
-    "Col_Number": "",
+    "Panel_Number": 2,
+    "Row_Number": 12,
+    "Col_Number": 5,
     "Inscription_Line_1": "LILLIAN & RUSSEL",
     "Inscription_Line_2": "BALENGER",
     "Inscription_Line_3": "812 ST. ANTHONY",
@@ -1016,7 +1005,7 @@ module.exports=[
     "Naming_Year": 2021,
     "Panel_Number": 4,
     "Row_Number": 11,
-    "Col_Number": 6,
+    "Col_Number": 4,
     "Inscription_Line_1": "SNOOKIE DUKE",
     "Inscription_Line_2": "CLAUDE DUKE SR",
     "Inscription_Line_3": "UNFORGETABLE",
@@ -1685,20 +1674,20 @@ module.exports=[
   },
   {
     "Naming_Year": 2019,
-    "Panel_Number": "",
-    "Row_Number": "",
-    "Col_Number": "",
+    "Panel_Number": 3,
+    "Row_Number": 14,
+    "Col_Number": 7,
     "Inscription_Line_1": "LISA, CLARENCE,",
-    "Inscription_Line_2": "BRUCE, LORI AND",
+    "Inscription_Line_2": "BRUCE, LORI &",
     "Inscription_Line_3": "LYNDA BYRD",
     "Purchaser_Name": "Marlene Hawkins",
     "Paver_Assigned_Section": ""
   },
   {
     "Naming_Year": 2019,
-    "Panel_Number": "",
-    "Row_Number": "",
-    "Col_Number": "",
+    "Panel_Number": 3,
+    "Row_Number": 12,
+    "Col_Number": 7,
     "Inscription_Line_1": "INEZ DOUGLASS",
     "Inscription_Line_2": "BRUCE & EDWARD",
     "Inscription_Line_3": "E. BRUCE, SR",
@@ -1740,9 +1729,9 @@ module.exports=[
   },
   {
     "Naming_Year": 2019,
-    "Panel_Number": 4,
+    "Panel_Number": 3,
     "Row_Number": 12,
-    "Col_Number": 3,
+    "Col_Number": 8,
     "Inscription_Line_1": "PETER & ELLEN",
     "Inscription_Line_2": "BROWN",
     "Inscription_Line_3": "",
@@ -1929,7 +1918,7 @@ module.exports=[
     "Naming_Year": 2019,
     "Panel_Number": 4,
     "Row_Number": 13,
-    "Col_Number": 7,
+    "Col_Number": 5,
     "Inscription_Line_1": "HOWARD/JONELLE",
     "Inscription_Line_2": "DENIKE HONOR",
     "Inscription_Line_3": "RONDO'S MEMORY",
@@ -1949,9 +1938,9 @@ module.exports=[
   },
   {
     "Naming_Year": 2019,
-    "Panel_Number": "",
-    "Row_Number": "",
-    "Col_Number": "",
+    "Panel_Number": 3,
+    "Row_Number": 11,
+    "Col_Number": 3,
     "Inscription_Line_1": "THE BELLS",
     "Inscription_Line_2": "NORMAN & NAOMI",
     "Inscription_Line_3": "697 CARROLL AV",
@@ -2037,9 +2026,9 @@ module.exports=[
   },
   {
     "Naming_Year": 2019,
-    "Panel_Number": "",
-    "Row_Number": "",
-    "Col_Number": "",
+    "Panel_Number": 1,
+    "Row_Number": 11,
+    "Col_Number": 1,
     "Inscription_Line_1": "WILEY SMITH",
     "Inscription_Line_2": "GUARDIANS OF",
     "Inscription_Line_3": "RONDO PLAZA",
@@ -2241,7 +2230,7 @@ module.exports=[
     "Inscription_Line_1": "SCHUCK",
     "Inscription_Line_2": "BOYSIE & BEANNIE",
     "Inscription_Line_3": "",
-    "Purchaser_Name": "Penny Shuck Adams",
+    "Purchaser_Name": "Penny Schuck Adams",
     "Paver_Assigned_Section": ""
   },
   {
@@ -2252,7 +2241,7 @@ module.exports=[
     "Inscription_Line_1": "THE FAMILY OF",
     "Inscription_Line_2": "PHYLLIS & HUGH",
     "Inscription_Line_3": "SCHUCK JR",
-    "Purchaser_Name": "Penny Shuck Adams",
+    "Purchaser_Name": "Penny Schuck Adams",
     "Paver_Assigned_Section": ""
   },
   {
@@ -2263,7 +2252,7 @@ module.exports=[
     "Inscription_Line_1": "THE FAMILY OF",
     "Inscription_Line_2": "BEATRICE AND",
     "Inscription_Line_3": "HUGH SCHUCK SR",
-    "Purchaser_Name": "Penny Shuck Adams",
+    "Purchaser_Name": "Penny Schuck Adams",
     "Paver_Assigned_Section": ""
   },
   {
@@ -2334,9 +2323,9 @@ module.exports=[
   },
   {
     "Naming_Year": 2019,
-    "Panel_Number": "",
-    "Row_Number": "",
-    "Col_Number": "",
+    "Panel_Number": 3,
+    "Row_Number": 13,
+    "Col_Number": 3,
     "Inscription_Line_1": "ISAAC BLAKELY",
     "Inscription_Line_2": "ANNA DICK BOB",
     "Inscription_Line_3": "BARB MIKE PAUL",
@@ -2422,9 +2411,9 @@ module.exports=[
   },
   {
     "Naming_Year": 2019,
-    "Panel_Number": 4,
+    "Panel_Number": 3,
     "Row_Number": 11,
-    "Col_Number": 4,
+    "Col_Number": 9,
     "Inscription_Line_1": "CHRISTOPHER &",
     "Inscription_Line_2": "PAMELA BUSH",
     "Inscription_Line_3": "",
@@ -2444,12 +2433,12 @@ module.exports=[
   },
   {
     "Naming_Year": 2019,
-    "Panel_Number": "",
-    "Row_Number": "",
-    "Col_Number": "",
+    "Panel_Number": 3,
+    "Row_Number": 14,
+    "Col_Number": 3,
     "Inscription_Line_1": "BREWIN FAMILY",
     "Inscription_Line_2": "989 RONDO AV F",
-    "Inscription_Line_3": "JAMES TOLIVER",
+    "Inscription_Line_3": "872 IGLEHART",
     "Purchaser_Name": "Karen Brewin House",
     "Paver_Assigned_Section": ""
   },
@@ -2543,61 +2532,6 @@ module.exports=[
   },
   {
     "Naming_Year": 2019,
-    "Panel_Number": "",
-    "Row_Number": "",
-    "Col_Number": "",
-    "Inscription_Line_1": "SHAWN RENEE",
-    "Inscription_Line_2": "KENNON",
-    "Inscription_Line_3": "GRANDAUGHTER",
-    "Purchaser_Name": "Marion Kennon",
-    "Paver_Assigned_Section": ""
-  },
-  {
-    "Naming_Year": 2019,
-    "Panel_Number": "",
-    "Row_Number": "",
-    "Col_Number": "",
-    "Inscription_Line_1": "ROZMOND HERON",
-    "Inscription_Line_2": "KENNON, JR",
-    "Inscription_Line_3": "GRANDSON",
-    "Purchaser_Name": "Marion Kennon",
-    "Paver_Assigned_Section": ""
-  },
-  {
-    "Naming_Year": 2019,
-    "Panel_Number": "",
-    "Row_Number": "",
-    "Col_Number": "",
-    "Inscription_Line_1": "KENDYL MARIEN",
-    "Inscription_Line_2": "KENNON",
-    "Inscription_Line_3": "GR GRANDAU'TR",
-    "Purchaser_Name": "Marion Kennon",
-    "Paver_Assigned_Section": ""
-  },
-  {
-    "Naming_Year": 2019,
-    "Panel_Number": "",
-    "Row_Number": "",
-    "Col_Number": "",
-    "Inscription_Line_1": "TAMARA RAQUEL",
-    "Inscription_Line_2": "JONES",
-    "Inscription_Line_3": "GRANDDAUGHTER",
-    "Purchaser_Name": "Marion Kennon",
-    "Paver_Assigned_Section": ""
-  },
-  {
-    "Naming_Year": 2019,
-    "Panel_Number": "",
-    "Row_Number": "",
-    "Col_Number": "",
-    "Inscription_Line_1": "DONALD TOLVER",
-    "Inscription_Line_2": "A TRUE BROTHER",
-    "Inscription_Line_3": "& GENTILE SOUL",
-    "Purchaser_Name": "Genevieve Smith",
-    "Paver_Assigned_Section": ""
-  },
-  {
-    "Naming_Year": 2019,
     "Panel_Number": 5,
     "Row_Number": 12,
     "Col_Number": 2,
@@ -2653,9 +2587,9 @@ module.exports=[
   },
   {
     "Naming_Year": 2019,
-    "Panel_Number": "",
-    "Row_Number": "",
-    "Col_Number": "",
+    "Panel_Number": 3,
+    "Row_Number": 13,
+    "Col_Number": 5,
     "Inscription_Line_1": "THE BAKERS",
     "Inscription_Line_2": "KEITH, WHELLER",
     "Inscription_Line_3": "AND HARRISON",
@@ -2664,9 +2598,9 @@ module.exports=[
   },
   {
     "Naming_Year": 2019,
-    "Panel_Number": "",
-    "Row_Number": "",
-    "Col_Number": "",
+    "Panel_Number": 3,
+    "Row_Number": 14,
+    "Col_Number": 6,
     "Inscription_Line_1": "LURLINE",
     "Inscription_Line_2": "BAKER KENT",
     "Inscription_Line_3": "& FAMILY",
@@ -3016,11 +2950,11 @@ module.exports=[
   },
   {
     "Naming_Year": 2019,
-    "Panel_Number": "",
-    "Row_Number": "",
-    "Col_Number": "",
+    "Panel_Number": 3,
+    "Row_Number": 14,
+    "Col_Number": 8,
     "Inscription_Line_1": "MACEO & JULIA",
-    "Inscription_Line_2": "BUFORD (heart) CARYL",
+    "Inscription_Line_2": "BUFORD <3 CARYL",
     "Inscription_Line_3": "JACKIE ROXANNE",
     "Purchaser_Name": "Roxanne Smith",
     "Paver_Assigned_Section": ""
@@ -3148,9 +3082,9 @@ module.exports=[
   },
   {
     "Naming_Year": 2022,
-    "Panel_Number": "",
-    "Row_Number": "",
-    "Col_Number": "",
+    "Panel_Number": 0,
+    "Row_Number": 12,
+    "Col_Number": 9,
     "Inscription_Line_1": "FLOYD & LORRAINE",
     "Inscription_Line_2": "SMALLER",
     "Inscription_Line_3": "WED 07-15-1961",
@@ -3159,9 +3093,9 @@ module.exports=[
   },
   {
     "Naming_Year": 2022,
-    "Panel_Number": "",
-    "Row_Number": "",
-    "Col_Number": "",
+    "Panel_Number": 1,
+    "Row_Number": 12,
+    "Col_Number": 0,
     "Inscription_Line_1": "FLOYD & LORRAINE",
     "Inscription_Line_2": "SMALLER - LOVE",
     "Inscription_Line_3": "EACH OTHER",
@@ -3236,12 +3170,12 @@ module.exports=[
   },
   {
     "Naming_Year": "2016-2017",
-    "Panel_Number": "",
-    "Row_Number": "",
-    "Col_Number": "",
-    "Inscription_Line_1": "IN LOVING MEMORY",
-    "Inscription_Line_2": "OF MY FATHER",
-    "Inscription_Line_3": "ROBERT BELLESEN",
+    "Panel_Number": 3,
+    "Row_Number": 12,
+    "Col_Number": 6,
+    "Inscription_Line_1": "IN MEMORY OF",
+    "Inscription_Line_2": "ROBERT W",
+    "Inscription_Line_3": "BELLESEN",
     "Purchaser_Name": "Judge Pamela Alexander",
     "Paver_Assigned_Section": ""
   },
@@ -3305,17 +3239,6 @@ module.exports=[
     "Panel_Number": "",
     "Row_Number": "",
     "Col_Number": "",
-    "Inscription_Line_1": "ORA LEE ANDERSON",
-    "Inscription_Line_2": "& FAMILY",
-    "Inscription_Line_3": "460 RONDO",
-    "Purchaser_Name": "Ora lee Anderson",
-    "Paver_Assigned_Section": ""
-  },
-  {
-    "Naming_Year": "2016-2017",
-    "Panel_Number": "",
-    "Row_Number": "",
-    "Col_Number": "",
     "Inscription_Line_1": "ANDERSON: ARCHIE",
     "Inscription_Line_2": "COOPIE, MARTHA",
     "Inscription_Line_3": "ARCHIE & ROGER",
@@ -3326,7 +3249,7 @@ module.exports=[
     "Naming_Year": "2016-2017",
     "Panel_Number": 4,
     "Row_Number": 13,
-    "Col_Number": 5,
+    "Col_Number": 3,
     "Inscription_Line_1": "DAVIS FAMILY",
     "Inscription_Line_2": "NORMAN & CARMERN",
     "Inscription_Line_3": "SHARMAN BRETT",
@@ -3403,7 +3326,7 @@ module.exports=[
     "Naming_Year": "2016-2017",
     "Panel_Number": 4,
     "Row_Number": 12,
-    "Col_Number": 4,
+    "Col_Number": 2,
     "Inscription_Line_1": "ROBERTA B DAVIS",
     "Inscription_Line_2": "HEART SOUL &",
     "Inscription_Line_3": "SONG TO RONDO",
@@ -3447,7 +3370,7 @@ module.exports=[
     "Naming_Year": "2016-2017",
     "Panel_Number": 4,
     "Row_Number": 12,
-    "Col_Number": 5,
+    "Col_Number": 3,
     "Inscription_Line_1": "FATHER JACK",
     "Inscription_Line_2": "DONAHUE",
     "Inscription_Line_3": "",
@@ -3456,12 +3379,23 @@ module.exports=[
   },
   {
     "Naming_Year": "2016-2017",
-    "Panel_Number": "",
-    "Row_Number": "",
-    "Col_Number": "",
-    "Inscription_Line_1": "BALLARDS-HARRY GEN",
-    "Inscription_Line_2": "BETTY HARRY LEE ED",
-    "Inscription_Line_3": "GAYNELL BARBARA",
+    "Panel_Number": 3,
+    "Row_Number": 11,
+    "Col_Number": 5,
+    "Inscription_Line_1": "BALLARDS",
+    "Inscription_Line_2": "HARRY, GEN",
+    "Inscription_Line_3": "BETTY, HARRY",
+    "Purchaser_Name": "Baraba Doyle",
+    "Paver_Assigned_Section": ""
+  },
+  {
+    "Naming_Year": "2016-2017",
+    "Panel_Number": 3,
+    "Row_Number": 11,
+    "Col_Number": 4,
+    "Inscription_Line_1": "LEE EDDIE",
+    "Inscription_Line_2": "GAYNELL",
+    "Inscription_Line_3": "BARBARA",
     "Purchaser_Name": "Baraba Doyle",
     "Paver_Assigned_Section": ""
   },
@@ -3474,17 +3408,6 @@ module.exports=[
     "Inscription_Line_2": "MARVIN ANDERSON",
     "Inscription_Line_3": "THE ELLOTTS",
     "Purchaser_Name": "Stephan & Diane Elliot",
-    "Paver_Assigned_Section": ""
-  },
-  {
-    "Naming_Year": "2016-2017",
-    "Panel_Number": "",
-    "Row_Number": "",
-    "Col_Number": "",
-    "Inscription_Line_1": "BERNADINE FOSTER",
-    "Inscription_Line_2": "& FAMILY",
-    "Inscription_Line_3": "460 RONDO",
-    "Purchaser_Name": "Berdnine Foster",
     "Paver_Assigned_Section": ""
   },
   {
@@ -3581,7 +3504,7 @@ module.exports=[
     "Row_Number": 4,
     "Col_Number": 0,
     "Inscription_Line_1": "HELEN MCGEE",
-    "Inscription_Line_2": "HJUDKINS KELLER",
+    "Inscription_Line_2": "JUDKINS KELLER",
     "Inscription_Line_3": "B 1923",
     "Purchaser_Name": "Helen McGee Judkins",
     "Paver_Assigned_Section": ""
@@ -3731,12 +3654,12 @@ module.exports=[
   },
   {
     "Naming_Year": "2016-2017",
-    "Panel_Number": "",
-    "Row_Number": "",
-    "Col_Number": "",
-    "Inscription_Line_1": "LAF & BERNADINE",
-    "Inscription_Line_2": "(ANDERSON) MCGEE",
-    "Inscription_Line_3": "MCKILNEY ES",
+    "Panel_Number": 6,
+    "Row_Number": 5,
+    "Col_Number": 1,
+    "Inscription_Line_1": "BERNADINE",
+    "Inscription_Line_2": "(ANDERSON) &",
+    "Inscription_Line_3": "\"LAF\" MCGEE",
     "Purchaser_Name": "Laf & Bernadine McGee",
     "Paver_Assigned_Section": ""
   },
@@ -3753,24 +3676,13 @@ module.exports=[
   },
   {
     "Naming_Year": "2016-2017",
-    "Panel_Number": "",
-    "Row_Number": "",
-    "Col_Number": "",
+    "Panel_Number": 6,
+    "Row_Number": 5,
+    "Col_Number": 0,
     "Inscription_Line_1": "FREDDIE MCGEE",
     "Inscription_Line_2": "B 1942",
     "Inscription_Line_3": "",
-    "Purchaser_Name": "Freedie McGee",
-    "Paver_Assigned_Section": ""
-  },
-  {
-    "Naming_Year": "2016-2017",
-    "Panel_Number": "",
-    "Row_Number": "",
-    "Col_Number": "",
-    "Inscription_Line_1": "GRANVILEE",
-    "Inscription_Line_2": "\"SKIP\" MCGEE",
-    "Inscription_Line_3": "B. 1952",
-    "Purchaser_Name": "Granville McGee",
+    "Purchaser_Name": "Freddie McGee",
     "Paver_Assigned_Section": ""
   },
   {
@@ -3845,7 +3757,7 @@ module.exports=[
     "Row_Number": "",
     "Col_Number": "",
     "Inscription_Line_1": "PRESELY, LOVE",
-    "Inscription_Line_2": "DAn J LUCILE",
+    "Inscription_Line_2": "DAN J LUCILE",
     "Inscription_Line_3": "JERRY, MILDRED",
     "Purchaser_Name": "Gloria Presley",
     "Paver_Assigned_Section": ""
@@ -3940,11 +3852,11 @@ module.exports=[
   },
   {
     "Naming_Year": "2016-2017",
-    "Panel_Number": "",
-    "Row_Number": "",
-    "Col_Number": "",
+    "Panel_Number": 1,
+    "Row_Number": 13,
+    "Col_Number": 0,
     "Inscription_Line_1": "FLOYD G.",
-    "Inscription_Line_2": "SMALLER",
+    "Inscription_Line_2": "SMALLER, JR.",
     "Inscription_Line_3": "RAI CO-FOUNDER",
     "Purchaser_Name": "COMP - MRA",
     "Paver_Assigned_Section": ""
@@ -4096,7 +4008,7 @@ module.exports=[
     "Naming_Year": "2016-2017",
     "Panel_Number": 4,
     "Row_Number": 13,
-    "Col_Number": 3,
+    "Col_Number": 0,
     "Inscription_Line_1": "JOSEPH",
     "Inscription_Line_2": "BUCKHALTON",
     "Inscription_Line_3": "",
@@ -4237,11 +4149,11 @@ module.exports=[
   },
   {
     "Naming_Year": "2016-2017",
-    "Panel_Number": "",
-    "Row_Number": "",
-    "Col_Number": "",
-    "Inscription_Line_1": "MARION",
-    "Inscription_Line_2": "JONES KENNON",
+    "Panel_Number": 2,
+    "Row_Number": 5,
+    "Col_Number": 0,
+    "Inscription_Line_1": "MARION JONES",
+    "Inscription_Line_2": "KENNON",
     "Inscription_Line_3": "2017 - HERO",
     "Purchaser_Name": "COMP - MRA",
     "Paver_Assigned_Section": ""
@@ -4380,61 +4292,6 @@ module.exports=[
   },
   {
     "Naming_Year": "2016-2017",
-    "Panel_Number": "",
-    "Row_Number": "",
-    "Col_Number": "",
-    "Inscription_Line_1": "GRANVILLE &'",
-    "Inscription_Line_2": "JOSIE MCGEE",
-    "Inscription_Line_3": "",
-    "Purchaser_Name": "Granville & Josie McGee",
-    "Paver_Assigned_Section": ""
-  },
-  {
-    "Naming_Year": "2016-2017",
-    "Panel_Number": "",
-    "Row_Number": "",
-    "Col_Number": "",
-    "Inscription_Line_1": "PERRY GLENNON",
-    "Inscription_Line_2": "McGEE",
-    "Inscription_Line_3": "b. 1921",
-    "Purchaser_Name": "Perry Glennon McGee",
-    "Paver_Assigned_Section": ""
-  },
-  {
-    "Naming_Year": "2016-2017",
-    "Panel_Number": "",
-    "Row_Number": "",
-    "Col_Number": "",
-    "Inscription_Line_1": "HELEN MCGEE",
-    "Inscription_Line_2": "JUDKINS KELLER",
-    "Inscription_Line_3": "B. 1923",
-    "Purchaser_Name": "Helen McGee Judkins Keller",
-    "Paver_Assigned_Section": ""
-  },
-  {
-    "Naming_Year": "2016-2017",
-    "Panel_Number": "",
-    "Row_Number": "",
-    "Col_Number": "",
-    "Inscription_Line_1": "LAF & BERNADONE",
-    "Inscription_Line_2": "(ANDERSON) McGEE",
-    "Inscription_Line_3": "MCKINLEY ES",
-    "Purchaser_Name": "Laf and Bernadine",
-    "Paver_Assigned_Section": ""
-  },
-  {
-    "Naming_Year": "2016-2017",
-    "Panel_Number": "",
-    "Row_Number": "",
-    "Col_Number": "",
-    "Inscription_Line_1": "W MARLENE \"TOOTS",
-    "Inscription_Line_2": "(MCGEE) CARTER",
-    "Inscription_Line_3": "b. 1932",
-    "Purchaser_Name": "Marlene Toots Carter",
-    "Paver_Assigned_Section": ""
-  },
-  {
-    "Naming_Year": "2016-2017",
     "Panel_Number": 6,
     "Row_Number": 5,
     "Col_Number": 4,
@@ -4442,28 +4299,6 @@ module.exports=[
     "Inscription_Line_2": "\"SKIP\" MCGEE",
     "Inscription_Line_3": "b 1935",
     "Purchaser_Name": "Granville (Skip) Mcgee",
-    "Paver_Assigned_Section": ""
-  },
-  {
-    "Naming_Year": "2016-2017",
-    "Panel_Number": "",
-    "Row_Number": "",
-    "Col_Number": "",
-    "Inscription_Line_1": "FREDDIE McGEE",
-    "Inscription_Line_2": "b 1942",
-    "Inscription_Line_3": "",
-    "Purchaser_Name": "Freddie Mcgee",
-    "Paver_Assigned_Section": ""
-  },
-  {
-    "Naming_Year": "2016-2017",
-    "Panel_Number": "",
-    "Row_Number": "",
-    "Col_Number": "",
-    "Inscription_Line_1": "CAROL, DAVID",
-    "Inscription_Line_2": "WILLIAM BILLY",
-    "Inscription_Line_3": "JONATHAN MCGEE",
-    "Purchaser_Name": "Children of Earl & Anna Mcgee",
     "Paver_Assigned_Section": ""
   },
   {
@@ -47690,6 +47525,7 @@ Object.defineProperty(exports, "__esModule", {
 exports["default"] = About;
 var _react = _interopRequireDefault(require("react"));
 var _header = _interopRequireDefault(require("./header.js"));
+var _footer = _interopRequireDefault(require("./footer.js"));
 function _interopRequireDefault(e) {
   return e && e.__esModule ? e : {
     "default": e
@@ -47698,28 +47534,31 @@ function _interopRequireDefault(e) {
 function About() {
   return /*#__PURE__*/_react["default"].createElement(_react["default"].Fragment, null, /*#__PURE__*/_react["default"].createElement(_header["default"], null), /*#__PURE__*/_react["default"].createElement("div", {
     id: "aboutPageContainer"
-  }, /*#__PURE__*/_react["default"].createElement(TheSite, null), /*#__PURE__*/_react["default"].createElement(AboutRondo, null), /*#__PURE__*/_react["default"].createElement(TheTeam, null)));
+  }, /*#__PURE__*/_react["default"].createElement(TheSite, null), /*#__PURE__*/_react["default"].createElement(AboutRondo, null), /*#__PURE__*/_react["default"].createElement(TheTeam, null)), /*#__PURE__*/_react["default"].createElement(_footer["default"], null));
 }
 function TheSite() {
   return /*#__PURE__*/_react["default"].createElement("div", {
     className: "aboutComponent"
   }, /*#__PURE__*/_react["default"].createElement("h3", {
     className: "aboutHeader"
-  }, "How to Navigate the Site"), /*#__PURE__*/_react["default"].createElement("p", null, "On the home page, there are two views: scrollable path and brick list. The full path is only available on larger devices. To navigate the path, you can hover over the bricks to see their messages, and click to learn more information about the purchaser. For the brick list, you are able to simply see all of the bricks expanded at once. This view is accessible on both smaller and larger devices. In either view, you can click the \"filter\" dropdown in order to show only bricks within a donor group or purchased by a specific purchaser. If you are interested in learning more about Rondo, in addition to this page, you can click on the panels on the full path in order to zoom in and read."));
+  }, "How to navigate the site"), /*#__PURE__*/_react["default"].createElement("p", null, "On the home page, there are two views: scrollable path and brick list. The full path is only available on larger devices. To navigate the path, you can hover over the bricks to see their messages, and click to learn more information about the purchaser. For the brick list, you are able to simply see all of the bricks expanded at once. This view is accessible on both smaller and larger devices. In either view, you can click the \"filter\" dropdown in order to show only bricks within a donor group or purchased by a specific purchaser. If you are interested in learning more about Rondo, in addition to this page, you can click on the panels on the full path in order to zoom in and read."));
 }
 function TheTeam() {
   return /*#__PURE__*/_react["default"].createElement("div", {
     className: "aboutComponent"
   }, /*#__PURE__*/_react["default"].createElement("h3", {
     className: "aboutHeader"
-  }, "About the Site"), /*#__PURE__*/_react["default"].createElement("p", null, "This site was designed and built by sophomore Macalester College student, Jonah Zimmer, advising and funding by Macalester Professor Getiria Onsongo, and the guidance of Rondo Commemorative Plaza representative Katherine Frye."));
+  }, "A note from the site developer"), /*#__PURE__*/_react["default"].createElement("p", null, "This site was designed and built by sophomore Macalester College student, Jonah Zimmer. If you would like to see more of my work, please check out ", /*#__PURE__*/_react["default"].createElement("a", {
+    href: "https://jzim4.github.io",
+    target: "_blank"
+  }, "my portfolio"), "! ", /*#__PURE__*/_react["default"].createElement("br", null), "A special thanks to Professor Getiria Onsongo and Katie Frye for their support and guidance. Thank you to the generous donors who have purchased bricks and to the folks who work to keep the plaza a beautiful, welcoming space."));
 }
 function AboutRondo() {
   return /*#__PURE__*/_react["default"].createElement("div", {
     id: "aboutRondoContainer"
   }, /*#__PURE__*/_react["default"].createElement("h3", {
     className: "aboutHeader"
-  }, "A Brief History of Rondo"), /*#__PURE__*/_react["default"].createElement("p", {
+  }, "A brief history of Rondo"), /*#__PURE__*/_react["default"].createElement("p", {
     className: "aboutParagraph"
   }, "In the mid to late 1800s, Joseph and Josephine Rondeau left Fort Snelling after experiencing racial discrimination due to Josephine\u2019s mixed white and indigenous heritage. The Rondeaus moved to an area close to downtown St. Paul, and the land took on an Anglicized version of their name: Rondo. The Rondo neighborhood was bordered by Selby Avenue to the south, University Avenue to the north, Lexington Parkway to the west, and Rice Street to the east. Though Joseph and Josephine moved away after four years, scores of immigrants continued to settle the Rondo area. French Canadian immigrants came in the nineteenth century, and later, German, Russian, Irish, Jewish, and Greek families made their home there. As Rondo\u2019s European immigrant community became economically successful, many left the neighborhood. During the Great Migration (1910-1970), six million African Americans moved from the Deep South to the North to escape racial violence and pursue educational and financial opportunity. Unlike the explicit violence and intense prejudice of the Jim Crow South, racism in St. Paul took on more implicit forms through redlining, racial covenants & housing discrimination, employment & financial lending discrimination, and social norms. Rondo became one of the few areas where an increasing number of African American migrants could live in the Twin Cities."), /*#__PURE__*/_react["default"].createElement("div", {
     className: "aboutImgContainer floatLeft"
@@ -47783,7 +47622,7 @@ function AboutRondo() {
   }, "In 2016, Anderson and Floyd Smaller (both co-founders of the Rondo Days celebration), worked with architects from 4RM+ULA and Ten x Ten to create plans for a memorial plaza. Opened in July 2018, the Rondo Commemorative Plaza (RCP) is the first public memorial to the Black neighborhoods destroyed by interstate highways. The plaza includes a 26-panel History Wall that tells the story of Rondo, a commemorative brick path, eighteen community chimes, and a 30-ft lighted tower that is visible to anyone driving on I-94. The adjacent building is home to the Rondo Center of Diverse Expressions (RCODE), which offers an indoor space for events, preserves a small research collection, and provides administrative responsibility for the plaza. Rondo residents, visitors, community members, and organizations are invited to purchase bricks along the commemorative brick path. Bricks can recognize an address, a family member or friend, a memory, a business, or anything else held near and dear. Brick purchasers are celebrated during our annual \u201CEvery Brick Counts\u201D Ceremony in September, where each participant is given time to share about their story. For more information on RCODE\u2019s commemorative brick program, please email Katie at katie@rcodemn.org."));
 }
 
-},{"./header.js":24,"react":16}],22:[function(require,module,exports){
+},{"./footer.js":24,"./header.js":25,"react":16}],22:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -47862,19 +47701,18 @@ function _arrayLikeToArray(r, a) {
   */
 function AccessibleContent(_ref) {
   var highlight = _ref.highlight;
-  var sections = ["Centenarian", "Heroes", "Golden Women", "Family/Friends", "Businesses/Organizations"];
   var bricks = [];
   var _iterator = _createForOfIteratorHelper(_db["default"]),
     _step;
   try {
     for (_iterator.s(); !(_step = _iterator.n()).done;) {
       var b = _step.value;
-      if (b.Panel_Number) {
+      if (typeof b.Panel_Number == "number") {
         if (highlight == "all") {
           bricks.push(b);
         } else if (b.Purchaser_Name.toLowerCase().includes(highlight.toLowerCase())) {
           bricks.push(b);
-        } else if (sections.includes(highlight) && b.Paver_Assigned_Section == highlight) {
+        } else if (b.Paver_Assigned_Section == highlight) {
           bricks.push(b);
         }
       }
@@ -47933,6 +47771,7 @@ var _search = _interopRequireDefault(require("./search.js"));
 var _selectedBrick = _interopRequireDefault(require("./selectedBrick.js"));
 var _scrollContent = _interopRequireDefault(require("./scrollContent.js"));
 var _accessibleContent = _interopRequireDefault(require("./accessibleContent.js"));
+var _footer = _interopRequireDefault(require("./footer.js"));
 function _interopRequireDefault(e) {
   return e && e.__esModule ? e : {
     "default": e
@@ -48065,10 +47904,29 @@ function BrickRoadSite() {
     currentBrick: currentBrick
   }) : /*#__PURE__*/_react["default"].createElement(_accessibleContent["default"], {
     highlight: highlight
+  }), /*#__PURE__*/_react["default"].createElement(_footer["default"], null));
+}
+
+},{"./accessibleContent.js":22,"./footer.js":24,"./header.js":25,"./scrollContent.js":29,"./search.js":30,"./selectedBrick.js":31,"react":16}],24:[function(require,module,exports){
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports["default"] = Footer;
+var _react = _interopRequireDefault(require("react"));
+function _interopRequireDefault(e) {
+  return e && e.__esModule ? e : {
+    "default": e
+  };
+}
+function Footer() {
+  return /*#__PURE__*/_react["default"].createElement("footer", null, /*#__PURE__*/_react["default"].createElement("div", {
+    className: "footerCol"
   }));
 }
 
-},{"./accessibleContent.js":22,"./header.js":24,"./scrollContent.js":28,"./search.js":29,"./selectedBrick.js":30,"react":16}],24:[function(require,module,exports){
+},{"react":16}],25:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -48089,7 +47947,6 @@ This single component holds the header
 */
 
 function Header() {
-  console.log((0, _reactRouterDom.useLocation)().pathname);
   return /*#__PURE__*/_react["default"].createElement("header", null, /*#__PURE__*/_react["default"].createElement("h1", {
     id: "title"
   }, "Rondo Commemorative Plaza"), /*#__PURE__*/_react["default"].createElement("div", {
@@ -48103,7 +47960,7 @@ function Header() {
   }, "About")));
 }
 
-},{"react":16,"react-router-dom":8}],25:[function(require,module,exports){
+},{"react":16,"react-router-dom":8}],26:[function(require,module,exports){
 "use strict";
 
 var _brickRoadSite = _interopRequireDefault(require("./brickRoadSite.js"));
@@ -48128,7 +47985,7 @@ root.render(/*#__PURE__*/_react["default"].createElement(_react["default"].Stric
   element: /*#__PURE__*/_react["default"].createElement(_brickRoadSite["default"], null)
 })))));
 
-},{"./about.js":21,"./brickRoadSite.js":23,"react":16,"react-dom/client":6,"react-router-dom":8}],26:[function(require,module,exports){
+},{"./about.js":21,"./brickRoadSite.js":23,"react":16,"react-dom/client":6,"react-router-dom":8}],27:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -48348,7 +48205,7 @@ function Panel() {
   }));
 }
 
-},{"react":16}],27:[function(require,module,exports){
+},{"react":16}],28:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -48492,7 +48349,7 @@ function Path(_ref) {
   }));
 }
 
-},{"../db.json":1,"react":16}],28:[function(require,module,exports){
+},{"../db.json":1,"react":16}],29:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -48561,7 +48418,7 @@ function ScrollContent(_ref) {
   }, " \u21E7 ")));
 }
 
-},{"./panels.js":26,"./path.js":27,"react":16}],29:[function(require,module,exports){
+},{"./panels.js":27,"./path.js":28,"react":16}],30:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -48655,7 +48512,7 @@ function Search(_ref) {
   // collapse search section if click outside of search
   document.addEventListener("click", function (e) {
     var panel = document.getElementsByClassName("searchDropdown")[0];
-    if (display == "scroll" && !panel.contains(e.target) && !e.target.classList.contains("accordion")) {
+    if (panel && !panel.contains(e.target) && !e.target.classList.contains("accordion")) {
       collapseSearch();
     }
   });
@@ -48707,7 +48564,7 @@ function Search(_ref) {
     try {
       for (_iterator.s(); !(_step = _iterator.n()).done;) {
         var b = _step.value;
-        if (b.Panel_Number) {
+        if (typeof b.Panel_Number == "number") {
           var highlightMatch = b.Purchaser_Name.toLowerCase().includes(highlight.toLowerCase());
           if (highlight == "all" || b.Paver_Assigned_Section == highlight || highlightMatch) {
             num++;
@@ -48843,7 +48700,7 @@ function Search(_ref) {
   }
 }
 
-},{"../db.json":1,"react":16}],30:[function(require,module,exports){
+},{"../db.json":1,"react":16}],31:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -48986,4 +48843,4 @@ function SelectedBrick(_ref) {
   }, /*#__PURE__*/_react["default"].createElement("p", null, "Naming Year: ", brick.Naming_Year), /*#__PURE__*/_react["default"].createElement("p", null, "Purchaser Name: ", brick.Purchaser_Name), /*#__PURE__*/_react["default"].createElement("p", null, "Section: ", brick.Paver_Assigned_Section), brick.link ? /*#__PURE__*/_react["default"].createElement("p", null, brick.link) : "")));
 }
 
-},{"../db.json":1,"./brickRoadSite.js":23,"react":16}]},{},[25]);
+},{"../db.json":1,"./brickRoadSite.js":23,"react":16}]},{},[26]);

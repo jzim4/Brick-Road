@@ -7,8 +7,6 @@ import React from 'react';
 import { Link, BrowserRouter as Router, Route, Switch, useLocation } from 'react-router-dom';
 
 export default function Header() {
-
-    console.log(useLocation().pathname);
     return <header>
         <h1 id="title">Rondo Commemorative Plaza</h1>
         <div id="navLinks">

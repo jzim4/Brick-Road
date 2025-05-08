@@ -21,7 +21,7 @@ export default function Search({ highlight, setHighlight, display, setDisplay })
     // collapse search section if click outside of search
     document.addEventListener("click", (e) => {
         const panel = document.getElementsByClassName("searchDropdown")[0];
-        if (display == "scroll" && !panel.contains(e.target) && !e.target.classList.contains("accordion")) {
+        if (panel && !panel.contains(e.target) && !e.target.classList.contains("accordion")) {
             collapseSearch();
         }
     })
@@ -67,7 +67,7 @@ export default function Search({ highlight, setHighlight, display, setDisplay })
 
         let num = 0;
         for (let b of data) {
-            if (b.Panel_Number) {
+            if (typeof (b.Panel_Number) == "number") {
                 let highlightMatch = b.Purchaser_Name.toLowerCase().includes(highlight.toLowerCase());
                 if (highlight == "all" || b.Paver_Assigned_Section == highlight || highlightMatch) {
                     num++;
@@ -122,7 +122,7 @@ export default function Search({ highlight, setHighlight, display, setDisplay })
         return <>
             <div id="searchHeader">
                 <button id="displayToggle" className="headerButton" onClick={toggleDisplay}>{display == "scroll" ? "Show brick list" : "Show scrolling path"}</button>
-                    
+
                 <div id="keysContainer">
                     <div className="keyContainer">
                         <div id="redKeyBox" className="keyBox"></div>
