@@ -39,7 +39,6 @@ export default function BrickRoadSite() {
             setCurrentBrick(defaultBrick);
             document.getElementById("selectedBrickPageCover").style.display = "none";
             document.body.style.overflow = 'auto';
-            document.getElementById("scrollContainer").style.overflowX = 'scroll';
         }
     }
 

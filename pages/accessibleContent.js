@@ -24,7 +24,7 @@ export default function AccessibleContent({ highlight }) {
 
     return <div id="accessibleBricksContainer">
         {Array(bricks.length).fill(0).map((_, b) => (
-            <Brick brick={bricks[b]} key={bricks[b].Panel_Number.toString() +  bricks[b].Row_Number.toString() + bricks[b].Col_Number.toString()}/>
+            <Brick brick={bricks[b]} key={"p" + bricks[b].Panel_Number.toString() + "r" +  bricks[b].Row_Number.toString() + "c" +  bricks[b].Col_Number.toString()}/>
         ))}
     </div>
 }

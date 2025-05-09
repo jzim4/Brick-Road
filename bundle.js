@@ -4704,17 +4704,6 @@ module.exports=[
     "Naming_Year": "Unknown",
     "Panel_Number": 11,
     "Row_Number": 2,
-    "Col_Number": 5,
-    "Inscription_Line_1": "IN MEMORY OF",
-    "Inscription_Line_2": "BUZZ BROWN",
-    "Inscription_Line_3": "PHOTOGRAPHER",
-    "Purchaser_Name": "Unknown",
-    "Paver_Assigned_Section": ""
-  },
-  {
-    "Naming_Year": "Unknown",
-    "Panel_Number": 11,
-    "Row_Number": 2,
     "Col_Number": 9,
     "Inscription_Line_1": "CLEMONS FAMILY",
     "Inscription_Line_2": "LINCOLN MARKET",
@@ -48159,7 +48148,7 @@ function AccessibleContent(_ref) {
   }, Array(bricks.length).fill(0).map(function (_, b) {
     return /*#__PURE__*/_react["default"].createElement(Brick, {
       brick: bricks[b],
-      key: bricks[b].Panel_Number.toString() + bricks[b].Row_Number.toString() + bricks[b].Col_Number.toString()
+      key: "p" + bricks[b].Panel_Number.toString() + "r" + bricks[b].Row_Number.toString() + "c" + bricks[b].Col_Number.toString()
     });
   }));
 }
@@ -48317,7 +48306,6 @@ function BrickRoadSite() {
       setCurrentBrick(defaultBrick);
       document.getElementById("selectedBrickPageCover").style.display = "none";
       document.body.style.overflow = 'auto';
-      document.getElementById("scrollContainer").style.overflowX = 'scroll';
     }
   };
   return /*#__PURE__*/_react["default"].createElement(_react["default"].Fragment, null, /*#__PURE__*/_react["default"].createElement(_header["default"], {
