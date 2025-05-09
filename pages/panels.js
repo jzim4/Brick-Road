@@ -5,7 +5,7 @@ export default function Panel() {
 
     const zoomImg = document.getElementById("zoomImg");
     const zoomImgContainer = document.getElementById("zoomImgContainer");
-    zoomImg.src = "panels/IMG_" + fileName + ".jpeg";
+    zoomImg.src = "panels/big/IMG_" + fileName + ".jpeg";
     zoomImg.height = 100;
     zoomImg.width = 363/width * 100;
 
@@ -38,7 +38,7 @@ export default function Panel() {
     glass.style.backgroundRepeat = "no-repeat";
     glass.style.backgroundSize = (img.width * zoom) + "px " + (img.height * zoom) + "px";
     bw = 3;
-    w = glass.offsetWidth / 2;
+    w = (glass.offsetWidth * 1) / 5;
     h = glass.offsetHeight / 2;
   
     /* Execute a function when someone moves the magnifier glass over the image: */
@@ -46,6 +46,14 @@ export default function Panel() {
   
     /*and also for touch screens:*/
     document.addEventListener("touchmove", moveMagnifier);
+
+    document.addEventListener("click", function(e) {
+      if (e.target.id=="zoomImgs" || e.target.id=="zoomImgContainer") {
+        closeZoom();
+      }
+    })
+
+    
     function moveMagnifier(e) {
       var pos, x, y;
       /* Prevent any other actions that may occur when moving over the image */
@@ -54,27 +62,11 @@ export default function Panel() {
       pos = getCursorPos(e);
       x = pos.x;
       y = pos.y;
-      /* Prevent the magnifier glass from being positioned outside the image: */
-      if (x > img.width - (w / (2*zoom))) {
-        glass.style.visibility = "hidden";
-      }
-      else if (x < w / (2*zoom)) {
-        glass.style.visibility = "hidden";
-      }
-      else if (y > img.height - (h / (2*zoom))) {
-        glass.style.visibility = "hidden";
-      }
-      else if (y < h / (2*zoom)) {
-        glass.style.visibility = "hidden";
-      }
-      else {
-        glass.style.visibility = "visible";
-      }
-      /* Set the position of the magnifier glass: */
-      glass.style.left = x + img.width/2 + "px";
-      glass.style.top = y + "px";
+      
       /* Display what the magnifier glass "sees": */
-      glass.style.backgroundPosition = "-" + ((x * zoom) - w + bw) + "px -" + ((y * zoom) - h + bw) + "px";
+      const xpos = -1 * ((x * zoom) - w) + "px ";
+      const ypos = -1 * ((y * zoom) - h + bw) + "px"
+      glass.style.backgroundPosition = xpos + ypos;
     }
   
     function getCursorPos(e) {
@@ -95,8 +87,13 @@ export default function Panel() {
   return <div id="panelsContainer">
     <div id="zoomImgContainer">
       <button onClick={closeZoom} id="closeZoom">Close</button>
-      <div id="img-magnifier-glass"></div>
-      <img id="zoomImg"></img>
+      <div id="zoomImgs">
+        <div id="magContainer">
+          <div></div>
+          <div id="img-magnifier-glass"></div>
+        </div>
+        <img id="zoomImg"></img>
+      </div>
     </div>
       <img onClick={() => zoom(2694, 332.8)} className="panel" width="332.8" height="363" src="panels/IMG_2694.jpeg" style={{marginLeft:"283px"}}></img>
       <img onClick={() => zoom(2698, 326)} className="panel" width="326" height="363" src="panels/IMG_2698.jpeg"></img>

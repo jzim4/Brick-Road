@@ -48434,7 +48434,7 @@ function Panel() {
   function zoom(fileName, width) {
     var zoomImg = document.getElementById("zoomImg");
     var zoomImgContainer = document.getElementById("zoomImgContainer");
-    zoomImg.src = "panels/IMG_" + fileName + ".jpeg";
+    zoomImg.src = "panels/big/IMG_" + fileName + ".jpeg";
     zoomImg.height = 100;
     zoomImg.width = 363 / width * 100;
     zoomImg.style.height = "80vh";
@@ -48463,7 +48463,7 @@ function Panel() {
     glass.style.backgroundRepeat = "no-repeat";
     glass.style.backgroundSize = img.width * zoom + "px " + img.height * zoom + "px";
     bw = 3;
-    w = glass.offsetWidth / 2;
+    w = glass.offsetWidth * 1 / 5;
     h = glass.offsetHeight / 2;
 
     /* Execute a function when someone moves the magnifier glass over the image: */
@@ -48471,6 +48471,11 @@ function Panel() {
 
     /*and also for touch screens:*/
     document.addEventListener("touchmove", moveMagnifier);
+    document.addEventListener("click", function (e) {
+      if (e.target.id == "zoomImgs" || e.target.id == "zoomImgContainer") {
+        closeZoom();
+      }
+    });
     function moveMagnifier(e) {
       var pos, x, y;
       /* Prevent any other actions that may occur when moving over the image */
@@ -48479,23 +48484,11 @@ function Panel() {
       pos = getCursorPos(e);
       x = pos.x;
       y = pos.y;
-      /* Prevent the magnifier glass from being positioned outside the image: */
-      if (x > img.width - w / (2 * zoom)) {
-        glass.style.visibility = "hidden";
-      } else if (x < w / (2 * zoom)) {
-        glass.style.visibility = "hidden";
-      } else if (y > img.height - h / (2 * zoom)) {
-        glass.style.visibility = "hidden";
-      } else if (y < h / (2 * zoom)) {
-        glass.style.visibility = "hidden";
-      } else {
-        glass.style.visibility = "visible";
-      }
-      /* Set the position of the magnifier glass: */
-      glass.style.left = x + img.width / 2 + "px";
-      glass.style.top = y + "px";
+
       /* Display what the magnifier glass "sees": */
-      glass.style.backgroundPosition = "-" + (x * zoom - w + bw) + "px -" + (y * zoom - h + bw) + "px";
+      var xpos = -1 * (x * zoom - w) + "px ";
+      var ypos = -1 * (y * zoom - h + bw) + "px";
+      glass.style.backgroundPosition = xpos + ypos;
     }
     function getCursorPos(e) {
       var a,
@@ -48524,10 +48517,14 @@ function Panel() {
     onClick: closeZoom,
     id: "closeZoom"
   }, "Close"), /*#__PURE__*/_react["default"].createElement("div", {
+    id: "zoomImgs"
+  }, /*#__PURE__*/_react["default"].createElement("div", {
+    id: "magContainer"
+  }, /*#__PURE__*/_react["default"].createElement("div", null), /*#__PURE__*/_react["default"].createElement("div", {
     id: "img-magnifier-glass"
-  }), /*#__PURE__*/_react["default"].createElement("img", {
-    id: "zoomImg"
   })), /*#__PURE__*/_react["default"].createElement("img", {
+    id: "zoomImg"
+  }))), /*#__PURE__*/_react["default"].createElement("img", {
     onClick: function onClick() {
       return zoom(2694, 332.8);
     },

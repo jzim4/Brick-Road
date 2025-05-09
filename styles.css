@@ -285,20 +285,31 @@ footer {
     justify-content: center;
     overflow: scroll;
 }
+#zoomImgs {
+    display: flex;
+    flex-direction: row-reverse;
+    align-items: center;
+    gap: 30px;
+    width: 90vw;
+}
 #zoomImg {
     width: auto;
-    overflow: scroll;
-    
+    object-fit: contain;    
+}
+#zoomImg:hover {
+    cursor: crosshair;
 }
 #img-magnifier-glass {
     background-repeat: no-repeat;
-    position: absolute;
     border: 3px solid #000;
-    border-radius: 50%;
-    cursor: none;
-    width: 300px;
-    height: 300px;
+    border-radius: 30px;
+    width: 500px;
+    height: 600px;
+    max-height: 90vh;
     z-index: 31;
+  }
+  #closeZoom {
+    background-color: var(--brick-red);
   }
 
 /* PATH */
