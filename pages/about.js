@@ -60,7 +60,7 @@ function AboutRondo() {
             live in the Twin Cities.
         </p>
         <div className="aboutImgContainer floatLeft">
-            <img className="aboutImg" src="../about/img1.jpg" width="1500" height="844"></img>
+            <img className="aboutImg" src="./about/img1.jpg" width="1500" height="844"></img>
             <p className="imgDescr">2024 Brick Ceremony, Image Credit: Katie Frye</p>
         </div>
         <p className="aboutParagraph">
@@ -73,7 +73,7 @@ function AboutRondo() {
             Rondo neighborhood.
         </p>
         <div className="aboutImgContainer floatRight">
-            <img className="aboutImg" src="../about/img3.jpg" width="1500" height="844"></img>
+            <img className="aboutImg" src="./about/img3.jpg" width="1500" height="844"></img>
             <p className="imgDescr">2024 Brick Ceremony, Image Credit: Katie Frye</p>
         </div>
         <p className="aboutParagraph">
@@ -88,7 +88,7 @@ function AboutRondo() {
             African American residents lived in Rondo.
         </p>
         <div className="aboutImgContainer floatLeft">
-            <img className="aboutImg" src="../about/img2.jpg" width="1500" height="844"></img>
+            <img className="aboutImg" src="./about/img2.jpg" width="1500" height="844"></img>
             <p className="imgDescr">2024 Brick Ceremony, Image Credit: Katie Frye</p>
         </div>
         <p className="aboutParagraph">
@@ -119,7 +119,7 @@ function AboutRondo() {
 
         <h3 className="aboutHeader">About the Rondo Commemorative Plaza (2018-Present)</h3>
         <div className="aboutImgContainer floatRight">
-            <img className="aboutImg" src="../about/img4.jpg" width="2500" height="1667"></img>
+            <img className="aboutImg" src="./about/img4.jpg" width="2500" height="1667"></img>
             <p className="imgDescr">2024 Brick Ceremony, Image Credit: Katie Frye</p>
         </div>
         <p className="aboutParagraph">
@@ -130,7 +130,7 @@ function AboutRondo() {
             soon, he had a vision for the empty lot.
         </p>
         <div className="aboutImgContainer floatLeft">
-            <img className="aboutImg" src="../about/img5.jpg" width="2500" height="1667"></img>
+            <img className="aboutImg" src="./about/img5.jpg" width="2500" height="1667"></img>
             <p className="imgDescr">2024 Brick Ceremony, Image Credit: Katie Frye</p>
         </div>
         <p className="aboutParagraph">

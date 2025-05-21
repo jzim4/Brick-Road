@@ -48595,7 +48595,7 @@ function AboutRondo() {
     className: "aboutImgContainer floatLeft"
   }, /*#__PURE__*/_react["default"].createElement("img", {
     className: "aboutImg",
-    src: "../about/img1.jpg",
+    src: "./about/img1.jpg",
     width: "1500",
     height: "844"
   }), /*#__PURE__*/_react["default"].createElement("p", {
@@ -48606,7 +48606,7 @@ function AboutRondo() {
     className: "aboutImgContainer floatRight"
   }, /*#__PURE__*/_react["default"].createElement("img", {
     className: "aboutImg",
-    src: "../about/img3.jpg",
+    src: "./about/img3.jpg",
     width: "1500",
     height: "844"
   }), /*#__PURE__*/_react["default"].createElement("p", {
@@ -48617,7 +48617,7 @@ function AboutRondo() {
     className: "aboutImgContainer floatLeft"
   }, /*#__PURE__*/_react["default"].createElement("img", {
     className: "aboutImg",
-    src: "../about/img2.jpg",
+    src: "./about/img2.jpg",
     width: "1500",
     height: "844"
   }), /*#__PURE__*/_react["default"].createElement("p", {
@@ -48632,7 +48632,7 @@ function AboutRondo() {
     className: "aboutImgContainer floatRight"
   }, /*#__PURE__*/_react["default"].createElement("img", {
     className: "aboutImg",
-    src: "../about/img4.jpg",
+    src: "./about/img4.jpg",
     width: "2500",
     height: "1667"
   }), /*#__PURE__*/_react["default"].createElement("p", {
@@ -48643,7 +48643,7 @@ function AboutRondo() {
     className: "aboutImgContainer floatLeft"
   }, /*#__PURE__*/_react["default"].createElement("img", {
     className: "aboutImg",
-    src: "../about/img5.jpg",
+    src: "./about/img5.jpg",
     width: "2500",
     height: "1667"
   }), /*#__PURE__*/_react["default"].createElement("p", {
