@@ -38,7 +38,7 @@ export default function Panel() {
     glass.style.backgroundRepeat = "no-repeat";
     glass.style.backgroundSize = (img.width * zoom) + "px " + (img.height * zoom) + "px";
     bw = 3;
-    w = (glass.offsetWidth * 1) / 5;
+    w = (glass.offsetWidth) / 2;
     h = glass.offsetHeight / 2;
   
     /* Execute a function when someone moves the magnifier glass over the image: */

@@ -1223,10 +1223,10 @@ module.exports=[
   },
   {
     "Naming_Year": 2021,
-    "Panel_Number": "",
-    "Row_Number": "",
-    "Col_Number": "",
-    "Inscription_Line_1": "THOMPSON'S",
+    "Panel_Number": 9,
+    "Row_Number": 10,
+    "Col_Number": 7,
+    "Inscription_Line_1": "THE THOMPSONS",
     "Inscription_Line_2": "JOAN & PIE",
     "Inscription_Line_3": "939 FULLER AVE",
     "Purchaser_Name": "Marla Thompson",
@@ -2444,12 +2444,12 @@ module.exports=[
   },
   {
     "Naming_Year": 2019,
-    "Panel_Number": "",
-    "Row_Number": "",
-    "Col_Number": "",
-    "Inscription_Line_1": "LOVE GENEVIEVE",
-    "Inscription_Line_2": "THE RANCH' FAM",
-    "Inscription_Line_3": "",
+    "Panel_Number": 9,
+    "Row_Number": 13,
+    "Col_Number": 9,
+    "Inscription_Line_1": "JAMES TOLIVER",
+    "Inscription_Line_2": "LOVE",
+    "Inscription_Line_3": "THE RANCH FAM",
     "Purchaser_Name": "Moona Toliver",
     "Paver_Assigned_Section": ""
   },
@@ -3073,7 +3073,7 @@ module.exports=[
     "Naming_Year": 2022,
     "Panel_Number": 6,
     "Row_Number": 10,
-    "Col_Number": 3,
+    "Col_Number": 2,
     "Inscription_Line_1": "IN MEMORY OF",
     "Inscription_Line_2": "OUR LOVED ONE",
     "Inscription_Line_3": "DR. JOYCE LAKE",
@@ -3280,12 +3280,12 @@ module.exports=[
   },
   {
     "Naming_Year": "2016-2017",
-    "Panel_Number": "",
-    "Row_Number": "",
-    "Col_Number": "",
-    "Inscription_Line_1": "IN MEMORY OF ANDER BARTON-SISTER",
+    "Panel_Number": 3,
+    "Row_Number": 11,
+    "Col_Number": 6,
+    "Inscription_Line_1": "ANDER BARTON-SISTER",
     "Inscription_Line_2": "GUATEMALA CITY, CA",
-    "Inscription_Line_3": "",
+    "Inscription_Line_3": "5/39-12/13",
     "Purchaser_Name": "Pauline Barton Hadden",
     "Paver_Assigned_Section": ""
   },
@@ -4028,12 +4028,12 @@ module.exports=[
   },
   {
     "Naming_Year": "2016-2017",
-    "Panel_Number": "",
-    "Row_Number": "",
-    "Col_Number": "",
-    "Inscription_Line_1": "SERISA CRYER, CORY",
-    "Inscription_Line_2": "KEMP, MARCUA TYNER",
-    "Inscription_Line_3": "MONQUIA CRYER",
+    "Panel_Number": 9,
+    "Row_Number": 12,
+    "Col_Number": 3,
+    "Inscription_Line_1": "MARCIA TYNER",
+    "Inscription_Line_2": "MONIQUIA",
+    "Inscription_Line_3": "CRYER",
     "Purchaser_Name": "Dr.  Artika Tyner",
     "Paver_Assigned_Section": ""
   },
@@ -4754,7 +4754,617 @@ module.exports=[
     "Inscription_Line_3": "WE ARE RONDO 2",
     "Purchaser_Name": "Unknown",
     "Paver_Assigned_Section": ""
+  },
+  {
+    "Naming_Year": "Unknown",
+    "Panel_Number": 12,
+    "Row_Number": 11,
+    "Col_Number": 8,
+    "Inscription_Line_1": "REMEMBER RONDO",
+    "Inscription_Line_2": "HALLIE Q BROWN",
+    "Inscription_Line_3": "HOUSE EST 1928",
+    "Purchaser_Name": "Unknown",
+    "Paver_Assigned_Section": ""
+  },
+  {
+    "Naming_Year": "Unknown",
+    "Panel_Number": 12,
+    "Row_Number": 13,
+    "Col_Number": 7,
+    "Inscription_Line_1": "REPUBLIC",
+    "Inscription_Line_2": "SERVICES",
+    "Inscription_Line_3": "6-19-21",
+    "Purchaser_Name": "Unknown",
+    "Paver_Assigned_Section": ""
+  },
+  {
+    "Naming_Year": "Unknown",
+    "Panel_Number": 12,
+    "Row_Number": 13,
+    "Col_Number": 1,
+    "Inscription_Line_1": "IN HONOR OF",
+    "Inscription_Line_2": "PHYLLIS RAWLS",
+    "Inscription_Line_3": "GOFF",
+    "Purchaser_Name": "Unknown",
+    "Paver_Assigned_Section": ""
+  },
+  {
+    "Naming_Year": "Unknown",
+    "Panel_Number": 12,
+    "Row_Number": 13,
+    "Col_Number": 0,
+    "Inscription_Line_1": "PRESIDENT",
+    "Inscription_Line_2": "MN HISTL SOC",
+    "Inscription_Line_3": "",
+    "Purchaser_Name": "Unknown",
+    "Paver_Assigned_Section": ""
+  },
+  {
+    "Naming_Year": "Unknown",
+    "Panel_Number": 11,
+    "Row_Number": 14,
+    "Col_Number": 8,
+    "Inscription_Line_1": "IN BLACK INK",
+    "Inscription_Line_2": "838 SELBY AVE",
+    "Inscription_Line_3": "SAINT PAUL, MN",
+    "Purchaser_Name": "Unknown",
+    "Paver_Assigned_Section": ""
+  },
+  {
+    "Naming_Year": "Unknown",
+    "Panel_Number": 11,
+    "Row_Number": 12,
+    "Col_Number": 6,
+    "Inscription_Line_1": "HALLIE Q. BROWN",
+    "Inscription_Line_2": "ELOCUTIONIST",
+    "Inscription_Line_3": "SUFFRAGETTE",
+    "Purchaser_Name": "Unknown",
+    "Paver_Assigned_Section": ""
+  },
+  {
+    "Naming_Year": "Unknown",
+    "Panel_Number": 11,
+    "Row_Number": 13,
+    "Col_Number": 4,
+    "Inscription_Line_1": "BETHEL",
+    "Inscription_Line_2": "UNIVERSITY",
+    "Inscription_Line_3": "",
+    "Purchaser_Name": "Unknown",
+    "Paver_Assigned_Section": ""
+  },
+  {
+    "Naming_Year": "Unknown",
+    "Panel_Number": 11,
+    "Row_Number": 13,
+    "Col_Number": 3,
+    "Inscription_Line_1": "BETHEL/FSU",
+    "Inscription_Line_2": "COMMUNITY",
+    "Inscription_Line_3": "PARTNERSHIP",
+    "Purchaser_Name": "Unknown",
+    "Paver_Assigned_Section": ""
+  },
+  {
+    "Naming_Year": "Unknown",
+    "Panel_Number": 11,
+    "Row_Number": 13,
+    "Col_Number": 1,
+    "Inscription_Line_1": "BATTLE ELEC. CO",
+    "Inscription_Line_2": "BURNIE, BESSIE",
+    "Inscription_Line_3": "& CHILDREN",
+    "Purchaser_Name": "Unknown",
+    "Paver_Assigned_Section": ""
+  },
+  {
+    "Naming_Year": "Unknown",
+    "Panel_Number": 11,
+    "Row_Number": 11,
+    "Col_Number": 2,
+    "Inscription_Line_1": "BOOKER’S CONST",
+    "Inscription_Line_2": "DESCENDANTS OF",
+    "Inscription_Line_3": "706 RONDO AVE",
+    "Purchaser_Name": "Unknown",
+    "Paver_Assigned_Section": ""
+  },
+  {
+    "Naming_Year": "Unknown",
+    "Panel_Number": 10,
+    "Row_Number": 12,
+    "Col_Number": 9,
+    "Inscription_Line_1": "HAMLINE UNIV.",
+    "Inscription_Line_2": "MN 1ST UNIV.",
+    "Inscription_Line_3": "FOUNDED 1854",
+    "Purchaser_Name": "Unknown",
+    "Paver_Assigned_Section": ""
+  },
+  {
+    "Naming_Year": "Unknown",
+    "Panel_Number": 9,
+    "Row_Number": 11,
+    "Col_Number": 1,
+    "Inscription_Line_1": "THE",
+    "Inscription_Line_2": "TILTON",
+    "Inscription_Line_3": "FAMILY",
+    "Purchaser_Name": "Unknown",
+    "Paver_Assigned_Section": ""
+  },
+  {
+    "Naming_Year": "Unknown",
+    "Panel_Number": 9,
+    "Row_Number": 10,
+    "Col_Number": 1,
+    "Inscription_Line_1": "IN HONOR OF",
+    "Inscription_Line_2": "AYLA MONET",
+    "Inscription_Line_3": "TILTON DUGGER",
+    "Purchaser_Name": "Unknown",
+    "Paver_Assigned_Section": ""
+  },
+  {
+    "Naming_Year": "Unknown",
+    "Panel_Number": 9,
+    "Row_Number": 10,
+    "Col_Number": 0,
+    "Inscription_Line_1": "IN HONOR OF",
+    "Inscription_Line_2": "SOLEIL AURELIA",
+    "Inscription_Line_3": "TILTON DUGGER",
+    "Purchaser_Name": "Unknown",
+    "Paver_Assigned_Section": ""
+  },
+  {
+    "Naming_Year": "Unknown",
+    "Panel_Number": 8,
+    "Row_Number": 13,
+    "Col_Number": 5,
+    "Inscription_Line_1": "REVEREND",
+    "Inscription_Line_2": "GLORIA ROACH",
+    "Inscription_Line_3": "THOMAS",
+    "Purchaser_Name": "Unknown",
+    "Paver_Assigned_Section": ""
+  },
+  {
+    "Naming_Year": "Unknown",
+    "Panel_Number": 8,
+    "Row_Number": 12,
+    "Col_Number": 5,
+    "Inscription_Line_1": "SPEED RAWLINGS",
+    "Inscription_Line_2": "GOD BLESS",
+    "Inscription_Line_3": "YOU AND YOURS",
+    "Purchaser_Name": "Unknown",
+    "Paver_Assigned_Section": ""
+  },
+  {
+    "Naming_Year": "Unknown",
+    "Panel_Number": 8,
+    "Row_Number": 11,
+    "Col_Number": 5,
+    "Inscription_Line_1": "ROBINSON",
+    "Inscription_Line_2": "KATHY JIMMY MARK",
+    "Inscription_Line_3": "925 FULLER",
+    "Purchaser_Name": "Unknown",
+    "Paver_Assigned_Section": ""
+  },
+  {
+    "Naming_Year": "Unknown",
+    "Panel_Number": 8,
+    "Row_Number": 11,
+    "Col_Number": 4,
+    "Inscription_Line_1": "MANNEY",
+    "Inscription_Line_2": "ROBINSON",
+    "Inscription_Line_3": "JIM JIMMY JAR3",
+    "Purchaser_Name": "Unknown",
+    "Paver_Assigned_Section": ""
+  },
+  {
+    "Naming_Year": "Unknown",
+    "Panel_Number": 8,
+    "Row_Number": 12,
+    "Col_Number": 3,
+    "Inscription_Line_1": "JOE & ESPINOLA",
+    "Inscription_Line_2": "PRICE & FAMILY",
+    "Inscription_Line_3": "841 RONDO AVE",
+    "Purchaser_Name": "Unknown",
+    "Paver_Assigned_Section": ""
+  },
+  {
+    "Naming_Year": "Unknown",
+    "Panel_Number": 8,
+    "Row_Number": 12,
+    "Col_Number": 2,
+    "Inscription_Line_1": "HARRIET & TURNER",
+    "Inscription_Line_2": "PRICE & FAMILY",
+    "Inscription_Line_3": "706 RONDO AVE",
+    "Purchaser_Name": "Unknown",
+    "Paver_Assigned_Section": ""
+  },
+  {
+    "Naming_Year": "Unknown",
+    "Panel_Number": 7,
+    "Row_Number": 12,
+    "Col_Number": 8,
+    "Inscription_Line_1": "I WILL COMFORT",
+    "Inscription_Line_2": "& HOLD YOU NEAR",
+    "Inscription_Line_3": "SCOTT L PRICE",
+    "Purchaser_Name": "Unknown",
+    "Paver_Assigned_Section": ""
+  },
+  {
+    "Naming_Year": "Unknown",
+    "Panel_Number": 7,
+    "Row_Number": 11,
+    "Col_Number": 9,
+    "Inscription_Line_1": "PALMER FAMILY",
+    "Inscription_Line_2": "EMILY JONATHAN",
+    "Inscription_Line_3": "SAHRO SIOBHAN",
+    "Purchaser_Name": "Unknown",
+    "Paver_Assigned_Section": ""
+  },
+  {
+    "Naming_Year": "Unknown",
+    "Panel_Number": 7,
+    "Row_Number": 11,
+    "Col_Number": 8,
+    "Inscription_Line_1": "PRESLEY, LOVE",
+    "Inscription_Line_2": "DAN J., LUCILE",
+    "Inscription_Line_3": "JERRY, MILDRED",
+    "Purchaser_Name": "Unknown",
+    "Paver_Assigned_Section": ""
+  },
+  {
+    "Naming_Year": "Unknown",
+    "Panel_Number": 7,
+    "Row_Number": 11,
+    "Col_Number": 7,
+    "Inscription_Line_1": "PRESLEY, LOVE",
+    "Inscription_Line_2": "DAN, LEON, KEN",
+    "Inscription_Line_3": "RED, GLORIA",
+    "Purchaser_Name": "Unknown",
+    "Paver_Assigned_Section": ""
+  },
+  {
+    "Naming_Year": "Unknown",
+    "Panel_Number": 7,
+    "Row_Number": 10,
+    "Col_Number": 7,
+    "Inscription_Line_1": "NEAL TABOR",
+    "Inscription_Line_2": "PRESLEY FAMILY",
+    "Inscription_Line_3": "RONDO FOREVER",
+    "Purchaser_Name": "Unknown",
+    "Paver_Assigned_Section": ""
+  },
+  {
+    "Naming_Year": "Unknown",
+    "Panel_Number": 7,
+    "Row_Number": 14,
+    "Col_Number": 6,
+    "Inscription_Line_1": "PARENTS OF",
+    "Inscription_Line_2": "KENNETH CHERYL",
+    "Inscription_Line_3": "KATHLEEN PUGH",
+    "Purchaser_Name": "Unknown",
+    "Paver_Assigned_Section": ""
+  },
+  {
+    "Naming_Year": "Unknown",
+    "Panel_Number": 7,
+    "Row_Number": 13,
+    "Col_Number": 6,
+    "Inscription_Line_1": "IN MEMORY OF",
+    "Inscription_Line_2": "JEAN MARIE",
+    "Inscription_Line_3": "",
+    "Purchaser_Name": "Unknown",
+    "Paver_Assigned_Section": ""
+  },
+  {
+    "Naming_Year": "Unknown",
+    "Panel_Number": 7,
+    "Row_Number": 11,
+    "Col_Number": 4,
+    "Inscription_Line_1": "WM H. PAYNE, SR",
+    "Inscription_Line_2": "DOROTHY PAYNE",
+    "Inscription_Line_3": "563 CARROLL AVE",
+    "Purchaser_Name": "Unknown",
+    "Paver_Assigned_Section": ""
+  },
+  {
+    "Naming_Year": "Unknown",
+    "Panel_Number": 7,
+    "Row_Number": 11,
+    "Col_Number": 3,
+    "Inscription_Line_1": "PAYNE-DOROTHY",
+    "Inscription_Line_2": "GAYLE BILLY",
+    "Inscription_Line_3": "GILBERT BONNIE",
+    "Purchaser_Name": "Unknown",
+    "Paver_Assigned_Section": ""
+  },
+  {
+    "Naming_Year": "Unknown",
+    "Panel_Number": 7,
+    "Row_Number": 11,
+    "Col_Number": 2,
+    "Inscription_Line_1": "PAYNE FAMILY",
+    "Inscription_Line_2": "563 CARROLL AVE",
+    "Inscription_Line_3": "567 CARROLL AVE",
+    "Purchaser_Name": "Unknown",
+    "Paver_Assigned_Section": ""
+  },
+  {
+    "Naming_Year": "Unknown",
+    "Panel_Number": 7,
+    "Row_Number": 12,
+    "Col_Number": 1,
+    "Inscription_Line_1": "BISHOP & LOTTIE",
+    "Inscription_Line_2": "NEAL 626 RONDO",
+    "Inscription_Line_3": "AVENUE",
+    "Purchaser_Name": "Unknown",
+    "Paver_Assigned_Section": ""
+  },
+  {
+    "Naming_Year": "Unknown",
+    "Panel_Number": 7,
+    "Row_Number": 9,
+    "Col_Number": 2,
+    "Inscription_Line_1": "EUGENE & FRANCES",
+    "Inscription_Line_2": "MIKE & TESS",
+    "Inscription_Line_3": "MOORE",
+    "Purchaser_Name": "Unknown",
+    "Paver_Assigned_Section": ""
+  },
+  {
+    "Naming_Year": "Unknown",
+    "Panel_Number": 7,
+    "Row_Number": 9,
+    "Col_Number": 1,
+    "Inscription_Line_1": "EUGENE & FRANCES",
+    "Inscription_Line_2": "(BELL) MOORE",
+    "Inscription_Line_3": "FAMILY",
+    "Purchaser_Name": "Unknown",
+    "Paver_Assigned_Section": ""
+  },
+  {
+    "Naming_Year": "Unknown",
+    "Panel_Number": 7,
+    "Row_Number": 9,
+    "Col_Number": 0,
+    "Inscription_Line_1": "FAYNEESE MILLER",
+    "Inscription_Line_2": "PRESIDENT",
+    "Inscription_Line_3": "HAMLINE UNIV.",
+    "Purchaser_Name": "Unknown",
+    "Paver_Assigned_Section": ""
+  },
+  {
+    "Naming_Year": "Unknown",
+    "Panel_Number": 6,
+    "Row_Number": 11,
+    "Col_Number": 9,
+    "Inscription_Line_1": "REP RENA MORAN",
+    "Inscription_Line_2": "BRIDGE BUILDER",
+    "Inscription_Line_3": "OLD-NEW RONDO",
+    "Purchaser_Name": "Unknown",
+    "Paver_Assigned_Section": ""
+  },
+  {
+    "Naming_Year": "Unknown",
+    "Panel_Number": 6,
+    "Row_Number": 12,
+    "Col_Number": 7,
+    "Inscription_Line_1": "GLORIA/JOE/PAT",
+    "Inscription_Line_2": "BUCKY/ROBERT",
+    "Inscription_Line_3": "CAROLYN/KENNY",
+    "Purchaser_Name": "Unknown",
+    "Paver_Assigned_Section": ""
+  },
+  {
+    "Naming_Year": "Unknown",
+    "Panel_Number": 6,
+    "Row_Number": 12,
+    "Col_Number": 6,
+    "Inscription_Line_1": "LEO & IRENE LEWIS",
+    "Inscription_Line_2": "EVELYN / LEO JR.",
+    "Inscription_Line_3": "ELMER / GLADYS",
+    "Purchaser_Name": "Unknown",
+    "Paver_Assigned_Section": ""
+  },
+  {
+    "Naming_Year": "Unknown",
+    "Panel_Number": 6,
+    "Row_Number": 10,
+    "Col_Number": 6,
+    "Inscription_Line_1": "IN MEMORY OF",
+    "Inscription_Line_2": "CAL ROSE LEWIS",
+    "Inscription_Line_3": "BELOVED FRIEND",
+    "Purchaser_Name": "Unknown",
+    "Paver_Assigned_Section": ""
+  },
+  {
+    "Naming_Year": "Unknown",
+    "Panel_Number": 6,
+    "Row_Number": 12,
+    "Col_Number": 0,
+    "Inscription_Line_1": "CAREY & LOUELLA",
+    "Inscription_Line_2": "HENDERSON FAM.",
+    "Inscription_Line_3": "325 ST ALBANS",
+    "Purchaser_Name": "Unknown",
+    "Paver_Assigned_Section": ""
+  },
+  {
+    "Naming_Year": "Unknown",
+    "Panel_Number": 6,
+    "Row_Number": 10,
+    "Col_Number": 1,
+    "Inscription_Line_1": "HENRY & JOYCE",
+    "Inscription_Line_2": "HENRY & SARAH",
+    "Inscription_Line_3": "LAKE FAMILY",
+    "Purchaser_Name": "Unknown",
+    "Paver_Assigned_Section": ""
+  },
+  {
+    "Naming_Year": "Unknown",
+    "Panel_Number": 5,
+    "Row_Number": 12,
+    "Col_Number": 3,
+    "Inscription_Line_1": "MEL HENDERSON",
+    "Inscription_Line_2": "JUDY HENDERSON",
+    "Inscription_Line_3": "MOVING FORWARD",
+    "Purchaser_Name": "Unknown",
+    "Paver_Assigned_Section": ""
+  },
+  {
+    "Naming_Year": "Unknown",
+    "Panel_Number": 5,
+    "Row_Number": 12,
+    "Col_Number": 1,
+    "Inscription_Line_1": "WILLIAM",
+    "Inscription_Line_2": "\"CORKEY\" FINNEY",
+    "Inscription_Line_3": "FATHER",
+    "Purchaser_Name": "Unknown",
+    "Paver_Assigned_Section": ""
+  },
+  {
+    "Naming_Year": "Unknown",
+    "Panel_Number": 5,
+    "Row_Number": 12,
+    "Col_Number": 0,
+    "Inscription_Line_1": "LINDA SAUNDERS",
+    "Inscription_Line_2": "FINNEY",
+    "Inscription_Line_3": "WIFE",
+    "Purchaser_Name": "Unknown",
+    "Paver_Assigned_Section": ""
+  },
+  {
+    "Naming_Year": "Unknown",
+    "Panel_Number": 4,
+    "Row_Number": 12,
+    "Col_Number": 9,
+    "Inscription_Line_1": "CURTIS BEECHMAN",
+    "Inscription_Line_2": "FINNEY",
+    "Inscription_Line_3": "SON",
+    "Purchaser_Name": "Unknown",
+    "Paver_Assigned_Section": ""
+  },
+  {
+    "Naming_Year": "Unknown",
+    "Panel_Number": 5,
+    "Row_Number": 11,
+    "Col_Number": 2,
+    "Inscription_Line_1": "SYIA AMERE",
+    "Inscription_Line_2": "FINNEY",
+    "Inscription_Line_3": "GRANDDAUGHTER",
+    "Purchaser_Name": "Unknown",
+    "Paver_Assigned_Section": ""
+  },
+  {
+    "Naming_Year": "Unknown",
+    "Panel_Number": 5,
+    "Row_Number": 11,
+    "Col_Number": 1,
+    "Inscription_Line_1": "MACEO N.",
+    "Inscription_Line_2": "FINNEY",
+    "Inscription_Line_3": "GRANDSON",
+    "Purchaser_Name": "Unknown",
+    "Paver_Assigned_Section": ""
+  },
+  {
+    "Naming_Year": "Unknown",
+    "Panel_Number": 5,
+    "Row_Number": 11,
+    "Col_Number": 0,
+    "Inscription_Line_1": "CAMERON",
+    "Inscription_Line_2": "FINNEY",
+    "Inscription_Line_3": "GRANDSON",
+    "Purchaser_Name": "Unknown",
+    "Paver_Assigned_Section": ""
+  },
+  {
+    "Naming_Year": "Unknown",
+    "Panel_Number": 4,
+    "Row_Number": 11,
+    "Col_Number": 9,
+    "Inscription_Line_1": "DOMINIQUE R.",
+    "Inscription_Line_2": "FINNEY",
+    "Inscription_Line_3": "GRANDDAUGHTER",
+    "Purchaser_Name": "Unknown",
+    "Paver_Assigned_Section": ""
+  },
+  {
+    "Naming_Year": "Unknown",
+    "Panel_Number": 4,
+    "Row_Number": 12,
+    "Col_Number": 7,
+    "Inscription_Line_1": "READUS&FLORENCE",
+    "Inscription_Line_2": "FLETCHER",
+    "Inscription_Line_3": "926 ST. ANTHONY",
+    "Purchaser_Name": "Unknown",
+    "Paver_Assigned_Section": ""
+  },
+  {
+    "Naming_Year": "Unknown",
+    "Panel_Number": 4,
+    "Row_Number": 12,
+    "Col_Number": 6,
+    "Inscription_Line_1": "FLORENCE LAW",
+    "Inscription_Line_2": "FLETCHER FAMILY",
+    "Inscription_Line_3": "974 CENTRAL AVE",
+    "Purchaser_Name": "Unknown",
+    "Paver_Assigned_Section": ""
+  },
+  {
+    "Naming_Year": "Unknown",
+    "Panel_Number": 4,
+    "Row_Number": 11,
+    "Col_Number": 5,
+    "Inscription_Line_1": "DUKE STERLING",
+    "Inscription_Line_2": "1904-77 1908-73",
+    "Inscription_Line_3": "VIRGINIA A.",
+    "Purchaser_Name": "Unknown",
+    "Paver_Assigned_Section": ""
+  },
+  {
+    "Naming_Year": "Unknown",
+    "Panel_Number": 4,
+    "Row_Number": 11,
+    "Col_Number": 1,
+    "Inscription_Line_1": "EMMETT & VERLENE",
+    "Inscription_Line_2": "(PRICE) BOOKER",
+    "Inscription_Line_3": "FAMILY",
+    "Purchaser_Name": "Unknown",
+    "Paver_Assigned_Section": ""
+  },
+  {
+    "Naming_Year": "Unknown",
+    "Panel_Number": 4,
+    "Row_Number": 14,
+    "Col_Number": 1,
+    "Inscription_Line_1": "REV GEO DAVIS,",
+    "Inscription_Line_2": "BERTHA M DAVIS",
+    "Inscription_Line_3": "304 RONDO AVE",
+    "Purchaser_Name": "Unknown",
+    "Paver_Assigned_Section": ""
+  },
+  {
+    "Naming_Year": "Unknown",
+    "Panel_Number": 3,
+    "Row_Number": 10,
+    "Col_Number": 7,
+    "Inscription_Line_1": "BARTLETT BAKER",
+    "Inscription_Line_2": "1926-2005",
+    "Inscription_Line_3": "HERE IN SPIRIT",
+    "Purchaser_Name": "Unknown",
+    "Paver_Assigned_Section": ""
+  },
+  {
+    "Naming_Year": "Unknown",
+    "Panel_Number": 3,
+    "Row_Number": 14,
+    "Col_Number": 2,
+    "Inscription_Line_1": "BEST FRIENDS",
+    "Inscription_Line_2": "PENNY SCHUCK",
+    "Inscription_Line_3": "KAREN BREWIN",
+    "Purchaser_Name": "Unknown",
+    "Paver_Assigned_Section": ""
   }
+
+
+
+
+
 ]
 },{}],2:[function(require,module,exports){
 /**
@@ -48451,7 +49061,7 @@ function Panel() {
     glass.style.backgroundRepeat = "no-repeat";
     glass.style.backgroundSize = img.width * zoom + "px " + img.height * zoom + "px";
     bw = 3;
-    w = glass.offsetWidth * 1 / 5;
+    w = glass.offsetWidth / 2;
     h = glass.offsetHeight / 2;
 
     /* Execute a function when someone moves the magnifier glass over the image: */
