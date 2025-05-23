@@ -7,10 +7,10 @@ This is the main file. It holds the state changes, and brings together the compo
 import React, { useState } from 'react';
 
 import Header from './header.js';
-import Search from './search.js';
-import SelectedBrick from './selectedBrick.js';
-import ScrollContent from './scrollContent.js';
-import AccessibleContent from './accessibleContent.js';
+import Search from './bricks/search.js';
+import SelectedBrick from './bricks/scrolling/selectedBrick.js';
+import ScrollContent from './bricks/scrolling/scrollContent.js';
+import AccessibleContent from './bricks/static/static.js';
 import Footer from './footer.js';
 
 

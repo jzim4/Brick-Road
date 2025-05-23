@@ -1,23 +1,23 @@
 import React from 'react';
-import Header from './header.js';
-import Footer from './footer.js';
+import Header from '../header.js';
+import Footer from '../footer.js';
 
 export default function About() {
     return <>
         <Header />
         <div id="aboutPageContainer">
-        <TheSite />
-        <AboutRondo/>
-        <TheTeam/>
+            <TheSite />
+            <AboutRondo />
+            <TheTeam />
         </div>
-        <Footer/>
+        <Footer />
     </>
 }
 
 function TheSite() {
     return <div className="aboutComponent">
         <h3 className="aboutHeader">How to navigate the site</h3>
-        <p>On the home page, there are two views: scrollable path and brick list. The full path is only available on larger devices. 
+        <p>On the home page, there are two views: scrollable path and brick list. The full path is only available on larger devices.
             To navigate the path, you can hover over the bricks to see their messages, and click to learn more information about the purchaser.
             For the brick list, you are able to simply see all of the bricks expanded at once. This view is accessible on both smaller and larger devices.
             In either view, you can click the "filter" dropdown in order to show only bricks within a donor group or purchased by a specific purchaser.
@@ -29,10 +29,13 @@ function TheSite() {
 function TheTeam() {
     return <div className="aboutComponent">
         <h3 className="aboutHeader">A note from the site developer</h3>
-        <p>This site was designed and built by sophomore Macalester College student, Jonah Zimmer. If you would like to see 
-            more of my work, please check out <a href="https://jzim4.github.io" target="_blank">my portfolio</a>! <br></br>
+        <p>This site was designed and built by sophomore Macalester College student, Jonah Zimmer. If you would like to see
+            more of my work, please check out <a href="https://jzim4.github.io" target="_blank">my portfolio</a>!
+        </p>
+        <p>
             A special thanks to Professor Getiria Onsongo and Katie Frye for their support and guidance.
-            Thank you to the generous donors who have purchased bricks and to the folks who work to keep the plaza a beautiful, welcoming space.</p>
+            Thank you to the generous donors who have purchased bricks and to the folks who work to keep the plaza a beautiful, welcoming space.
+        </p>
     </div>
 }
 
@@ -60,7 +63,7 @@ function AboutRondo() {
             live in the Twin Cities.
         </p>
         <div className="aboutImgContainer floatLeft">
-            <img className="aboutImg" src="./about/img1.jpg" width="1500" height="844"></img>
+            <img className="aboutImg" src="./pages/about/aboutImages/img1.jpg" width="1500" height="844" alt="flowers on ledge at the 2024 Brick Ceremony"></img>
             <p className="imgDescr">2024 Brick Ceremony, Image Credit: Katie Frye</p>
         </div>
         <p className="aboutParagraph">
@@ -73,7 +76,7 @@ function AboutRondo() {
             Rondo neighborhood.
         </p>
         <div className="aboutImgContainer floatRight">
-            <img className="aboutImg" src="./about/img3.jpg" width="1500" height="844"></img>
+            <img className="aboutImg" src="./pages/about/aboutImages/img3.jpg" width="1500" height="844" alt="audience listening to speaker at 2024 Brick Ceremony"></img>
             <p className="imgDescr">2024 Brick Ceremony, Image Credit: Katie Frye</p>
         </div>
         <p className="aboutParagraph">
@@ -88,7 +91,7 @@ function AboutRondo() {
             African American residents lived in Rondo.
         </p>
         <div className="aboutImgContainer floatLeft">
-            <img className="aboutImg" src="./about/img2.jpg" width="1500" height="844"></img>
+            <img className="aboutImg" src="./pages/about/aboutImages/img2.jpg" width="1500" height="844" alt="two people sitting on the brick path"></img>
             <p className="imgDescr">2024 Brick Ceremony, Image Credit: Katie Frye</p>
         </div>
         <p className="aboutParagraph">
@@ -119,8 +122,8 @@ function AboutRondo() {
 
         <h3 className="aboutHeader">About the Rondo Commemorative Plaza (2018-Present)</h3>
         <div className="aboutImgContainer floatRight">
-            <img className="aboutImg" src="./about/img4.jpg" width="2500" height="1667"></img>
-            <p className="imgDescr">2024 Brick Ceremony, Image Credit: Katie Frye</p>
+            <img className="aboutImg" src="./pages/about/aboutImages/img4.jpg" width="2500" height="1667" alt="Rondo Commemorative Plaza bricks and panels"></img>
+            <p className="imgDescr">Rondo Commemorative Plaza<br></br>Image Credit: Morgan Sheff</p>
         </div>
         <p className="aboutParagraph">
             In 2013, the two-story building at 820 Concordia Street went up in flames. Over the years, the
@@ -130,8 +133,8 @@ function AboutRondo() {
             soon, he had a vision for the empty lot.
         </p>
         <div className="aboutImgContainer floatLeft">
-            <img className="aboutImg" src="./about/img5.jpg" width="2500" height="1667"></img>
-            <p className="imgDescr">2024 Brick Ceremony, Image Credit: Katie Frye</p>
+            <img className="aboutImg" src="./pages/about/aboutImages/img5.jpg" width="2500" height="1667" alt="Rondo Commemorative Plaza bricks and panels illuminated at night"></img>
+            <p className="imgDescr">Rondo Commemorative Plaza<br></br>Image Credit: Morgan Sheff</p>
         </div>
         <p className="aboutParagraph">
             In 2016, Anderson and Floyd Smaller (both co-founders of the Rondo Days celebration), worked

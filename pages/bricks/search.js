@@ -4,7 +4,7 @@ Author: Jonah Zimmer
 This single component holds the search bar and includes all functionality for buttons within search bar
 */
 
-import data from '../db.json';
+import data from '../../db.json';
 import React from 'react';
 
 export default function Search({ highlight, setHighlight, display, setDisplay }) {
@@ -138,6 +138,8 @@ export default function Search({ highlight, setHighlight, display, setDisplay })
                     <SearchBox />
                 </div>
             </div>
+            <p className="datasetNote">The dataset used to build this site is incomplete. If you find any missing information or errors, do not hesitate to reach out to Katie Frye: katie@rcodemn.org</p>
+
         </>
     }
     else {
@@ -146,9 +148,12 @@ export default function Search({ highlight, setHighlight, display, setDisplay })
                 <button id="displayToggle" className="headerButton" onClick={toggleDisplay}>{display == "scroll" ? "Show brick list" : "Show scrolling path"}</button>
             </div>
             <SearchBox />
+            <p className="datasetNote">The dataset used to build this site is incomplete. If you find any missing information or errors, do not hesitate to reach out to Katie Frye: katie@rcodemn.org</p>
+
             <div id="staticSearchLabel">
                 <Label section={highlight} />
             </div>
+
         </>
     }
 }

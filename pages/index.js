@@ -1,5 +1,5 @@
-import BrickRoadSite from './brickRoadSite.js';
-import About from './about.js';
+import BrickRoadSite from './app.js';
+import About from './about/about.js';
 
 import { HashRouter, Routes, Route } from 'react-router-dom';
 import React from 'react';

@@ -1,5 +1,12 @@
+/* 
+Author: Jonah Zimmer
+
+This component is all of the content in the scrollable path. It takes into account which bricks should be which color.
+
+*/
+
 import React from 'react';
-import data from '../db.json';
+import data from '../../../db.json';
 
 export default function Path({ highlight, currentBrick }) {
   const numRows = 15;

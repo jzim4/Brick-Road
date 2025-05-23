@@ -1,11 +1,12 @@
 /* 
 Author: Jonah Zimmer
 
-This component shows the selected brick, and includes a click event listener to choose the selected brick
+This component is for when a user clicks on a brick on the path. It includes a click event listener to choose the selected brick
 */
+
 import React from 'react';
-import { defaultBrick } from './brickRoadSite.js';
-import data from '../db.json';
+import { defaultBrick } from '../../app.js';
+import data from '../../../db.json';
 
 function closeBrick(setCurrentBrick) {
     setCurrentBrick(defaultBrick);
