@@ -1,0 +1,44 @@
+/* Styles for the list display of the bricks */
+
+#accessibleBricksContainer {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+.accessibleBrickContainer {
+    max-width: 90vw;
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    width: 320px;
+    text-wrap: wrap;
+}
+.accessibleBrickContainer > p {
+    margin: 0 0 0 10px;
+}
+.accessibleBrick {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+    width: 300px;
+    max-width: 90vw;
+    height: 100px;
+    background-color: var(--brick-red);
+    background-image: var(--noise);
+    color: white;
+}
+.accessibleBrick > p {
+    margin: 0;
+    font-size: 1.3em;
+}
+#staticSearchLabel {
+    text-align: center;
+    padding: 10px;
+    font-size: 1.5em;
+}
+.brickDataText {
+    font-size: 18px;
+}

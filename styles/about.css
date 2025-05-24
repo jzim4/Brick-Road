@@ -1,0 +1,46 @@
+/* Styles for the about page */
+
+#aboutPageContainer {
+    margin: 30px;
+}
+.aboutParagraph {
+    text-align: justify;
+}
+.aboutImgContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 30vw;
+    min-width: 300px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+.floatLeft {
+    float: left;
+    padding-right: 20px;
+}
+.floatRight {
+    float: right;
+    padding-left: 20px;
+}
+.aboutImg {
+    width: 100%;
+    height: auto;
+}
+.imgDescr {
+    margin: 5px;
+    font-size: 14px;
+    font-style: italic;
+}
+
+@media (max-width: 550px) {
+    h1 {
+        font-size: 25px;
+    }
+    .aboutImgContainer {
+        min-width: calc(90vw - 15px);
+        max-width: calc(90vw - 15px);
+        padding: 10px 0;
+        align-items: center;
+    }
+}

@@ -1,0 +1,183 @@
+/* Styles for all content in the scrolling brick path view */
+
+#fullPathContainer {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+}
+.scrollButtonContainer {
+    display: flex;
+    align-items: center;
+    padding: 0 5px;
+}
+.scrollButton {
+    border-radius: 50%;
+    background-color: #eee;
+    margin: 5px;
+    width: 40px;
+    height: 40px;
+    font-size: 30px;
+    border: unset;
+}
+.scrollButton:hover {
+    background-color: #ccc;
+    cursor: pointer;
+}
+#leftScroll {
+    transform: rotate(-90deg) translateX(3px);
+}
+#rightScroll {
+    transform: rotate(90deg)  translateX(-3px);
+}
+
+#scrollContainer {
+    padding: 10px 20px;
+    border: var(--brick-red) solid 10px;
+    margin: 0 auto 40px auto;
+    height: 560px;
+    width: 90vw;
+    overflow-x: scroll;
+    scrollbar-width: thin;
+    overflow-y:hidden;
+    white-space: nowrap;
+}
+
+/* PANELS */
+#panelsContainer {
+    display: inline-block;
+    margin-bottom: 10px;
+    width: fit-content;
+}
+.panel {
+    margin-right: 36px;
+}
+.panel:hover {
+    cursor: zoom-in;
+}
+#zoomImgContainer {
+    display: none;
+    position: fixed;
+    top: 0;
+    width: 100vw;
+    height: 100vh;
+    left: 0;
+    background-color: #000000AA;
+    z-index: 30;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    overflow: scroll;
+}
+#zoomImgs {
+    display: flex;
+    flex-direction: row-reverse;
+    align-items: center;
+    gap: 30px;
+    width: 90vw;
+}
+#zoomImg {
+    width: auto;
+    object-fit: contain;    
+}
+#zoomImg:hover {
+    cursor: crosshair;
+}
+#img-magnifier-glass {
+    background-repeat: no-repeat;
+    border: 3px solid #000;
+    border-radius: 30px;
+    width: 500px;
+    height: 600px;
+    max-height: 90vh;
+    z-index: 31;
+  }
+  #closeZoom {
+    background-color: var(--brick-red);
+  }
+
+/* PATH */
+#path {
+    width: fit-content;
+
+}
+.brickRow {
+    height: 12px;
+}
+.leftShiftRow {
+    margin-left: -10px;
+}
+.rightShiftRow {
+    margin-left: 10px;
+}
+
+.brick {
+    background-image: var(--noise);
+    background-color: #d9d9d9;
+    margin-right: -2px;
+    display: inline-block;
+    border: 2px solid black;
+    width: 34.3px;
+    height: 10px;
+}
+
+.existingBrick {
+    background-color: var(--brick-red);
+    position: relative;
+    z-index: 3;
+}
+
+.clickedBrick {
+    background-color: red;
+    z-index: 5 !important;
+}
+
+
+/* Popup (hoverable) */
+
+.popupText {
+    display: none;
+    width: fit-content;
+    background-color: grey;
+    color: #fff;
+    text-align: left;
+    border-radius: 6px;
+    padding: 5px;
+    position: absolute;
+    z-index: 1;
+    bottom: 150%;
+    left: 50%;
+    transform: translateX(-50%);
+}
+.popupTextLeft {
+    left: 0%;
+    transform: translateX(0);
+}
+.popupTextRight {
+    left: 100%;
+    transform: translateX(-100%);
+}
+.popupText::after {
+    content: "";
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    margin-left: -5px;
+    border-width: 5px;
+    border-style: solid;
+    border-color: grey transparent transparent transparent;
+}
+.popupTextLeft::after {
+    left: 10%;
+}
+.popupTextRight::after {
+    left: 90%;
+}
+.existingBrick:hover .popupText {
+    display: block;
+  }
+.existingBrick:hover {
+    cursor: pointer;
+}
+.clickedBrick {
+    background-color: red;
+}

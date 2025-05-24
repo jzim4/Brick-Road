@@ -5,7 +5,7 @@ This is the static version of the site which does not have the scrolling bricks,
 making it accessible for screen readers and phone compatible.
 */
 import React from 'react';
-import data from '../../../db.json';
+import data from '../db.json';
 
 export default function AccessibleContent({ highlight }) {
     let bricks = []

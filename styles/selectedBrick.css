@@ -1,0 +1,38 @@
+/* Styles for the selected (clicked on) brick pop-up window */
+
+#selectedBrickPageCover {
+    width: 100vw;
+    height: 100vh;
+    position: fixed;
+    display: none;
+    top: 0;
+    left: 0;
+    background-color: #bbbbbbcc;
+    z-index: 4;
+}
+#selectedBrickContainer {
+    background-color: #ddd;
+    border: black solid 2px;
+    position: fixed;
+    z-index: 1;
+    top: 100px;
+    left: 50%;
+    transform: translateX(-50%);
+    padding: 20px 50px;
+    z-index: 6;
+}
+#selectedBrick {
+    margin-top: 10px;
+    width: 400px;
+    height: 200px;
+    background-color: var(--brick-red);
+    background-image: var(--noise);
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    color: white;
+}
+#selectedCloseButton {
+    background-color: var(--brick-red);
+}

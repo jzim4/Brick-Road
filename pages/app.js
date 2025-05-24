@@ -13,7 +13,6 @@ import ScrollContent from './bricks/scrolling/scrollContent.js';
 import AccessibleContent from './bricks/static/static.js';
 import Footer from './footer.js';
 
-
 export const defaultBrick = {
     Panel_Number: 20,
     Row_Number: 16,
