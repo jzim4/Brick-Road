@@ -10,7 +10,11 @@ Run `npm i` to install relevant packages. You can use `npm run build` or `npm ru
 
 This site is built with React. The root directory contains the base HTML file.
 
-## Components
+### Styles
+
+Due to some limitations with the bundler I chose, browserify, I was having difficulty importing css files into js files, so I imported them directly to the html file through the file 'styles.css'. You will see in that file that it only contains imports. Each of the css files is in the directory **/styles**, and organized by different components of the site.
+
+### Components
 
 The sub directory **/pages** contains all of the components. It is broken up into the two pages: about and bricks.
 
@@ -29,7 +33,3 @@ This subdirectory just contains the component for the list view.
 #### Scrolling
 
 This subdirectory contains all of the content in the scrolling view. The panels.js file handles the panels and zooming, the path.js is  the bricks in particular, and scrollingContent.js is the path and the panels together. The selectedBrick.js file is the pop-up window when a user clicks on one of the bricks. The subfolder "panels" contains all of the images of the panels in lower resolution used in the scrolling path in the "small" subfolder and the higher resolution images used for zooming in the "big" subfolder.
-
-## Styles
-
-The styles are all located in the folder **/styles**. 
