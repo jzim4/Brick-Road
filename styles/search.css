@@ -127,3 +127,8 @@
     display: flex;
     flex-direction: column;
 }
+
+.editFormLink {
+    margin: 10px auto;
+    display: block;
+}

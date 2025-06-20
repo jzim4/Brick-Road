@@ -43290,7 +43290,7 @@ function AboutRondo() {
   }, "In 2016, Anderson and Floyd Smaller (both co-founders of the Rondo Days celebration), worked with architects from 4RM+ULA and Ten x Ten to create plans for a memorial plaza. Opened in July 2018, the Rondo Commemorative Plaza (RCP) is the first public memorial to the Black neighborhoods destroyed by interstate highways. The plaza includes a 26-panel History Wall that tells the story of Rondo, a commemorative brick path, eighteen community chimes, and a 30-ft lighted tower that is visible to anyone driving on I-94. The adjacent building is home to the Rondo Center of Diverse Expressions (RCODE), which offers an indoor space for events, preserves a small research collection, and provides administrative responsibility for the plaza. Rondo residents, visitors, community members, and organizations are invited to purchase bricks along the commemorative brick path. Bricks can recognize an address, a family member or friend, a memory, a business, or anything else held near and dear. Brick purchasers are celebrated during our annual \u201CEvery Brick Counts\u201D Ceremony in September, where each participant is given time to share about their story. For more information on RCODE\u2019s commemorative brick program, please email Katie at katie@rcodemn.org."));
 }
 
-},{"../footer.js":29,"../header.js":30,"react":15}],21:[function(require,module,exports){
+},{"../footer.js":30,"../header.js":31,"react":15}],21:[function(require,module,exports){
 "use strict";
 
 function _typeof(o) {
@@ -43443,7 +43443,7 @@ function BrickRoadSite() {
   }), /*#__PURE__*/_react["default"].createElement(_footer["default"], null));
 }
 
-},{"./bricks/scrolling/scrollContent.js":24,"./bricks/scrolling/selectedBrick.js":25,"./bricks/search.js":26,"./bricks/static/static.js":27,"./footer.js":29,"./header.js":30,"react":15}],22:[function(require,module,exports){
+},{"./bricks/scrolling/scrollContent.js":24,"./bricks/scrolling/selectedBrick.js":25,"./bricks/search.js":26,"./bricks/static/static.js":27,"./footer.js":30,"./header.js":31,"react":15}],22:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -43813,7 +43813,7 @@ function Path(_ref) {
   }));
 }
 
-},{"../../../public/db.json":32,"react":15}],24:[function(require,module,exports){
+},{"../../../public/db.json":33,"react":15}],24:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -44025,7 +44025,7 @@ function SelectedBrick(_ref) {
   }, /*#__PURE__*/_react["default"].createElement("p", null, "Naming Year: ", brick.Naming_Year), /*#__PURE__*/_react["default"].createElement("p", null, "Purchaser Name: ", brick.Purchaser_Name), brick.Paver_Assigned_Section ? /*#__PURE__*/_react["default"].createElement("p", null, "Section: ", brick.Paver_Assigned_Section) : /*#__PURE__*/_react["default"].createElement("p", null), brick.link ? /*#__PURE__*/_react["default"].createElement("p", null, brick.link) : "")));
 }
 
-},{"../../../public/db.json":32,"../../app.js":21,"react":15}],26:[function(require,module,exports){
+},{"../../../public/db.json":33,"../../app.js":21,"react":15}],26:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -44034,6 +44034,7 @@ Object.defineProperty(exports, "__esModule", {
 exports["default"] = Search;
 var _db = _interopRequireDefault(require("../../public/db.json"));
 var _react = _interopRequireDefault(require("react"));
+var _reactRouterDom = require("react-router-dom");
 function _interopRequireDefault(e) {
   return e && e.__esModule ? e : {
     "default": e
@@ -44293,7 +44294,10 @@ function Search(_ref) {
       }
     }, /*#__PURE__*/_react["default"].createElement(SearchBox, null))), /*#__PURE__*/_react["default"].createElement("p", {
       className: "datasetNote"
-    }, "The dataset used to build this site is incomplete. If you find any missing information or errors, do not hesitate to reach out to Katie Frye: katie@rcodemn.org"));
+    }, "The dataset used to build this site is incomplete. If you find any missing information or errors, do not hesitate to let us know!"), /*#__PURE__*/_react["default"].createElement(_reactRouterDom.Link, {
+      to: "/edit",
+      className: "headerButton editFormLink"
+    }, "Contact"));
   } else {
     return /*#__PURE__*/_react["default"].createElement(_react["default"].Fragment, null, /*#__PURE__*/_react["default"].createElement("div", {
       id: "customizeButtons"
@@ -44303,7 +44307,10 @@ function Search(_ref) {
       onClick: toggleDisplay
     }, display == "scroll" ? "Show brick list" : "Show scrolling path")), /*#__PURE__*/_react["default"].createElement(SearchBox, null), /*#__PURE__*/_react["default"].createElement("p", {
       className: "datasetNote"
-    }, "The dataset used to build this site is incomplete. If you find any missing information or errors, do not hesitate to reach out to Katie Frye: katie@rcodemn.org"), /*#__PURE__*/_react["default"].createElement("div", {
+    }, "The dataset used to build this site is incomplete. If you find any missing information or errors, do not hesitate let us know!"), /*#__PURE__*/_react["default"].createElement(_reactRouterDom.Link, {
+      to: "/edit",
+      className: "headerButton editFormLink"
+    }, "Contact"), /*#__PURE__*/_react["default"].createElement("div", {
       id: "staticSearchLabel"
     }, /*#__PURE__*/_react["default"].createElement(Label, {
       section: highlight
@@ -44311,7 +44318,7 @@ function Search(_ref) {
   }
 }
 
-},{"../../public/db.json":32,"react":15}],27:[function(require,module,exports){
+},{"../../public/db.json":33,"react":15,"react-router-dom":7}],27:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -44438,7 +44445,7 @@ function Brick(_ref2) {
   }, "In front of panel ", brick.Panel_Number), brick.link ? /*#__PURE__*/_react["default"].createElement("p", null, brick.link) : "");
 }
 
-},{"../../../public/db.json":32,"react":15}],28:[function(require,module,exports){
+},{"../../../public/db.json":33,"react":15}],28:[function(require,module,exports){
 "use strict";
 
 function _typeof(o) {
@@ -44457,6 +44464,7 @@ exports["default"] = Contact;
 var _react = _interopRequireWildcard(require("react"));
 var _header = _interopRequireDefault(require("../header.js"));
 var _footer = _interopRequireDefault(require("../footer.js"));
+var _form = _interopRequireDefault(require("./form.js"));
 function _interopRequireDefault(e) {
   return e && e.__esModule ? e : {
     "default": e
@@ -44481,6 +44489,303 @@ function _interopRequireWildcard(e, t) {
     for (var _t in e) "default" !== _t && {}.hasOwnProperty.call(e, _t) && ((i = (o = Object.defineProperty) && Object.getOwnPropertyDescriptor(e, _t)) && (i.get || i.set) ? o(f, _t, i) : f[_t] = e[_t]);
     return f;
   })(e, t);
+}
+function _regeneratorRuntime() {
+  "use strict";
+
+  /*! regenerator-runtime -- Copyright (c) 2014-present, Facebook, Inc. -- license (MIT): https://github.com/babel/babel/blob/main/packages/babel-helpers/LICENSE */
+  _regeneratorRuntime = function _regeneratorRuntime() {
+    return r;
+  };
+  var t,
+    r = {},
+    e = Object.prototype,
+    n = e.hasOwnProperty,
+    o = "function" == typeof Symbol ? Symbol : {},
+    i = o.iterator || "@@iterator",
+    a = o.asyncIterator || "@@asyncIterator",
+    u = o.toStringTag || "@@toStringTag";
+  function c(t, r, e, n) {
+    return Object.defineProperty(t, r, {
+      value: e,
+      enumerable: !n,
+      configurable: !n,
+      writable: !n
+    });
+  }
+  try {
+    c({}, "");
+  } catch (t) {
+    c = function c(t, r, e) {
+      return t[r] = e;
+    };
+  }
+  function h(r, e, n, o) {
+    var i = e && e.prototype instanceof Generator ? e : Generator,
+      a = Object.create(i.prototype);
+    return c(a, "_invoke", function (r, e, n) {
+      var o = 1;
+      return function (i, a) {
+        if (3 === o) throw Error("Generator is already running");
+        if (4 === o) {
+          if ("throw" === i) throw a;
+          return {
+            value: t,
+            done: !0
+          };
+        }
+        for (n.method = i, n.arg = a;;) {
+          var u = n.delegate;
+          if (u) {
+            var c = d(u, n);
+            if (c) {
+              if (c === f) continue;
+              return c;
+            }
+          }
+          if ("next" === n.method) n.sent = n._sent = n.arg;else if ("throw" === n.method) {
+            if (1 === o) throw o = 4, n.arg;
+            n.dispatchException(n.arg);
+          } else "return" === n.method && n.abrupt("return", n.arg);
+          o = 3;
+          var h = s(r, e, n);
+          if ("normal" === h.type) {
+            if (o = n.done ? 4 : 2, h.arg === f) continue;
+            return {
+              value: h.arg,
+              done: n.done
+            };
+          }
+          "throw" === h.type && (o = 4, n.method = "throw", n.arg = h.arg);
+        }
+      };
+    }(r, n, new Context(o || [])), !0), a;
+  }
+  function s(t, r, e) {
+    try {
+      return {
+        type: "normal",
+        arg: t.call(r, e)
+      };
+    } catch (t) {
+      return {
+        type: "throw",
+        arg: t
+      };
+    }
+  }
+  r.wrap = h;
+  var f = {};
+  function Generator() {}
+  function GeneratorFunction() {}
+  function GeneratorFunctionPrototype() {}
+  var l = {};
+  c(l, i, function () {
+    return this;
+  });
+  var p = Object.getPrototypeOf,
+    y = p && p(p(x([])));
+  y && y !== e && n.call(y, i) && (l = y);
+  var v = GeneratorFunctionPrototype.prototype = Generator.prototype = Object.create(l);
+  function g(t) {
+    ["next", "throw", "return"].forEach(function (r) {
+      c(t, r, function (t) {
+        return this._invoke(r, t);
+      });
+    });
+  }
+  function AsyncIterator(t, r) {
+    function e(o, i, a, u) {
+      var c = s(t[o], t, i);
+      if ("throw" !== c.type) {
+        var h = c.arg,
+          f = h.value;
+        return f && "object" == _typeof(f) && n.call(f, "__await") ? r.resolve(f.__await).then(function (t) {
+          e("next", t, a, u);
+        }, function (t) {
+          e("throw", t, a, u);
+        }) : r.resolve(f).then(function (t) {
+          h.value = t, a(h);
+        }, function (t) {
+          return e("throw", t, a, u);
+        });
+      }
+      u(c.arg);
+    }
+    var o;
+    c(this, "_invoke", function (t, n) {
+      function i() {
+        return new r(function (r, o) {
+          e(t, n, r, o);
+        });
+      }
+      return o = o ? o.then(i, i) : i();
+    }, !0);
+  }
+  function d(r, e) {
+    var n = e.method,
+      o = r.i[n];
+    if (o === t) return e.delegate = null, "throw" === n && r.i["return"] && (e.method = "return", e.arg = t, d(r, e), "throw" === e.method) || "return" !== n && (e.method = "throw", e.arg = new TypeError("The iterator does not provide a '" + n + "' method")), f;
+    var i = s(o, r.i, e.arg);
+    if ("throw" === i.type) return e.method = "throw", e.arg = i.arg, e.delegate = null, f;
+    var a = i.arg;
+    return a ? a.done ? (e[r.r] = a.value, e.next = r.n, "return" !== e.method && (e.method = "next", e.arg = t), e.delegate = null, f) : a : (e.method = "throw", e.arg = new TypeError("iterator result is not an object"), e.delegate = null, f);
+  }
+  function w(t) {
+    this.tryEntries.push(t);
+  }
+  function m(r) {
+    var e = r[4] || {};
+    e.type = "normal", e.arg = t, r[4] = e;
+  }
+  function Context(t) {
+    this.tryEntries = [[-1]], t.forEach(w, this), this.reset(!0);
+  }
+  function x(r) {
+    if (null != r) {
+      var e = r[i];
+      if (e) return e.call(r);
+      if ("function" == typeof r.next) return r;
+      if (!isNaN(r.length)) {
+        var o = -1,
+          a = function e() {
+            for (; ++o < r.length;) if (n.call(r, o)) return e.value = r[o], e.done = !1, e;
+            return e.value = t, e.done = !0, e;
+          };
+        return a.next = a;
+      }
+    }
+    throw new TypeError(_typeof(r) + " is not iterable");
+  }
+  return GeneratorFunction.prototype = GeneratorFunctionPrototype, c(v, "constructor", GeneratorFunctionPrototype), c(GeneratorFunctionPrototype, "constructor", GeneratorFunction), GeneratorFunction.displayName = c(GeneratorFunctionPrototype, u, "GeneratorFunction"), r.isGeneratorFunction = function (t) {
+    var r = "function" == typeof t && t.constructor;
+    return !!r && (r === GeneratorFunction || "GeneratorFunction" === (r.displayName || r.name));
+  }, r.mark = function (t) {
+    return Object.setPrototypeOf ? Object.setPrototypeOf(t, GeneratorFunctionPrototype) : (t.__proto__ = GeneratorFunctionPrototype, c(t, u, "GeneratorFunction")), t.prototype = Object.create(v), t;
+  }, r.awrap = function (t) {
+    return {
+      __await: t
+    };
+  }, g(AsyncIterator.prototype), c(AsyncIterator.prototype, a, function () {
+    return this;
+  }), r.AsyncIterator = AsyncIterator, r.async = function (t, e, n, o, i) {
+    void 0 === i && (i = Promise);
+    var a = new AsyncIterator(h(t, e, n, o), i);
+    return r.isGeneratorFunction(e) ? a : a.next().then(function (t) {
+      return t.done ? t.value : a.next();
+    });
+  }, g(v), c(v, u, "Generator"), c(v, i, function () {
+    return this;
+  }), c(v, "toString", function () {
+    return "[object Generator]";
+  }), r.keys = function (t) {
+    var r = Object(t),
+      e = [];
+    for (var n in r) e.unshift(n);
+    return function t() {
+      for (; e.length;) if ((n = e.pop()) in r) return t.value = n, t.done = !1, t;
+      return t.done = !0, t;
+    };
+  }, r.values = x, Context.prototype = {
+    constructor: Context,
+    reset: function reset(r) {
+      if (this.prev = this.next = 0, this.sent = this._sent = t, this.done = !1, this.delegate = null, this.method = "next", this.arg = t, this.tryEntries.forEach(m), !r) for (var e in this) "t" === e.charAt(0) && n.call(this, e) && !isNaN(+e.slice(1)) && (this[e] = t);
+    },
+    stop: function stop() {
+      this.done = !0;
+      var t = this.tryEntries[0][4];
+      if ("throw" === t.type) throw t.arg;
+      return this.rval;
+    },
+    dispatchException: function dispatchException(r) {
+      if (this.done) throw r;
+      var e = this;
+      function n(t) {
+        a.type = "throw", a.arg = r, e.next = t;
+      }
+      for (var o = e.tryEntries.length - 1; o >= 0; --o) {
+        var i = this.tryEntries[o],
+          a = i[4],
+          u = this.prev,
+          c = i[1],
+          h = i[2];
+        if (-1 === i[0]) return n("end"), !1;
+        if (!c && !h) throw Error("try statement without catch or finally");
+        if (null != i[0] && i[0] <= u) {
+          if (u < c) return this.method = "next", this.arg = t, n(c), !0;
+          if (u < h) return n(h), !1;
+        }
+      }
+    },
+    abrupt: function abrupt(t, r) {
+      for (var e = this.tryEntries.length - 1; e >= 0; --e) {
+        var n = this.tryEntries[e];
+        if (n[0] > -1 && n[0] <= this.prev && this.prev < n[2]) {
+          var o = n;
+          break;
+        }
+      }
+      o && ("break" === t || "continue" === t) && o[0] <= r && r <= o[2] && (o = null);
+      var i = o ? o[4] : {};
+      return i.type = t, i.arg = r, o ? (this.method = "next", this.next = o[2], f) : this.complete(i);
+    },
+    complete: function complete(t, r) {
+      if ("throw" === t.type) throw t.arg;
+      return "break" === t.type || "continue" === t.type ? this.next = t.arg : "return" === t.type ? (this.rval = this.arg = t.arg, this.method = "return", this.next = "end") : "normal" === t.type && r && (this.next = r), f;
+    },
+    finish: function finish(t) {
+      for (var r = this.tryEntries.length - 1; r >= 0; --r) {
+        var e = this.tryEntries[r];
+        if (e[2] === t) return this.complete(e[4], e[3]), m(e), f;
+      }
+    },
+    "catch": function _catch(t) {
+      for (var r = this.tryEntries.length - 1; r >= 0; --r) {
+        var e = this.tryEntries[r];
+        if (e[0] === t) {
+          var n = e[4];
+          if ("throw" === n.type) {
+            var o = n.arg;
+            m(e);
+          }
+          return o;
+        }
+      }
+      throw Error("illegal catch attempt");
+    },
+    delegateYield: function delegateYield(r, e, n) {
+      return this.delegate = {
+        i: x(r),
+        r: e,
+        n: n
+      }, "next" === this.method && (this.arg = t), f;
+    }
+  }, r;
+}
+function asyncGeneratorStep(n, t, e, r, o, a, c) {
+  try {
+    var i = n[a](c),
+      u = i.value;
+  } catch (n) {
+    return void e(n);
+  }
+  i.done ? t(u) : Promise.resolve(u).then(r, o);
+}
+function _asyncToGenerator(n) {
+  return function () {
+    var t = this,
+      e = arguments;
+    return new Promise(function (r, o) {
+      var a = n.apply(t, e);
+      function _next(n) {
+        asyncGeneratorStep(a, r, o, _next, _throw, "next", n);
+      }
+      function _throw(n) {
+        asyncGeneratorStep(a, r, o, _next, _throw, "throw", n);
+      }
+      _next(void 0);
+    });
+  };
 }
 function ownKeys(e, r) {
   var t = Object.keys(e);
@@ -44573,51 +44878,171 @@ function _iterableToArrayLimit(r, l) {
 function _arrayWithHoles(r) {
   if (Array.isArray(r)) return r;
 }
-var FormTypeSelector = function FormTypeSelector(_ref) {
-  var formType = _ref.formType,
-    handleFormTypeChange = _ref.handleFormTypeChange;
-  return /*#__PURE__*/_react["default"].createElement("fieldset", null, /*#__PURE__*/_react["default"].createElement("legend", null, "What would you like to do?"), /*#__PURE__*/_react["default"].createElement("div", {
-    role: "radiogroup",
-    "aria-labelledby": "form-type-legend",
-    className: "formOptionsContainer"
-  }, /*#__PURE__*/_react["default"].createElement("div", null, /*#__PURE__*/_react["default"].createElement("input", {
-    type: "radio",
-    id: "editBrick",
-    name: "formType",
-    value: "edit",
-    checked: formType === 'edit',
-    onChange: handleFormTypeChange
-  }), /*#__PURE__*/_react["default"].createElement("label", {
-    htmlFor: "editBrick"
-  }, "Correct an error on a brick on the site")), /*#__PURE__*/_react["default"].createElement("div", null, /*#__PURE__*/_react["default"].createElement("input", {
-    type: "radio",
-    id: "purchaseBrick",
-    name: "formType",
-    value: "purchase",
-    checked: formType === 'purchase',
-    onChange: handleFormTypeChange
-  }), /*#__PURE__*/_react["default"].createElement("label", {
-    htmlFor: "purchaseBrick"
-  }, "Purchase a new brick")), /*#__PURE__*/_react["default"].createElement("div", null, /*#__PURE__*/_react["default"].createElement("input", {
-    type: "radio",
-    id: "shareComments",
-    name: "formType",
-    value: "comments",
-    checked: formType === 'comments',
-    onChange: handleFormTypeChange
-  }), /*#__PURE__*/_react["default"].createElement("label", {
-    htmlFor: "shareComments"
-  }, "Share other comments or feedback"))));
-};
-var EditForm = function EditForm(_ref2) {
-  var formData = _ref2.formData,
-    handleInputChange = _ref2.handleInputChange,
-    handleSubmit = _ref2.handleSubmit,
-    errors = _ref2.errors;
+function Contact() {
+  var _useState = (0, _react.useState)({
+      purchaserName: '',
+      panel: '',
+      errorExplanation: '',
+      comment: ''
+    }),
+    _useState2 = _slicedToArray(_useState, 2),
+    formData = _useState2[0],
+    setFormData = _useState2[1];
+  var _useState3 = (0, _react.useState)({}),
+    _useState4 = _slicedToArray(_useState3, 2),
+    errors = _useState4[0],
+    setErrors = _useState4[1];
+  var _useState5 = (0, _react.useState)(false),
+    _useState6 = _slicedToArray(_useState5, 2),
+    isSubmitting = _useState6[0],
+    setIsSubmitting = _useState6[1];
+  var _useState7 = (0, _react.useState)(null),
+    _useState8 = _slicedToArray(_useState7, 2),
+    submissionStatus = _useState8[0],
+    setSubmissionStatus = _useState8[1]; // 'success', 'error', or null
+
+  var handleInputChange = function handleInputChange(event) {
+    var _event$target = event.target,
+      name = _event$target.name,
+      value = _event$target.value;
+    setFormData(function (prev) {
+      return _objectSpread(_objectSpread({}, prev), {}, _defineProperty({}, name, value));
+    });
+    // Clear error when user starts typing
+    if (errors[name]) {
+      setErrors(function (prev) {
+        return _objectSpread(_objectSpread({}, prev), {}, _defineProperty({}, name, ''));
+      });
+    }
+    setSubmissionStatus(null); // Reset status on new input
+  };
+  var validateForm = function validateForm() {
+    var newErrors = {};
+    if (!formData.purchaserName.trim()) {
+      newErrors.purchaserName = 'Purchaser name is required';
+    }
+    if (!formData.panel.trim()) {
+      newErrors.panel = 'Panel number is required';
+    }
+    if (!formData.errorExplanation.trim()) {
+      newErrors.errorExplanation = 'Error explanation is required';
+    }
+    setErrors(newErrors);
+    return Object.keys(newErrors).length === 0;
+  };
+  var handleSubmit = /*#__PURE__*/function () {
+    var _ref = _asyncToGenerator(/*#__PURE__*/_regeneratorRuntime().mark(function _callee(event) {
+      var response;
+      return _regeneratorRuntime().wrap(function _callee$(_context) {
+        while (1) switch (_context.prev = _context.next) {
+          case 0:
+            event.preventDefault();
+            if (validateForm()) {
+              _context.next = 3;
+              break;
+            }
+            return _context.abrupt("return");
+          case 3:
+            setIsSubmitting(true);
+            setSubmissionStatus(null);
+            _context.prev = 5;
+            _context.next = 8;
+            return fetch('/api/send-email', {
+              method: 'POST',
+              headers: {
+                'Content-Type': 'application/json'
+              },
+              body: JSON.stringify({
+                formType: 'edit',
+                formData: formData
+              })
+            });
+          case 8:
+            response = _context.sent;
+            if (response.ok) {
+              _context.next = 11;
+              break;
+            }
+            throw new Error('Network response was not ok');
+          case 11:
+            setSubmissionStatus('success');
+            // Reset form on successful submission
+            setFormData({
+              purchaserName: '',
+              panel: '',
+              errorExplanation: '',
+              comment: ''
+            });
+            _context.next = 19;
+            break;
+          case 15:
+            _context.prev = 15;
+            _context.t0 = _context["catch"](5);
+            console.error('There was a problem with the fetch operation:', _context.t0);
+            setSubmissionStatus('error');
+          case 19:
+            _context.prev = 19;
+            setIsSubmitting(false);
+            return _context.finish(19);
+          case 22:
+          case "end":
+            return _context.stop();
+        }
+      }, _callee, null, [[5, 15, 19, 22]]);
+    }));
+    return function handleSubmit(_x) {
+      return _ref.apply(this, arguments);
+    };
+  }();
+  return /*#__PURE__*/_react["default"].createElement("div", {
+    className: "contactPage"
+  }, /*#__PURE__*/_react["default"].createElement(_header["default"], null), /*#__PURE__*/_react["default"].createElement("main", {
+    className: "contactContent"
+  }, /*#__PURE__*/_react["default"].createElement("h1", null, "Report an Error on a Brick"), submissionStatus === 'success' && /*#__PURE__*/_react["default"].createElement("div", {
+    style: {
+      color: 'green',
+      border: '1px solid green',
+      padding: '1rem',
+      marginBottom: '1rem'
+    }
+  }, "Thank you for your submission! We will get back to you soon."), submissionStatus === 'error' && /*#__PURE__*/_react["default"].createElement("div", {
+    style: {
+      color: 'red',
+      border: '1px solid red',
+      padding: '1rem',
+      marginBottom: '1rem'
+    }
+  }, "Sorry, there was an error submitting your form. Please try again later."), /*#__PURE__*/_react["default"].createElement(_form["default"], {
+    formData: formData,
+    handleInputChange: handleInputChange,
+    handleSubmit: handleSubmit,
+    errors: errors,
+    isSubmitting: isSubmitting
+  })), /*#__PURE__*/_react["default"].createElement(_footer["default"], null));
+}
+
+},{"../footer.js":30,"../header.js":31,"./form.js":29,"react":15}],29:[function(require,module,exports){
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports["default"] = void 0;
+var _react = _interopRequireDefault(require("react"));
+function _interopRequireDefault(e) {
+  return e && e.__esModule ? e : {
+    "default": e
+  };
+}
+var EditForm = function EditForm(_ref) {
+  var formData = _ref.formData,
+    handleInputChange = _ref.handleInputChange,
+    handleSubmit = _ref.handleSubmit,
+    errors = _ref.errors;
   return /*#__PURE__*/_react["default"].createElement("form", {
     onSubmit: handleSubmit,
     noValidate: true
-  }, /*#__PURE__*/_react["default"].createElement("h2", null, "Edit an Existing Brick"), /*#__PURE__*/_react["default"].createElement("p", null, "Please provide the following information to help us locate your brick and make the necessary corrections."), /*#__PURE__*/_react["default"].createElement("div", null, /*#__PURE__*/_react["default"].createElement("label", {
+  }, /*#__PURE__*/_react["default"].createElement("p", null, "Please provide the following information to help us locate your brick and make the necessary corrections."), /*#__PURE__*/_react["default"].createElement("div", null, /*#__PURE__*/_react["default"].createElement("label", {
     htmlFor: "purchaserName"
   }, "Purchaser Name: ", /*#__PURE__*/_react["default"].createElement("span", {
     "aria-label": "required"
@@ -44674,131 +45099,9 @@ var EditForm = function EditForm(_ref2) {
     type: "submit"
   }, "Submit Correction Request"));
 };
-var PurchaseInfo = function PurchaseInfo() {
-  return /*#__PURE__*/_react["default"].createElement("div", null, /*#__PURE__*/_react["default"].createElement("h2", null, "Purchase a New Brick"), /*#__PURE__*/_react["default"].createElement("p", null, "We are delighted that you're interested in purchasing a brick! Please proceed to our brick purchasing page to customize and buy your brick."));
-};
-var CommentsForm = function CommentsForm(_ref3) {
-  var formData = _ref3.formData,
-    handleInputChange = _ref3.handleInputChange,
-    handleSubmit = _ref3.handleSubmit,
-    errors = _ref3.errors;
-  return /*#__PURE__*/_react["default"].createElement("form", {
-    onSubmit: handleSubmit,
-    noValidate: true
-  }, /*#__PURE__*/_react["default"].createElement("h2", null, "Share Other Comments"), /*#__PURE__*/_react["default"].createElement("p", null, "We'd love to hear from you! Please share any comments, suggestions, or feedback you have."), /*#__PURE__*/_react["default"].createElement("div", null, /*#__PURE__*/_react["default"].createElement("label", {
-    htmlFor: "comment"
-  }, "Your Comments: ", /*#__PURE__*/_react["default"].createElement("span", {
-    "aria-label": "required"
-  }, "*")), /*#__PURE__*/_react["default"].createElement("textarea", {
-    id: "comment",
-    name: "comment",
-    rows: "5",
-    value: formData.comment,
-    onChange: handleInputChange,
-    "aria-required": "true"
-  }), errors.comment && /*#__PURE__*/_react["default"].createElement("div", {
-    id: "comment-error",
-    className: "error-message",
-    role: "alert"
-  }, errors.comment)), /*#__PURE__*/_react["default"].createElement("button", {
-    type: "submit"
-  }, "Submit Comments"));
-};
-function Contact() {
-  var _useState = (0, _react.useState)(''),
-    _useState2 = _slicedToArray(_useState, 2),
-    formType = _useState2[0],
-    setFormType = _useState2[1]; // 'edit', 'purchase', or 'comments'
-  var _useState3 = (0, _react.useState)({
-      purchaserName: '',
-      panel: '',
-      errorExplanation: '',
-      comment: ''
-    }),
-    _useState4 = _slicedToArray(_useState3, 2),
-    formData = _useState4[0],
-    setFormData = _useState4[1];
-  var _useState5 = (0, _react.useState)({}),
-    _useState6 = _slicedToArray(_useState5, 2),
-    errors = _useState6[0],
-    setErrors = _useState6[1];
-  var handleFormTypeChange = function handleFormTypeChange(event) {
-    setFormType(event.target.value);
-    // Clear form data when switching between forms
-    setFormData({
-      purchaserName: '',
-      panel: '',
-      errorExplanation: '',
-      comment: ''
-    });
-    setErrors({});
-  };
-  var handleInputChange = function handleInputChange(event) {
-    var _event$target = event.target,
-      name = _event$target.name,
-      value = _event$target.value;
-    setFormData(function (prev) {
-      return _objectSpread(_objectSpread({}, prev), {}, _defineProperty({}, name, value));
-    });
-    // Clear error when user starts typing
-    if (errors[name]) {
-      setErrors(function (prev) {
-        return _objectSpread(_objectSpread({}, prev), {}, _defineProperty({}, name, ''));
-      });
-    }
-  };
-  var validateForm = function validateForm() {
-    var newErrors = {};
-    if (formType === 'edit') {
-      if (!formData.purchaserName.trim()) {
-        newErrors.purchaserName = 'Purchaser name is required';
-      }
-      if (!formData.panel.trim()) {
-        newErrors.panel = 'Panel number is required';
-      }
-      if (!formData.errorExplanation.trim()) {
-        newErrors.errorExplanation = 'Error explanation is required';
-      }
-    } else if (formType === 'comments') {
-      if (!formData.comment.trim()) {
-        newErrors.comment = 'Comments are required';
-      }
-    }
-    setErrors(newErrors);
-    return Object.keys(newErrors).length === 0;
-  };
-  var handleSubmit = function handleSubmit(event) {
-    event.preventDefault();
-    if (validateForm()) {
-      // Handle form submission here
-      console.log('Form submitted:', {
-        formType: formType,
-        formData: formData
-      });
-      alert('Thank you for your submission! We will get back to you soon.');
-    }
-  };
-  return /*#__PURE__*/_react["default"].createElement("div", {
-    className: "contactPage"
-  }, /*#__PURE__*/_react["default"].createElement(_header["default"], null), /*#__PURE__*/_react["default"].createElement("main", {
-    className: "contactContent"
-  }, /*#__PURE__*/_react["default"].createElement("h1", null, "Contact Us"), /*#__PURE__*/_react["default"].createElement("p", null, "Please select an option below."), /*#__PURE__*/_react["default"].createElement(FormTypeSelector, {
-    formType: formType,
-    handleFormTypeChange: handleFormTypeChange
-  }), formType === 'edit' && /*#__PURE__*/_react["default"].createElement(EditForm, {
-    formData: formData,
-    handleInputChange: handleInputChange,
-    handleSubmit: handleSubmit,
-    errors: errors
-  }), formType === 'purchase' && /*#__PURE__*/_react["default"].createElement(PurchaseInfo, null), formType === 'comments' && /*#__PURE__*/_react["default"].createElement(CommentsForm, {
-    formData: formData,
-    handleInputChange: handleInputChange,
-    handleSubmit: handleSubmit,
-    errors: errors
-  })), /*#__PURE__*/_react["default"].createElement(_footer["default"], null));
-}
+var _default = exports["default"] = EditForm;
 
-},{"../footer.js":29,"../header.js":30,"react":15}],29:[function(require,module,exports){
+},{"react":15}],30:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -44817,7 +45120,7 @@ function Footer() {
   }));
 }
 
-},{"react":15}],30:[function(require,module,exports){
+},{"react":15}],31:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -44848,18 +45151,15 @@ function Header() {
   }, "Home"), /*#__PURE__*/_react["default"].createElement(_reactRouterDom.Link, {
     to: "/about",
     className: "headerButton " + ((0, _reactRouterDom.useLocation)().pathname == "/about" ? "activeNav" : "")
-  }, "About"), /*#__PURE__*/_react["default"].createElement(_reactRouterDom.Link, {
-    to: "/contact",
-    className: "headerButton " + ((0, _reactRouterDom.useLocation)().pathname == "/contact" ? "activeNav" : "")
-  }, "Contact")));
+  }, "About")));
 }
 
-},{"react":15,"react-router-dom":7}],31:[function(require,module,exports){
+},{"react":15,"react-router-dom":7}],32:[function(require,module,exports){
 "use strict";
 
 var _app = _interopRequireDefault(require("./app.js"));
 var _about = _interopRequireDefault(require("./about/about.js"));
-var _contact = _interopRequireDefault(require("./contact/contact.js"));
+var _editForm = _interopRequireDefault(require("./editForm/editForm.js"));
 var _reactRouterDom = require("react-router-dom");
 var _react = _interopRequireDefault(require("react"));
 var _client = _interopRequireDefault(require("react-dom/client"));
@@ -44876,14 +45176,14 @@ root.render(/*#__PURE__*/_react["default"].createElement(_react["default"].Stric
   path: "/about",
   element: /*#__PURE__*/_react["default"].createElement(_about["default"], null)
 }), /*#__PURE__*/_react["default"].createElement(_reactRouterDom.Route, {
-  path: "/contact",
-  element: /*#__PURE__*/_react["default"].createElement(_contact["default"], null)
+  path: "/edit",
+  element: /*#__PURE__*/_react["default"].createElement(_editForm["default"], null)
 }), /*#__PURE__*/_react["default"].createElement(_reactRouterDom.Route, {
   path: "*",
   element: /*#__PURE__*/_react["default"].createElement(_app["default"], null)
 })))));
 
-},{"./about/about.js":20,"./app.js":21,"./contact/contact.js":28,"react":15,"react-dom/client":5,"react-router-dom":7}],32:[function(require,module,exports){
+},{"./about/about.js":20,"./app.js":21,"./editForm/editForm.js":28,"react":15,"react-dom/client":5,"react-router-dom":7}],33:[function(require,module,exports){
 module.exports=[
   {
     "Naming_Year": 2024,
@@ -50251,4 +50551,4 @@ module.exports=[
 
 
 ]
-},{}]},{},[31]);
+},{}]},{},[32]);

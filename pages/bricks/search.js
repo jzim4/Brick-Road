@@ -6,6 +6,7 @@ This single component holds the search bar and includes all functionality for bu
 
 import data from '../../public/db.json';
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 export default function Search({ highlight, setHighlight, display, setDisplay }) {
 
@@ -138,7 +139,8 @@ export default function Search({ highlight, setHighlight, display, setDisplay })
                     <SearchBox />
                 </div>
             </div>
-            <p className="datasetNote">The dataset used to build this site is incomplete. If you find any missing information or errors, do not hesitate to reach out to Katie Frye: katie@rcodemn.org</p>
+            <p className="datasetNote">The dataset used to build this site is incomplete. If you find any missing information or errors, do not hesitate to let us know!</p>
+            <Link to={"/edit"} className="headerButton editFormLink">Contact</Link>
 
         </>
     }
@@ -148,7 +150,11 @@ export default function Search({ highlight, setHighlight, display, setDisplay })
                 <button id="displayToggle" className="headerButton" onClick={toggleDisplay}>{display == "scroll" ? "Show brick list" : "Show scrolling path"}</button>
             </div>
             <SearchBox />
-            <p className="datasetNote">The dataset used to build this site is incomplete. If you find any missing information or errors, do not hesitate to reach out to Katie Frye: katie@rcodemn.org</p>
+            <p className="datasetNote">The dataset used to build this site is incomplete. If you find any missing information or errors, do not hesitate let us know!
+            </p>
+                
+            <Link to={"/edit"} className="headerButton editFormLink">Contact</Link>
+
 
             <div id="staticSearchLabel">
                 <Label section={highlight} />
