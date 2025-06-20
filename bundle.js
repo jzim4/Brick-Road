@@ -43227,7 +43227,7 @@ function AboutRondo() {
     className: "aboutImgContainer floatLeft"
   }, /*#__PURE__*/_react["default"].createElement("img", {
     className: "aboutImg",
-    src: "./pages/about/aboutImages/img1.jpg",
+    src: "./public/aboutImages/img1.jpg",
     width: "1500",
     height: "844",
     alt: "flowers on ledge at the 2024 Brick Ceremony"
@@ -43239,7 +43239,7 @@ function AboutRondo() {
     className: "aboutImgContainer floatRight"
   }, /*#__PURE__*/_react["default"].createElement("img", {
     className: "aboutImg",
-    src: "./pages/about/aboutImages/img3.jpg",
+    src: "./public/aboutImages/img3.jpg",
     width: "1500",
     height: "844",
     alt: "audience listening to speaker at 2024 Brick Ceremony"
@@ -43251,7 +43251,7 @@ function AboutRondo() {
     className: "aboutImgContainer floatLeft"
   }, /*#__PURE__*/_react["default"].createElement("img", {
     className: "aboutImg",
-    src: "./pages/about/aboutImages/img2.jpg",
+    src: "./public/aboutImages/img2.jpg",
     width: "1500",
     height: "844",
     alt: "two people sitting on the brick path"
@@ -43267,7 +43267,7 @@ function AboutRondo() {
     className: "aboutImgContainer floatRight"
   }, /*#__PURE__*/_react["default"].createElement("img", {
     className: "aboutImg",
-    src: "./pages/about/aboutImages/img4.jpg",
+    src: "./public/aboutImages/img4.jpg",
     width: "2500",
     height: "1667",
     alt: "Rondo Commemorative Plaza bricks and panels"
@@ -43279,7 +43279,7 @@ function AboutRondo() {
     className: "aboutImgContainer floatLeft"
   }, /*#__PURE__*/_react["default"].createElement("img", {
     className: "aboutImg",
-    src: "./pages/about/aboutImages/img5.jpg",
+    src: "./public/aboutImages/img5.jpg",
     width: "2500",
     height: "1667",
     alt: "Rondo Commemorative Plaza bricks and panels illuminated at night"
@@ -43290,7 +43290,7 @@ function AboutRondo() {
   }, "In 2016, Anderson and Floyd Smaller (both co-founders of the Rondo Days celebration), worked with architects from 4RM+ULA and Ten x Ten to create plans for a memorial plaza. Opened in July 2018, the Rondo Commemorative Plaza (RCP) is the first public memorial to the Black neighborhoods destroyed by interstate highways. The plaza includes a 26-panel History Wall that tells the story of Rondo, a commemorative brick path, eighteen community chimes, and a 30-ft lighted tower that is visible to anyone driving on I-94. The adjacent building is home to the Rondo Center of Diverse Expressions (RCODE), which offers an indoor space for events, preserves a small research collection, and provides administrative responsibility for the plaza. Rondo residents, visitors, community members, and organizations are invited to purchase bricks along the commemorative brick path. Bricks can recognize an address, a family member or friend, a memory, a business, or anything else held near and dear. Brick purchasers are celebrated during our annual \u201CEvery Brick Counts\u201D Ceremony in September, where each participant is given time to share about their story. For more information on RCODE\u2019s commemorative brick program, please email Katie at katie@rcodemn.org."));
 }
 
-},{"../footer.js":30,"../header.js":31,"react":15}],21:[function(require,module,exports){
+},{"../footer.js":29,"../header.js":30,"react":15}],21:[function(require,module,exports){
 "use strict";
 
 function _typeof(o) {
@@ -43443,7 +43443,1447 @@ function BrickRoadSite() {
   }), /*#__PURE__*/_react["default"].createElement(_footer["default"], null));
 }
 
-},{"./bricks/scrolling/scrollContent.js":25,"./bricks/scrolling/selectedBrick.js":26,"./bricks/search.js":27,"./bricks/static/static.js":28,"./footer.js":30,"./header.js":31,"react":15}],22:[function(require,module,exports){
+},{"./bricks/scrolling/scrollContent.js":24,"./bricks/scrolling/selectedBrick.js":25,"./bricks/search.js":26,"./bricks/static/static.js":27,"./footer.js":29,"./header.js":30,"react":15}],22:[function(require,module,exports){
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports["default"] = Panel;
+var _react = _interopRequireDefault(require("react"));
+function _interopRequireDefault(e) {
+  return e && e.__esModule ? e : {
+    "default": e
+  };
+}
+/*
+Author: Jonah Zimmer
+
+This file contains the panels that appear in the scrolling path as well as the zoomable forms. 
+*/
+
+function Panel() {
+  function zoom(fileName, width) {
+    var zoomImg = document.getElementById("zoomImg");
+    var zoomImgContainer = document.getElementById("zoomImgContainer");
+    zoomImg.src = "./public/panels/big/IMG_" + fileName + ".jpeg";
+    zoomImg.height = 100;
+    zoomImg.width = 363 / width * 100;
+    zoomImg.style.height = "80vh";
+    zoomImg.style.height = 363 / width * 80 + "vh";
+    zoomImgContainer.style.display = "flex";
+    magnify(3);
+  }
+  function closeZoom() {
+    var zoomImgContainer = document.getElementById("zoomImgContainer");
+    zoomImgContainer.style.display = "none";
+  }
+
+  // https://www.w3schools.com/howto/howto_js_image_magnifier_glass.asp
+  function magnify(zoom) {
+    var img, glass, w, h, bw;
+    img = document.getElementById("zoomImg");
+
+    /* Create magnifier glass: */
+    glass = document.getElementById("img-magnifier-glass");
+
+    /* Insert magnifier glass: */
+    img.parentElement.insertBefore(glass, img);
+
+    /* Set background properties for the magnifier glass: */
+    glass.style.backgroundImage = "url('" + img.src + "')";
+    glass.style.backgroundRepeat = "no-repeat";
+    glass.style.backgroundSize = img.width * zoom + "px " + img.height * zoom + "px";
+    bw = 3;
+    w = glass.offsetWidth / 2;
+    h = glass.offsetHeight / 2;
+
+    /* Execute a function when someone moves the magnifier glass over the image: */
+    document.addEventListener("mousemove", moveMagnifier);
+
+    /*and also for touch screens:*/
+    document.addEventListener("touchmove", moveMagnifier);
+    document.addEventListener("click", function (e) {
+      if (e.target.id == "zoomImgs" || e.target.id == "zoomImgContainer") {
+        closeZoom();
+      }
+    });
+    function moveMagnifier(e) {
+      var pos, x, y;
+      /* Prevent any other actions that may occur when moving over the image */
+      e.preventDefault();
+      /* Get the cursor's x and y positions: */
+      pos = getCursorPos(e);
+      x = pos.x;
+      y = pos.y;
+
+      /* Display what the magnifier glass "sees": */
+      var xpos = -1 * (x * zoom - w) + "px ";
+      var ypos = -1 * (y * zoom - h + bw) + "px";
+      glass.style.backgroundPosition = xpos + ypos;
+    }
+    function getCursorPos(e) {
+      var a,
+        x = 0,
+        y = 0;
+      e = e || window.event;
+      /* Get the x and y positions of the image: */
+      a = img.getBoundingClientRect();
+      /* Calculate the cursor's x and y coordinates, relative to the image: */
+      x = e.pageX - a.left;
+      y = e.pageY - a.top;
+      /* Consider any page scrolling: */
+      x = x - window.pageXOffset;
+      y = y - window.pageYOffset;
+      return {
+        x: x,
+        y: y
+      };
+    }
+  }
+  return /*#__PURE__*/_react["default"].createElement("div", {
+    id: "panelsContainer"
+  }, /*#__PURE__*/_react["default"].createElement("div", {
+    id: "zoomImgContainer"
+  }, /*#__PURE__*/_react["default"].createElement("button", {
+    onClick: closeZoom,
+    id: "closeZoom"
+  }, "Close"), /*#__PURE__*/_react["default"].createElement("div", {
+    id: "zoomImgs"
+  }, /*#__PURE__*/_react["default"].createElement("div", {
+    id: "magContainer"
+  }, /*#__PURE__*/_react["default"].createElement("div", null), /*#__PURE__*/_react["default"].createElement("div", {
+    id: "img-magnifier-glass"
+  })), /*#__PURE__*/_react["default"].createElement("img", {
+    id: "zoomImg"
+  }))), /*#__PURE__*/_react["default"].createElement("img", {
+    onClick: function onClick() {
+      return zoom(2694, 332.8);
+    },
+    className: "panel",
+    width: "332.8",
+    height: "363",
+    src: "./public/panels/small/IMG_2694.jpeg",
+    style: {
+      marginLeft: "283px"
+    }
+  }), /*#__PURE__*/_react["default"].createElement("img", {
+    onClick: function onClick() {
+      return zoom(2698, 326);
+    },
+    className: "panel",
+    width: "326",
+    height: "363",
+    src: "./public/panels/small/IMG_2698.jpeg"
+  }), /*#__PURE__*/_react["default"].createElement("img", {
+    onClick: function onClick() {
+      return zoom(2700, 326);
+    },
+    className: "panel",
+    width: "327",
+    height: "363",
+    src: "./public/panels/small/IMG_2700.jpeg"
+  }), /*#__PURE__*/_react["default"].createElement("img", {
+    onClick: function onClick() {
+      return zoom(2701, 326);
+    },
+    className: "panel",
+    width: "320.7",
+    height: "363",
+    src: "./public/panels/small/IMG_2701.jpeg"
+  }), /*#__PURE__*/_react["default"].createElement("img", {
+    onClick: function onClick() {
+      return zoom(2702, 326);
+    },
+    className: "panel",
+    width: "326.6",
+    height: "363",
+    src: "./public/panels/small/IMG_2702.jpeg"
+  }), /*#__PURE__*/_react["default"].createElement("img", {
+    onClick: function onClick() {
+      return zoom(2706, 326);
+    },
+    className: "panel",
+    width: "331",
+    height: "363",
+    src: "./public/panels/small/IMG_2706.jpeg"
+  }), /*#__PURE__*/_react["default"].createElement("img", {
+    onClick: function onClick() {
+      return zoom(2708, 326);
+    },
+    className: "panel",
+    width: "325",
+    height: "363",
+    src: "./public/panels/small/IMG_2708.jpeg"
+  }), /*#__PURE__*/_react["default"].createElement("img", {
+    onClick: function onClick() {
+      return zoom(2711, 326);
+    },
+    className: "panel",
+    width: "330",
+    height: "363",
+    src: "./public/panels/small/IMG_2711.jpeg"
+  }), /*#__PURE__*/_react["default"].createElement("img", {
+    onClick: function onClick() {
+      return zoom(2715, 326);
+    },
+    className: "panel",
+    width: "328",
+    height: "363",
+    src: "./public/panels/small/IMG_2715.jpeg"
+  }), /*#__PURE__*/_react["default"].createElement("img", {
+    onClick: function onClick() {
+      return zoom(2716, 326);
+    },
+    className: "panel",
+    width: "321",
+    height: "363",
+    src: "./public/panels/small/IMG_2716.jpeg"
+  }), /*#__PURE__*/_react["default"].createElement("img", {
+    onClick: function onClick() {
+      return zoom(2719, 326);
+    },
+    className: "panel",
+    width: "328",
+    height: "363",
+    src: "./public/panels/small/IMG_2719.jpeg"
+  }), /*#__PURE__*/_react["default"].createElement("img", {
+    onClick: function onClick() {
+      return zoom(2721, 326);
+    },
+    className: "panel",
+    width: "327",
+    height: "363",
+    src: "./public/panels/small/IMG_2721.jpeg"
+  }), /*#__PURE__*/_react["default"].createElement("img", {
+    onClick: function onClick() {
+      return zoom(2725, 326);
+    },
+    className: "panel",
+    width: "329",
+    height: "363",
+    src: "./public/panels/small/IMG_2725.jpeg"
+  }));
+}
+
+},{"react":15}],23:[function(require,module,exports){
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports["default"] = Path;
+var _react = _interopRequireDefault(require("react"));
+var _db = _interopRequireDefault(require("../../../public/db.json"));
+function _interopRequireDefault(e) {
+  return e && e.__esModule ? e : {
+    "default": e
+  };
+}
+function _createForOfIteratorHelper(r, e) {
+  var t = "undefined" != typeof Symbol && r[Symbol.iterator] || r["@@iterator"];
+  if (!t) {
+    if (Array.isArray(r) || (t = _unsupportedIterableToArray(r)) || e && r && "number" == typeof r.length) {
+      t && (r = t);
+      var _n = 0,
+        F = function F() {};
+      return {
+        s: F,
+        n: function n() {
+          return _n >= r.length ? {
+            done: !0
+          } : {
+            done: !1,
+            value: r[_n++]
+          };
+        },
+        e: function e(r) {
+          throw r;
+        },
+        f: F
+      };
+    }
+    throw new TypeError("Invalid attempt to iterate non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method.");
+  }
+  var o,
+    a = !0,
+    u = !1;
+  return {
+    s: function s() {
+      t = t.call(r);
+    },
+    n: function n() {
+      var r = t.next();
+      return a = r.done, r;
+    },
+    e: function e(r) {
+      u = !0, o = r;
+    },
+    f: function f() {
+      try {
+        a || null == t["return"] || t["return"]();
+      } finally {
+        if (u) throw o;
+      }
+    }
+  };
+}
+function _unsupportedIterableToArray(r, a) {
+  if (r) {
+    if ("string" == typeof r) return _arrayLikeToArray(r, a);
+    var t = {}.toString.call(r).slice(8, -1);
+    return "Object" === t && r.constructor && (t = r.constructor.name), "Map" === t || "Set" === t ? Array.from(r) : "Arguments" === t || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(t) ? _arrayLikeToArray(r, a) : void 0;
+  }
+}
+function _arrayLikeToArray(r, a) {
+  (null == a || a > r.length) && (a = r.length);
+  for (var e = 0, n = Array(a); e < a; e++) n[e] = r[e];
+  return n;
+} /* 
+  Author: Jonah Zimmer
+  This component is all of the content in the scrollable path. It takes into account which bricks should be which color.
+  */
+function Path(_ref) {
+  var highlight = _ref.highlight,
+    currentBrick = _ref.currentBrick;
+  var numRows = 15;
+  var numCols = 170;
+  var bricksPerPanel = 10;
+
+  /* this component determines if the brick should be highlighted or shown as the selected brick to determine 
+    class names and conditionally add the pop-up
+  */
+  function Brick(_ref2) {
+    var rowIndex = _ref2.rowIndex,
+      colIndex = _ref2.colIndex;
+    var bData = null;
+    // find selected brick
+    var _iterator = _createForOfIteratorHelper(_db["default"]),
+      _step;
+    try {
+      for (_iterator.s(); !(_step = _iterator.n()).done;) {
+        var b = _step.value;
+        var _col = 8 + (b.Panel_Number - 1) * bricksPerPanel + b.Col_Number;
+        var highlightMatch = b.Purchaser_Name.toLowerCase().includes(highlight.toLowerCase());
+        if (highlight == "all" || b.Paver_Assigned_Section == highlight || highlightMatch) {
+          if (b.Row_Number == rowIndex + 1 && _col == colIndex + 1) {
+            bData = b;
+            break;
+          }
+        }
+      }
+      // if brick should be highlighted, either return the existing or clicked format
+    } catch (err) {
+      _iterator.e(err);
+    } finally {
+      _iterator.f();
+    }
+    if (bData) {
+      var col = (bData.Panel_Number - 1) * bricksPerPanel + bData.Col_Number;
+      return /*#__PURE__*/_react["default"].createElement("div", {
+        className: 'existingBrick brick ' + (bData == currentBrick ? "clickedBrick" : ""),
+        key: 100 * rowIndex + colIndex
+      }, /*#__PURE__*/_react["default"].createElement("span", {
+        className: "popupText " + (col < 3 ? "popupTextLeft" : col > numCols - 4 ? "popupTextRight" : "")
+      }, bData.Inscription_Line_1, /*#__PURE__*/_react["default"].createElement("br", null), bData.Inscription_Line_2, /*#__PURE__*/_react["default"].createElement("br", null), bData.Inscription_Line_3, /*#__PURE__*/_react["default"].createElement("br", null), "Click for more info!"));
+    }
+    // otherwise just return default brick
+    else {
+      return /*#__PURE__*/_react["default"].createElement("div", {
+        className: "brick",
+        key: 100 * rowIndex + colIndex
+      });
+    }
+  }
+
+  // this component is the entire path with every other row offset in the opposite direction
+  return /*#__PURE__*/_react["default"].createElement("div", {
+    id: "path"
+  }, Array(numRows).fill(0).map(function (_, rowIndex) {
+    return /*#__PURE__*/_react["default"].createElement("div", {
+      className: rowIndex % 2 == 0 ? 'brickRow leftShiftRow' : 'brickRow rightShiftRow',
+      key: "row" + rowIndex
+    }, Array(numCols).fill(0).map(function (_, colIndex) {
+      return /*#__PURE__*/_react["default"].createElement(Brick, {
+        rowIndex: rowIndex,
+        colIndex: colIndex,
+        key: "row" + rowIndex + "col" + colIndex
+      });
+    }));
+  }));
+}
+
+},{"../../../public/db.json":32,"react":15}],24:[function(require,module,exports){
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports["default"] = ScrollContent;
+var _react = _interopRequireDefault(require("react"));
+var _panels = _interopRequireDefault(require("./panels.js"));
+var _path = _interopRequireDefault(require("./path.js"));
+function _interopRequireDefault(e) {
+  return e && e.__esModule ? e : {
+    "default": e
+  };
+}
+/* 
+Author: Jonah Zimmer
+
+This component contains the content that is scrollable as well as the buttons to scroll.
+It imports the path and panel subcomponents
+*/
+
+function scrollButtonFunction(goLeft) {
+  var scroll = document.getElementById("scrollContainer");
+  var dist = scroll.scrollLeft + 436;
+  if (goLeft) {
+    dist = scroll.scrollLeft - 436;
+  }
+  scroll.scroll({
+    left: dist,
+    top: 0,
+    behavior: "smooth"
+  });
+}
+function ScrollContent(_ref) {
+  var highlight = _ref.highlight,
+    currentBrick = _ref.currentBrick,
+    setCurrentBrick = _ref.setCurrentBrick;
+  return /*#__PURE__*/_react["default"].createElement("div", {
+    id: "fullPathContainer"
+  }, /*#__PURE__*/_react["default"].createElement("div", {
+    className: "scrollButtonContainer"
+  }, /*#__PURE__*/_react["default"].createElement("button", {
+    onClick: function onClick() {
+      return scrollButtonFunction(true);
+    },
+    tabIndex: 0,
+    className: "scrollButton",
+    id: "leftScroll",
+    "aria-label": "Scroll path left"
+  }, " \u21E7 ")), /*#__PURE__*/_react["default"].createElement("div", {
+    id: "scrollContainer"
+  }, /*#__PURE__*/_react["default"].createElement(_panels["default"], null), /*#__PURE__*/_react["default"].createElement(_path["default"], {
+    highlight: highlight,
+    currentBrick: currentBrick,
+    setCurrentBrick: setCurrentBrick
+  })), /*#__PURE__*/_react["default"].createElement("div", {
+    className: "scrollButtonContainer"
+  }, /*#__PURE__*/_react["default"].createElement("button", {
+    onClick: function onClick() {
+      return scrollButtonFunction(false);
+    },
+    tabIndex: 0,
+    className: "scrollButton",
+    id: "rightScroll",
+    "aria-label": "Scroll path right"
+  }, " \u21E7 ")));
+}
+
+},{"./panels.js":22,"./path.js":23,"react":15}],25:[function(require,module,exports){
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports["default"] = SelectedBrick;
+var _react = _interopRequireDefault(require("react"));
+var _app = require("../../app.js");
+var _db = _interopRequireDefault(require("../../../public/db.json"));
+function _interopRequireDefault(e) {
+  return e && e.__esModule ? e : {
+    "default": e
+  };
+}
+function _createForOfIteratorHelper(r, e) {
+  var t = "undefined" != typeof Symbol && r[Symbol.iterator] || r["@@iterator"];
+  if (!t) {
+    if (Array.isArray(r) || (t = _unsupportedIterableToArray(r)) || e && r && "number" == typeof r.length) {
+      t && (r = t);
+      var _n = 0,
+        F = function F() {};
+      return {
+        s: F,
+        n: function n() {
+          return _n >= r.length ? {
+            done: !0
+          } : {
+            done: !1,
+            value: r[_n++]
+          };
+        },
+        e: function e(r) {
+          throw r;
+        },
+        f: F
+      };
+    }
+    throw new TypeError("Invalid attempt to iterate non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method.");
+  }
+  var o,
+    a = !0,
+    u = !1;
+  return {
+    s: function s() {
+      t = t.call(r);
+    },
+    n: function n() {
+      var r = t.next();
+      return a = r.done, r;
+    },
+    e: function e(r) {
+      u = !0, o = r;
+    },
+    f: function f() {
+      try {
+        a || null == t["return"] || t["return"]();
+      } finally {
+        if (u) throw o;
+      }
+    }
+  };
+}
+function _unsupportedIterableToArray(r, a) {
+  if (r) {
+    if ("string" == typeof r) return _arrayLikeToArray(r, a);
+    var t = {}.toString.call(r).slice(8, -1);
+    return "Object" === t && r.constructor && (t = r.constructor.name), "Map" === t || "Set" === t ? Array.from(r) : "Arguments" === t || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(t) ? _arrayLikeToArray(r, a) : void 0;
+  }
+}
+function _arrayLikeToArray(r, a) {
+  (null == a || a > r.length) && (a = r.length);
+  for (var e = 0, n = Array(a); e < a; e++) n[e] = r[e];
+  return n;
+} /* 
+  Author: Jonah Zimmer
+  This component is for when a user clicks on a brick on the path. It includes a click event listener to choose the selected brick
+  */
+function closeBrick(setCurrentBrick) {
+  setCurrentBrick(_app.defaultBrick);
+  document.getElementById("selectedBrickPageCover").style.display = "none";
+  document.body.style.overflow = 'auto';
+  document.getElementById("scrollContainer").style.overflowX = 'scroll';
+}
+
+// content within selected brick
+function SelectedBrick(_ref) {
+  var brick = _ref.brick,
+    setCurrentBrick = _ref.setCurrentBrick;
+  // Finds and returns data from brickData about brick at coordinates
+  function getBrick(row, col, pan) {
+    var _iterator = _createForOfIteratorHelper(_db["default"]),
+      _step;
+    try {
+      for (_iterator.s(); !(_step = _iterator.n()).done;) {
+        var b = _step.value;
+        if (b.Row_Number == row && b.Col_Number == col && b.Panel_Number == pan) {
+          return b;
+        }
+      }
+    } catch (err) {
+      _iterator.e(err);
+    } finally {
+      _iterator.f();
+    }
+    return _app.defaultBrick;
+  }
+
+  // Click event handler that determines the location of the selected brick and changes state if it exists
+  document.addEventListener("click", function (e) {
+    var clicked = e.target;
+    if (clicked.classList.contains("popupText")) {
+      clicked = clicked.parentElement;
+    }
+    if (clicked.classList.contains("existingBrick")) {
+      var col = Array.prototype.indexOf.call(clicked.parentElement.children, clicked) - 7; // minus seven due to eight-brick offset
+      var row = Array.prototype.indexOf.call(clicked.parentElement.parentElement.children, clicked.parentElement) + 1;
+      var pan = Math.floor(col / 10) + 1;
+      col = col - (pan - 1) * 10;
+      var b = getBrick(row, col, pan);
+      setCurrentBrick(b);
+      document.getElementById("selectedBrickPageCover").style.display = "block";
+      document.body.style.overflow = 'hidden';
+      document.getElementById("scrollContainer").style.overflow = 'hidden';
+    }
+    document.getElementById('fname').value = "";
+  });
+  return /*#__PURE__*/_react["default"].createElement("div", {
+    id: "selectedBrickPageCover"
+  }, /*#__PURE__*/_react["default"].createElement("div", {
+    id: "selectedBrickContainer"
+  }, /*#__PURE__*/_react["default"].createElement("button", {
+    id: "selectedCloseButton",
+    onClick: function onClick() {
+      return closeBrick(setCurrentBrick);
+    }
+  }, "Close"), /*#__PURE__*/_react["default"].createElement("div", {
+    id: "selectedBrick"
+  }, brick.Inscription_Line_1 ? /*#__PURE__*/_react["default"].createElement("p", null, brick.Inscription_Line_1) : "", brick.Inscription_Line_2 ? /*#__PURE__*/_react["default"].createElement("p", null, brick.Inscription_Line_2) : "", brick.Inscription_Line_3 ? /*#__PURE__*/_react["default"].createElement("p", null, brick.Inscription_Line_3) : ""), /*#__PURE__*/_react["default"].createElement("div", {
+    id: "selectedBrickDescr"
+  }, /*#__PURE__*/_react["default"].createElement("p", null, "Naming Year: ", brick.Naming_Year), /*#__PURE__*/_react["default"].createElement("p", null, "Purchaser Name: ", brick.Purchaser_Name), brick.Paver_Assigned_Section ? /*#__PURE__*/_react["default"].createElement("p", null, "Section: ", brick.Paver_Assigned_Section) : /*#__PURE__*/_react["default"].createElement("p", null), brick.link ? /*#__PURE__*/_react["default"].createElement("p", null, brick.link) : "")));
+}
+
+},{"../../../public/db.json":32,"../../app.js":21,"react":15}],26:[function(require,module,exports){
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports["default"] = Search;
+var _db = _interopRequireDefault(require("../../public/db.json"));
+var _react = _interopRequireDefault(require("react"));
+function _interopRequireDefault(e) {
+  return e && e.__esModule ? e : {
+    "default": e
+  };
+}
+function _createForOfIteratorHelper(r, e) {
+  var t = "undefined" != typeof Symbol && r[Symbol.iterator] || r["@@iterator"];
+  if (!t) {
+    if (Array.isArray(r) || (t = _unsupportedIterableToArray(r)) || e && r && "number" == typeof r.length) {
+      t && (r = t);
+      var _n = 0,
+        F = function F() {};
+      return {
+        s: F,
+        n: function n() {
+          return _n >= r.length ? {
+            done: !0
+          } : {
+            done: !1,
+            value: r[_n++]
+          };
+        },
+        e: function e(r) {
+          throw r;
+        },
+        f: F
+      };
+    }
+    throw new TypeError("Invalid attempt to iterate non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method.");
+  }
+  var o,
+    a = !0,
+    u = !1;
+  return {
+    s: function s() {
+      t = t.call(r);
+    },
+    n: function n() {
+      var r = t.next();
+      return a = r.done, r;
+    },
+    e: function e(r) {
+      u = !0, o = r;
+    },
+    f: function f() {
+      try {
+        a || null == t["return"] || t["return"]();
+      } finally {
+        if (u) throw o;
+      }
+    }
+  };
+}
+function _unsupportedIterableToArray(r, a) {
+  if (r) {
+    if ("string" == typeof r) return _arrayLikeToArray(r, a);
+    var t = {}.toString.call(r).slice(8, -1);
+    return "Object" === t && r.constructor && (t = r.constructor.name), "Map" === t || "Set" === t ? Array.from(r) : "Arguments" === t || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(t) ? _arrayLikeToArray(r, a) : void 0;
+  }
+}
+function _arrayLikeToArray(r, a) {
+  (null == a || a > r.length) && (a = r.length);
+  for (var e = 0, n = Array(a); e < a; e++) n[e] = r[e];
+  return n;
+} /* 
+  Author: Jonah Zimmer
+  This single component holds the search bar and includes all functionality for buttons within search bar
+  */
+function Search(_ref) {
+  var highlight = _ref.highlight,
+    setHighlight = _ref.setHighlight,
+    display = _ref.display,
+    setDisplay = _ref.setDisplay;
+  // hide search section
+  function collapseSearch() {
+    var dropdown = document.getElementsByClassName("searchDropdown")[0];
+    var btn = document.getElementsByClassName("accordion")[0];
+    btn.classList.remove("active");
+    dropdown.style.height = "0px";
+    dropdown.style.paddingBottom = "5px";
+  }
+
+  // collapse search section if click outside of search
+  document.addEventListener("click", function (e) {
+    var panel = document.getElementsByClassName("searchDropdown")[0];
+    if (panel && !panel.contains(e.target) && !e.target.classList.contains("accordion")) {
+      collapseSearch();
+    }
+  });
+
+  // either open or close search section when "filter" button is clicked
+  function handleDropdownClick(e) {
+    var clicked = e.target;
+    clicked.classList.toggle("active");
+    var panel = document.getElementsByClassName("searchDropdown")[0];
+    if (panel.style.height != "0px") {
+      collapseSearch();
+    } else {
+      panel.style.height = "400px";
+    }
+  }
+  function toggleDisplay() {
+    if (display == "scroll") {
+      setDisplay("static");
+    } else if (display == "static") {
+      setDisplay("scroll");
+    }
+  }
+
+  // takes text field input then sets the highlight value to update other components
+  function searchButton(_ref2) {
+    var setHighlight = _ref2.setHighlight;
+    var val = document.getElementById("fname").value;
+    if (display == "scroll") {
+      collapseSearch();
+    }
+    setHighlight(val);
+  }
+
+  // takes section name then sets the highlight value to update other components
+  function handleSectionSearch(section) {
+    if (display == "scroll") {
+      collapseSearch();
+    }
+    setHighlight(section);
+  }
+
+  // Component that labels the red brick in the key
+  function Label(_ref3) {
+    var section = _ref3.section;
+    var sections = ["Centenarian", "Heroes", "Golden Women", "Family/Friends", "Businesses/Organizations"];
+    var num = 0;
+    var _iterator = _createForOfIteratorHelper(_db["default"]),
+      _step;
+    try {
+      for (_iterator.s(); !(_step = _iterator.n()).done;) {
+        var b = _step.value;
+        if (typeof b.Panel_Number == "number") {
+          var highlightMatch = b.Purchaser_Name.toLowerCase().includes(highlight.toLowerCase());
+          if (highlight == "all" || b.Paver_Assigned_Section == highlight || highlightMatch) {
+            num++;
+          }
+        }
+      }
+    } catch (err) {
+      _iterator.e(err);
+    } finally {
+      _iterator.f();
+    }
+    var countPhrase = "[" + num + " bricks]";
+    if (num == 1) {
+      countPhrase = "[1 brick]";
+    }
+    if (section == "all") {
+      return /*#__PURE__*/_react["default"].createElement("span", null, "All purchased bricks ", countPhrase);
+    } else if (sections.includes(section)) {
+      return /*#__PURE__*/_react["default"].createElement("span", null, "Bricks in the section ", section, " ", countPhrase);
+    } else {
+      return /*#__PURE__*/_react["default"].createElement("span", null, "Bricks purchased by ", section, " ", countPhrase);
+    }
+  }
+  function SearchBox() {
+    return /*#__PURE__*/_react["default"].createElement("div", {
+      id: "searchContainer"
+    }, /*#__PURE__*/_react["default"].createElement("div", {
+      id: "sectionSearchContainer"
+    }, /*#__PURE__*/_react["default"].createElement("span", null, "Search by section:"), /*#__PURE__*/_react["default"].createElement("div", {
+      id: "sectionSearchButtons"
+    }, /*#__PURE__*/_react["default"].createElement("button", {
+      id: "century",
+      className: "sectionSearchButton",
+      onClick: function onClick() {
+        return handleSectionSearch("Centenarian");
+      }
+    }, "Century Club"), /*#__PURE__*/_react["default"].createElement("button", {
+      id: "heros",
+      className: "sectionSearchButton",
+      onClick: function onClick() {
+        return handleSectionSearch("Heroes");
+      }
+    }, "Heroes"), /*#__PURE__*/_react["default"].createElement("button", {
+      id: "women",
+      className: "sectionSearchButton",
+      onClick: function onClick() {
+        return handleSectionSearch("Golden Women");
+      }
+    }, "Golden Women of Rondo"), /*#__PURE__*/_react["default"].createElement("button", {
+      id: "friends",
+      className: "sectionSearchButton",
+      onClick: function onClick() {
+        return handleSectionSearch("Family/Friends");
+      }
+    }, "Family/Friends"), /*#__PURE__*/_react["default"].createElement("button", {
+      id: "businesses",
+      className: "sectionSearchButton",
+      onClick: function onClick() {
+        return handleSectionSearch("Businesses/Organizations");
+      }
+    }, "Businesses/Organizations"))), /*#__PURE__*/_react["default"].createElement("div", {
+      id: "nameSearchContainer"
+    }, /*#__PURE__*/_react["default"].createElement("div", {
+      id: "searchInputsContainer"
+    }, /*#__PURE__*/_react["default"].createElement("label", {
+      htmlFor: "fname"
+    }, "Search by name of donor:"), /*#__PURE__*/_react["default"].createElement("br", null), /*#__PURE__*/_react["default"].createElement("input", {
+      type: "text",
+      id: "fname",
+      name: "fname"
+    }), /*#__PURE__*/_react["default"].createElement("button", {
+      id: "submitSearch",
+      onClick: function onClick() {
+        return searchButton({
+          setHighlight: setHighlight
+        });
+      }
+    }, "Search"))), /*#__PURE__*/_react["default"].createElement("button", {
+      id: "clearSearch",
+      className: "sectionSearchButton",
+      onClick: function onClick() {
+        return handleSectionSearch("all");
+      }
+    }, "Clear all filters"));
+  }
+  if (display == "scroll") {
+    return /*#__PURE__*/_react["default"].createElement(_react["default"].Fragment, null, /*#__PURE__*/_react["default"].createElement("div", {
+      id: "searchHeader"
+    }, /*#__PURE__*/_react["default"].createElement("button", {
+      id: "displayToggle",
+      className: "headerButton",
+      onClick: toggleDisplay
+    }, display == "scroll" ? "Show brick list" : "Show scrolling path"), /*#__PURE__*/_react["default"].createElement("div", {
+      id: "keysContainer"
+    }, /*#__PURE__*/_react["default"].createElement("div", {
+      className: "keyContainer"
+    }, /*#__PURE__*/_react["default"].createElement("div", {
+      id: "redKeyBox",
+      className: "keyBox"
+    }), /*#__PURE__*/_react["default"].createElement("div", {
+      id: "redKeyText"
+    }, /*#__PURE__*/_react["default"].createElement(Label, {
+      section: highlight
+    })), " ", /*#__PURE__*/_react["default"].createElement("button", {
+      onClick: handleDropdownClick,
+      tabIndex: 0,
+      className: "accordion"
+    }, "Filter")), /*#__PURE__*/_react["default"].createElement("div", {
+      className: "keyContainer"
+    }, /*#__PURE__*/_react["default"].createElement("div", {
+      id: "greyKeyBox",
+      className: "keyBox"
+    }), /*#__PURE__*/_react["default"].createElement("div", {
+      id: "greyKeyText"
+    }, "All other bricks"))), /*#__PURE__*/_react["default"].createElement("div", {
+      className: "searchDropdown",
+      style: {
+        height: 0 + "px"
+      }
+    }, /*#__PURE__*/_react["default"].createElement(SearchBox, null))), /*#__PURE__*/_react["default"].createElement("p", {
+      className: "datasetNote"
+    }, "The dataset used to build this site is incomplete. If you find any missing information or errors, do not hesitate to reach out to Katie Frye: katie@rcodemn.org"));
+  } else {
+    return /*#__PURE__*/_react["default"].createElement(_react["default"].Fragment, null, /*#__PURE__*/_react["default"].createElement("div", {
+      id: "customizeButtons"
+    }, /*#__PURE__*/_react["default"].createElement("button", {
+      id: "displayToggle",
+      className: "headerButton",
+      onClick: toggleDisplay
+    }, display == "scroll" ? "Show brick list" : "Show scrolling path")), /*#__PURE__*/_react["default"].createElement(SearchBox, null), /*#__PURE__*/_react["default"].createElement("p", {
+      className: "datasetNote"
+    }, "The dataset used to build this site is incomplete. If you find any missing information or errors, do not hesitate to reach out to Katie Frye: katie@rcodemn.org"), /*#__PURE__*/_react["default"].createElement("div", {
+      id: "staticSearchLabel"
+    }, /*#__PURE__*/_react["default"].createElement(Label, {
+      section: highlight
+    })));
+  }
+}
+
+},{"../../public/db.json":32,"react":15}],27:[function(require,module,exports){
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports["default"] = AccessibleContent;
+var _react = _interopRequireDefault(require("react"));
+var _db = _interopRequireDefault(require("../../../public/db.json"));
+function _interopRequireDefault(e) {
+  return e && e.__esModule ? e : {
+    "default": e
+  };
+}
+function _createForOfIteratorHelper(r, e) {
+  var t = "undefined" != typeof Symbol && r[Symbol.iterator] || r["@@iterator"];
+  if (!t) {
+    if (Array.isArray(r) || (t = _unsupportedIterableToArray(r)) || e && r && "number" == typeof r.length) {
+      t && (r = t);
+      var _n = 0,
+        F = function F() {};
+      return {
+        s: F,
+        n: function n() {
+          return _n >= r.length ? {
+            done: !0
+          } : {
+            done: !1,
+            value: r[_n++]
+          };
+        },
+        e: function e(r) {
+          throw r;
+        },
+        f: F
+      };
+    }
+    throw new TypeError("Invalid attempt to iterate non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method.");
+  }
+  var o,
+    a = !0,
+    u = !1;
+  return {
+    s: function s() {
+      t = t.call(r);
+    },
+    n: function n() {
+      var r = t.next();
+      return a = r.done, r;
+    },
+    e: function e(r) {
+      u = !0, o = r;
+    },
+    f: function f() {
+      try {
+        a || null == t["return"] || t["return"]();
+      } finally {
+        if (u) throw o;
+      }
+    }
+  };
+}
+function _unsupportedIterableToArray(r, a) {
+  if (r) {
+    if ("string" == typeof r) return _arrayLikeToArray(r, a);
+    var t = {}.toString.call(r).slice(8, -1);
+    return "Object" === t && r.constructor && (t = r.constructor.name), "Map" === t || "Set" === t ? Array.from(r) : "Arguments" === t || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(t) ? _arrayLikeToArray(r, a) : void 0;
+  }
+}
+function _arrayLikeToArray(r, a) {
+  (null == a || a > r.length) && (a = r.length);
+  for (var e = 0, n = Array(a); e < a; e++) n[e] = r[e];
+  return n;
+} /* 
+  Author: Jonah Zimmer
+  This is the static version of the site which does not have the scrolling bricks, 
+  making it accessible for screen readers and phone compatible.
+  */
+function AccessibleContent(_ref) {
+  var highlight = _ref.highlight;
+  var bricks = [];
+  var _iterator = _createForOfIteratorHelper(_db["default"]),
+    _step;
+  try {
+    for (_iterator.s(); !(_step = _iterator.n()).done;) {
+      var b = _step.value;
+      if (typeof b.Panel_Number == "number") {
+        if (highlight == "all") {
+          bricks.push(b);
+        } else if (b.Purchaser_Name.toLowerCase().includes(highlight.toLowerCase())) {
+          bricks.push(b);
+        } else if (b.Paver_Assigned_Section == highlight) {
+          bricks.push(b);
+        }
+      }
+    }
+  } catch (err) {
+    _iterator.e(err);
+  } finally {
+    _iterator.f();
+  }
+  return /*#__PURE__*/_react["default"].createElement("div", {
+    id: "accessibleBricksContainer"
+  }, Array(bricks.length).fill(0).map(function (_, b) {
+    return /*#__PURE__*/_react["default"].createElement(Brick, {
+      brick: bricks[b],
+      key: "p" + bricks[b].Panel_Number.toString() + "r" + bricks[b].Row_Number.toString() + "c" + bricks[b].Col_Number.toString()
+    });
+  }));
+}
+function Brick(_ref2) {
+  var brick = _ref2.brick;
+  return /*#__PURE__*/_react["default"].createElement("div", {
+    className: "accessibleBrickContainer"
+  }, /*#__PURE__*/_react["default"].createElement("div", {
+    className: "accessibleBrick"
+  }, brick.Inscription_Line_1 ? /*#__PURE__*/_react["default"].createElement("p", null, brick.Inscription_Line_1) : "", brick.Inscription_Line_2 ? /*#__PURE__*/_react["default"].createElement("p", null, brick.Inscription_Line_2) : "", brick.Inscription_Line_3 ? /*#__PURE__*/_react["default"].createElement("p", null, brick.Inscription_Line_3) : ""), /*#__PURE__*/_react["default"].createElement("p", {
+    className: "brickDataText"
+  }, "Naming Year: ", brick.Naming_Year), /*#__PURE__*/_react["default"].createElement("p", {
+    className: "brickDataText"
+  }, "Purchaser:", /*#__PURE__*/_react["default"].createElement("br", null), "\xA0\xA0\xA0", brick.Purchaser_Name), /*#__PURE__*/_react["default"].createElement("p", {
+    className: "brickDataText"
+  }, "Section: ", brick.Paver_Assigned_Section), /*#__PURE__*/_react["default"].createElement("p", {
+    className: "brickDataText"
+  }, "In front of panel ", brick.Panel_Number), brick.link ? /*#__PURE__*/_react["default"].createElement("p", null, brick.link) : "");
+}
+
+},{"../../../public/db.json":32,"react":15}],28:[function(require,module,exports){
+"use strict";
+
+function _typeof(o) {
+  "@babel/helpers - typeof";
+
+  return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (o) {
+    return typeof o;
+  } : function (o) {
+    return o && "function" == typeof Symbol && o.constructor === Symbol && o !== Symbol.prototype ? "symbol" : typeof o;
+  }, _typeof(o);
+}
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports["default"] = Contact;
+var _react = _interopRequireWildcard(require("react"));
+var _header = _interopRequireDefault(require("../header.js"));
+var _footer = _interopRequireDefault(require("../footer.js"));
+function _interopRequireDefault(e) {
+  return e && e.__esModule ? e : {
+    "default": e
+  };
+}
+function _interopRequireWildcard(e, t) {
+  if ("function" == typeof WeakMap) var r = new WeakMap(),
+    n = new WeakMap();
+  return (_interopRequireWildcard = function _interopRequireWildcard(e, t) {
+    if (!t && e && e.__esModule) return e;
+    var o,
+      i,
+      f = {
+        __proto__: null,
+        "default": e
+      };
+    if (null === e || "object" != _typeof(e) && "function" != typeof e) return f;
+    if (o = t ? n : r) {
+      if (o.has(e)) return o.get(e);
+      o.set(e, f);
+    }
+    for (var _t in e) "default" !== _t && {}.hasOwnProperty.call(e, _t) && ((i = (o = Object.defineProperty) && Object.getOwnPropertyDescriptor(e, _t)) && (i.get || i.set) ? o(f, _t, i) : f[_t] = e[_t]);
+    return f;
+  })(e, t);
+}
+function ownKeys(e, r) {
+  var t = Object.keys(e);
+  if (Object.getOwnPropertySymbols) {
+    var o = Object.getOwnPropertySymbols(e);
+    r && (o = o.filter(function (r) {
+      return Object.getOwnPropertyDescriptor(e, r).enumerable;
+    })), t.push.apply(t, o);
+  }
+  return t;
+}
+function _objectSpread(e) {
+  for (var r = 1; r < arguments.length; r++) {
+    var t = null != arguments[r] ? arguments[r] : {};
+    r % 2 ? ownKeys(Object(t), !0).forEach(function (r) {
+      _defineProperty(e, r, t[r]);
+    }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(e, Object.getOwnPropertyDescriptors(t)) : ownKeys(Object(t)).forEach(function (r) {
+      Object.defineProperty(e, r, Object.getOwnPropertyDescriptor(t, r));
+    });
+  }
+  return e;
+}
+function _defineProperty(e, r, t) {
+  return (r = _toPropertyKey(r)) in e ? Object.defineProperty(e, r, {
+    value: t,
+    enumerable: !0,
+    configurable: !0,
+    writable: !0
+  }) : e[r] = t, e;
+}
+function _toPropertyKey(t) {
+  var i = _toPrimitive(t, "string");
+  return "symbol" == _typeof(i) ? i : i + "";
+}
+function _toPrimitive(t, r) {
+  if ("object" != _typeof(t) || !t) return t;
+  var e = t[Symbol.toPrimitive];
+  if (void 0 !== e) {
+    var i = e.call(t, r || "default");
+    if ("object" != _typeof(i)) return i;
+    throw new TypeError("@@toPrimitive must return a primitive value.");
+  }
+  return ("string" === r ? String : Number)(t);
+}
+function _slicedToArray(r, e) {
+  return _arrayWithHoles(r) || _iterableToArrayLimit(r, e) || _unsupportedIterableToArray(r, e) || _nonIterableRest();
+}
+function _nonIterableRest() {
+  throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method.");
+}
+function _unsupportedIterableToArray(r, a) {
+  if (r) {
+    if ("string" == typeof r) return _arrayLikeToArray(r, a);
+    var t = {}.toString.call(r).slice(8, -1);
+    return "Object" === t && r.constructor && (t = r.constructor.name), "Map" === t || "Set" === t ? Array.from(r) : "Arguments" === t || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(t) ? _arrayLikeToArray(r, a) : void 0;
+  }
+}
+function _arrayLikeToArray(r, a) {
+  (null == a || a > r.length) && (a = r.length);
+  for (var e = 0, n = Array(a); e < a; e++) n[e] = r[e];
+  return n;
+}
+function _iterableToArrayLimit(r, l) {
+  var t = null == r ? null : "undefined" != typeof Symbol && r[Symbol.iterator] || r["@@iterator"];
+  if (null != t) {
+    var e,
+      n,
+      i,
+      u,
+      a = [],
+      f = !0,
+      o = !1;
+    try {
+      if (i = (t = t.call(r)).next, 0 === l) {
+        if (Object(t) !== t) return;
+        f = !1;
+      } else for (; !(f = (e = i.call(t)).done) && (a.push(e.value), a.length !== l); f = !0);
+    } catch (r) {
+      o = !0, n = r;
+    } finally {
+      try {
+        if (!f && null != t["return"] && (u = t["return"](), Object(u) !== u)) return;
+      } finally {
+        if (o) throw n;
+      }
+    }
+    return a;
+  }
+}
+function _arrayWithHoles(r) {
+  if (Array.isArray(r)) return r;
+}
+var FormTypeSelector = function FormTypeSelector(_ref) {
+  var formType = _ref.formType,
+    handleFormTypeChange = _ref.handleFormTypeChange;
+  return /*#__PURE__*/_react["default"].createElement("fieldset", null, /*#__PURE__*/_react["default"].createElement("legend", null, "What would you like to do?"), /*#__PURE__*/_react["default"].createElement("div", {
+    role: "radiogroup",
+    "aria-labelledby": "form-type-legend",
+    className: "formOptionsContainer"
+  }, /*#__PURE__*/_react["default"].createElement("div", null, /*#__PURE__*/_react["default"].createElement("input", {
+    type: "radio",
+    id: "editBrick",
+    name: "formType",
+    value: "edit",
+    checked: formType === 'edit',
+    onChange: handleFormTypeChange
+  }), /*#__PURE__*/_react["default"].createElement("label", {
+    htmlFor: "editBrick"
+  }, "Correct an error on a brick on the site")), /*#__PURE__*/_react["default"].createElement("div", null, /*#__PURE__*/_react["default"].createElement("input", {
+    type: "radio",
+    id: "purchaseBrick",
+    name: "formType",
+    value: "purchase",
+    checked: formType === 'purchase',
+    onChange: handleFormTypeChange
+  }), /*#__PURE__*/_react["default"].createElement("label", {
+    htmlFor: "purchaseBrick"
+  }, "Purchase a new brick")), /*#__PURE__*/_react["default"].createElement("div", null, /*#__PURE__*/_react["default"].createElement("input", {
+    type: "radio",
+    id: "shareComments",
+    name: "formType",
+    value: "comments",
+    checked: formType === 'comments',
+    onChange: handleFormTypeChange
+  }), /*#__PURE__*/_react["default"].createElement("label", {
+    htmlFor: "shareComments"
+  }, "Share other comments or feedback"))));
+};
+var EditForm = function EditForm(_ref2) {
+  var formData = _ref2.formData,
+    handleInputChange = _ref2.handleInputChange,
+    handleSubmit = _ref2.handleSubmit,
+    errors = _ref2.errors;
+  return /*#__PURE__*/_react["default"].createElement("form", {
+    onSubmit: handleSubmit,
+    noValidate: true
+  }, /*#__PURE__*/_react["default"].createElement("h2", null, "Edit an Existing Brick"), /*#__PURE__*/_react["default"].createElement("p", null, "Please provide the following information to help us locate your brick and make the necessary corrections."), /*#__PURE__*/_react["default"].createElement("div", null, /*#__PURE__*/_react["default"].createElement("label", {
+    htmlFor: "purchaserName"
+  }, "Purchaser Name: ", /*#__PURE__*/_react["default"].createElement("span", {
+    "aria-label": "required"
+  }, "*")), /*#__PURE__*/_react["default"].createElement("input", {
+    type: "text",
+    id: "purchaserName",
+    name: "purchaserName",
+    value: formData.purchaserName,
+    onChange: handleInputChange,
+    "aria-required": "true"
+  }), errors.purchaserName && /*#__PURE__*/_react["default"].createElement("div", {
+    id: "purchaserName-error",
+    className: "error-message",
+    role: "alert"
+  }, errors.purchaserName)), /*#__PURE__*/_react["default"].createElement("div", null, /*#__PURE__*/_react["default"].createElement("label", {
+    htmlFor: "panel"
+  }, "Panel Number: ", /*#__PURE__*/_react["default"].createElement("span", {
+    "aria-label": "required"
+  }, "*")), /*#__PURE__*/_react["default"].createElement("input", {
+    type: "text",
+    id: "panel",
+    name: "panel",
+    value: formData.panel,
+    onChange: handleInputChange,
+    "aria-required": "true"
+  }), errors.panel && /*#__PURE__*/_react["default"].createElement("div", {
+    id: "panel-error",
+    className: "error-message",
+    role: "alert"
+  }, errors.panel)), /*#__PURE__*/_react["default"].createElement("div", null, /*#__PURE__*/_react["default"].createElement("label", {
+    htmlFor: "errorExplanation"
+  }, "Explanation of Error: ", /*#__PURE__*/_react["default"].createElement("span", {
+    "aria-label": "required"
+  }, "*")), /*#__PURE__*/_react["default"].createElement("textarea", {
+    id: "errorExplanation",
+    name: "errorExplanation",
+    rows: "5",
+    value: formData.errorExplanation,
+    onChange: handleInputChange,
+    "aria-required": "true"
+  }), errors.errorExplanation && /*#__PURE__*/_react["default"].createElement("div", {
+    id: "errorExplanation-error",
+    className: "error-message",
+    role: "alert"
+  }, errors.errorExplanation)), /*#__PURE__*/_react["default"].createElement("div", null, /*#__PURE__*/_react["default"].createElement("label", {
+    htmlFor: "editComment"
+  }, "Additional Comments:"), /*#__PURE__*/_react["default"].createElement("textarea", {
+    id: "editComment",
+    name: "comment",
+    rows: "3",
+    value: formData.comment,
+    onChange: handleInputChange
+  })), /*#__PURE__*/_react["default"].createElement("button", {
+    type: "submit"
+  }, "Submit Correction Request"));
+};
+var PurchaseInfo = function PurchaseInfo() {
+  return /*#__PURE__*/_react["default"].createElement("div", null, /*#__PURE__*/_react["default"].createElement("h2", null, "Purchase a New Brick"), /*#__PURE__*/_react["default"].createElement("p", null, "We are delighted that you're interested in purchasing a brick! Please proceed to our brick purchasing page to customize and buy your brick."));
+};
+var CommentsForm = function CommentsForm(_ref3) {
+  var formData = _ref3.formData,
+    handleInputChange = _ref3.handleInputChange,
+    handleSubmit = _ref3.handleSubmit,
+    errors = _ref3.errors;
+  return /*#__PURE__*/_react["default"].createElement("form", {
+    onSubmit: handleSubmit,
+    noValidate: true
+  }, /*#__PURE__*/_react["default"].createElement("h2", null, "Share Other Comments"), /*#__PURE__*/_react["default"].createElement("p", null, "We'd love to hear from you! Please share any comments, suggestions, or feedback you have."), /*#__PURE__*/_react["default"].createElement("div", null, /*#__PURE__*/_react["default"].createElement("label", {
+    htmlFor: "comment"
+  }, "Your Comments: ", /*#__PURE__*/_react["default"].createElement("span", {
+    "aria-label": "required"
+  }, "*")), /*#__PURE__*/_react["default"].createElement("textarea", {
+    id: "comment",
+    name: "comment",
+    rows: "5",
+    value: formData.comment,
+    onChange: handleInputChange,
+    "aria-required": "true"
+  }), errors.comment && /*#__PURE__*/_react["default"].createElement("div", {
+    id: "comment-error",
+    className: "error-message",
+    role: "alert"
+  }, errors.comment)), /*#__PURE__*/_react["default"].createElement("button", {
+    type: "submit"
+  }, "Submit Comments"));
+};
+function Contact() {
+  var _useState = (0, _react.useState)(''),
+    _useState2 = _slicedToArray(_useState, 2),
+    formType = _useState2[0],
+    setFormType = _useState2[1]; // 'edit', 'purchase', or 'comments'
+  var _useState3 = (0, _react.useState)({
+      purchaserName: '',
+      panel: '',
+      errorExplanation: '',
+      comment: ''
+    }),
+    _useState4 = _slicedToArray(_useState3, 2),
+    formData = _useState4[0],
+    setFormData = _useState4[1];
+  var _useState5 = (0, _react.useState)({}),
+    _useState6 = _slicedToArray(_useState5, 2),
+    errors = _useState6[0],
+    setErrors = _useState6[1];
+  var handleFormTypeChange = function handleFormTypeChange(event) {
+    setFormType(event.target.value);
+    // Clear form data when switching between forms
+    setFormData({
+      purchaserName: '',
+      panel: '',
+      errorExplanation: '',
+      comment: ''
+    });
+    setErrors({});
+  };
+  var handleInputChange = function handleInputChange(event) {
+    var _event$target = event.target,
+      name = _event$target.name,
+      value = _event$target.value;
+    setFormData(function (prev) {
+      return _objectSpread(_objectSpread({}, prev), {}, _defineProperty({}, name, value));
+    });
+    // Clear error when user starts typing
+    if (errors[name]) {
+      setErrors(function (prev) {
+        return _objectSpread(_objectSpread({}, prev), {}, _defineProperty({}, name, ''));
+      });
+    }
+  };
+  var validateForm = function validateForm() {
+    var newErrors = {};
+    if (formType === 'edit') {
+      if (!formData.purchaserName.trim()) {
+        newErrors.purchaserName = 'Purchaser name is required';
+      }
+      if (!formData.panel.trim()) {
+        newErrors.panel = 'Panel number is required';
+      }
+      if (!formData.errorExplanation.trim()) {
+        newErrors.errorExplanation = 'Error explanation is required';
+      }
+    } else if (formType === 'comments') {
+      if (!formData.comment.trim()) {
+        newErrors.comment = 'Comments are required';
+      }
+    }
+    setErrors(newErrors);
+    return Object.keys(newErrors).length === 0;
+  };
+  var handleSubmit = function handleSubmit(event) {
+    event.preventDefault();
+    if (validateForm()) {
+      // Handle form submission here
+      console.log('Form submitted:', {
+        formType: formType,
+        formData: formData
+      });
+      alert('Thank you for your submission! We will get back to you soon.');
+    }
+  };
+  return /*#__PURE__*/_react["default"].createElement("div", {
+    className: "contactPage"
+  }, /*#__PURE__*/_react["default"].createElement(_header["default"], null), /*#__PURE__*/_react["default"].createElement("main", {
+    className: "contactContent"
+  }, /*#__PURE__*/_react["default"].createElement("h1", null, "Contact Us"), /*#__PURE__*/_react["default"].createElement("p", null, "Please select an option below."), /*#__PURE__*/_react["default"].createElement(FormTypeSelector, {
+    formType: formType,
+    handleFormTypeChange: handleFormTypeChange
+  }), formType === 'edit' && /*#__PURE__*/_react["default"].createElement(EditForm, {
+    formData: formData,
+    handleInputChange: handleInputChange,
+    handleSubmit: handleSubmit,
+    errors: errors
+  }), formType === 'purchase' && /*#__PURE__*/_react["default"].createElement(PurchaseInfo, null), formType === 'comments' && /*#__PURE__*/_react["default"].createElement(CommentsForm, {
+    formData: formData,
+    handleInputChange: handleInputChange,
+    handleSubmit: handleSubmit,
+    errors: errors
+  })), /*#__PURE__*/_react["default"].createElement(_footer["default"], null));
+}
+
+},{"../footer.js":29,"../header.js":30,"react":15}],29:[function(require,module,exports){
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports["default"] = Footer;
+var _react = _interopRequireDefault(require("react"));
+function _interopRequireDefault(e) {
+  return e && e.__esModule ? e : {
+    "default": e
+  };
+}
+function Footer() {
+  return /*#__PURE__*/_react["default"].createElement("footer", null, /*#__PURE__*/_react["default"].createElement("div", {
+    className: "footerCol"
+  }));
+}
+
+},{"react":15}],30:[function(require,module,exports){
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports["default"] = Header;
+var _react = _interopRequireDefault(require("react"));
+var _reactRouterDom = require("react-router-dom");
+function _interopRequireDefault(e) {
+  return e && e.__esModule ? e : {
+    "default": e
+  };
+}
+/* 
+Author: Jonah Zimmer
+
+This single component holds the header
+*/
+
+function Header() {
+  return /*#__PURE__*/_react["default"].createElement("header", null, /*#__PURE__*/_react["default"].createElement("h1", {
+    id: "title"
+  }, "Rondo Commemorative Plaza"), /*#__PURE__*/_react["default"].createElement("div", {
+    id: "navLinks"
+  }, /*#__PURE__*/_react["default"].createElement(_reactRouterDom.Link, {
+    className: "headerButton " + ((0, _reactRouterDom.useLocation)().pathname == "/" ? "activeNav" : ""),
+    to: "/"
+  }, "Home"), /*#__PURE__*/_react["default"].createElement(_reactRouterDom.Link, {
+    to: "/about",
+    className: "headerButton " + ((0, _reactRouterDom.useLocation)().pathname == "/about" ? "activeNav" : "")
+  }, "About"), /*#__PURE__*/_react["default"].createElement(_reactRouterDom.Link, {
+    to: "/contact",
+    className: "headerButton " + ((0, _reactRouterDom.useLocation)().pathname == "/contact" ? "activeNav" : "")
+  }, "Contact")));
+}
+
+},{"react":15,"react-router-dom":7}],31:[function(require,module,exports){
+"use strict";
+
+var _app = _interopRequireDefault(require("./app.js"));
+var _about = _interopRequireDefault(require("./about/about.js"));
+var _contact = _interopRequireDefault(require("./contact/contact.js"));
+var _reactRouterDom = require("react-router-dom");
+var _react = _interopRequireDefault(require("react"));
+var _client = _interopRequireDefault(require("react-dom/client"));
+function _interopRequireDefault(e) {
+  return e && e.__esModule ? e : {
+    "default": e
+  };
+}
+var root = _client["default"].createRoot(document.getElementById('mainContent'));
+root.render(/*#__PURE__*/_react["default"].createElement(_react["default"].StrictMode, null, /*#__PURE__*/_react["default"].createElement(_reactRouterDom.HashRouter, null, /*#__PURE__*/_react["default"].createElement(_reactRouterDom.Routes, null, /*#__PURE__*/_react["default"].createElement(_reactRouterDom.Route, {
+  path: "/",
+  element: /*#__PURE__*/_react["default"].createElement(_app["default"], null)
+}), /*#__PURE__*/_react["default"].createElement(_reactRouterDom.Route, {
+  path: "/about",
+  element: /*#__PURE__*/_react["default"].createElement(_about["default"], null)
+}), /*#__PURE__*/_react["default"].createElement(_reactRouterDom.Route, {
+  path: "/contact",
+  element: /*#__PURE__*/_react["default"].createElement(_contact["default"], null)
+}), /*#__PURE__*/_react["default"].createElement(_reactRouterDom.Route, {
+  path: "*",
+  element: /*#__PURE__*/_react["default"].createElement(_app["default"], null)
+})))));
+
+},{"./about/about.js":20,"./app.js":21,"./contact/contact.js":28,"react":15,"react-dom/client":5,"react-router-dom":7}],32:[function(require,module,exports){
 module.exports=[
   {
     "Naming_Year": 2024,
@@ -48811,1249 +50251,4 @@ module.exports=[
 
 
 ]
-},{}],23:[function(require,module,exports){
-"use strict";
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports["default"] = Panel;
-var _react = _interopRequireDefault(require("react"));
-function _interopRequireDefault(e) {
-  return e && e.__esModule ? e : {
-    "default": e
-  };
-}
-/*
-Author: Jonah Zimmer
-
-This file contains the panels that appear in the scrolling path as well as the zoomable forms. 
-*/
-
-function Panel() {
-  function zoom(fileName, width) {
-    var zoomImg = document.getElementById("zoomImg");
-    var zoomImgContainer = document.getElementById("zoomImgContainer");
-    zoomImg.src = "./pages/bricks/scrolling/panels/big/IMG_" + fileName + ".jpeg";
-    zoomImg.height = 100;
-    zoomImg.width = 363 / width * 100;
-    zoomImg.style.height = "80vh";
-    zoomImg.style.height = 363 / width * 80 + "vh";
-    zoomImgContainer.style.display = "flex";
-    magnify(3);
-  }
-  function closeZoom() {
-    var zoomImgContainer = document.getElementById("zoomImgContainer");
-    zoomImgContainer.style.display = "none";
-  }
-
-  // https://www.w3schools.com/howto/howto_js_image_magnifier_glass.asp
-  function magnify(zoom) {
-    var img, glass, w, h, bw;
-    img = document.getElementById("zoomImg");
-
-    /* Create magnifier glass: */
-    glass = document.getElementById("img-magnifier-glass");
-
-    /* Insert magnifier glass: */
-    img.parentElement.insertBefore(glass, img);
-
-    /* Set background properties for the magnifier glass: */
-    glass.style.backgroundImage = "url('" + img.src + "')";
-    glass.style.backgroundRepeat = "no-repeat";
-    glass.style.backgroundSize = img.width * zoom + "px " + img.height * zoom + "px";
-    bw = 3;
-    w = glass.offsetWidth / 2;
-    h = glass.offsetHeight / 2;
-
-    /* Execute a function when someone moves the magnifier glass over the image: */
-    document.addEventListener("mousemove", moveMagnifier);
-
-    /*and also for touch screens:*/
-    document.addEventListener("touchmove", moveMagnifier);
-    document.addEventListener("click", function (e) {
-      if (e.target.id == "zoomImgs" || e.target.id == "zoomImgContainer") {
-        closeZoom();
-      }
-    });
-    function moveMagnifier(e) {
-      var pos, x, y;
-      /* Prevent any other actions that may occur when moving over the image */
-      e.preventDefault();
-      /* Get the cursor's x and y positions: */
-      pos = getCursorPos(e);
-      x = pos.x;
-      y = pos.y;
-
-      /* Display what the magnifier glass "sees": */
-      var xpos = -1 * (x * zoom - w) + "px ";
-      var ypos = -1 * (y * zoom - h + bw) + "px";
-      glass.style.backgroundPosition = xpos + ypos;
-    }
-    function getCursorPos(e) {
-      var a,
-        x = 0,
-        y = 0;
-      e = e || window.event;
-      /* Get the x and y positions of the image: */
-      a = img.getBoundingClientRect();
-      /* Calculate the cursor's x and y coordinates, relative to the image: */
-      x = e.pageX - a.left;
-      y = e.pageY - a.top;
-      /* Consider any page scrolling: */
-      x = x - window.pageXOffset;
-      y = y - window.pageYOffset;
-      return {
-        x: x,
-        y: y
-      };
-    }
-  }
-  return /*#__PURE__*/_react["default"].createElement("div", {
-    id: "panelsContainer"
-  }, /*#__PURE__*/_react["default"].createElement("div", {
-    id: "zoomImgContainer"
-  }, /*#__PURE__*/_react["default"].createElement("button", {
-    onClick: closeZoom,
-    id: "closeZoom"
-  }, "Close"), /*#__PURE__*/_react["default"].createElement("div", {
-    id: "zoomImgs"
-  }, /*#__PURE__*/_react["default"].createElement("div", {
-    id: "magContainer"
-  }, /*#__PURE__*/_react["default"].createElement("div", null), /*#__PURE__*/_react["default"].createElement("div", {
-    id: "img-magnifier-glass"
-  })), /*#__PURE__*/_react["default"].createElement("img", {
-    id: "zoomImg"
-  }))), /*#__PURE__*/_react["default"].createElement("img", {
-    onClick: function onClick() {
-      return zoom(2694, 332.8);
-    },
-    className: "panel",
-    width: "332.8",
-    height: "363",
-    src: "./pages/bricks/scrolling/panels/small/IMG_2694.jpeg",
-    style: {
-      marginLeft: "283px"
-    }
-  }), /*#__PURE__*/_react["default"].createElement("img", {
-    onClick: function onClick() {
-      return zoom(2698, 326);
-    },
-    className: "panel",
-    width: "326",
-    height: "363",
-    src: "./pages/bricks/scrolling/panels/small/IMG_2698.jpeg"
-  }), /*#__PURE__*/_react["default"].createElement("img", {
-    onClick: function onClick() {
-      return zoom(2700, 326);
-    },
-    className: "panel",
-    width: "327",
-    height: "363",
-    src: "./pages/bricks/scrolling/panels/small/IMG_2700.jpeg"
-  }), /*#__PURE__*/_react["default"].createElement("img", {
-    onClick: function onClick() {
-      return zoom(2701, 326);
-    },
-    className: "panel",
-    width: "320.7",
-    height: "363",
-    src: "./pages/bricks/scrolling/panels/small/IMG_2701.jpeg"
-  }), /*#__PURE__*/_react["default"].createElement("img", {
-    onClick: function onClick() {
-      return zoom(2702, 326);
-    },
-    className: "panel",
-    width: "326.6",
-    height: "363",
-    src: "./pages/bricks/scrolling/panels/small/IMG_2702.jpeg"
-  }), /*#__PURE__*/_react["default"].createElement("img", {
-    onClick: function onClick() {
-      return zoom(2706, 326);
-    },
-    className: "panel",
-    width: "331",
-    height: "363",
-    src: "./pages/bricks/scrolling/panels/small/IMG_2706.jpeg"
-  }), /*#__PURE__*/_react["default"].createElement("img", {
-    onClick: function onClick() {
-      return zoom(2708, 326);
-    },
-    className: "panel",
-    width: "325",
-    height: "363",
-    src: "./pages/bricks/scrolling/panels/small/IMG_2708.jpeg"
-  }), /*#__PURE__*/_react["default"].createElement("img", {
-    onClick: function onClick() {
-      return zoom(2711, 326);
-    },
-    className: "panel",
-    width: "330",
-    height: "363",
-    src: "./pages/bricks/scrolling/panels/small/IMG_2711.jpeg"
-  }), /*#__PURE__*/_react["default"].createElement("img", {
-    onClick: function onClick() {
-      return zoom(2715, 326);
-    },
-    className: "panel",
-    width: "328",
-    height: "363",
-    src: "./pages/bricks/scrolling/panels/small/IMG_2715.jpeg"
-  }), /*#__PURE__*/_react["default"].createElement("img", {
-    onClick: function onClick() {
-      return zoom(2716, 326);
-    },
-    className: "panel",
-    width: "321",
-    height: "363",
-    src: "./pages/bricks/scrolling/panels/small/IMG_2716.jpeg"
-  }), /*#__PURE__*/_react["default"].createElement("img", {
-    onClick: function onClick() {
-      return zoom(2719, 326);
-    },
-    className: "panel",
-    width: "328",
-    height: "363",
-    src: "./pages/bricks/scrolling/panels/small/IMG_2719.jpeg"
-  }), /*#__PURE__*/_react["default"].createElement("img", {
-    onClick: function onClick() {
-      return zoom(2721, 326);
-    },
-    className: "panel",
-    width: "327",
-    height: "363",
-    src: "./pages/bricks/scrolling/panels/small/IMG_2721.jpeg"
-  }), /*#__PURE__*/_react["default"].createElement("img", {
-    onClick: function onClick() {
-      return zoom(2725, 326);
-    },
-    className: "panel",
-    width: "329",
-    height: "363",
-    src: "./pages/bricks/scrolling/panels/small/IMG_2725.jpeg"
-  }));
-}
-
-},{"react":15}],24:[function(require,module,exports){
-"use strict";
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports["default"] = Path;
-var _react = _interopRequireDefault(require("react"));
-var _db = _interopRequireDefault(require("../db.json"));
-function _interopRequireDefault(e) {
-  return e && e.__esModule ? e : {
-    "default": e
-  };
-}
-function _createForOfIteratorHelper(r, e) {
-  var t = "undefined" != typeof Symbol && r[Symbol.iterator] || r["@@iterator"];
-  if (!t) {
-    if (Array.isArray(r) || (t = _unsupportedIterableToArray(r)) || e && r && "number" == typeof r.length) {
-      t && (r = t);
-      var _n = 0,
-        F = function F() {};
-      return {
-        s: F,
-        n: function n() {
-          return _n >= r.length ? {
-            done: !0
-          } : {
-            done: !1,
-            value: r[_n++]
-          };
-        },
-        e: function e(r) {
-          throw r;
-        },
-        f: F
-      };
-    }
-    throw new TypeError("Invalid attempt to iterate non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method.");
-  }
-  var o,
-    a = !0,
-    u = !1;
-  return {
-    s: function s() {
-      t = t.call(r);
-    },
-    n: function n() {
-      var r = t.next();
-      return a = r.done, r;
-    },
-    e: function e(r) {
-      u = !0, o = r;
-    },
-    f: function f() {
-      try {
-        a || null == t["return"] || t["return"]();
-      } finally {
-        if (u) throw o;
-      }
-    }
-  };
-}
-function _unsupportedIterableToArray(r, a) {
-  if (r) {
-    if ("string" == typeof r) return _arrayLikeToArray(r, a);
-    var t = {}.toString.call(r).slice(8, -1);
-    return "Object" === t && r.constructor && (t = r.constructor.name), "Map" === t || "Set" === t ? Array.from(r) : "Arguments" === t || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(t) ? _arrayLikeToArray(r, a) : void 0;
-  }
-}
-function _arrayLikeToArray(r, a) {
-  (null == a || a > r.length) && (a = r.length);
-  for (var e = 0, n = Array(a); e < a; e++) n[e] = r[e];
-  return n;
-} /* 
-  Author: Jonah Zimmer
-  This component is all of the content in the scrollable path. It takes into account which bricks should be which color.
-  */
-function Path(_ref) {
-  var highlight = _ref.highlight,
-    currentBrick = _ref.currentBrick;
-  var numRows = 15;
-  var numCols = 170;
-  var bricksPerPanel = 10;
-
-  /* this component determines if the brick should be highlighted or shown as the selected brick to determine 
-    class names and conditionally add the pop-up
-  */
-  function Brick(_ref2) {
-    var rowIndex = _ref2.rowIndex,
-      colIndex = _ref2.colIndex;
-    var bData = null;
-    // find selected brick
-    var _iterator = _createForOfIteratorHelper(_db["default"]),
-      _step;
-    try {
-      for (_iterator.s(); !(_step = _iterator.n()).done;) {
-        var b = _step.value;
-        var _col = 8 + (b.Panel_Number - 1) * bricksPerPanel + b.Col_Number;
-        var highlightMatch = b.Purchaser_Name.toLowerCase().includes(highlight.toLowerCase());
-        if (highlight == "all" || b.Paver_Assigned_Section == highlight || highlightMatch) {
-          if (b.Row_Number == rowIndex + 1 && _col == colIndex + 1) {
-            bData = b;
-            break;
-          }
-        }
-      }
-      // if brick should be highlighted, either return the existing or clicked format
-    } catch (err) {
-      _iterator.e(err);
-    } finally {
-      _iterator.f();
-    }
-    if (bData) {
-      var col = (bData.Panel_Number - 1) * bricksPerPanel + bData.Col_Number;
-      return /*#__PURE__*/_react["default"].createElement("div", {
-        className: 'existingBrick brick ' + (bData == currentBrick ? "clickedBrick" : ""),
-        key: 100 * rowIndex + colIndex
-      }, /*#__PURE__*/_react["default"].createElement("span", {
-        className: "popupText " + (col < 3 ? "popupTextLeft" : col > numCols - 4 ? "popupTextRight" : "")
-      }, bData.Inscription_Line_1, /*#__PURE__*/_react["default"].createElement("br", null), bData.Inscription_Line_2, /*#__PURE__*/_react["default"].createElement("br", null), bData.Inscription_Line_3, /*#__PURE__*/_react["default"].createElement("br", null), "Click for more info!"));
-    }
-    // otherwise just return default brick
-    else {
-      return /*#__PURE__*/_react["default"].createElement("div", {
-        className: "brick",
-        key: 100 * rowIndex + colIndex
-      });
-    }
-  }
-
-  // this component is the entire path with every other row offset in the opposite direction
-  return /*#__PURE__*/_react["default"].createElement("div", {
-    id: "path"
-  }, Array(numRows).fill(0).map(function (_, rowIndex) {
-    return /*#__PURE__*/_react["default"].createElement("div", {
-      className: rowIndex % 2 == 0 ? 'brickRow leftShiftRow' : 'brickRow rightShiftRow',
-      key: "row" + rowIndex
-    }, Array(numCols).fill(0).map(function (_, colIndex) {
-      return /*#__PURE__*/_react["default"].createElement(Brick, {
-        rowIndex: rowIndex,
-        colIndex: colIndex,
-        key: "row" + rowIndex + "col" + colIndex
-      });
-    }));
-  }));
-}
-
-},{"../db.json":22,"react":15}],25:[function(require,module,exports){
-"use strict";
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports["default"] = ScrollContent;
-var _react = _interopRequireDefault(require("react"));
-var _panels = _interopRequireDefault(require("./panels.js"));
-var _path = _interopRequireDefault(require("./path.js"));
-function _interopRequireDefault(e) {
-  return e && e.__esModule ? e : {
-    "default": e
-  };
-}
-/* 
-Author: Jonah Zimmer
-
-This component contains the content that is scrollable as well as the buttons to scroll.
-It imports the path and panel subcomponents
-*/
-
-function scrollButtonFunction(goLeft) {
-  var scroll = document.getElementById("scrollContainer");
-  var dist = scroll.scrollLeft + 436;
-  if (goLeft) {
-    dist = scroll.scrollLeft - 436;
-  }
-  scroll.scroll({
-    left: dist,
-    top: 0,
-    behavior: "smooth"
-  });
-}
-function ScrollContent(_ref) {
-  var highlight = _ref.highlight,
-    currentBrick = _ref.currentBrick,
-    setCurrentBrick = _ref.setCurrentBrick;
-  return /*#__PURE__*/_react["default"].createElement("div", {
-    id: "fullPathContainer"
-  }, /*#__PURE__*/_react["default"].createElement("div", {
-    className: "scrollButtonContainer"
-  }, /*#__PURE__*/_react["default"].createElement("button", {
-    onClick: function onClick() {
-      return scrollButtonFunction(true);
-    },
-    tabIndex: 0,
-    className: "scrollButton",
-    id: "leftScroll",
-    "aria-label": "Scroll path left"
-  }, " \u21E7 ")), /*#__PURE__*/_react["default"].createElement("div", {
-    id: "scrollContainer"
-  }, /*#__PURE__*/_react["default"].createElement(_panels["default"], null), /*#__PURE__*/_react["default"].createElement(_path["default"], {
-    highlight: highlight,
-    currentBrick: currentBrick,
-    setCurrentBrick: setCurrentBrick
-  })), /*#__PURE__*/_react["default"].createElement("div", {
-    className: "scrollButtonContainer"
-  }, /*#__PURE__*/_react["default"].createElement("button", {
-    onClick: function onClick() {
-      return scrollButtonFunction(false);
-    },
-    tabIndex: 0,
-    className: "scrollButton",
-    id: "rightScroll",
-    "aria-label": "Scroll path right"
-  }, " \u21E7 ")));
-}
-
-},{"./panels.js":23,"./path.js":24,"react":15}],26:[function(require,module,exports){
-"use strict";
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports["default"] = SelectedBrick;
-var _react = _interopRequireDefault(require("react"));
-var _app = require("../../app.js");
-var _db = _interopRequireDefault(require("../db.json"));
-function _interopRequireDefault(e) {
-  return e && e.__esModule ? e : {
-    "default": e
-  };
-}
-function _createForOfIteratorHelper(r, e) {
-  var t = "undefined" != typeof Symbol && r[Symbol.iterator] || r["@@iterator"];
-  if (!t) {
-    if (Array.isArray(r) || (t = _unsupportedIterableToArray(r)) || e && r && "number" == typeof r.length) {
-      t && (r = t);
-      var _n = 0,
-        F = function F() {};
-      return {
-        s: F,
-        n: function n() {
-          return _n >= r.length ? {
-            done: !0
-          } : {
-            done: !1,
-            value: r[_n++]
-          };
-        },
-        e: function e(r) {
-          throw r;
-        },
-        f: F
-      };
-    }
-    throw new TypeError("Invalid attempt to iterate non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method.");
-  }
-  var o,
-    a = !0,
-    u = !1;
-  return {
-    s: function s() {
-      t = t.call(r);
-    },
-    n: function n() {
-      var r = t.next();
-      return a = r.done, r;
-    },
-    e: function e(r) {
-      u = !0, o = r;
-    },
-    f: function f() {
-      try {
-        a || null == t["return"] || t["return"]();
-      } finally {
-        if (u) throw o;
-      }
-    }
-  };
-}
-function _unsupportedIterableToArray(r, a) {
-  if (r) {
-    if ("string" == typeof r) return _arrayLikeToArray(r, a);
-    var t = {}.toString.call(r).slice(8, -1);
-    return "Object" === t && r.constructor && (t = r.constructor.name), "Map" === t || "Set" === t ? Array.from(r) : "Arguments" === t || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(t) ? _arrayLikeToArray(r, a) : void 0;
-  }
-}
-function _arrayLikeToArray(r, a) {
-  (null == a || a > r.length) && (a = r.length);
-  for (var e = 0, n = Array(a); e < a; e++) n[e] = r[e];
-  return n;
-} /* 
-  Author: Jonah Zimmer
-  This component is for when a user clicks on a brick on the path. It includes a click event listener to choose the selected brick
-  */
-function closeBrick(setCurrentBrick) {
-  setCurrentBrick(_app.defaultBrick);
-  document.getElementById("selectedBrickPageCover").style.display = "none";
-  document.body.style.overflow = 'auto';
-  document.getElementById("scrollContainer").style.overflowX = 'scroll';
-}
-
-// content within selected brick
-function SelectedBrick(_ref) {
-  var brick = _ref.brick,
-    setCurrentBrick = _ref.setCurrentBrick;
-  // Finds and returns data from brickData about brick at coordinates
-  function getBrick(row, col, pan) {
-    var _iterator = _createForOfIteratorHelper(_db["default"]),
-      _step;
-    try {
-      for (_iterator.s(); !(_step = _iterator.n()).done;) {
-        var b = _step.value;
-        if (b.Row_Number == row && b.Col_Number == col && b.Panel_Number == pan) {
-          return b;
-        }
-      }
-    } catch (err) {
-      _iterator.e(err);
-    } finally {
-      _iterator.f();
-    }
-    return _app.defaultBrick;
-  }
-
-  // Click event handler that determines the location of the selected brick and changes state if it exists
-  document.addEventListener("click", function (e) {
-    var clicked = e.target;
-    if (clicked.classList.contains("popupText")) {
-      clicked = clicked.parentElement;
-    }
-    if (clicked.classList.contains("existingBrick")) {
-      var col = Array.prototype.indexOf.call(clicked.parentElement.children, clicked) - 7; // minus seven due to eight-brick offset
-      var row = Array.prototype.indexOf.call(clicked.parentElement.parentElement.children, clicked.parentElement) + 1;
-      var pan = Math.floor(col / 10) + 1;
-      col = col - (pan - 1) * 10;
-      var b = getBrick(row, col, pan);
-      setCurrentBrick(b);
-      document.getElementById("selectedBrickPageCover").style.display = "block";
-      document.body.style.overflow = 'hidden';
-      document.getElementById("scrollContainer").style.overflow = 'hidden';
-    }
-    document.getElementById('fname').value = "";
-  });
-  return /*#__PURE__*/_react["default"].createElement("div", {
-    id: "selectedBrickPageCover"
-  }, /*#__PURE__*/_react["default"].createElement("div", {
-    id: "selectedBrickContainer"
-  }, /*#__PURE__*/_react["default"].createElement("button", {
-    id: "selectedCloseButton",
-    onClick: function onClick() {
-      return closeBrick(setCurrentBrick);
-    }
-  }, "Close"), /*#__PURE__*/_react["default"].createElement("div", {
-    id: "selectedBrick"
-  }, brick.Inscription_Line_1 ? /*#__PURE__*/_react["default"].createElement("p", null, brick.Inscription_Line_1) : "", brick.Inscription_Line_2 ? /*#__PURE__*/_react["default"].createElement("p", null, brick.Inscription_Line_2) : "", brick.Inscription_Line_3 ? /*#__PURE__*/_react["default"].createElement("p", null, brick.Inscription_Line_3) : ""), /*#__PURE__*/_react["default"].createElement("div", {
-    id: "selectedBrickDescr"
-  }, /*#__PURE__*/_react["default"].createElement("p", null, "Naming Year: ", brick.Naming_Year), /*#__PURE__*/_react["default"].createElement("p", null, "Purchaser Name: ", brick.Purchaser_Name), brick.Paver_Assigned_Section ? /*#__PURE__*/_react["default"].createElement("p", null, "Section: ", brick.Paver_Assigned_Section) : /*#__PURE__*/_react["default"].createElement("p", null), brick.link ? /*#__PURE__*/_react["default"].createElement("p", null, brick.link) : "")));
-}
-
-},{"../../app.js":21,"../db.json":22,"react":15}],27:[function(require,module,exports){
-"use strict";
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports["default"] = Search;
-var _db = _interopRequireDefault(require("./db.json"));
-var _react = _interopRequireDefault(require("react"));
-function _interopRequireDefault(e) {
-  return e && e.__esModule ? e : {
-    "default": e
-  };
-}
-function _createForOfIteratorHelper(r, e) {
-  var t = "undefined" != typeof Symbol && r[Symbol.iterator] || r["@@iterator"];
-  if (!t) {
-    if (Array.isArray(r) || (t = _unsupportedIterableToArray(r)) || e && r && "number" == typeof r.length) {
-      t && (r = t);
-      var _n = 0,
-        F = function F() {};
-      return {
-        s: F,
-        n: function n() {
-          return _n >= r.length ? {
-            done: !0
-          } : {
-            done: !1,
-            value: r[_n++]
-          };
-        },
-        e: function e(r) {
-          throw r;
-        },
-        f: F
-      };
-    }
-    throw new TypeError("Invalid attempt to iterate non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method.");
-  }
-  var o,
-    a = !0,
-    u = !1;
-  return {
-    s: function s() {
-      t = t.call(r);
-    },
-    n: function n() {
-      var r = t.next();
-      return a = r.done, r;
-    },
-    e: function e(r) {
-      u = !0, o = r;
-    },
-    f: function f() {
-      try {
-        a || null == t["return"] || t["return"]();
-      } finally {
-        if (u) throw o;
-      }
-    }
-  };
-}
-function _unsupportedIterableToArray(r, a) {
-  if (r) {
-    if ("string" == typeof r) return _arrayLikeToArray(r, a);
-    var t = {}.toString.call(r).slice(8, -1);
-    return "Object" === t && r.constructor && (t = r.constructor.name), "Map" === t || "Set" === t ? Array.from(r) : "Arguments" === t || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(t) ? _arrayLikeToArray(r, a) : void 0;
-  }
-}
-function _arrayLikeToArray(r, a) {
-  (null == a || a > r.length) && (a = r.length);
-  for (var e = 0, n = Array(a); e < a; e++) n[e] = r[e];
-  return n;
-} /* 
-  Author: Jonah Zimmer
-  This single component holds the search bar and includes all functionality for buttons within search bar
-  */
-function Search(_ref) {
-  var highlight = _ref.highlight,
-    setHighlight = _ref.setHighlight,
-    display = _ref.display,
-    setDisplay = _ref.setDisplay;
-  // hide search section
-  function collapseSearch() {
-    var dropdown = document.getElementsByClassName("searchDropdown")[0];
-    var btn = document.getElementsByClassName("accordion")[0];
-    btn.classList.remove("active");
-    dropdown.style.height = "0px";
-    dropdown.style.paddingBottom = "5px";
-  }
-
-  // collapse search section if click outside of search
-  document.addEventListener("click", function (e) {
-    var panel = document.getElementsByClassName("searchDropdown")[0];
-    if (panel && !panel.contains(e.target) && !e.target.classList.contains("accordion")) {
-      collapseSearch();
-    }
-  });
-
-  // either open or close search section when "filter" button is clicked
-  function handleDropdownClick(e) {
-    var clicked = e.target;
-    clicked.classList.toggle("active");
-    var panel = document.getElementsByClassName("searchDropdown")[0];
-    if (panel.style.height != "0px") {
-      collapseSearch();
-    } else {
-      panel.style.height = "400px";
-    }
-  }
-  function toggleDisplay() {
-    if (display == "scroll") {
-      setDisplay("static");
-    } else if (display == "static") {
-      setDisplay("scroll");
-    }
-  }
-
-  // takes text field input then sets the highlight value to update other components
-  function searchButton(_ref2) {
-    var setHighlight = _ref2.setHighlight;
-    var val = document.getElementById("fname").value;
-    if (display == "scroll") {
-      collapseSearch();
-    }
-    setHighlight(val);
-  }
-
-  // takes section name then sets the highlight value to update other components
-  function handleSectionSearch(section) {
-    if (display == "scroll") {
-      collapseSearch();
-    }
-    setHighlight(section);
-  }
-
-  // Component that labels the red brick in the key
-  function Label(_ref3) {
-    var section = _ref3.section;
-    var sections = ["Centenarian", "Heroes", "Golden Women", "Family/Friends", "Businesses/Organizations"];
-    var num = 0;
-    var _iterator = _createForOfIteratorHelper(_db["default"]),
-      _step;
-    try {
-      for (_iterator.s(); !(_step = _iterator.n()).done;) {
-        var b = _step.value;
-        if (typeof b.Panel_Number == "number") {
-          var highlightMatch = b.Purchaser_Name.toLowerCase().includes(highlight.toLowerCase());
-          if (highlight == "all" || b.Paver_Assigned_Section == highlight || highlightMatch) {
-            num++;
-          }
-        }
-      }
-    } catch (err) {
-      _iterator.e(err);
-    } finally {
-      _iterator.f();
-    }
-    var countPhrase = "[" + num + " bricks]";
-    if (num == 1) {
-      countPhrase = "[1 brick]";
-    }
-    if (section == "all") {
-      return /*#__PURE__*/_react["default"].createElement("span", null, "All purchased bricks ", countPhrase);
-    } else if (sections.includes(section)) {
-      return /*#__PURE__*/_react["default"].createElement("span", null, "Bricks in the section ", section, " ", countPhrase);
-    } else {
-      return /*#__PURE__*/_react["default"].createElement("span", null, "Bricks purchased by ", section, " ", countPhrase);
-    }
-  }
-  function SearchBox() {
-    return /*#__PURE__*/_react["default"].createElement("div", {
-      id: "searchContainer"
-    }, /*#__PURE__*/_react["default"].createElement("div", {
-      id: "sectionSearchContainer"
-    }, /*#__PURE__*/_react["default"].createElement("span", null, "Search by section:"), /*#__PURE__*/_react["default"].createElement("div", {
-      id: "sectionSearchButtons"
-    }, /*#__PURE__*/_react["default"].createElement("button", {
-      id: "century",
-      className: "sectionSearchButton",
-      onClick: function onClick() {
-        return handleSectionSearch("Centenarian");
-      }
-    }, "Century Club"), /*#__PURE__*/_react["default"].createElement("button", {
-      id: "heros",
-      className: "sectionSearchButton",
-      onClick: function onClick() {
-        return handleSectionSearch("Heroes");
-      }
-    }, "Heroes"), /*#__PURE__*/_react["default"].createElement("button", {
-      id: "women",
-      className: "sectionSearchButton",
-      onClick: function onClick() {
-        return handleSectionSearch("Golden Women");
-      }
-    }, "Golden Women of Rondo"), /*#__PURE__*/_react["default"].createElement("button", {
-      id: "friends",
-      className: "sectionSearchButton",
-      onClick: function onClick() {
-        return handleSectionSearch("Family/Friends");
-      }
-    }, "Family/Friends"), /*#__PURE__*/_react["default"].createElement("button", {
-      id: "businesses",
-      className: "sectionSearchButton",
-      onClick: function onClick() {
-        return handleSectionSearch("Businesses/Organizations");
-      }
-    }, "Businesses/Organizations"))), /*#__PURE__*/_react["default"].createElement("div", {
-      id: "nameSearchContainer"
-    }, /*#__PURE__*/_react["default"].createElement("div", {
-      id: "searchInputsContainer"
-    }, /*#__PURE__*/_react["default"].createElement("label", {
-      htmlFor: "fname"
-    }, "Search by name of donor:"), /*#__PURE__*/_react["default"].createElement("br", null), /*#__PURE__*/_react["default"].createElement("input", {
-      type: "text",
-      id: "fname",
-      name: "fname"
-    }), /*#__PURE__*/_react["default"].createElement("button", {
-      id: "submitSearch",
-      onClick: function onClick() {
-        return searchButton({
-          setHighlight: setHighlight
-        });
-      }
-    }, "Search"))), /*#__PURE__*/_react["default"].createElement("button", {
-      id: "clearSearch",
-      className: "sectionSearchButton",
-      onClick: function onClick() {
-        return handleSectionSearch("all");
-      }
-    }, "Clear all filters"));
-  }
-  if (display == "scroll") {
-    return /*#__PURE__*/_react["default"].createElement(_react["default"].Fragment, null, /*#__PURE__*/_react["default"].createElement("div", {
-      id: "searchHeader"
-    }, /*#__PURE__*/_react["default"].createElement("button", {
-      id: "displayToggle",
-      className: "headerButton",
-      onClick: toggleDisplay
-    }, display == "scroll" ? "Show brick list" : "Show scrolling path"), /*#__PURE__*/_react["default"].createElement("div", {
-      id: "keysContainer"
-    }, /*#__PURE__*/_react["default"].createElement("div", {
-      className: "keyContainer"
-    }, /*#__PURE__*/_react["default"].createElement("div", {
-      id: "redKeyBox",
-      className: "keyBox"
-    }), /*#__PURE__*/_react["default"].createElement("div", {
-      id: "redKeyText"
-    }, /*#__PURE__*/_react["default"].createElement(Label, {
-      section: highlight
-    })), " ", /*#__PURE__*/_react["default"].createElement("button", {
-      onClick: handleDropdownClick,
-      tabIndex: 0,
-      className: "accordion"
-    }, "Filter")), /*#__PURE__*/_react["default"].createElement("div", {
-      className: "keyContainer"
-    }, /*#__PURE__*/_react["default"].createElement("div", {
-      id: "greyKeyBox",
-      className: "keyBox"
-    }), /*#__PURE__*/_react["default"].createElement("div", {
-      id: "greyKeyText"
-    }, "All other bricks"))), /*#__PURE__*/_react["default"].createElement("div", {
-      className: "searchDropdown",
-      style: {
-        height: 0 + "px"
-      }
-    }, /*#__PURE__*/_react["default"].createElement(SearchBox, null))), /*#__PURE__*/_react["default"].createElement("p", {
-      className: "datasetNote"
-    }, "The dataset used to build this site is incomplete. If you find any missing information or errors, do not hesitate to reach out to Katie Frye: katie@rcodemn.org"));
-  } else {
-    return /*#__PURE__*/_react["default"].createElement(_react["default"].Fragment, null, /*#__PURE__*/_react["default"].createElement("div", {
-      id: "customizeButtons"
-    }, /*#__PURE__*/_react["default"].createElement("button", {
-      id: "displayToggle",
-      className: "headerButton",
-      onClick: toggleDisplay
-    }, display == "scroll" ? "Show brick list" : "Show scrolling path")), /*#__PURE__*/_react["default"].createElement(SearchBox, null), /*#__PURE__*/_react["default"].createElement("p", {
-      className: "datasetNote"
-    }, "The dataset used to build this site is incomplete. If you find any missing information or errors, do not hesitate to reach out to Katie Frye: katie@rcodemn.org"), /*#__PURE__*/_react["default"].createElement("div", {
-      id: "staticSearchLabel"
-    }, /*#__PURE__*/_react["default"].createElement(Label, {
-      section: highlight
-    })));
-  }
-}
-
-},{"./db.json":22,"react":15}],28:[function(require,module,exports){
-"use strict";
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports["default"] = AccessibleContent;
-var _react = _interopRequireDefault(require("react"));
-var _db = _interopRequireDefault(require("../db.json"));
-function _interopRequireDefault(e) {
-  return e && e.__esModule ? e : {
-    "default": e
-  };
-}
-function _createForOfIteratorHelper(r, e) {
-  var t = "undefined" != typeof Symbol && r[Symbol.iterator] || r["@@iterator"];
-  if (!t) {
-    if (Array.isArray(r) || (t = _unsupportedIterableToArray(r)) || e && r && "number" == typeof r.length) {
-      t && (r = t);
-      var _n = 0,
-        F = function F() {};
-      return {
-        s: F,
-        n: function n() {
-          return _n >= r.length ? {
-            done: !0
-          } : {
-            done: !1,
-            value: r[_n++]
-          };
-        },
-        e: function e(r) {
-          throw r;
-        },
-        f: F
-      };
-    }
-    throw new TypeError("Invalid attempt to iterate non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method.");
-  }
-  var o,
-    a = !0,
-    u = !1;
-  return {
-    s: function s() {
-      t = t.call(r);
-    },
-    n: function n() {
-      var r = t.next();
-      return a = r.done, r;
-    },
-    e: function e(r) {
-      u = !0, o = r;
-    },
-    f: function f() {
-      try {
-        a || null == t["return"] || t["return"]();
-      } finally {
-        if (u) throw o;
-      }
-    }
-  };
-}
-function _unsupportedIterableToArray(r, a) {
-  if (r) {
-    if ("string" == typeof r) return _arrayLikeToArray(r, a);
-    var t = {}.toString.call(r).slice(8, -1);
-    return "Object" === t && r.constructor && (t = r.constructor.name), "Map" === t || "Set" === t ? Array.from(r) : "Arguments" === t || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(t) ? _arrayLikeToArray(r, a) : void 0;
-  }
-}
-function _arrayLikeToArray(r, a) {
-  (null == a || a > r.length) && (a = r.length);
-  for (var e = 0, n = Array(a); e < a; e++) n[e] = r[e];
-  return n;
-} /* 
-  Author: Jonah Zimmer
-  This is the static version of the site which does not have the scrolling bricks, 
-  making it accessible for screen readers and phone compatible.
-  */
-function AccessibleContent(_ref) {
-  var highlight = _ref.highlight;
-  var bricks = [];
-  var _iterator = _createForOfIteratorHelper(_db["default"]),
-    _step;
-  try {
-    for (_iterator.s(); !(_step = _iterator.n()).done;) {
-      var b = _step.value;
-      if (typeof b.Panel_Number == "number") {
-        if (highlight == "all") {
-          bricks.push(b);
-        } else if (b.Purchaser_Name.toLowerCase().includes(highlight.toLowerCase())) {
-          bricks.push(b);
-        } else if (b.Paver_Assigned_Section == highlight) {
-          bricks.push(b);
-        }
-      }
-    }
-  } catch (err) {
-    _iterator.e(err);
-  } finally {
-    _iterator.f();
-  }
-  return /*#__PURE__*/_react["default"].createElement("div", {
-    id: "accessibleBricksContainer"
-  }, Array(bricks.length).fill(0).map(function (_, b) {
-    return /*#__PURE__*/_react["default"].createElement(Brick, {
-      brick: bricks[b],
-      key: "p" + bricks[b].Panel_Number.toString() + "r" + bricks[b].Row_Number.toString() + "c" + bricks[b].Col_Number.toString()
-    });
-  }));
-}
-function Brick(_ref2) {
-  var brick = _ref2.brick;
-  return /*#__PURE__*/_react["default"].createElement("div", {
-    className: "accessibleBrickContainer"
-  }, /*#__PURE__*/_react["default"].createElement("div", {
-    className: "accessibleBrick"
-  }, brick.Inscription_Line_1 ? /*#__PURE__*/_react["default"].createElement("p", null, brick.Inscription_Line_1) : "", brick.Inscription_Line_2 ? /*#__PURE__*/_react["default"].createElement("p", null, brick.Inscription_Line_2) : "", brick.Inscription_Line_3 ? /*#__PURE__*/_react["default"].createElement("p", null, brick.Inscription_Line_3) : ""), /*#__PURE__*/_react["default"].createElement("p", {
-    className: "brickDataText"
-  }, "Naming Year: ", brick.Naming_Year), /*#__PURE__*/_react["default"].createElement("p", {
-    className: "brickDataText"
-  }, "Purchaser:", /*#__PURE__*/_react["default"].createElement("br", null), "\xA0\xA0\xA0", brick.Purchaser_Name), /*#__PURE__*/_react["default"].createElement("p", {
-    className: "brickDataText"
-  }, "Section: ", brick.Paver_Assigned_Section), /*#__PURE__*/_react["default"].createElement("p", {
-    className: "brickDataText"
-  }, "In front of panel ", brick.Panel_Number), brick.link ? /*#__PURE__*/_react["default"].createElement("p", null, brick.link) : "");
-}
-
-},{"../db.json":22,"react":15}],29:[function(require,module,exports){
-"use strict";
-
-function _typeof(o) {
-  "@babel/helpers - typeof";
-
-  return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (o) {
-    return typeof o;
-  } : function (o) {
-    return o && "function" == typeof Symbol && o.constructor === Symbol && o !== Symbol.prototype ? "symbol" : typeof o;
-  }, _typeof(o);
-}
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports["default"] = Contact;
-var _react = _interopRequireWildcard(require("react"));
-function _interopRequireWildcard(e, t) {
-  if ("function" == typeof WeakMap) var r = new WeakMap(),
-    n = new WeakMap();
-  return (_interopRequireWildcard = function _interopRequireWildcard(e, t) {
-    if (!t && e && e.__esModule) return e;
-    var o,
-      i,
-      f = {
-        __proto__: null,
-        "default": e
-      };
-    if (null === e || "object" != _typeof(e) && "function" != typeof e) return f;
-    if (o = t ? n : r) {
-      if (o.has(e)) return o.get(e);
-      o.set(e, f);
-    }
-    for (var _t in e) "default" !== _t && {}.hasOwnProperty.call(e, _t) && ((i = (o = Object.defineProperty) && Object.getOwnPropertyDescriptor(e, _t)) && (i.get || i.set) ? o(f, _t, i) : f[_t] = e[_t]);
-    return f;
-  })(e, t);
-}
-function _slicedToArray(r, e) {
-  return _arrayWithHoles(r) || _iterableToArrayLimit(r, e) || _unsupportedIterableToArray(r, e) || _nonIterableRest();
-}
-function _nonIterableRest() {
-  throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method.");
-}
-function _unsupportedIterableToArray(r, a) {
-  if (r) {
-    if ("string" == typeof r) return _arrayLikeToArray(r, a);
-    var t = {}.toString.call(r).slice(8, -1);
-    return "Object" === t && r.constructor && (t = r.constructor.name), "Map" === t || "Set" === t ? Array.from(r) : "Arguments" === t || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(t) ? _arrayLikeToArray(r, a) : void 0;
-  }
-}
-function _arrayLikeToArray(r, a) {
-  (null == a || a > r.length) && (a = r.length);
-  for (var e = 0, n = Array(a); e < a; e++) n[e] = r[e];
-  return n;
-}
-function _iterableToArrayLimit(r, l) {
-  var t = null == r ? null : "undefined" != typeof Symbol && r[Symbol.iterator] || r["@@iterator"];
-  if (null != t) {
-    var e,
-      n,
-      i,
-      u,
-      a = [],
-      f = !0,
-      o = !1;
-    try {
-      if (i = (t = t.call(r)).next, 0 === l) {
-        if (Object(t) !== t) return;
-        f = !1;
-      } else for (; !(f = (e = i.call(t)).done) && (a.push(e.value), a.length !== l); f = !0);
-    } catch (r) {
-      o = !0, n = r;
-    } finally {
-      try {
-        if (!f && null != t["return"] && (u = t["return"](), Object(u) !== u)) return;
-      } finally {
-        if (o) throw n;
-      }
-    }
-    return a;
-  }
-}
-function _arrayWithHoles(r) {
-  if (Array.isArray(r)) return r;
-}
-function Contact() {
-  var _useState = (0, _react.useState)(''),
-    _useState2 = _slicedToArray(_useState, 2),
-    formType = _useState2[0],
-    setFormType = _useState2[1]; // 'edit', 'purchase', or 'comments'
-
-  var handleFormTypeChange = function handleFormTypeChange(event) {
-    setFormType(event.target.value);
-  };
-  return /*#__PURE__*/_react["default"].createElement("div", null, /*#__PURE__*/_react["default"].createElement("h1", null, "Contact Us"), /*#__PURE__*/_react["default"].createElement("p", null, "Please select an option below."), /*#__PURE__*/_react["default"].createElement("form", null, /*#__PURE__*/_react["default"].createElement("fieldset", null, /*#__PURE__*/_react["default"].createElement("legend", null, "What would you like to do?"), /*#__PURE__*/_react["default"].createElement("div", null, /*#__PURE__*/_react["default"].createElement("input", {
-    type: "radio",
-    id: "editBrick",
-    name: "formType",
-    value: "edit",
-    checked: formType === 'edit',
-    onChange: handleFormTypeChange
-  }), /*#__PURE__*/_react["default"].createElement("label", {
-    htmlFor: "editBrick"
-  }, "Edit an existing brick")), /*#__PURE__*/_react["default"].createElement("div", null, /*#__PURE__*/_react["default"].createElement("input", {
-    type: "radio",
-    id: "purchaseBrick",
-    name: "formType",
-    value: "purchase",
-    checked: formType === 'purchase',
-    onChange: handleFormTypeChange
-  }), /*#__PURE__*/_react["default"].createElement("label", {
-    htmlFor: "purchaseBrick"
-  }, "Purchase a new one")), /*#__PURE__*/_react["default"].createElement("div", null, /*#__PURE__*/_react["default"].createElement("input", {
-    type: "radio",
-    id: "shareComments",
-    name: "formType",
-    value: "comments",
-    checked: formType === 'comments',
-    onChange: handleFormTypeChange
-  }), /*#__PURE__*/_react["default"].createElement("label", {
-    htmlFor: "shareComments"
-  }, "Share other comments")))), formType === 'edit' && /*#__PURE__*/_react["default"].createElement("form", null, /*#__PURE__*/_react["default"].createElement("h2", null, "Edit an Existing Brick"), /*#__PURE__*/_react["default"].createElement("p", null, "Please provide the following information to help us locate your brick and make the necessary corrections."), /*#__PURE__*/_react["default"].createElement("div", null, /*#__PURE__*/_react["default"].createElement("label", {
-    htmlFor: "purchaserName"
-  }, "Purchaser Name:"), /*#__PURE__*/_react["default"].createElement("input", {
-    type: "text",
-    id: "purchaserName",
-    name: "purchaserName",
-    required: true
-  })), /*#__PURE__*/_react["default"].createElement("div", null, /*#__PURE__*/_react["default"].createElement("label", {
-    htmlFor: "panel"
-  }, "Panel Number:"), /*#__PURE__*/_react["default"].createElement("input", {
-    type: "text",
-    id: "panel",
-    name: "panel",
-    placeholder: "e.g., Panel 1",
-    required: true
-  })), /*#__PURE__*/_react["default"].createElement("div", null, /*#__PURE__*/_react["default"].createElement("label", {
-    htmlFor: "errorExplanation"
-  }, "Explanation of Error:"), /*#__PURE__*/_react["default"].createElement("textarea", {
-    id: "errorExplanation",
-    name: "errorExplanation",
-    rows: "5",
-    required: true
-  })), /*#__PURE__*/_react["default"].createElement("div", null, /*#__PURE__*/_react["default"].createElement("label", {
-    htmlFor: "comment"
-  }, "Additional Comments:"), /*#__PURE__*/_react["default"].createElement("textarea", {
-    id: "comment",
-    name: "comment",
-    rows: "3",
-    placeholder: "Any additional comments or information you'd like to share..."
-  })), /*#__PURE__*/_react["default"].createElement("button", {
-    type: "submit"
-  }, "Submit Correction Request")), formType === 'purchase' && /*#__PURE__*/_react["default"].createElement("div", null, /*#__PURE__*/_react["default"].createElement("h2", null, "Purchase a New Brick"), /*#__PURE__*/_react["default"].createElement("p", null, "We are delighted that you're interested in purchasing a brick! Please proceed to our brick purchasing page to customize and buy your brick.")), formType === 'comments' && /*#__PURE__*/_react["default"].createElement("form", null, /*#__PURE__*/_react["default"].createElement("h2", null, "Share Other Comments"), /*#__PURE__*/_react["default"].createElement("p", null, "We'd love to hear from you! Please share any comments, suggestions, or feedback you have."), /*#__PURE__*/_react["default"].createElement("div", null, /*#__PURE__*/_react["default"].createElement("label", {
-    htmlFor: "comment"
-  }, "Your Comments:"), /*#__PURE__*/_react["default"].createElement("textarea", {
-    id: "comment",
-    name: "comment",
-    rows: "5",
-    required: true,
-    placeholder: "Please share your thoughts, suggestions, or any other comments you'd like to share with us..."
-  })), /*#__PURE__*/_react["default"].createElement("button", {
-    type: "submit"
-  }, "Submit Comments")));
-}
-
-},{"react":15}],30:[function(require,module,exports){
-"use strict";
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports["default"] = Footer;
-var _react = _interopRequireDefault(require("react"));
-function _interopRequireDefault(e) {
-  return e && e.__esModule ? e : {
-    "default": e
-  };
-}
-function Footer() {
-  return /*#__PURE__*/_react["default"].createElement("footer", null, /*#__PURE__*/_react["default"].createElement("div", {
-    className: "footerCol"
-  }));
-}
-
-},{"react":15}],31:[function(require,module,exports){
-"use strict";
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports["default"] = Header;
-var _react = _interopRequireDefault(require("react"));
-var _reactRouterDom = require("react-router-dom");
-function _interopRequireDefault(e) {
-  return e && e.__esModule ? e : {
-    "default": e
-  };
-}
-/* 
-Author: Jonah Zimmer
-
-This single component holds the header
-*/
-
-function Header() {
-  return /*#__PURE__*/_react["default"].createElement("header", null, /*#__PURE__*/_react["default"].createElement("h1", {
-    id: "title"
-  }, "Rondo Commemorative Plaza"), /*#__PURE__*/_react["default"].createElement("div", {
-    id: "navLinks"
-  }, /*#__PURE__*/_react["default"].createElement(_reactRouterDom.Link, {
-    className: "headerButton " + ((0, _reactRouterDom.useLocation)().pathname == "/" ? "activeNav" : ""),
-    to: "/"
-  }, "Home"), /*#__PURE__*/_react["default"].createElement(_reactRouterDom.Link, {
-    to: "/about",
-    className: "headerButton " + ((0, _reactRouterDom.useLocation)().pathname == "/about" ? "activeNav" : "")
-  }, "About"), /*#__PURE__*/_react["default"].createElement(_reactRouterDom.Link, {
-    to: "/contact",
-    className: "headerButton " + ((0, _reactRouterDom.useLocation)().pathname == "/contact" ? "activeNav" : "")
-  }, "Contact")));
-}
-
-},{"react":15,"react-router-dom":7}],32:[function(require,module,exports){
-"use strict";
-
-var _app = _interopRequireDefault(require("./app.js"));
-var _about = _interopRequireDefault(require("./about/about.js"));
-var _contact = _interopRequireDefault(require("./contact/contact.js"));
-var _reactRouterDom = require("react-router-dom");
-var _react = _interopRequireDefault(require("react"));
-var _client = _interopRequireDefault(require("react-dom/client"));
-function _interopRequireDefault(e) {
-  return e && e.__esModule ? e : {
-    "default": e
-  };
-}
-var root = _client["default"].createRoot(document.getElementById('mainContent'));
-root.render(/*#__PURE__*/_react["default"].createElement(_react["default"].StrictMode, null, /*#__PURE__*/_react["default"].createElement(_reactRouterDom.HashRouter, null, /*#__PURE__*/_react["default"].createElement(_reactRouterDom.Routes, null, /*#__PURE__*/_react["default"].createElement(_reactRouterDom.Route, {
-  path: "/",
-  element: /*#__PURE__*/_react["default"].createElement(_app["default"], null)
-}), /*#__PURE__*/_react["default"].createElement(_reactRouterDom.Route, {
-  path: "/about",
-  element: /*#__PURE__*/_react["default"].createElement(_about["default"], null)
-}), /*#__PURE__*/_react["default"].createElement(_reactRouterDom.Route, {
-  path: "/contact",
-  element: /*#__PURE__*/_react["default"].createElement(_contact["default"], null)
-}), /*#__PURE__*/_react["default"].createElement(_reactRouterDom.Route, {
-  path: "*",
-  element: /*#__PURE__*/_react["default"].createElement(_app["default"], null)
-})))));
-
-},{"./about/about.js":20,"./app.js":21,"./contact/contact.js":29,"react":15,"react-dom/client":5,"react-router-dom":7}]},{},[32]);
+},{}]},{},[31]);

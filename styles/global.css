@@ -10,6 +10,7 @@ body {
     font-family:'Courier New', Courier, monospace;
     font-size: 1.2em;
     font-weight: 400;
+    min-height: 100vh;
 }
 button {
     font-family: 'Courier New', Courier, monospace;

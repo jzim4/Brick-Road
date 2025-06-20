@@ -4,7 +4,7 @@ Author: Jonah Zimmer
 This single component holds the search bar and includes all functionality for buttons within search bar
 */
 
-import data from './db.json';
+import data from '../../public/db.json';
 import React from 'react';
 
 export default function Search({ highlight, setHighlight, display, setDisplay }) {

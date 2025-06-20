@@ -6,7 +6,7 @@ This component is for when a user clicks on a brick on the path. It includes a c
 
 import React from 'react';
 import { defaultBrick } from '../../app.js';
-import data from '../db.json';
+import data from '../../../public/db.json';
 
 function closeBrick(setCurrentBrick) {
     setCurrentBrick(defaultBrick);
