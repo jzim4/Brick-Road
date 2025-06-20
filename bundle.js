@@ -43290,7 +43290,7 @@ function AboutRondo() {
   }, "In 2016, Anderson and Floyd Smaller (both co-founders of the Rondo Days celebration), worked with architects from 4RM+ULA and Ten x Ten to create plans for a memorial plaza. Opened in July 2018, the Rondo Commemorative Plaza (RCP) is the first public memorial to the Black neighborhoods destroyed by interstate highways. The plaza includes a 26-panel History Wall that tells the story of Rondo, a commemorative brick path, eighteen community chimes, and a 30-ft lighted tower that is visible to anyone driving on I-94. The adjacent building is home to the Rondo Center of Diverse Expressions (RCODE), which offers an indoor space for events, preserves a small research collection, and provides administrative responsibility for the plaza. Rondo residents, visitors, community members, and organizations are invited to purchase bricks along the commemorative brick path. Bricks can recognize an address, a family member or friend, a memory, a business, or anything else held near and dear. Brick purchasers are celebrated during our annual \u201CEvery Brick Counts\u201D Ceremony in September, where each participant is given time to share about their story. For more information on RCODE\u2019s commemorative brick program, please email Katie at katie@rcodemn.org."));
 }
 
-},{"../footer.js":29,"../header.js":30,"react":15}],21:[function(require,module,exports){
+},{"../footer.js":30,"../header.js":31,"react":15}],21:[function(require,module,exports){
 "use strict";
 
 function _typeof(o) {
@@ -43443,7 +43443,7 @@ function BrickRoadSite() {
   }), /*#__PURE__*/_react["default"].createElement(_footer["default"], null));
 }
 
-},{"./bricks/scrolling/scrollContent.js":25,"./bricks/scrolling/selectedBrick.js":26,"./bricks/search.js":27,"./bricks/static/static.js":28,"./footer.js":29,"./header.js":30,"react":15}],22:[function(require,module,exports){
+},{"./bricks/scrolling/scrollContent.js":25,"./bricks/scrolling/selectedBrick.js":26,"./bricks/search.js":27,"./bricks/static/static.js":28,"./footer.js":30,"./header.js":31,"react":15}],22:[function(require,module,exports){
 module.exports=[
   {
     "Naming_Year": 2024,
@@ -49809,6 +49809,171 @@ function Brick(_ref2) {
 },{"../db.json":22,"react":15}],29:[function(require,module,exports){
 "use strict";
 
+function _typeof(o) {
+  "@babel/helpers - typeof";
+
+  return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (o) {
+    return typeof o;
+  } : function (o) {
+    return o && "function" == typeof Symbol && o.constructor === Symbol && o !== Symbol.prototype ? "symbol" : typeof o;
+  }, _typeof(o);
+}
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports["default"] = Contact;
+var _react = _interopRequireWildcard(require("react"));
+function _interopRequireWildcard(e, t) {
+  if ("function" == typeof WeakMap) var r = new WeakMap(),
+    n = new WeakMap();
+  return (_interopRequireWildcard = function _interopRequireWildcard(e, t) {
+    if (!t && e && e.__esModule) return e;
+    var o,
+      i,
+      f = {
+        __proto__: null,
+        "default": e
+      };
+    if (null === e || "object" != _typeof(e) && "function" != typeof e) return f;
+    if (o = t ? n : r) {
+      if (o.has(e)) return o.get(e);
+      o.set(e, f);
+    }
+    for (var _t in e) "default" !== _t && {}.hasOwnProperty.call(e, _t) && ((i = (o = Object.defineProperty) && Object.getOwnPropertyDescriptor(e, _t)) && (i.get || i.set) ? o(f, _t, i) : f[_t] = e[_t]);
+    return f;
+  })(e, t);
+}
+function _slicedToArray(r, e) {
+  return _arrayWithHoles(r) || _iterableToArrayLimit(r, e) || _unsupportedIterableToArray(r, e) || _nonIterableRest();
+}
+function _nonIterableRest() {
+  throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method.");
+}
+function _unsupportedIterableToArray(r, a) {
+  if (r) {
+    if ("string" == typeof r) return _arrayLikeToArray(r, a);
+    var t = {}.toString.call(r).slice(8, -1);
+    return "Object" === t && r.constructor && (t = r.constructor.name), "Map" === t || "Set" === t ? Array.from(r) : "Arguments" === t || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(t) ? _arrayLikeToArray(r, a) : void 0;
+  }
+}
+function _arrayLikeToArray(r, a) {
+  (null == a || a > r.length) && (a = r.length);
+  for (var e = 0, n = Array(a); e < a; e++) n[e] = r[e];
+  return n;
+}
+function _iterableToArrayLimit(r, l) {
+  var t = null == r ? null : "undefined" != typeof Symbol && r[Symbol.iterator] || r["@@iterator"];
+  if (null != t) {
+    var e,
+      n,
+      i,
+      u,
+      a = [],
+      f = !0,
+      o = !1;
+    try {
+      if (i = (t = t.call(r)).next, 0 === l) {
+        if (Object(t) !== t) return;
+        f = !1;
+      } else for (; !(f = (e = i.call(t)).done) && (a.push(e.value), a.length !== l); f = !0);
+    } catch (r) {
+      o = !0, n = r;
+    } finally {
+      try {
+        if (!f && null != t["return"] && (u = t["return"](), Object(u) !== u)) return;
+      } finally {
+        if (o) throw n;
+      }
+    }
+    return a;
+  }
+}
+function _arrayWithHoles(r) {
+  if (Array.isArray(r)) return r;
+}
+function Contact() {
+  var _useState = (0, _react.useState)(''),
+    _useState2 = _slicedToArray(_useState, 2),
+    formType = _useState2[0],
+    setFormType = _useState2[1]; // 'edit', 'purchase', or 'comments'
+
+  var handleFormTypeChange = function handleFormTypeChange(event) {
+    setFormType(event.target.value);
+  };
+  return /*#__PURE__*/_react["default"].createElement("div", null, /*#__PURE__*/_react["default"].createElement("h1", null, "Contact Us"), /*#__PURE__*/_react["default"].createElement("p", null, "Please select an option below."), /*#__PURE__*/_react["default"].createElement("form", null, /*#__PURE__*/_react["default"].createElement("fieldset", null, /*#__PURE__*/_react["default"].createElement("legend", null, "What would you like to do?"), /*#__PURE__*/_react["default"].createElement("div", null, /*#__PURE__*/_react["default"].createElement("input", {
+    type: "radio",
+    id: "editBrick",
+    name: "formType",
+    value: "edit",
+    checked: formType === 'edit',
+    onChange: handleFormTypeChange
+  }), /*#__PURE__*/_react["default"].createElement("label", {
+    htmlFor: "editBrick"
+  }, "Edit an existing brick")), /*#__PURE__*/_react["default"].createElement("div", null, /*#__PURE__*/_react["default"].createElement("input", {
+    type: "radio",
+    id: "purchaseBrick",
+    name: "formType",
+    value: "purchase",
+    checked: formType === 'purchase',
+    onChange: handleFormTypeChange
+  }), /*#__PURE__*/_react["default"].createElement("label", {
+    htmlFor: "purchaseBrick"
+  }, "Purchase a new one")), /*#__PURE__*/_react["default"].createElement("div", null, /*#__PURE__*/_react["default"].createElement("input", {
+    type: "radio",
+    id: "shareComments",
+    name: "formType",
+    value: "comments",
+    checked: formType === 'comments',
+    onChange: handleFormTypeChange
+  }), /*#__PURE__*/_react["default"].createElement("label", {
+    htmlFor: "shareComments"
+  }, "Share other comments")))), formType === 'edit' && /*#__PURE__*/_react["default"].createElement("form", null, /*#__PURE__*/_react["default"].createElement("h2", null, "Edit an Existing Brick"), /*#__PURE__*/_react["default"].createElement("p", null, "Please provide the following information to help us locate your brick and make the necessary corrections."), /*#__PURE__*/_react["default"].createElement("div", null, /*#__PURE__*/_react["default"].createElement("label", {
+    htmlFor: "purchaserName"
+  }, "Purchaser Name:"), /*#__PURE__*/_react["default"].createElement("input", {
+    type: "text",
+    id: "purchaserName",
+    name: "purchaserName",
+    required: true
+  })), /*#__PURE__*/_react["default"].createElement("div", null, /*#__PURE__*/_react["default"].createElement("label", {
+    htmlFor: "panel"
+  }, "Panel Number:"), /*#__PURE__*/_react["default"].createElement("input", {
+    type: "text",
+    id: "panel",
+    name: "panel",
+    placeholder: "e.g., Panel 1",
+    required: true
+  })), /*#__PURE__*/_react["default"].createElement("div", null, /*#__PURE__*/_react["default"].createElement("label", {
+    htmlFor: "errorExplanation"
+  }, "Explanation of Error:"), /*#__PURE__*/_react["default"].createElement("textarea", {
+    id: "errorExplanation",
+    name: "errorExplanation",
+    rows: "5",
+    required: true
+  })), /*#__PURE__*/_react["default"].createElement("div", null, /*#__PURE__*/_react["default"].createElement("label", {
+    htmlFor: "comment"
+  }, "Additional Comments:"), /*#__PURE__*/_react["default"].createElement("textarea", {
+    id: "comment",
+    name: "comment",
+    rows: "3",
+    placeholder: "Any additional comments or information you'd like to share..."
+  })), /*#__PURE__*/_react["default"].createElement("button", {
+    type: "submit"
+  }, "Submit Correction Request")), formType === 'purchase' && /*#__PURE__*/_react["default"].createElement("div", null, /*#__PURE__*/_react["default"].createElement("h2", null, "Purchase a New Brick"), /*#__PURE__*/_react["default"].createElement("p", null, "We are delighted that you're interested in purchasing a brick! Please proceed to our brick purchasing page to customize and buy your brick.")), formType === 'comments' && /*#__PURE__*/_react["default"].createElement("form", null, /*#__PURE__*/_react["default"].createElement("h2", null, "Share Other Comments"), /*#__PURE__*/_react["default"].createElement("p", null, "We'd love to hear from you! Please share any comments, suggestions, or feedback you have."), /*#__PURE__*/_react["default"].createElement("div", null, /*#__PURE__*/_react["default"].createElement("label", {
+    htmlFor: "comment"
+  }, "Your Comments:"), /*#__PURE__*/_react["default"].createElement("textarea", {
+    id: "comment",
+    name: "comment",
+    rows: "5",
+    required: true,
+    placeholder: "Please share your thoughts, suggestions, or any other comments you'd like to share with us..."
+  })), /*#__PURE__*/_react["default"].createElement("button", {
+    type: "submit"
+  }, "Submit Comments")));
+}
+
+},{"react":15}],30:[function(require,module,exports){
+"use strict";
+
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
@@ -49825,7 +49990,7 @@ function Footer() {
   }));
 }
 
-},{"react":15}],30:[function(require,module,exports){
+},{"react":15}],31:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -49856,14 +50021,18 @@ function Header() {
   }, "Home"), /*#__PURE__*/_react["default"].createElement(_reactRouterDom.Link, {
     to: "/about",
     className: "headerButton " + ((0, _reactRouterDom.useLocation)().pathname == "/about" ? "activeNav" : "")
-  }, "About")));
+  }, "About"), /*#__PURE__*/_react["default"].createElement(_reactRouterDom.Link, {
+    to: "/contact",
+    className: "headerButton " + ((0, _reactRouterDom.useLocation)().pathname == "/contact" ? "activeNav" : "")
+  }, "Contact")));
 }
 
-},{"react":15,"react-router-dom":7}],31:[function(require,module,exports){
+},{"react":15,"react-router-dom":7}],32:[function(require,module,exports){
 "use strict";
 
 var _app = _interopRequireDefault(require("./app.js"));
 var _about = _interopRequireDefault(require("./about/about.js"));
+var _contact = _interopRequireDefault(require("./contact/contact.js"));
 var _reactRouterDom = require("react-router-dom");
 var _react = _interopRequireDefault(require("react"));
 var _client = _interopRequireDefault(require("react-dom/client"));
@@ -49880,8 +50049,11 @@ root.render(/*#__PURE__*/_react["default"].createElement(_react["default"].Stric
   path: "/about",
   element: /*#__PURE__*/_react["default"].createElement(_about["default"], null)
 }), /*#__PURE__*/_react["default"].createElement(_reactRouterDom.Route, {
+  path: "/contact",
+  element: /*#__PURE__*/_react["default"].createElement(_contact["default"], null)
+}), /*#__PURE__*/_react["default"].createElement(_reactRouterDom.Route, {
   path: "*",
   element: /*#__PURE__*/_react["default"].createElement(_app["default"], null)
 })))));
 
-},{"./about/about.js":20,"./app.js":21,"react":15,"react-dom/client":5,"react-router-dom":7}]},{},[31]);
+},{"./about/about.js":20,"./app.js":21,"./contact/contact.js":29,"react":15,"react-dom/client":5,"react-router-dom":7}]},{},[32]);
