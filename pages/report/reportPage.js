@@ -3,7 +3,7 @@ import Header from '../header.js';
 import Footer from '../footer.js';
 import EditForm from './form.js';
 
-export default function Contact() {
+export default function ReportPage() {
     const [formData, setFormData] = useState({
         purchaserName: '',
         panel: '',
@@ -66,7 +66,8 @@ export default function Contact() {
             });
 
             if (!response.ok) {
-                throw new Error('Network response was not ok');
+                const errorData = await response.json();
+                throw new Error(errorData.message || 'Network response was not ok');
             }
 
             setSubmissionStatus('success');

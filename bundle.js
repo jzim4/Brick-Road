@@ -43290,7 +43290,7 @@ function AboutRondo() {
   }, "In 2016, Anderson and Floyd Smaller (both co-founders of the Rondo Days celebration), worked with architects from 4RM+ULA and Ten x Ten to create plans for a memorial plaza. Opened in July 2018, the Rondo Commemorative Plaza (RCP) is the first public memorial to the Black neighborhoods destroyed by interstate highways. The plaza includes a 26-panel History Wall that tells the story of Rondo, a commemorative brick path, eighteen community chimes, and a 30-ft lighted tower that is visible to anyone driving on I-94. The adjacent building is home to the Rondo Center of Diverse Expressions (RCODE), which offers an indoor space for events, preserves a small research collection, and provides administrative responsibility for the plaza. Rondo residents, visitors, community members, and organizations are invited to purchase bricks along the commemorative brick path. Bricks can recognize an address, a family member or friend, a memory, a business, or anything else held near and dear. Brick purchasers are celebrated during our annual \u201CEvery Brick Counts\u201D Ceremony in September, where each participant is given time to share about their story. For more information on RCODE\u2019s commemorative brick program, please email Katie at katie@rcodemn.org."));
 }
 
-},{"../footer.js":30,"../header.js":31,"react":15}],21:[function(require,module,exports){
+},{"../footer.js":28,"../header.js":29,"react":15}],21:[function(require,module,exports){
 "use strict";
 
 function _typeof(o) {
@@ -43443,7 +43443,7 @@ function BrickRoadSite() {
   }), /*#__PURE__*/_react["default"].createElement(_footer["default"], null));
 }
 
-},{"./bricks/scrolling/scrollContent.js":24,"./bricks/scrolling/selectedBrick.js":25,"./bricks/search.js":26,"./bricks/static/static.js":27,"./footer.js":30,"./header.js":31,"react":15}],22:[function(require,module,exports){
+},{"./bricks/scrolling/scrollContent.js":24,"./bricks/scrolling/selectedBrick.js":25,"./bricks/search.js":26,"./bricks/static/static.js":27,"./footer.js":28,"./header.js":29,"react":15}],22:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -44294,10 +44294,9 @@ function Search(_ref) {
       }
     }, /*#__PURE__*/_react["default"].createElement(SearchBox, null))), /*#__PURE__*/_react["default"].createElement("p", {
       className: "datasetNote"
-    }, "The dataset used to build this site is incomplete. If you find any missing information or errors, do not hesitate to let us know!"), /*#__PURE__*/_react["default"].createElement(_reactRouterDom.Link, {
-      to: "/edit",
-      className: "headerButton editFormLink"
-    }, "Contact"));
+    }, "The dataset used to build this site is incomplete. If you find any missing information or errors, do not hesitate to ", /*#__PURE__*/_react["default"].createElement(_reactRouterDom.Link, {
+      to: "/report"
+    }, "let us know!")));
   } else {
     return /*#__PURE__*/_react["default"].createElement(_react["default"].Fragment, null, /*#__PURE__*/_react["default"].createElement("div", {
       id: "customizeButtons"
@@ -44307,10 +44306,9 @@ function Search(_ref) {
       onClick: toggleDisplay
     }, display == "scroll" ? "Show brick list" : "Show scrolling path")), /*#__PURE__*/_react["default"].createElement(SearchBox, null), /*#__PURE__*/_react["default"].createElement("p", {
       className: "datasetNote"
-    }, "The dataset used to build this site is incomplete. If you find any missing information or errors, do not hesitate let us know!"), /*#__PURE__*/_react["default"].createElement(_reactRouterDom.Link, {
-      to: "/edit",
-      className: "headerButton editFormLink"
-    }, "Contact"), /*#__PURE__*/_react["default"].createElement("div", {
+    }, "The dataset used to build this site is incomplete. If you find any missing information or errors, do not hesitate to ", /*#__PURE__*/_react["default"].createElement(_reactRouterDom.Link, {
+      to: "/report"
+    }, "let us know!")), /*#__PURE__*/_react["default"].createElement("div", {
       id: "staticSearchLabel"
     }, /*#__PURE__*/_react["default"].createElement(Label, {
       section: highlight
@@ -44448,6 +44446,171 @@ function Brick(_ref2) {
 },{"../../../public/db.json":33,"react":15}],28:[function(require,module,exports){
 "use strict";
 
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports["default"] = Footer;
+var _react = _interopRequireDefault(require("react"));
+function _interopRequireDefault(e) {
+  return e && e.__esModule ? e : {
+    "default": e
+  };
+}
+function Footer() {
+  return /*#__PURE__*/_react["default"].createElement("footer", null, /*#__PURE__*/_react["default"].createElement("div", {
+    className: "footerCol"
+  }));
+}
+
+},{"react":15}],29:[function(require,module,exports){
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports["default"] = Header;
+var _react = _interopRequireDefault(require("react"));
+var _reactRouterDom = require("react-router-dom");
+function _interopRequireDefault(e) {
+  return e && e.__esModule ? e : {
+    "default": e
+  };
+}
+/* 
+Author: Jonah Zimmer
+
+This single component holds the header
+*/
+
+function Header() {
+  return /*#__PURE__*/_react["default"].createElement("header", null, /*#__PURE__*/_react["default"].createElement("h1", {
+    id: "title"
+  }, "Rondo Commemorative Plaza"), /*#__PURE__*/_react["default"].createElement("div", {
+    id: "navLinks"
+  }, /*#__PURE__*/_react["default"].createElement(_reactRouterDom.Link, {
+    className: "headerButton " + ((0, _reactRouterDom.useLocation)().pathname == "/" ? "activeNav" : ""),
+    to: "/"
+  }, "Home"), /*#__PURE__*/_react["default"].createElement(_reactRouterDom.Link, {
+    to: "/about",
+    className: "headerButton " + ((0, _reactRouterDom.useLocation)().pathname == "/about" ? "activeNav" : "")
+  }, "About"), /*#__PURE__*/_react["default"].createElement(_reactRouterDom.Link, {
+    to: "/report",
+    className: "headerButton " + ((0, _reactRouterDom.useLocation)().pathname == "/report" ? "activeNav" : "")
+  }, "Report an Error")));
+}
+
+},{"react":15,"react-router-dom":7}],30:[function(require,module,exports){
+"use strict";
+
+var _app = _interopRequireDefault(require("./app.js"));
+var _about = _interopRequireDefault(require("./about/about.js"));
+var _reportPage = _interopRequireDefault(require("./report/reportPage.js"));
+var _reactRouterDom = require("react-router-dom");
+var _react = _interopRequireDefault(require("react"));
+var _client = _interopRequireDefault(require("react-dom/client"));
+function _interopRequireDefault(e) {
+  return e && e.__esModule ? e : {
+    "default": e
+  };
+}
+var root = _client["default"].createRoot(document.getElementById('mainContent'));
+root.render(/*#__PURE__*/_react["default"].createElement(_react["default"].StrictMode, null, /*#__PURE__*/_react["default"].createElement(_reactRouterDom.HashRouter, null, /*#__PURE__*/_react["default"].createElement(_reactRouterDom.Routes, null, /*#__PURE__*/_react["default"].createElement(_reactRouterDom.Route, {
+  path: "/",
+  element: /*#__PURE__*/_react["default"].createElement(_app["default"], null)
+}), /*#__PURE__*/_react["default"].createElement(_reactRouterDom.Route, {
+  path: "/about",
+  element: /*#__PURE__*/_react["default"].createElement(_about["default"], null)
+}), /*#__PURE__*/_react["default"].createElement(_reactRouterDom.Route, {
+  path: "/report",
+  element: /*#__PURE__*/_react["default"].createElement(_reportPage["default"], null)
+}), /*#__PURE__*/_react["default"].createElement(_reactRouterDom.Route, {
+  path: "*",
+  element: /*#__PURE__*/_react["default"].createElement(_app["default"], null)
+})))));
+
+},{"./about/about.js":20,"./app.js":21,"./report/reportPage.js":32,"react":15,"react-dom/client":5,"react-router-dom":7}],31:[function(require,module,exports){
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports["default"] = void 0;
+var _react = _interopRequireDefault(require("react"));
+function _interopRequireDefault(e) {
+  return e && e.__esModule ? e : {
+    "default": e
+  };
+}
+var EditForm = function EditForm(_ref) {
+  var formData = _ref.formData,
+    handleInputChange = _ref.handleInputChange,
+    handleSubmit = _ref.handleSubmit,
+    errors = _ref.errors;
+  return /*#__PURE__*/_react["default"].createElement("form", {
+    onSubmit: handleSubmit,
+    noValidate: true
+  }, /*#__PURE__*/_react["default"].createElement("p", null, "Please provide the following information to help us locate your brick and make the necessary corrections."), /*#__PURE__*/_react["default"].createElement("div", null, /*#__PURE__*/_react["default"].createElement("label", {
+    htmlFor: "purchaserName"
+  }, "Purchaser Name: ", /*#__PURE__*/_react["default"].createElement("span", {
+    "aria-label": "required"
+  }, "*")), /*#__PURE__*/_react["default"].createElement("input", {
+    type: "text",
+    id: "purchaserName",
+    name: "purchaserName",
+    value: formData.purchaserName,
+    onChange: handleInputChange,
+    "aria-required": "true"
+  }), errors.purchaserName && /*#__PURE__*/_react["default"].createElement("div", {
+    id: "purchaserName-error",
+    className: "error-message",
+    role: "alert"
+  }, errors.purchaserName)), /*#__PURE__*/_react["default"].createElement("div", null, /*#__PURE__*/_react["default"].createElement("label", {
+    htmlFor: "panel"
+  }, "Panel Number: ", /*#__PURE__*/_react["default"].createElement("span", {
+    "aria-label": "required"
+  }, "*")), /*#__PURE__*/_react["default"].createElement("input", {
+    type: "text",
+    id: "panel",
+    name: "panel",
+    value: formData.panel,
+    onChange: handleInputChange,
+    "aria-required": "true"
+  }), errors.panel && /*#__PURE__*/_react["default"].createElement("div", {
+    id: "panel-error",
+    className: "error-message",
+    role: "alert"
+  }, errors.panel)), /*#__PURE__*/_react["default"].createElement("div", null, /*#__PURE__*/_react["default"].createElement("label", {
+    htmlFor: "errorExplanation"
+  }, "Explanation of Error: ", /*#__PURE__*/_react["default"].createElement("span", {
+    "aria-label": "required"
+  }, "*")), /*#__PURE__*/_react["default"].createElement("textarea", {
+    id: "errorExplanation",
+    name: "errorExplanation",
+    rows: "5",
+    value: formData.errorExplanation,
+    onChange: handleInputChange,
+    "aria-required": "true"
+  }), errors.errorExplanation && /*#__PURE__*/_react["default"].createElement("div", {
+    id: "errorExplanation-error",
+    className: "error-message",
+    role: "alert"
+  }, errors.errorExplanation)), /*#__PURE__*/_react["default"].createElement("div", null, /*#__PURE__*/_react["default"].createElement("label", {
+    htmlFor: "editComment"
+  }, "Additional Comments:"), /*#__PURE__*/_react["default"].createElement("textarea", {
+    id: "editComment",
+    name: "comment",
+    rows: "3",
+    value: formData.comment,
+    onChange: handleInputChange
+  })), /*#__PURE__*/_react["default"].createElement("button", {
+    type: "submit"
+  }, "Submit Correction Request"));
+};
+var _default = exports["default"] = EditForm;
+
+},{"react":15}],32:[function(require,module,exports){
+"use strict";
+
 function _typeof(o) {
   "@babel/helpers - typeof";
 
@@ -44460,7 +44623,7 @@ function _typeof(o) {
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports["default"] = Contact;
+exports["default"] = ReportPage;
 var _react = _interopRequireWildcard(require("react"));
 var _header = _interopRequireDefault(require("../header.js"));
 var _footer = _interopRequireDefault(require("../footer.js"));
@@ -44878,7 +45041,7 @@ function _iterableToArrayLimit(r, l) {
 function _arrayWithHoles(r) {
   if (Array.isArray(r)) return r;
 }
-function Contact() {
+function ReportPage() {
   var _useState = (0, _react.useState)({
       purchaserName: '',
       panel: '',
@@ -44932,7 +45095,7 @@ function Contact() {
   };
   var handleSubmit = /*#__PURE__*/function () {
     var _ref = _asyncToGenerator(/*#__PURE__*/_regeneratorRuntime().mark(function _callee(event) {
-      var response;
+      var response, errorData;
       return _regeneratorRuntime().wrap(function _callee$(_context) {
         while (1) switch (_context.prev = _context.next) {
           case 0:
@@ -44960,11 +45123,15 @@ function Contact() {
           case 8:
             response = _context.sent;
             if (response.ok) {
-              _context.next = 11;
+              _context.next = 14;
               break;
             }
-            throw new Error('Network response was not ok');
-          case 11:
+            _context.next = 12;
+            return response.json();
+          case 12:
+            errorData = _context.sent;
+            throw new Error(errorData.message || 'Network response was not ok');
+          case 14:
             setSubmissionStatus('success');
             // Reset form on successful submission
             setFormData({
@@ -44973,22 +45140,22 @@ function Contact() {
               errorExplanation: '',
               comment: ''
             });
-            _context.next = 19;
+            _context.next = 22;
             break;
-          case 15:
-            _context.prev = 15;
+          case 18:
+            _context.prev = 18;
             _context.t0 = _context["catch"](5);
             console.error('There was a problem with the fetch operation:', _context.t0);
             setSubmissionStatus('error');
-          case 19:
-            _context.prev = 19;
-            setIsSubmitting(false);
-            return _context.finish(19);
           case 22:
+            _context.prev = 22;
+            setIsSubmitting(false);
+            return _context.finish(22);
+          case 25:
           case "end":
             return _context.stop();
         }
-      }, _callee, null, [[5, 15, 19, 22]]);
+      }, _callee, null, [[5, 18, 22, 25]]);
     }));
     return function handleSubmit(_x) {
       return _ref.apply(this, arguments);
@@ -45021,169 +45188,7 @@ function Contact() {
   })), /*#__PURE__*/_react["default"].createElement(_footer["default"], null));
 }
 
-},{"../footer.js":30,"../header.js":31,"./form.js":29,"react":15}],29:[function(require,module,exports){
-"use strict";
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports["default"] = void 0;
-var _react = _interopRequireDefault(require("react"));
-function _interopRequireDefault(e) {
-  return e && e.__esModule ? e : {
-    "default": e
-  };
-}
-var EditForm = function EditForm(_ref) {
-  var formData = _ref.formData,
-    handleInputChange = _ref.handleInputChange,
-    handleSubmit = _ref.handleSubmit,
-    errors = _ref.errors;
-  return /*#__PURE__*/_react["default"].createElement("form", {
-    onSubmit: handleSubmit,
-    noValidate: true
-  }, /*#__PURE__*/_react["default"].createElement("p", null, "Please provide the following information to help us locate your brick and make the necessary corrections."), /*#__PURE__*/_react["default"].createElement("div", null, /*#__PURE__*/_react["default"].createElement("label", {
-    htmlFor: "purchaserName"
-  }, "Purchaser Name: ", /*#__PURE__*/_react["default"].createElement("span", {
-    "aria-label": "required"
-  }, "*")), /*#__PURE__*/_react["default"].createElement("input", {
-    type: "text",
-    id: "purchaserName",
-    name: "purchaserName",
-    value: formData.purchaserName,
-    onChange: handleInputChange,
-    "aria-required": "true"
-  }), errors.purchaserName && /*#__PURE__*/_react["default"].createElement("div", {
-    id: "purchaserName-error",
-    className: "error-message",
-    role: "alert"
-  }, errors.purchaserName)), /*#__PURE__*/_react["default"].createElement("div", null, /*#__PURE__*/_react["default"].createElement("label", {
-    htmlFor: "panel"
-  }, "Panel Number: ", /*#__PURE__*/_react["default"].createElement("span", {
-    "aria-label": "required"
-  }, "*")), /*#__PURE__*/_react["default"].createElement("input", {
-    type: "text",
-    id: "panel",
-    name: "panel",
-    value: formData.panel,
-    onChange: handleInputChange,
-    "aria-required": "true"
-  }), errors.panel && /*#__PURE__*/_react["default"].createElement("div", {
-    id: "panel-error",
-    className: "error-message",
-    role: "alert"
-  }, errors.panel)), /*#__PURE__*/_react["default"].createElement("div", null, /*#__PURE__*/_react["default"].createElement("label", {
-    htmlFor: "errorExplanation"
-  }, "Explanation of Error: ", /*#__PURE__*/_react["default"].createElement("span", {
-    "aria-label": "required"
-  }, "*")), /*#__PURE__*/_react["default"].createElement("textarea", {
-    id: "errorExplanation",
-    name: "errorExplanation",
-    rows: "5",
-    value: formData.errorExplanation,
-    onChange: handleInputChange,
-    "aria-required": "true"
-  }), errors.errorExplanation && /*#__PURE__*/_react["default"].createElement("div", {
-    id: "errorExplanation-error",
-    className: "error-message",
-    role: "alert"
-  }, errors.errorExplanation)), /*#__PURE__*/_react["default"].createElement("div", null, /*#__PURE__*/_react["default"].createElement("label", {
-    htmlFor: "editComment"
-  }, "Additional Comments:"), /*#__PURE__*/_react["default"].createElement("textarea", {
-    id: "editComment",
-    name: "comment",
-    rows: "3",
-    value: formData.comment,
-    onChange: handleInputChange
-  })), /*#__PURE__*/_react["default"].createElement("button", {
-    type: "submit"
-  }, "Submit Correction Request"));
-};
-var _default = exports["default"] = EditForm;
-
-},{"react":15}],30:[function(require,module,exports){
-"use strict";
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports["default"] = Footer;
-var _react = _interopRequireDefault(require("react"));
-function _interopRequireDefault(e) {
-  return e && e.__esModule ? e : {
-    "default": e
-  };
-}
-function Footer() {
-  return /*#__PURE__*/_react["default"].createElement("footer", null, /*#__PURE__*/_react["default"].createElement("div", {
-    className: "footerCol"
-  }));
-}
-
-},{"react":15}],31:[function(require,module,exports){
-"use strict";
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports["default"] = Header;
-var _react = _interopRequireDefault(require("react"));
-var _reactRouterDom = require("react-router-dom");
-function _interopRequireDefault(e) {
-  return e && e.__esModule ? e : {
-    "default": e
-  };
-}
-/* 
-Author: Jonah Zimmer
-
-This single component holds the header
-*/
-
-function Header() {
-  return /*#__PURE__*/_react["default"].createElement("header", null, /*#__PURE__*/_react["default"].createElement("h1", {
-    id: "title"
-  }, "Rondo Commemorative Plaza"), /*#__PURE__*/_react["default"].createElement("div", {
-    id: "navLinks"
-  }, /*#__PURE__*/_react["default"].createElement(_reactRouterDom.Link, {
-    className: "headerButton " + ((0, _reactRouterDom.useLocation)().pathname == "/" ? "activeNav" : ""),
-    to: "/"
-  }, "Home"), /*#__PURE__*/_react["default"].createElement(_reactRouterDom.Link, {
-    to: "/about",
-    className: "headerButton " + ((0, _reactRouterDom.useLocation)().pathname == "/about" ? "activeNav" : "")
-  }, "About")));
-}
-
-},{"react":15,"react-router-dom":7}],32:[function(require,module,exports){
-"use strict";
-
-var _app = _interopRequireDefault(require("./app.js"));
-var _about = _interopRequireDefault(require("./about/about.js"));
-var _editForm = _interopRequireDefault(require("./editForm/editForm.js"));
-var _reactRouterDom = require("react-router-dom");
-var _react = _interopRequireDefault(require("react"));
-var _client = _interopRequireDefault(require("react-dom/client"));
-function _interopRequireDefault(e) {
-  return e && e.__esModule ? e : {
-    "default": e
-  };
-}
-var root = _client["default"].createRoot(document.getElementById('mainContent'));
-root.render(/*#__PURE__*/_react["default"].createElement(_react["default"].StrictMode, null, /*#__PURE__*/_react["default"].createElement(_reactRouterDom.HashRouter, null, /*#__PURE__*/_react["default"].createElement(_reactRouterDom.Routes, null, /*#__PURE__*/_react["default"].createElement(_reactRouterDom.Route, {
-  path: "/",
-  element: /*#__PURE__*/_react["default"].createElement(_app["default"], null)
-}), /*#__PURE__*/_react["default"].createElement(_reactRouterDom.Route, {
-  path: "/about",
-  element: /*#__PURE__*/_react["default"].createElement(_about["default"], null)
-}), /*#__PURE__*/_react["default"].createElement(_reactRouterDom.Route, {
-  path: "/edit",
-  element: /*#__PURE__*/_react["default"].createElement(_editForm["default"], null)
-}), /*#__PURE__*/_react["default"].createElement(_reactRouterDom.Route, {
-  path: "*",
-  element: /*#__PURE__*/_react["default"].createElement(_app["default"], null)
-})))));
-
-},{"./about/about.js":20,"./app.js":21,"./editForm/editForm.js":28,"react":15,"react-dom/client":5,"react-router-dom":7}],33:[function(require,module,exports){
+},{"../footer.js":28,"../header.js":29,"./form.js":31,"react":15}],33:[function(require,module,exports){
 module.exports=[
   {
     "Naming_Year": 2024,
@@ -50551,4 +50556,4 @@ module.exports=[
 
 
 ]
-},{}]},{},[32]);
+},{}]},{},[30]);

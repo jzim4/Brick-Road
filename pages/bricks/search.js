@@ -139,9 +139,7 @@ export default function Search({ highlight, setHighlight, display, setDisplay })
                     <SearchBox />
                 </div>
             </div>
-            <p className="datasetNote">The dataset used to build this site is incomplete. If you find any missing information or errors, do not hesitate to let us know!</p>
-            <Link to={"/edit"} className="headerButton editFormLink">Contact</Link>
-
+            <p className="datasetNote">The dataset used to build this site is incomplete. If you find any missing information or errors, do not hesitate to <Link to={"/report"}>let us know!</Link></p>
         </>
     }
     else {
@@ -150,12 +148,8 @@ export default function Search({ highlight, setHighlight, display, setDisplay })
                 <button id="displayToggle" className="headerButton" onClick={toggleDisplay}>{display == "scroll" ? "Show brick list" : "Show scrolling path"}</button>
             </div>
             <SearchBox />
-            <p className="datasetNote">The dataset used to build this site is incomplete. If you find any missing information or errors, do not hesitate let us know!
-            </p>
+            <p className="datasetNote">The dataset used to build this site is incomplete. If you find any missing information or errors, do not hesitate to <Link to={"/report"}>let us know!</Link></p>
                 
-            <Link to={"/edit"} className="headerButton editFormLink">Contact</Link>
-
-
             <div id="staticSearchLabel">
                 <Label section={highlight} />
             </div>

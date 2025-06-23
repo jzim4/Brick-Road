@@ -12,6 +12,7 @@ export default function Header() {
         <div id="navLinks">
             <Link className={"headerButton " + (useLocation().pathname == "/" ? "activeNav" : "")} to={"/"}>Home</Link>
             <Link to={"/about"} className={"headerButton " + (useLocation().pathname == "/about" ? "activeNav" : "")}>About</Link>
+            <Link to={"/report"} className={"headerButton " + (useLocation().pathname == "/report" ? "activeNav" : "")}>Report an Error</Link>
         </div>
     </header>
 }
