@@ -32,7 +32,7 @@ export default function ReportPage() {
 
     const validateForm = () => {
         const newErrors = {};
-        
+
         if (!formData.purchaserName.trim()) {
             newErrors.purchaserName = 'Purchaser name is required';
         }
@@ -42,7 +42,7 @@ export default function ReportPage() {
         if (!formData.errorExplanation.trim()) {
             newErrors.errorExplanation = 'Error explanation is required';
         }
-        
+
         setErrors(newErrors);
         return Object.keys(newErrors).length === 0;
     };
@@ -56,33 +56,38 @@ export default function ReportPage() {
         setIsSubmitting(true);
         setSubmissionStatus(null);
 
+        const htmlContent = `
+            <p>Purchaser Name: ${formData.purchaserName.replace(/[<>]/g, '')}</p>
+            <p>Panel: ${formData.panel.replace(/[<>]/g, '')}</p>
+            <p>Error Explanation: ${formData.errorExplanation.replace(/[<>]/g, '')}</p>
+            <p>Comment: ${formData.comment.replace(/[<>]/g, '')}</p>
+        `;
+
         try {
-            const response = await fetch('/api/send-email', {
+            const response = await fetch('http://localhost:4000/api/send-email', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
                 },
-                body: JSON.stringify({ formType: 'edit', formData }),
+                body: JSON.stringify({
+                    to: 'jszimmer545@gmail.com',
+                    subject: 'Brick Error Report',
+                    htmlContent: htmlContent,
+                }),
             });
-
+            
             if (!response.ok) {
-                const errorData = await response.json();
-                throw new Error(errorData.message || 'Network response was not ok');
+                throw new Error(`HTTP error! status: ${response.status}`);
             }
-
+            
+            const data = await response.json();
             setSubmissionStatus('success');
-            // Reset form on successful submission
-            setFormData({
-                purchaserName: '',
-                panel: '',
-                errorExplanation: '',
-                comment: ''
-            });
-
+            console.log(data);
         } catch (error) {
-            console.error('There was a problem with the fetch operation:', error);
             setSubmissionStatus('error');
-        } finally {
+            console.error('Error:', error);
+        }
+        finally {
             setIsSubmitting(false);
         }
     };
@@ -100,12 +105,12 @@ export default function ReportPage() {
                 )}
 
                 {submissionStatus === 'error' && (
-                     <div style={{ color: 'red', border: '1px solid red', padding: '1rem', marginBottom: '1rem' }}>
+                    <div style={{ color: 'red', border: '1px solid red', padding: '1rem', marginBottom: '1rem' }}>
                         Sorry, there was an error submitting your form. Please try again later.
                     </div>
                 )}
 
-                <EditForm 
+                <EditForm
                     formData={formData}
                     handleInputChange={handleInputChange}
                     handleSubmit={handleSubmit}

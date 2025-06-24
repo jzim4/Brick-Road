@@ -6,7 +6,7 @@ This component is all of the content in the scrollable path. It takes into accou
 */
 
 import React from 'react';
-import data from '../../../public/db.json';
+import data from '../../../../public/db.json';
 
 export default function Path({ highlight, currentBrick }) {
   const numRows = 15;
