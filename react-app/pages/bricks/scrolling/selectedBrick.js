@@ -6,7 +6,6 @@ This component is for when a user clicks on a brick on the path. It includes a c
 
 import React from 'react';
 import { defaultBrick } from '../../app.js';
-import data from '../../../public/db.json';
 
 function closeBrick(setCurrentBrick) {
     setCurrentBrick(defaultBrick);
@@ -16,11 +15,11 @@ function closeBrick(setCurrentBrick) {
 }
 
 // content within selected brick
-export default function SelectedBrick({ brick, setCurrentBrick }) {
+export default function SelectedBrick({ brick, setCurrentBrick, bricks }) {
 
     // Finds and returns data from brickData about brick at coordinates
     function getBrick(row, col, pan) {
-        for (let b of data) {
+        for (let b of bricks) {
             if (b.Row_Number == row && b.Col_Number == col && b.Panel_Number == pan) {
                 return b;
             }

@@ -4,7 +4,8 @@ Author: Jonah Zimmer
 This is the main file. It holds the state changes, and brings together the components
 */
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import axios from 'axios';
 
 import Header from './header.js';
 import Search from './bricks/search.js';
@@ -27,6 +28,22 @@ export default function BrickRoadSite() {
 
     const [display, setDisplay] = useState("scroll");
 
+    const [bricks, setBricks] = useState([]);
+
+    useEffect(() => {
+        axios.get("http://localhost:8080/bricks")
+        .then(res => {
+            if (highlight == "all") {
+                setBricks(res.data);
+            } else if (highlight == "section") {
+                setBricks(res.data.filter(brick => brick.Paver_Assigned_Section == highlight));
+            } else if (highlight == "donor") {
+                setBricks(res.data.filter(brick => brick.Purchaser_Name == highlight));
+            }
+        })
+        .catch(err => console.log(err))
+    }, [highlight]);
+
     // if window starts out small, make it static
     if (window.innerWidth < 1000 && display != "static") {
         setDisplay("static");
@@ -43,12 +60,12 @@ export default function BrickRoadSite() {
 
     return <>
         <Header display={display} setDisplay={setDisplay}/>
-        <Search highlight={highlight} setHighlight={setHighlight} display={display} setDisplay={setDisplay}/>
+        <Search highlight={highlight} setHighlight={setHighlight} display={display} setDisplay={setDisplay} bricks={bricks}/>
         
-        <SelectedBrick brick={currentBrick} setCurrentBrick={setCurrentBrick}/>
-        {display == "scroll" ? 
-            <ScrollContent highlight={highlight} currentBrick = {currentBrick}/> : 
-            <AccessibleContent highlight={highlight} />
+        <SelectedBrick brick={currentBrick} setCurrentBrick={setCurrentBrick} bricks={bricks}/>
+            {display == "scroll" ? 
+            <ScrollContent highlight={highlight} currentBrick = {currentBrick} bricks={bricks}/> : 
+            <AccessibleContent highlight={highlight} bricks={bricks}/>
         }
         <Footer/>
         

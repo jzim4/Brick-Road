@@ -4,11 +4,10 @@ Author: Jonah Zimmer
 This single component holds the search bar and includes all functionality for buttons within search bar
 */
 
-import data from '../../public/db.json';
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-export default function Search({ highlight, setHighlight, display, setDisplay }) {
+export default function Search({ highlight, setHighlight, display, setDisplay, bricks }) {
 
     // hide search section
     function collapseSearch() {
@@ -67,7 +66,7 @@ export default function Search({ highlight, setHighlight, display, setDisplay })
         const sections = ["Centenarian", "Heroes", "Golden Women", "Family/Friends", "Businesses/Organizations"];
 
         let num = 0;
-        for (let b of data) {
+        for (let b of bricks) {
             if (typeof (b.Panel_Number) == "number") {
                 let highlightMatch = b.Purchaser_Name.toLowerCase().includes(highlight.toLowerCase());
                 if (highlight == "all" || b.Paver_Assigned_Section == highlight || highlightMatch) {

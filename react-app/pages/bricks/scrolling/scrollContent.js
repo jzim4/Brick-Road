@@ -23,7 +23,7 @@ function scrollButtonFunction(goLeft) {
   })
 }
 
-export default function ScrollContent({ highlight, currentBrick, setCurrentBrick }) {
+export default function ScrollContent({ highlight, currentBrick, setCurrentBrick, bricks }) {
   return <div id="fullPathContainer">
     <div className="scrollButtonContainer">
       <button onClick={() => scrollButtonFunction(true)} tabIndex={0} className="scrollButton" id="leftScroll" aria-label={"Scroll path left"}> &#8679; </button>
@@ -31,7 +31,7 @@ export default function ScrollContent({ highlight, currentBrick, setCurrentBrick
 
     <div id="scrollContainer">
       <Panels />
-      <Path highlight={highlight} currentBrick={currentBrick} setCurrentBrick={setCurrentBrick}/>
+      <Path highlight={highlight} currentBrick={currentBrick} setCurrentBrick={setCurrentBrick} bricks={bricks} />
     </div>
     <div className="scrollButtonContainer">
       <button onClick={() => scrollButtonFunction(false)} tabIndex={0} className="scrollButton" id="rightScroll" aria-label={"Scroll path right"}> &#8679; </button>
