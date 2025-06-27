@@ -4,6 +4,7 @@ import ReportPage from './report/reportPage.js';
 import { HashRouter, Routes, Route } from 'react-router-dom';
 import React from 'react';
 import ReactDOM from 'react-dom/client';
+import '../styles.css';
 
 const root = ReactDOM.createRoot(document.getElementById('mainContent'));
 

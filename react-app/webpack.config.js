@@ -1,4 +1,5 @@
 const path = require('path');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
     entry: './pages/index.js', // Changed to index.js which contains ReactDOM.render
@@ -37,5 +38,10 @@ module.exports = {
     },
     resolve: {
         extensions: ['.js', '.jsx'] // Same as browserify extensions
-    }
+    },
+    plugins: [
+        new HtmlWebpackPlugin({
+            template: './index.html'
+        })
+    ]
 }
