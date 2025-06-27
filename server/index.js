@@ -1,6 +1,7 @@
 import express from "express";
 import cors from "cors";
-import { getBricks, getBricksBySection, getBricksByPurchaser } from "./bricks/server.js";
+import { getBricks } from "./bricks/server.js";
+
 const app = express();
 
 app.use(cors());
@@ -14,19 +15,23 @@ app.get("/", (req, res) => {
 });
 
 app.get("/bricks", (req, res) => {
-    const bricks = getBricks();
-    res.json(bricks);
-    console.log("Bricks sent to client");
+    getBricks().then(data => {
+        console.log("Sending bricks data to frontend:", data);
+        res.json(data);
+    }).catch(err => {
+        console.log("Error fetching bricks:", err);
+        res.status(500).json({ error: "Failed to fetch bricks" });
+    });
 });
 
-app.get("/bricks/section/:section", (req, res) => {
-    const section = req.params.section;
-    const bricks = getBricksBySection(section);
-    res.json(bricks);
-});
+// app.get("/bricks/section/:section", (req, res) => {
+//     const section = req.params.section;
+//     const bricks = getBricksBySection(section);
+//     res.json(bricks);
+// });
 
-app.get("/bricks/purchaser/:purchaser", (req, res) => {
-    const purchaser = req.params.purchaser;
-    const bricks = getBricksByPurchaser(purchaser);
-    res.json(bricks);
-});
+// app.get("/bricks/purchaser/:purchaser", (req, res) => {
+//     const purchaser = req.params.purchaser;
+//     const bricks = getBricksByPurchaser(purchaser);
+//     res.json(bricks);
+// });

@@ -21,67 +21,85 @@ export const defaultBrick = {
 }
 
 export default function BrickRoadSite() {
-    // this state is used to show extra info about a brick. It takes an object from the db.json file or the default brick shown above
     const [currentBrick, setCurrentBrick] = useState(defaultBrick);
-    // this state is used to show which bricks are red versus grey. It is either one of the sections, a donor, or "all"
     const [highlight, setHighlight] = useState("all");
+    const [highlightType, setHighlightType] = useState("all"); // can be "all", "section", or "donor"
 
     const [display, setDisplay] = useState("scroll");
-
     const [bricks, setBricks] = useState([]);
-
-    const { data: data, loading, error } = axios.get("http://localhost:8080/bricks");
-
-    useEffect(() => {
-        setBricks(data);
-    }, [data]);
+    const [loading, setLoading] = useState(true);
+    const [error, setError] = useState(null);
 
     useEffect(() => {
-        if (highlight == "all") {
-            setBricks(bricks);
-        } else if (highlight == "section") {
-            setBricks(bricks.filter(brick => brick.Paver_Assigned_Section == highlight));
-        } else if (highlight == "donor") {
-            setBricks(bricks.filter(brick => brick.Purchaser_Name == highlight));
+        axios.get("http://localhost:8080/bricks")
+            .then(response => {
+                setBricks(response.data);
+            })
+            .catch(err => {
+                setError(err);
+            })
+            .finally(() => {
+                setLoading(false);
+            });
+    }, []); // Empty dependency array means this runs only once on mount
+
+    const displayedBricks = React.useMemo(() => {
+        if (highlightType === "all") {
+            return bricks;
+        }
+        if (highlightType === "section") {
+            return bricks.filter(brick => brick.Paver_Assigned_Section === highlight);
+        }
+        if (highlightType === "donor") {
+            return bricks.filter(brick => brick.Purchaser_Name === highlight);
+        }
+        return bricks;
+    }, [bricks, highlight, highlightType]);
+
+    useEffect(() => {
+        const handleResize = () => {
+            if (window.innerWidth < 1000) {
+                setDisplay("static");
+                setCurrentBrick(defaultBrick);
+                const cover = document.getElementById("selectedBrickPageCover");
+                if (cover) {
+                    cover.style.display = "none";
+                }
+                document.body.style.overflow = 'auto';
+            }
+        };
+
+        if (window.innerWidth < 1000 && display !== "static") {
+            handleResize();
         }
 
-    }, [highlight, bricks]);
+        window.addEventListener('resize', handleResize);
+        return () => window.removeEventListener('resize', handleResize);
+    }, [display]);
 
-
-    console.log(bricks);
 
     if (loading) {
-        return <div>Loading...</div>
+        return <div>Loading...</div>;
     }
 
     if (error) {
-        return <div>Error: {error.message}</div>
-    }
-    // if window starts out small, make it static
-    if (window.innerWidth < 1000 && display != "static") {
-        setDisplay("static");
-    }
-    // if window becomes small, make it static
-    window.onresize = function () {
-        if (window.innerWidth < 1000) {
-            setDisplay("static");
-            setCurrentBrick(defaultBrick);
-            document.getElementById("selectedBrickPageCover").style.display = "none";
-            document.body.style.overflow = 'auto';
-        }
+        return <div>Error: {error.message}</div>;
     }
 
+    console.log(bricks);
+    if (bricks.length === 0) {
+        return <div>No bricks found</div>;
+    }
 
     return <>
         <Header display={display} setDisplay={setDisplay} />
-        <Search highlight={highlight} setHighlight={setHighlight} display={display} setDisplay={setDisplay} bricks={bricks} />
+        <Search highlight={highlight} setHighlight={setHighlight} setHighlightType={setHighlightType} display={display} setDisplay={setDisplay} bricks={bricks} />
 
-        <SelectedBrick brick={currentBrick} setCurrentBrick={setCurrentBrick} bricks={bricks} />
-        {display == "scroll" ?
-            <ScrollContent highlight={highlight} currentBrick={currentBrick} bricks={bricks} /> :
-            <AccessibleContent highlight={highlight} bricks={bricks} />
+        <SelectedBrick brick={currentBrick} setCurrentBrick={setCurrentBrick} bricks={displayedBricks} />
+        {display === "scroll" ?
+            <ScrollContent highlight={highlight} currentBrick={currentBrick} bricks={displayedBricks} /> :
+            <AccessibleContent highlight={highlight} bricks={displayedBricks} />
         }
         <Footer />
-
     </>
 }
