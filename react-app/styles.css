@@ -18,3 +18,9 @@
 
 /* Contact page */
 @import url("./styles/editForm.css");
+
+/* Sign In page */
+@import url("./styles/signin.css");
+
+/* Admin Dashboard */
+@import url("./styles/admin.css");

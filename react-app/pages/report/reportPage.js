@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
-import Header from '../header.js';
-import Footer from '../footer.js';
+import Layout from '../layout.js';
 import EditForm from './form.js';
 
 export default function ReportPage() {
@@ -93,8 +92,7 @@ export default function ReportPage() {
     };
 
     return (
-        <div className="contactPage">
-            <Header />
+        <Layout>
             <main className="contactContent">
                 <h1>Report an Error on a Brick</h1>
 
@@ -118,7 +116,6 @@ export default function ReportPage() {
                     isSubmitting={isSubmitting}
                 />
             </main>
-            <Footer />
-        </div>
+        </Layout>
     );
 }

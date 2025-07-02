@@ -1,17 +1,14 @@
 import React from 'react';
-import Header from '../header.js';
-import Footer from '../footer.js';
+import Layout from '../layout.js';
 
 export default function About() {
-    return <>
-        <Header />
+    return <Layout>
         <div id="aboutPageContainer">
             <TheSite />
             <AboutRondo />
             <TheTeam />
         </div>
-        <Footer />
-    </>
+    </Layout>
 }
 
 function TheSite() {

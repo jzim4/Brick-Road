@@ -10,7 +10,6 @@ body {
     font-family:'Courier New', Courier, monospace;
     font-size: 1.2em;
     font-weight: 400;
-    min-height: 100vh;
 }
 button {
     font-family: 'Courier New', Courier, monospace;
@@ -18,6 +17,9 @@ button {
 }
 input {
     font-size: 1.2em;
+}
+#mainContent {
+    min-height: 100vh;
 }
 
 /* HEADING */
@@ -49,6 +51,26 @@ header {
 }
 .activeNav {
     background-color: var(--brick-red);
+}
+
+.user-info {
+    font-size: 0.9em;
+    background-color: #e6e6e6 !important;
+    cursor: default;
+}
+
+.user-info:hover {
+    background-color: #e6e6e6 !important;
+}
+
+.sign-out {
+    background-color: #ff6b6b;
+    color: white;
+    border-color: #ff4757;
+}
+
+.sign-out:hover {
+    background-color: #ff5252;
 }
 
 /* FOOTER */

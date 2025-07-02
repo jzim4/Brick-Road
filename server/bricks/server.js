@@ -17,7 +17,20 @@ const getBricks = async () => {
 }
 
 const getBricksBySection = async (section) => {
-    const { data: brick, error } = await supabase.from('brick').select('*').ilike('Paver_Assigned_Section', `%${section}%`);
+    // Input validation and sanitization
+    if (!section || typeof section !== 'string') {
+        throw new Error('Invalid section parameter');
+    }
+    
+    // Sanitize input - remove potentially dangerous characters
+    const sanitizedSection = section.replace(/[%_\\]/g, '\\$&');
+    
+    // Use Supabase's safe parameter binding
+    const { data: brick, error } = await supabase
+        .from('brick')
+        .select('*')
+        .ilike('Paver_Assigned_Section', `%${sanitizedSection}%`);
+        
     if (error) {
         console.error(error);
         throw new Error(`Failed to fetch bricks by section: ${error.message}`);
@@ -26,7 +39,21 @@ const getBricksBySection = async (section) => {
 }
 
 const getBricksByPurchaser = async (purchaser) => {
-    const { data: brick, error } = await supabase.from('brick').select('*').eq('Purchaser_Name', purchaser);
+    // Input validation
+    if (!purchaser || typeof purchaser !== 'string') {
+        throw new Error('Invalid purchaser parameter');
+    }
+    
+    // Additional length check to prevent excessively long inputs
+    if (purchaser.length > 100) {
+        throw new Error('Purchaser name too long');
+    }
+    
+    const { data: brick, error } = await supabase
+        .from('brick')
+        .select('*')
+        .eq('Purchaser_Name', purchaser);
+        
     if (error) {
         console.error(error);
         throw new Error(`Failed to fetch bricks by purchaser: ${error.message}`);

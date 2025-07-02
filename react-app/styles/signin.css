@@ -1,0 +1,86 @@
+/* Sign In Page Styles */
+
+.signin-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: var(--noise);
+    padding: 20px;
+}
+
+.signin-form {
+    background-color: white;
+    padding: 40px;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: 400px;
+    border: 2px solid black;
+}
+
+.signin-form h1 {
+    text-align: center;
+    margin-bottom: 30px;
+    color: black;
+    font-family: 'Courier New', Courier, monospace;
+}
+
+.input-group {
+    margin-bottom: 20px;
+}
+
+.input-group label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: bold;
+    color: black;
+    font-family: 'Courier New', Courier, monospace;
+}
+
+.input-group input {
+    width: 100%;
+    padding: 12px;
+    border: 2px solid black;
+    border-radius: 4px;
+    font-size: 1.2em;
+    font-family: 'Courier New', Courier, monospace;
+    box-sizing: border-box;
+}
+
+.input-group input:focus {
+    outline: none;
+    border-color: var(--brick-red);
+    box-shadow: 0 0 5px rgba(221, 126, 107, 0.3);
+}
+
+.signin-button {
+    width: 100%;
+    padding: 12px;
+    background-color: white;
+    border: 2px solid black;
+    border-radius: 4px;
+    font-size: 1.2em;
+    font-family: 'Courier New', Courier, monospace;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+}
+
+.signin-button:hover {
+    background-color: var(--brick-red);
+    color: black;
+}
+
+.signin-button:active {
+    transform: translateY(1px);
+}
+
+/* Responsive design */
+@media (max-width: 480px) {
+    .signin-container {
+        padding: 10px;
+    }
+    
+    .signin-form {
+        padding: 20px;
+    }
+} 

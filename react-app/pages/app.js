@@ -3,16 +3,16 @@ Author: Jonah Zimmer
 
 This is the main file. It holds the state changes, and brings together the components
 */
+import "../styles/global.css";
 
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import Layout from './layout.js';
 
-import Header from './header.js';
 import Search from './bricks/search.js';
 import SelectedBrick from './bricks/scrolling/selectedBrick.js';
 import ScrollContent from './bricks/scrolling/scrollContent.js';
 import AccessibleContent from './bricks/static/static.js';
-import Footer from './footer.js';
 
 export const defaultBrick = {
     Panel_Number: 20,
@@ -91,8 +91,7 @@ export default function BrickRoadSite() {
         return <div>No bricks found</div>;
     }
 
-    return <>
-        <Header display={display} setDisplay={setDisplay} />
+    return <Layout>
         <Search highlight={highlight} setHighlight={setHighlight} setHighlightType={setHighlightType} display={display} setDisplay={setDisplay} bricks={bricks} />
 
         <SelectedBrick brick={currentBrick} setCurrentBrick={setCurrentBrick} bricks={displayedBricks} />
@@ -100,6 +99,5 @@ export default function BrickRoadSite() {
             <ScrollContent highlight={highlight} currentBrick={currentBrick} bricks={displayedBricks} /> :
             <AccessibleContent highlight={highlight} bricks={displayedBricks} />
         }
-        <Footer />
-    </>
+    </Layout>
 }
