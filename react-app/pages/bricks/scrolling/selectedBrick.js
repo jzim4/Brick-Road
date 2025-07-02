@@ -4,7 +4,7 @@ Author: Jonah Zimmer
 This component is for when a user clicks on a brick on the path. It includes a click event listener to choose the selected brick
 */
 
-import React from 'react';
+import React, { useEffect } from 'react';
 import { defaultBrick } from '../../app.js';
 
 function closeBrick(setCurrentBrick) {
@@ -27,25 +27,56 @@ export default function SelectedBrick({ brick, setCurrentBrick, bricks }) {
         return defaultBrick;
     }
 
-    // Click event handler that determines the location of the selected brick and changes state if it exists
-    document.addEventListener("click", (e) => {
-        let clicked = e.target;
-        if (clicked.classList.contains("popupText")) {
-            clicked = clicked.parentElement;
-        }
-        if (clicked.classList.contains("existingBrick")) {
-            let col = Array.prototype.indexOf.call(clicked.parentElement.children, clicked) - 7; // minus seven due to eight-brick offset
-            const row = Array.prototype.indexOf.call(clicked.parentElement.parentElement.children, clicked.parentElement) + 1;
-            const pan = Math.floor(col / 10) + 1;
-            col = col - ((pan - 1) * 10);
-            const b = getBrick(row, col, pan);
-            setCurrentBrick(b);
-            document.getElementById("selectedBrickPageCover").style.display = "block";
-            document.body.style.overflow = 'hidden';
-            document.getElementById("scrollContainer").style.overflow = 'hidden';
-        }
-        document.getElementById('fname').value = "";
-    })
+    // Set up click event listener with useEffect to avoid multiple listeners
+    useEffect(() => {
+        // Click event handler that determines the location of the selected brick and changes state if it exists
+        const handleClick = (e) => {
+            let clicked = e.target;
+
+            if (clicked.classList.contains("popupText")) {
+                clicked = clicked.parentElement;
+            }
+            if (clicked && clicked.classList.contains("existingBrick")) {
+                console.log("clicked brick", clicked.parentElement);
+                
+                // Check if clicked.parentElement exists before accessing its properties
+                if (!clicked.parentElement) {
+                    console.error("clicked.parentElement is null/undefined");
+                    return;
+                }
+                
+                // Check if clicked.parentElement.parentElement exists before accessing its properties  
+                if (!clicked.parentElement.parentElement) {
+                    console.error("clicked.parentElement.parentElement is null/undefined");
+                    return;
+                }
+                
+                let col = Array.prototype.indexOf.call(clicked.parentElement.children, clicked) - 7; // minus seven due to eight-brick offset
+                const row = Array.prototype.indexOf.call(clicked.parentElement.parentElement.children, clicked.parentElement) + 1;
+                const pan = Math.floor(col / 10) + 1;
+                col = col - ((pan - 1) * 10);
+                const b = getBrick(row, col, pan);
+                setCurrentBrick(b);
+                document.getElementById("selectedBrickPageCover").style.display = "block";
+                document.body.style.overflow = 'hidden';
+                document.getElementById("scrollContainer").style.overflow = 'hidden';
+            }
+            
+            // Clear fname field if it exists
+            const fnameElement = document.getElementById('fname');
+            if (fnameElement) {
+                fnameElement.value = "";
+            }
+        };
+
+        // Add event listener
+        document.addEventListener("click", handleClick);
+
+        // Cleanup function to remove event listener when component unmounts
+        return () => {
+            document.removeEventListener("click", handleClick);
+        };
+    }, [setCurrentBrick, bricks]); // Dependencies: re-run if these change
 
     return <div id="selectedBrickPageCover">
         <div id="selectedBrickContainer">

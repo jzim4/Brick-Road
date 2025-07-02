@@ -63,7 +63,7 @@ function AboutRondo() {
             live in the Twin Cities.
         </p>
         <div className="aboutImgContainer floatLeft">
-            <img className="aboutImg" src="./public/aboutImages/img1.jpg" width="1500" height="844" alt="flowers on ledge at the 2024 Brick Ceremony"></img>
+            <img className="aboutImg" src="/aboutImages/img1.jpg" width="1500" height="844" alt="flowers on ledge at the 2024 Brick Ceremony"></img>
             <p className="imgDescr">2024 Brick Ceremony, Image Credit: Katie Frye</p>
         </div>
         <p className="aboutParagraph">
@@ -76,7 +76,7 @@ function AboutRondo() {
             Rondo neighborhood.
         </p>
         <div className="aboutImgContainer floatRight">
-            <img className="aboutImg" src="./public/aboutImages/img3.jpg" width="1500" height="844" alt="audience listening to speaker at 2024 Brick Ceremony"></img>
+            <img className="aboutImg" src="/aboutImages/img3.jpg" width="1500" height="844" alt="audience listening to speaker at 2024 Brick Ceremony"></img>
             <p className="imgDescr">2024 Brick Ceremony, Image Credit: Katie Frye</p>
         </div>
         <p className="aboutParagraph">
@@ -91,7 +91,7 @@ function AboutRondo() {
             African American residents lived in Rondo.
         </p>
         <div className="aboutImgContainer floatLeft">
-            <img className="aboutImg" src="./public/aboutImages/img2.jpg" width="1500" height="844" alt="two people sitting on the brick path"></img>
+            <img className="aboutImg" src="/aboutImages/img2.jpg" width="1500" height="844" alt="two people sitting on the brick path"></img>
             <p className="imgDescr">2024 Brick Ceremony, Image Credit: Katie Frye</p>
         </div>
         <p className="aboutParagraph">
@@ -122,7 +122,7 @@ function AboutRondo() {
 
         <h3 className="aboutHeader">About the Rondo Commemorative Plaza (2018-Present)</h3>
         <div className="aboutImgContainer floatRight">
-            <img className="aboutImg" src="./public/aboutImages/img4.jpg" width="2500" height="1667" alt="Rondo Commemorative Plaza bricks and panels"></img>
+            <img className="aboutImg" src="/aboutImages/img4.jpg" width="2500" height="1667" alt="Rondo Commemorative Plaza bricks and panels"></img>
             <p className="imgDescr">Rondo Commemorative Plaza<br></br>Image Credit: Morgan Sheff</p>
         </div>
         <p className="aboutParagraph">
@@ -133,7 +133,7 @@ function AboutRondo() {
             soon, he had a vision for the empty lot.
         </p>
         <div className="aboutImgContainer floatLeft">
-            <img className="aboutImg" src="./public/aboutImages/img5.jpg" width="2500" height="1667" alt="Rondo Commemorative Plaza bricks and panels illuminated at night"></img>
+            <img className="aboutImg" src="/aboutImages/img5.jpg" width="2500" height="1667" alt="Rondo Commemorative Plaza bricks and panels illuminated at night"></img>
             <p className="imgDescr">Rondo Commemorative Plaza<br></br>Image Credit: Morgan Sheff</p>
         </div>
         <p className="aboutParagraph">

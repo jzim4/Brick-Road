@@ -5,6 +5,7 @@ import { HashRouter, Routes, Route } from 'react-router-dom';
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import '../styles.css';
+import EditPage from './edit/editPage.js';
 
 const root = ReactDOM.createRoot(document.getElementById('mainContent'));
 
@@ -15,6 +16,7 @@ root.render(
         <Route path="/" element={<BrickRoadSite />} />
         <Route path="/about" element={<About />} />
         <Route path="/report" element={<ReportPage />} />
+        <Route path="/edit" element={<EditPage />} />
         <Route path="*" element={<BrickRoadSite />} />
       </Routes>
       </HashRouter>

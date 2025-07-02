@@ -31,7 +31,7 @@ export default function BrickRoadSite() {
     const [error, setError] = useState(null);
 
     useEffect(() => {
-        axios.get("http://localhost:8080/bricks")
+        axios.get("http://localhost:8000/bricks")
             .then(response => {
                 setBricks(response.data);
             })
