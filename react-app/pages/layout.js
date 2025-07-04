@@ -27,16 +27,11 @@ function Header() {
             
             {isAuthenticated ? (
                 <>
-                    <Link to={"/admin/dashboard"} className={"headerButton " + (location.pathname.includes("/admin/dashboard") ? "activeNav" : "")}>Dashboard</Link>
-                    <span className="headerButton user-info">
-                        {user?.email}
-                    </span>
-                    <button onClick={handleSignOut} className="headerButton sign-out">
-                        Sign Out
-                    </button>
+                    <Link to={"/admin/dashboard"} className={"headerButton " + (location.pathname.includes("/admin/dashboard") ? "activeNav" : "")}>Admin</Link>
                 </>
             ) : (
-                <Link to={"/admin/signin"} className={"headerButton " + (location.pathname.includes("/admin/signin") ? "activeNav" : "")}>Admin</Link>
+                    <Link to={"/admin/signin"} className={"headerButton " + (location.pathname.includes("/admin/signin") ? "activeNav" : "")}>Admin</Link>
+
             )}
         </div>
     </header>

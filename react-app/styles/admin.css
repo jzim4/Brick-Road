@@ -94,6 +94,15 @@
     color: #333;
 }
 
+#brick-search {
+    margin-bottom: 8px;
+    border-radius: 15px;
+    padding: 3px 8px;
+}
+#searchSubtext {
+    margin-bottom: 15px;
+}
+
 .bricks-table-container {
     overflow-x: auto;
 }

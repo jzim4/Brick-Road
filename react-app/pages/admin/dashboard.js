@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import Layout from '../layout.js';
 import { useAuth } from '../../contexts/AuthContext.js';
 import axios from 'axios';
+import { createColumnHelper, useReactTable, getCoreRowModel, getFilteredRowModel, flexRender } from '@tanstack/react-table';
 
 export default function AdminDashboard() {
     const { user, signOut } = useAuth();
@@ -14,6 +15,12 @@ export default function AdminDashboard() {
         totalSections: 0,
         totalPurchasers: 0
     });
+    const [globalFilter, setGlobalFilter] = useState("");
+
+    function searchChange(e) {
+        const val = e.target.value;
+        setGlobalFilter(val);
+    }
 
     useEffect(() => {
         // Fetch bricks data for admin overview
@@ -21,11 +28,11 @@ export default function AdminDashboard() {
             .then(response => {
                 const bricksData = response.data;
                 setBricks(bricksData);
-                
+
                 // Calculate statistics
                 const uniqueSections = new Set(bricksData.map(brick => brick.Paver_Assigned_Section));
                 const uniquePurchasers = new Set(bricksData.map(brick => brick.Purchaser_Name));
-                
+
                 setStats({
                     totalBricks: bricksData.length,
                     totalSections: uniqueSections.size,
@@ -42,8 +49,47 @@ export default function AdminDashboard() {
 
     const handleSignOut = () => {
         signOut();
-        // Navigation will be handled by the auth context
     };
+
+    const columnHelper = createColumnHelper()
+
+    const defaultColumns = [
+        columnHelper.accessor('Purchaser_Name', {
+            header: 'Purchaser',
+        }),
+        columnHelper.accessor(row => (
+            `${row.Inscription_Line_1 || ''}\n${row.Inscription_Line_2 || ''}\n${row.Inscription_Line_3 || ''}`
+        ), {
+            id: 'Message',
+            header: 'Message',
+            cell: info => <pre>{info.getValue()}</pre>,
+        }),
+        columnHelper.accessor('Paver_Assigned_Section', {
+            header: 'Section',
+        }),
+        columnHelper.accessor('Panel_Number', {
+            header: 'Panel',
+        }),
+        columnHelper.accessor('Row_Number', {
+            header: 'Row',
+        }),
+        columnHelper.accessor('Col_Number', {
+            header: 'Column',
+        }),
+    ];
+
+
+    const table = useReactTable({
+        data: bricks,
+        columns: defaultColumns,
+        getCoreRowModel: getCoreRowModel(),
+        getFilteredRowModel: getFilteredRowModel(),
+        globalFilterFn: 'includesString',
+        state: {
+            globalFilter
+        }
+    });
+
 
     if (loading) {
         return (
@@ -64,14 +110,13 @@ export default function AdminDashboard() {
             </Layout>
         );
     }
-
     return (
         <Layout>
             <div className="admin-container">
                 <div className="admin-header">
                     <h1>Admin Dashboard</h1>
                     <div className="admin-user-info">
-                        <span>Welcome, {user?.email}</span>
+                        <span>Welcome, {user?.email} </span>
                         <button onClick={handleSignOut} className="sign-out-button">
                             Sign Out
                         </button>
@@ -95,48 +140,46 @@ export default function AdminDashboard() {
 
                 <div className="admin-content">
                     <div className="admin-section">
-                        <h2>Recent Bricks</h2>
+                        <h2>Bricks</h2>
+                        <input 
+                            type="search" 
+                            id="brick-search" 
+                            name="DashboardBrickSearch" 
+                            placeholder="Search bricks..."
+                            onChange={searchChange}
+                        />
+                        <div id="searchSubtext">Start typing a purchaser name or inscription to find brick</div>
                         <div className="bricks-table-container">
                             <table className="bricks-table">
                                 <thead>
-                                    <tr>
-                                        <th>Panel</th>
-                                        <th>Row</th>
-                                        <th>Col</th>
-                                        <th>Purchaser</th>
-                                        <th>Section</th>
-                                    </tr>
+                                    {table.getHeaderGroups().map(headerGroup => (
+                                        <tr key={headerGroup.id}>
+                                            {headerGroup.headers.map(header => (
+                                                <th key={header.id}>
+                                                    {header.isPlaceholder
+                                                        ? null
+                                                        : flexRender(
+                                                            header.column.columnDef.header,
+                                                            header.getContext()
+                                                        )}
+                                                </th>
+                                            ))}
+                                        </tr>
+                                    ))}
                                 </thead>
                                 <tbody>
-                                    {bricks.slice(0, 10).map((brick, index) => (
-                                        <tr key={index}>
-                                            <td>{brick.Panel_Number}</td>
-                                            <td>{brick.Row_Number}</td>
-                                            <td>{brick.Col_Number}</td>
-                                            <td>{brick.Purchaser_Name}</td>
-                                            <td>{brick.Paver_Assigned_Section}</td>
+                                    {table.getRowModel().rows.map(row => (
+                                        <tr key={row.id}>
+                                            {row.getVisibleCells().map(cell => (
+                                                <td key={cell.id}>
+                                                    {flexRender(cell.column.columnDef.cell, cell.getContext())}
+                                                </td>
+                                            ))}
                                         </tr>
                                     ))}
                                 </tbody>
-                            </table>
-                        </div>
-                    </div>
 
-                    <div className="admin-actions">
-                        <h2>Admin Actions</h2>
-                        <div className="action-buttons">
-                            <Link to="/admin/manage" className="action-button">
-                                Manage Bricks
-                            </Link>
-                            <button className="action-button">
-                                View Reports
-                            </button>
-                            <button className="action-button">
-                                User Management
-                            </button>
-                            <button className="action-button">
-                                Export Data
-                            </button>
+                            </table>
                         </div>
                     </div>
                 </div>
