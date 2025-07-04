@@ -29,7 +29,7 @@ root.render(
                <AdminDashboard />
              </ProtectedRoute>
            } />
-           <Route path="/admin/manage" element={
+           <Route path="/admin/manage/:panel/:col/:row" element={
              <ProtectedRoute>
                <ManageBricks />
              </ProtectedRoute>

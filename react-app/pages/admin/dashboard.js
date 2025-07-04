@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import Layout from '../layout.js';
 import { useAuth } from '../../contexts/AuthContext.js';
 import axios from 'axios';
-import { createColumnHelper, useReactTable, getCoreRowModel, getFilteredRowModel, flexRender } from '@tanstack/react-table';
+import { createColumnHelper, useReactTable, getCoreRowModel, getFilteredRowModel, getPaginationRowModel, flexRender } from '@tanstack/react-table';
 
 export default function AdminDashboard() {
     const { user, signOut } = useAuth();
@@ -16,6 +16,10 @@ export default function AdminDashboard() {
         totalPurchasers: 0
     });
     const [globalFilter, setGlobalFilter] = useState("");
+    const [pagination, setPagination] = useState({
+        pageIndex: 0,
+        pageSize: 10,
+    })
 
     function searchChange(e) {
         const val = e.target.value;
@@ -66,6 +70,7 @@ export default function AdminDashboard() {
         }),
         columnHelper.accessor('Paver_Assigned_Section', {
             header: 'Section',
+            cell: info => <div className="assignedSectionTag">{info.getValue()}</div>
         }),
         columnHelper.accessor('Panel_Number', {
             header: 'Panel',
@@ -76,6 +81,21 @@ export default function AdminDashboard() {
         columnHelper.accessor('Col_Number', {
             header: 'Column',
         }),
+        columnHelper.display({
+            id: 'Edit',
+            header: 'Edit',
+            cell: ({ row }) => {
+                const brick = row.original;
+                return (
+                    <Link
+                        className="edit-button"
+                        to={`/admin/manage/${brick.Panel_Number}/${brick.Col_Number}/${brick.Row_Number}`}
+                    >
+                        Edit
+                    </Link>
+                );
+            }
+        })
     ];
 
 
@@ -84,9 +104,13 @@ export default function AdminDashboard() {
         columns: defaultColumns,
         getCoreRowModel: getCoreRowModel(),
         getFilteredRowModel: getFilteredRowModel(),
+        getPaginationRowModel: getPaginationRowModel(),
         globalFilterFn: 'includesString',
+        onGlobalFilterChange: setGlobalFilter,
+        onPaginationChange: setPagination,
         state: {
-            globalFilter
+            globalFilter,
+            pagination
         }
     });
 
@@ -141,10 +165,10 @@ export default function AdminDashboard() {
                 <div className="admin-content">
                     <div className="admin-section">
                         <h2>Bricks</h2>
-                        <input 
-                            type="search" 
-                            id="brick-search" 
-                            name="DashboardBrickSearch" 
+                        <input
+                            type="search"
+                            id="brick-search"
+                            name="DashboardBrickSearch"
                             placeholder="Search bricks..."
                             onChange={searchChange}
                         />
@@ -181,6 +205,40 @@ export default function AdminDashboard() {
 
                             </table>
                         </div>
+                        <div id="pagination">
+                            <button
+                                onClick={() => table.setPageIndex(0)}
+                                disabled={!table.getCanPreviousPage()}
+                                className="paginationButton"
+                            >
+                                &lt;&lt;
+                            </button>
+                            <button
+                                onClick={() => table.previousPage()}
+                                disabled={!table.getCanPreviousPage()}
+                                className="paginationButton"
+                            >
+                                &lt;
+                            </button>
+                            <span>
+                                Page {table.getState().pagination.pageIndex + 1} of {table.getPageCount()}
+                            </span>
+                            <button
+                                onClick={() => table.nextPage()}
+                                disabled={!table.getCanNextPage()}
+                                className="paginationButton"
+                            >
+                                &gt;
+                            </button>
+                            <button
+                                onClick={() => table.setPageIndex(table.getPageCount() - 1)}
+                                disabled={!table.getCanNextPage()}
+                                className="paginationButton"
+                            >
+                                &gt;&gt;
+                            </button>
+                        </div>
+
                     </div>
                 </div>
             </div>

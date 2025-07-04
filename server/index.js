@@ -26,6 +26,31 @@ app.get("/bricks", (req, res) => {
     });
 });
 
+app.get("/brick", async (req, res) => {
+    try {
+        const { Panel_Number, Row_Number, Col_Number } = req.query;
+
+        const data = await getBricks();
+
+        const matchingBrick = data.find(brick =>
+            String(brick.Panel_Number) === String(Panel_Number) &&
+            String(brick.Row_Number) === String(Row_Number) &&
+            String(brick.Col_Number) === String(Col_Number)
+        );
+
+        if (matchingBrick) {
+            res.json(matchingBrick);
+        } else {
+            res.status(404).json({ error: "Brick not found" });
+        }
+
+    } catch (err) {
+        console.error("Error fetching brick:", err);
+        res.status(500).json({ error: "Failed to fetch bricks" });
+    }
+});
+
+
 app.post("/signin", (req, res) => {
     const { email, password } = req.body;
     
