@@ -12,8 +12,8 @@ export default function AdminDashboard() {
     const [error, setError] = useState(null);
     const [stats, setStats] = useState({
         totalBricks: 0,
-        totalSections: 0,
-        totalPurchasers: 0
+        totalPurchasers: 0,
+        requests: 0,
     });
     const [globalFilter, setGlobalFilter] = useState("");
     const [pagination, setPagination] = useState({
@@ -34,12 +34,11 @@ export default function AdminDashboard() {
                 setBricks(bricksData);
 
                 // Calculate statistics
-                const uniqueSections = new Set(bricksData.map(brick => brick.Paver_Assigned_Section));
                 const uniquePurchasers = new Set(bricksData.map(brick => brick.Purchaser_Name));
 
                 setStats({
                     totalBricks: bricksData.length,
-                    totalSections: uniqueSections.size,
+                    requests: 0,
                     totalPurchasers: uniquePurchasers.size
                 });
             })
@@ -153,12 +152,12 @@ export default function AdminDashboard() {
                         <div className="stat-number">{stats.totalBricks}</div>
                     </div>
                     <div className="stat-card">
-                        <h3>Sections</h3>
-                        <div className="stat-number">{stats.totalSections}</div>
-                    </div>
-                    <div className="stat-card">
                         <h3>Purchasers</h3>
                         <div className="stat-number">{stats.totalPurchasers}</div>
+                    </div>
+                    <div className="stat-card">
+                        <h3>Open Requests</h3>
+                        <div className="stat-number">{stats.requests}</div>
                     </div>
                 </div>
 
