@@ -21,16 +21,16 @@ function Header() {
     return <header>
         <h1 id="title">Rondo Commemorative Plaza</h1>
         <div id="navLinks">
-            <Link className={"headerButton " + (location.pathname == "/" ? "activeNav" : "")} to={"/"}>Home</Link>
-            <Link to={"/about"} className={"headerButton " + (location.pathname == "/about" ? "activeNav" : "")}>About</Link>
-            <Link to={"/report"} className={"headerButton " + (location.pathname == "/report" ? "activeNav" : "")}>Report an Error</Link>
+            <Link className={"button-primary " + (location.pathname == "/" ? " activeNav" : "")} to={"/"}>Home</Link>
+            <Link to={"/about"} className={"button-primary " + (location.pathname == "/about" ? " activeNav" : "")}>About</Link>
+            <Link to={"/report"} className={"button-primary " + (location.pathname == "/report" ? " activeNav" : "")}>Report an Error</Link>
             
             {isAuthenticated ? (
                 <>
-                    <Link to={"/admin/dashboard"} className={"headerButton " + (location.pathname.includes("/admin/dashboard") ? "activeNav" : "")}>Admin</Link>
+                    <Link to={"/admin/dashboard"} className={"button-primary " + (location.pathname.includes("/admin/dashboard") ? " activeNav" : "")}>Admin</Link>
                 </>
             ) : (
-                    <Link to={"/admin/signin"} className={"headerButton " + (location.pathname.includes("/admin/signin") ? "activeNav" : "")}>Admin</Link>
+                    <Link to={"/admin/signin"} className={"button-primary " + (location.pathname.includes("/admin/signin") ? " activeNav" : "")}>Admin</Link>
 
             )}
         </div>

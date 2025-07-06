@@ -12,6 +12,7 @@ import ManageBricks from './admin/manage.js';
 import { AuthProvider } from '../contexts/AuthContext.js';
 import ProtectedRoute from '../components/ProtectedRoute.js';
 import Reports from './admin/reports.js';
+import PageNotFound from './404.js';
 
 const root = ReactDOM.createRoot(document.getElementById('mainContent'));
 
@@ -40,7 +41,7 @@ root.render(
                <Reports />
              </ProtectedRoute>
            } />
-           <Route path="*" element={<BrickRoadSite />} />
+           <Route path="*" element={<PageNotFound />} />
          </Routes>
          </HashRouter>
       </AuthProvider>

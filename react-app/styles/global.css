@@ -2,6 +2,9 @@
 
 :root {
     --brick-red: #dd7e6b;
+    --light-blue: #d4ebf2;
+    --light-grey: #ededed;
+    --dark-blue: #00008b;
     --noise: url("../asfalt-dark.png");
 }
 
@@ -21,6 +24,28 @@ input {
 #mainContent {
     min-height: 100vh;
 }
+.button-primary, .button-secondary {
+    border-radius: 4px;
+    padding: 5px;
+    text-align: center;
+    width: fit-content;
+    text-decoration: none;
+
+}
+.button-primary {
+    background-color: var(--light-blue);
+    border: black solid 2px;
+    color: black;
+}
+.button-primary:hover {
+    background-color: var(--brick-red);
+    cursor: pointer;
+}
+.button-secondary {
+    background-color: var(--dark-blue);
+    color: white;
+}
+
 
 /* HEADING */
 header {
@@ -29,7 +54,7 @@ header {
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
-    background-color: lightblue;
+    background-color: var(--light-blue);
 }
 #navLinks {
     display: flex;
@@ -75,7 +100,7 @@ header {
 
 /* FOOTER */
 footer {
-    background-color: lightblue;
+    background-color: var(--light-blue);
     padding: 15px 30px;
     font-size: 17px;
     min-height: 40px;

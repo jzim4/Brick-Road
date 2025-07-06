@@ -158,7 +158,7 @@ export default function AdminDashboard() {
                     </div>
                     <div className="stat-card">
                         <Link to="/admin/requests">
-                        <h3>Open Requests</h3>
+                        <h3 className="stat-header">Open Requests</h3>
                         <div className="stat-number">{reports.filter(r => !r.isFixed).length}</div>
                         </Link>
                     </div>
