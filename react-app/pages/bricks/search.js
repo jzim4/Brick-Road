@@ -51,8 +51,11 @@ export default function Search({ highlight, setHighlight, display, setDisplay, b
     // takes text field input then sets the highlight value to update other components
     function searchButton({ setHighlight }) {
         let val = document.getElementById("fname").value;
-        if (display == "scroll") { collapseSearch(); }
+        if (display == "scroll") { 
+            collapseSearch(); 
+        }
         setHighlight(val);
+        setHighlightType("donor");
     }
 
     // takes section name then sets the highlight value to update other components

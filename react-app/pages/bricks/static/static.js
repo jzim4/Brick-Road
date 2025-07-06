@@ -7,11 +7,13 @@ making it accessible for screen readers and phone compatible.
 import React from 'react';
 
 export default function AccessibleContent({ bricks }) {
-    
     return <div id="accessibleBricksContainer">
-        {Array(bricks.length).fill(0).map((_, b) => (
-            <Brick brick={bricks[b]} key={"p" + bricks[b].Panel_Number.toString() + "r" +  bricks[b].Row_Number.toString() + "c" +  bricks[b].Col_Number.toString()}/>
-        ))}
+        {bricks.map((brick) => {
+            if (typeof(brick.Panel_Number) == "number" && typeof(brick.Row_Number) == "number" && typeof(brick.Col_Number) == "number") {
+                return <Brick brick={brick} key={"p" + brick.Panel_Number.toString() + "r" +  brick.Row_Number.toString() + "c" +  brick.Col_Number.toString()}/>
+            }
+        }
+        )}
     </div>
 }
 

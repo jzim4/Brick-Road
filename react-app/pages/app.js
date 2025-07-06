@@ -25,8 +25,11 @@ export default function BrickRoadSite() {
     const [highlight, setHighlight] = useState("all");
     const [highlightType, setHighlightType] = useState("all"); // can be "all", "section", or "donor"
 
-    const [display, setDisplay] = useState("scroll");
+    const [displayType, setDisplayType] = useState("scroll");
+
     const [bricks, setBricks] = useState([]);
+
+    const [displayedBricks, setDisplayedBricks] = useState(bricks);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
 
@@ -43,23 +46,31 @@ export default function BrickRoadSite() {
             });
     }, []); // Empty dependency array means this runs only once on mount
 
-    const displayedBricks = React.useMemo(() => {
-        if (highlightType === "all") {
+    useEffect(() => {
+        function getDisplayedBricks() {
+            if (highlight === "all") {
+                return bricks;
+            }
+            if (["Centenarian", "Heroes", "Golden Women", "Family/Friends", "Businesses/Organizations"].includes(highlight)) {
+                return bricks.filter(brick => brick.Paver_Assigned_Section === highlight);
+            }
+            if (highlightType === "donor") {
+                return bricks.filter(brick => brick.Purchaser_Name === highlight);
+            }
             return bricks;
         }
-        if (highlightType === "section") {
-            return bricks.filter(brick => brick.Paver_Assigned_Section === highlight);
-        }
-        if (highlightType === "donor") {
-            return bricks.filter(brick => brick.Purchaser_Name === highlight);
-        }
-        return bricks;
-    }, [bricks, highlight, highlightType]);
+
+        console.log("highlightType:", highlightType);
+        console.log("highlight:", highlight);
+        console.log("sample brick section:", bricks[0]?.Paver_Assigned_Section);
+
+        setDisplayedBricks(getDisplayedBricks());
+    }, [bricks, displayType, highlight])
 
     useEffect(() => {
         const handleResize = () => {
             if (window.innerWidth < 1000) {
-                setDisplay("static");
+                setDisplayType("static");
                 setCurrentBrick(defaultBrick);
                 const cover = document.getElementById("selectedBrickPageCover");
                 if (cover) {
@@ -69,14 +80,13 @@ export default function BrickRoadSite() {
             }
         };
 
-        if (window.innerWidth < 1000 && display !== "static") {
+        if (window.innerWidth < 1000 && displayType !== "static") {
             handleResize();
         }
 
         window.addEventListener('resize', handleResize);
         return () => window.removeEventListener('resize', handleResize);
-    }, [display]);
-
+    }, [displayType]);
 
     if (loading) {
         return <div>Loading...</div>;
@@ -85,17 +95,15 @@ export default function BrickRoadSite() {
     if (error) {
         return <div>Error: {error.message}</div>;
     }
-
-    console.log(bricks);
     if (bricks.length === 0) {
         return <div>No bricks found</div>;
     }
 
     return <Layout>
-        <Search highlight={highlight} setHighlight={setHighlight} setHighlightType={setHighlightType} display={display} setDisplay={setDisplay} bricks={bricks} />
+        <Search highlight={highlight} setHighlight={setHighlight} display={displayType} setDisplay={setDisplayType} bricks={bricks} />
 
         <SelectedBrick brick={currentBrick} setCurrentBrick={setCurrentBrick} bricks={displayedBricks} />
-        {display === "scroll" ?
+        {displayType === "scroll" ?
             <ScrollContent highlight={highlight} currentBrick={currentBrick} bricks={displayedBricks} /> :
             <AccessibleContent highlight={highlight} bricks={displayedBricks} />
         }
