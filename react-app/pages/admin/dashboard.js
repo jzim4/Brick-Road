@@ -1,19 +1,21 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import Layout from '../layout.js';
-import { useAuth } from '../../contexts/AuthContext.js';
 import axios from 'axios';
 import { createColumnHelper, useReactTable, getCoreRowModel, getFilteredRowModel, getPaginationRowModel, flexRender } from '@tanstack/react-table';
+import AdminHeader from './adminHeader.js';
 
 export default function AdminDashboard() {
-    const { user, signOut } = useAuth();
     const [bricks, setBricks] = useState([]);
-    const [loading, setLoading] = useState(true);
-    const [error, setError] = useState(null);
-    const [stats, setStats] = useState({
+    const [reports, setReports] = useState([]);
+    const [brickLoading, setBrickLoading] = useState(true);
+    const [reportLoading, setReportLoading] = useState(true);
+
+    const [brickError, setBrickError] = useState(null);
+    const [reportError, setReportError] = useState(null);
+    const [brickStats, setBrickStats] = useState({
         totalBricks: 0,
         totalPurchasers: 0,
-        requests: 0,
     });
     const [globalFilter, setGlobalFilter] = useState("");
     const [pagination, setPagination] = useState({
@@ -36,23 +38,30 @@ export default function AdminDashboard() {
                 // Calculate statistics
                 const uniquePurchasers = new Set(bricksData.map(brick => brick.Purchaser_Name));
 
-                setStats({
+                setBrickStats({
                     totalBricks: bricksData.length,
-                    requests: 0,
                     totalPurchasers: uniquePurchasers.size
                 });
             })
             .catch(err => {
-                setError(err.message);
+                setBrickError(err.message);
             })
             .finally(() => {
-                setLoading(false);
+                setBrickLoading(false);
             });
-    }, []);
 
-    const handleSignOut = () => {
-        signOut();
-    };
+        axios.get("http://localhost:8000/reports")
+            .then(response => {
+                const reports = response.data;
+                setReports(reports);
+            })
+            .catch(err => {
+                setReportError(err.message);
+            })
+            .finally(() => {
+                setReportLoading(false);
+            })
+    }, []);
 
     const columnHelper = createColumnHelper()
 
@@ -114,7 +123,7 @@ export default function AdminDashboard() {
     });
 
 
-    if (loading) {
+    if (brickLoading) {
         return (
             <Layout>
                 <div className="admin-container">
@@ -124,11 +133,11 @@ export default function AdminDashboard() {
         );
     }
 
-    if (error) {
+    if (brickError) {
         return (
             <Layout>
                 <div className="admin-container">
-                    <div className="error">Error loading dashboard: {error}</div>
+                    <div className="error">Error loading dashboard: {brickError}</div>
                 </div>
             </Layout>
         );
@@ -136,28 +145,22 @@ export default function AdminDashboard() {
     return (
         <Layout>
             <div className="admin-container">
-                <div className="admin-header">
-                    <h1>Admin Dashboard</h1>
-                    <div className="admin-user-info">
-                        <span>Welcome, {user?.email} </span>
-                        <button onClick={handleSignOut} className="sign-out-button">
-                            Sign Out
-                        </button>
-                    </div>
-                </div>
+                <AdminHeader/>
 
                 <div className="admin-stats">
                     <div className="stat-card">
                         <h3>Total Bricks</h3>
-                        <div className="stat-number">{stats.totalBricks}</div>
+                        <div className="stat-number">{brickStats.totalBricks}</div>
                     </div>
                     <div className="stat-card">
                         <h3>Purchasers</h3>
-                        <div className="stat-number">{stats.totalPurchasers}</div>
+                        <div className="stat-number">{brickStats.totalPurchasers}</div>
                     </div>
                     <div className="stat-card">
+                        <Link to="/admin/requests">
                         <h3>Open Requests</h3>
-                        <div className="stat-number">{stats.requests}</div>
+                        <div className="stat-number">{reports.filter(r => !r.isFixed).length}</div>
+                        </Link>
                     </div>
                 </div>
 

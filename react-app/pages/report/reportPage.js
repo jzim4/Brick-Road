@@ -60,7 +60,7 @@ export default function ReportPage() {
         setIsSubmitting(true);
         setSubmissionStatus(null);
 
-        axios.post("http://localhost:8000/save-report",
+        axios.post("http://localhost:8000/report",
             {
                 purchaserName: formData.purchaserName,
                 reporterEmail: formData.reporterEmail,
@@ -82,6 +82,13 @@ export default function ReportPage() {
         <Layout>
             <main className="contactContent">
                 <h1>Report an Error on a Brick</h1>
+                <EditForm
+                    formData={formData}
+                    handleInputChange={handleInputChange}
+                    handleSubmit={handleSubmit}
+                    errors={errors}
+                    isSubmitting={isSubmitting}
+                />
 
                 {submissionStatus === 'success' && (
                     <div style={{ color: 'green', border: '1px solid green', padding: '1rem', marginBottom: '1rem' }}>
@@ -94,14 +101,7 @@ export default function ReportPage() {
                         Sorry, there was an error submitting your form. Please try again later.
                     </div>
                 )}
-
-                <EditForm
-                    formData={formData}
-                    handleInputChange={handleInputChange}
-                    handleSubmit={handleSubmit}
-                    errors={errors}
-                    isSubmitting={isSubmitting}
-                />
+                
             </main>
         </Layout>
     );

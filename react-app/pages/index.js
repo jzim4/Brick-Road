@@ -11,6 +11,7 @@ import AdminDashboard from './admin/dashboard.js';
 import ManageBricks from './admin/manage.js';
 import { AuthProvider } from '../contexts/AuthContext.js';
 import ProtectedRoute from '../components/ProtectedRoute.js';
+import Reports from './admin/reports.js';
 
 const root = ReactDOM.createRoot(document.getElementById('mainContent'));
 
@@ -32,6 +33,11 @@ root.render(
            <Route path="/admin/manage/:panel/:col/:row" element={
              <ProtectedRoute>
                <ManageBricks />
+             </ProtectedRoute>
+           } />
+           <Route path="/admin/requests" element={
+             <ProtectedRoute>
+               <Reports />
              </ProtectedRoute>
            } />
            <Route path="*" element={<BrickRoadSite />} />

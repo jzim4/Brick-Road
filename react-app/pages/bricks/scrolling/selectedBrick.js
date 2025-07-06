@@ -37,7 +37,6 @@ export default function SelectedBrick({ brick, setCurrentBrick, bricks }) {
                 clicked = clicked.parentElement;
             }
             if (clicked && clicked.classList.contains("existingBrick")) {
-                console.log("clicked brick", clicked.parentElement);
                 
                 // Check if clicked.parentElement exists before accessing its properties
                 if (!clicked.parentElement) {

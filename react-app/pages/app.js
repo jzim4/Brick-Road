@@ -59,11 +59,7 @@ export default function BrickRoadSite() {
             }
             return bricks;
         }
-
-        console.log("highlightType:", highlightType);
-        console.log("highlight:", highlight);
-        console.log("sample brick section:", bricks[0]?.Paver_Assigned_Section);
-
+        
         setDisplayedBricks(getDisplayedBricks());
     }, [bricks, displayType, highlight])
 

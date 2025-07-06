@@ -1,12 +1,4 @@
-import { createClient } from '@supabase/supabase-js'
-import dotenv from 'dotenv';
-
-dotenv.config({ path: './.env' });
-const supabaseUrl = process.env.SUPABASE_URL
-const supabaseKey = process.env.SUPABASE_KEY
-const supabase = createClient(supabaseUrl, supabaseKey)
-
-export async function saveReport(purchaserName, reporterEmail, panel, errorExplanation, comment) {
+export async function saveReport(supabase, purchaserName, reporterEmail, panel, errorExplanation, comment) {
     const { data, error } = await supabase
         .from('report')
         .insert([
@@ -25,4 +17,29 @@ export async function saveReport(purchaserName, reporterEmail, panel, errorExpla
         throw new Error(`Failed to save report bricks: ${error.message}`);
     }
     console.log("Report saved");
+}
+
+export async function getReports(supabase) {
+    const {
+        data: { user },
+        error: userError
+    } = await supabase.auth.getUser();
+
+    console.log(user);
+
+    if (userError || !user) {
+        throw new Error("User not authenticated");
+    }
+
+    const { data: reports, error } = await supabase
+        .from('report')
+        .select('*')
+
+    if (error) {
+        console.error(error);
+        throw new Error(`Failed to fetch reports: ${error.message}`);
+    }
+
+    console.log("Reports fetched from Supabase:", reports);
+    return reports;
 }

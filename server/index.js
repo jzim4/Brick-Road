@@ -2,9 +2,17 @@ import express from "express";
 import cors from "cors";
 import { getBricks } from "./bricks/server.js";
 import { signInWithEmail } from "./admin/server.js";
-import { saveReport } from "./report/server.js";
+import { saveReport, getReports } from "./report/server.js";
+import { createClient } from '@supabase/supabase-js'
+import dotenv from 'dotenv';
 
 const app = express();
+
+dotenv.config({ path: './.env' });
+const supabaseUrl = process.env.SUPABASE_URL
+const supabaseKey = process.env.SUPABASE_KEY
+const supabase = createClient(supabaseUrl, supabaseKey)
+
 
 app.use(cors());
 app.use(express.json()); // Add this to parse JSON request bodies
@@ -18,7 +26,7 @@ app.get("/", (req, res) => {
 });
 
 app.get("/bricks", (req, res) => {
-    getBricks().then(data => {
+    getBricks(supabase).then(data => {
         console.log("Sending bricks data to frontend:", data);
         res.json(data);
     }).catch(err => {
@@ -31,7 +39,7 @@ app.get("/brick", async (req, res) => {
     try {
         const { Panel_Number, Row_Number, Col_Number } = req.query;
 
-        const data = await getBricks();
+        const data = await getBricks(supabase);
 
         const matchingBrick = data.find(brick =>
             String(brick.Panel_Number) === String(Panel_Number) &&
@@ -62,7 +70,7 @@ app.post("/signin", (req, res) => {
         return res.status(400).json({ error: "Email and password are required" });
     }
     
-    signInWithEmail(email, password).then(data => {
+    signInWithEmail(supabase, email, password).then(data => {
         console.log("Sign in successful");
         res.json(data);
     }).catch(err => {
@@ -74,9 +82,9 @@ app.post("/signin", (req, res) => {
     });
 });
 
-app.post("/save-report", (req, res) => {
+app.post("/report", (req, res) => {
     const { purchaserName, reporterEmail, panel, errorExplanation, comment } = req.body;
-    saveReport(purchaserName, reporterEmail, panel, errorExplanation, comment).then(data => {
+    saveReport(supabase, purchaserName, reporterEmail, panel, errorExplanation, comment).then(data => {
         console.log("Saving report message:" + purchaserName + reporterEmail + panel + errorExplanation + comment);
         res.send("Success");
     }).catch(err => {
@@ -85,14 +93,12 @@ app.post("/save-report", (req, res) => {
     });
 })
 
-// app.get("/bricks/section/:section", (req, res) => {
-//     const section = req.params.section;
-//     const bricks = getBricksBySection(section);
-//     res.json(bricks);
-// });
-
-// app.get("/bricks/purchaser/:purchaser", (req, res) => {
-//     const purchaser = req.params.purchaser;
-//     const bricks = getBricksByPurchaser(purchaser);
-//     res.json(bricks);
-// });
+app.get("/reports", (req, res) => {
+    getReports(supabase).then(data => {
+        console.log("Sending reports data to frontend:", data);
+        res.json(data);
+    }).catch(err => {
+        console.log("Error fetching reports:", err);
+        res.status(500).json({ error: err.message });
+    });
+})
