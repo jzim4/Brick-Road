@@ -2,6 +2,7 @@ import express from "express";
 import cors from "cors";
 import { getBricks } from "./bricks/server.js";
 import { signInWithEmail } from "./admin/server.js";
+import { saveReport } from "./report/server.js";
 
 const app = express();
 
@@ -72,6 +73,17 @@ app.post("/signin", (req, res) => {
         });
     });
 });
+
+app.post("/save-report", (req, res) => {
+    const { purchaserName, reporterEmail, panel, errorExplanation, comment } = req.body;
+    saveReport(purchaserName, reporterEmail, panel, errorExplanation, comment).then(data => {
+        console.log("Saving report message:" + purchaserName + reporterEmail + panel + errorExplanation + comment);
+        res.send("Success");
+    }).catch(err => {
+        console.log("Error saving report:", err);
+        res.status(500).json({ error: err.message });
+    });
+})
 
 // app.get("/bricks/section/:section", (req, res) => {
 //     const section = req.params.section;

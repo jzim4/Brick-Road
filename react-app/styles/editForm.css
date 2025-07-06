@@ -53,3 +53,7 @@
     color: var(--brick-red);
     font-weight: bold;
 }
+
+.formSubTitle {
+    font-size: 0.8em;
+}

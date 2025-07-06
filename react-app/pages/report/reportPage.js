@@ -1,10 +1,12 @@
 import React, { useState } from 'react';
 import Layout from '../layout.js';
 import EditForm from './form.js';
+import axios from 'axios';
 
 export default function ReportPage() {
     const [formData, setFormData] = useState({
         purchaserName: '',
+        reporterEmail: '',
         panel: '',
         errorExplanation: '',
         comment: ''
@@ -35,6 +37,9 @@ export default function ReportPage() {
         if (!formData.purchaserName.trim()) {
             newErrors.purchaserName = 'Purchaser name is required';
         }
+        if (!formData.reporterEmail.trim()) {
+            newErrors.reporterEmail = 'A contact email is required';
+        }
         if (!formData.panel.trim()) {
             newErrors.panel = 'Panel number is required';
         }
@@ -55,40 +60,22 @@ export default function ReportPage() {
         setIsSubmitting(true);
         setSubmissionStatus(null);
 
-        const htmlContent = `
-            <p>Purchaser Name: ${formData.purchaserName.replace(/[<>]/g, '')}</p>
-            <p>Panel: ${formData.panel.replace(/[<>]/g, '')}</p>
-            <p>Error Explanation: ${formData.errorExplanation.replace(/[<>]/g, '')}</p>
-            <p>Comment: ${formData.comment.replace(/[<>]/g, '')}</p>
-        `;
-
-        try {
-            const response = await fetch('http://localhost:4000/api/send-email', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify({
-                    to: 'jszimmer545@gmail.com',
-                    subject: 'Brick Error Report',
-                    htmlContent: htmlContent,
-                }),
-            });
-            
-            if (!response.ok) {
-                throw new Error(`HTTP error! status: ${response.status}`);
+        axios.post("http://localhost:8000/save-report",
+            {
+                purchaserName: formData.purchaserName,
+                reporterEmail: formData.reporterEmail,
+                panel: formData.panel,
+                errorExplanation: formData.errorExplanation,
+                comment: formData.comment
             }
-            
-            const data = await response.json();
-            setSubmissionStatus('success');
-            console.log(data);
-        } catch (error) {
-            setSubmissionStatus('error');
-            console.error('Error:', error);
-        }
-        finally {
-            setIsSubmitting(false);
-        }
+        )
+            .then(response => {
+                setSubmissionStatus('success');
+            })
+            .catch(error => {
+                console.error("Axios error:", error);
+                setSubmissionStatus('error');
+            });
     };
 
     return (

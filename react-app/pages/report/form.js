@@ -1,7 +1,9 @@
 import React from 'react';
 
-const EditForm = ({ formData, handleInputChange, handleSubmit, errors }) => (
-    <form onSubmit={handleSubmit} noValidate>
+export default function EditForm ({ formData, handleInputChange, handleSubmit, errors }) {
+
+
+    return <form onSubmit={handleSubmit} noValidate>
         <p>Please provide the following information to help us locate your brick and make the necessary corrections.</p>
         
         <div>
@@ -15,12 +17,27 @@ const EditForm = ({ formData, handleInputChange, handleSubmit, errors }) => (
                 </div>
             )}
         </div>
+
+        <div>
+            <label htmlFor="reporterEmail">
+                Contact Email: <span aria-label="required">*</span>
+                <div className="formSubTitle">(We will contact you if we have any questions, and once we make the update)</div>
+            </label>
+            <input type="text" id="reporterEmail" name="reporterEmail" value={formData.reporterEmail} onChange={handleInputChange} aria-required="true" />
+            {errors.purchaserName && (
+                <div id="reporterName-error" className="error-message" role="alert">
+                    {errors.reporterEmail}
+                </div>
+            )}
+        </div>
         
         <div>
             <label htmlFor="panel">
-                Panel Number: <span aria-label="required">*</span>
+                Panel<span aria-label="required">*</span>
+                <div className="formSubTitle">(please describe the panel the brick is in front of so we can find it!)</div>
             </label>
-            <input type="text" id="panel" name="panel" value={formData.panel} onChange={handleInputChange} aria-required="true" />
+            <input type="text" id="panel" name="panel" value={formData.panel} onChange={handleInputChange} aria-required="true" 
+            />
             {errors.panel && (
                 <div id="panel-error" className="error-message" role="alert">
                     {errors.panel}
@@ -49,6 +66,4 @@ const EditForm = ({ formData, handleInputChange, handleSubmit, errors }) => (
             Submit Correction Request
         </button>
     </form>
-);
-
-export default EditForm; 
+}
