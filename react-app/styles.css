@@ -1,9 +1,6 @@
 /* Global */
 @import url("./styles/global.css");
 
-/* Search Box*/
-@import url("./styles/search.css");
-
 /* Selected Brick */
 @import url("./styles/selectedBrick.css");
 
