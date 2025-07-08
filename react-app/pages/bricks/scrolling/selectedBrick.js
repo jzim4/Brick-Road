@@ -61,11 +61,6 @@ export default function SelectedBrick({ brick, setCurrentBrick, bricks }) {
                 document.getElementById("scrollContainer").style.overflow = 'hidden';
             }
             
-            // Clear fname field if it exists
-            const fnameElement = document.getElementById('fname');
-            if (fnameElement) {
-                fnameElement.value = "";
-            }
         };
 
         // Add event listener

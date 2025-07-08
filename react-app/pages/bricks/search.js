@@ -4,30 +4,46 @@ Author: Jonah Zimmer
 This single component holds the search bar and includes all functionality for buttons within search bar
 */
 
-import React from 'react';
+import React, { useState, useEffect, useCallback, useMemo } from 'react';
 import { Link } from 'react-router-dom';
 
-export default function Search({ highlight, setHighlight, display, setDisplay, bricks }) {
+const Search = React.memo(function Search({ highlight, setHighlight, display, setDisplay, bricks }) {
 
+    const [section, setSection] = useState("");
+    const [searchValue, setSearchValue] = useState("");
+    
+    // Stable input change handler
+    const handleSearchInputChange = useCallback((e) => {
+        setSearchValue(e.target.value);
+    }, []);
+    
     // hide search section
-    function collapseSearch() {
+    const collapseSearch = useCallback(() => {
         const dropdown = document.getElementsByClassName("searchDropdown")[0];
         const btn = document.getElementsByClassName("accordion")[0];
         btn.classList.remove("active");
         dropdown.style.height = "0px";
         dropdown.style.paddingBottom = "5px";
-    }
+    }, []);
 
     // collapse search section if click outside of search
-    document.addEventListener("click", (e) => {
-        const panel = document.getElementsByClassName("searchDropdown")[0];
-        if (panel && !panel.contains(e.target) && !e.target.classList.contains("accordion")) {
-            collapseSearch();
-        }
-    })
+    useEffect(() => {
+        const handleClickOutside = (e) => {
+            const panel = document.getElementsByClassName("searchDropdown")[0];
+            if (panel && !panel.contains(e.target) && !e.target.classList.contains("accordion")) {
+                collapseSearch();
+            }
+        };
+
+        document.addEventListener("click", handleClickOutside);
+        
+        return () => {
+            document.removeEventListener("click", handleClickOutside);
+        };
+    }, [collapseSearch]);
 
     // either open or close search section when "filter" button is clicked
-    function handleDropdownClick(e) {
+    const handleDropdownClick = useCallback((e) => {
         const clicked = e.target;
         clicked.classList.toggle("active");
         const panel = document.getElementsByClassName("searchDropdown")[0];
@@ -37,89 +53,100 @@ export default function Search({ highlight, setHighlight, display, setDisplay, b
         else {
             panel.style.height = "400px";
         }
-    }
+    }, [collapseSearch]);
 
-    function toggleDisplay() {
+    const toggleDisplay = useCallback(() => {
         if (display == "scroll") {
             setDisplay("static");
         }
         else if (display == "static") {
             setDisplay("scroll");
         }
-    }
+    }, [display, setDisplay]);
 
     // takes text field input then sets the highlight value to update other components
-    function searchButton({ setHighlight }) {
-        let val = document.getElementById("fname").value;
+    const searchButton = useCallback(() => {
         if (display == "scroll") { 
             collapseSearch(); 
         }
-        setHighlight(val);
-        setHighlightType("donor");
-    }
+        setHighlight(searchValue);
+    }, [display, collapseSearch, searchValue, setHighlight]);
 
     // takes section name then sets the highlight value to update other components
-    function handleSectionSearch(section) {
+    const handleSectionSearch = useCallback((section) => {
+        setSection(section);
+        if (section === "all") {
+            setSearchValue(""); // Clear search input when clearing all filters
+        }
         if (display == "scroll") { collapseSearch(); }
         setHighlight(section);
-    }
+    }, [display, collapseSearch, setHighlight]);
 
     // Component that labels the red brick in the key
-    function Label({ section }) {
-        const sections = ["Centenarian", "Heroes", "Golden Women", "Family/Friends", "Businesses/Organizations"];
+    const Label = useMemo(() => {
+        return ({ section }) => {
+            const sections = ["Centenarian", "Heroes", "Golden Women", "Family/Friends", "Businesses/Organizations"];
 
-        let num = 0;
-        for (let b of bricks) {
-            if (typeof (b.Panel_Number) == "number") {
-                let highlightMatch = b.Purchaser_Name.toLowerCase().includes(highlight.toLowerCase());
-                if (highlight == "all" || b.Paver_Assigned_Section == highlight || highlightMatch) {
-                    num++;
+            let num = 0;
+            for (let b of bricks) {
+                if (typeof (b.Panel_Number) == "number") {
+                    let highlightMatch = b.Purchaser_Name.toLowerCase().includes(highlight.toLowerCase());
+                    if (highlight == "all" || b.Paver_Assigned_Section == highlight || highlightMatch) {
+                        num++;
+                    }
                 }
             }
-        }
-        let countPhrase = "[" + num + " bricks]";
-        if (num == 1) {
-            countPhrase = "[1 brick]";
-        }
+            let countPhrase = "[" + num + " bricks]";
+            if (num == 1) {
+                countPhrase = "[1 brick]";
+            }
 
-        if (section == "all") {
-            return <span>All purchased bricks {countPhrase}</span>
-        }
-        else if (sections.includes(section)) {
-            return <span>Bricks in the section {section} {countPhrase}</span>
-        }
-        else {
-            return <span>Bricks purchased by {section} {countPhrase}</span>
-        }
-    }
+            if (section == "all") {
+                return <span>All purchased bricks {countPhrase}</span>
+            }
+            else if (sections.includes(section)) {
+                return <span>Bricks in the section {section} {countPhrase}</span>
+            }
+            else {
+                return <span>Bricks purchased by {section} {countPhrase}</span>
+            }
+        };
+    }, [bricks, highlight]);
 
 
-    function SearchBox() {
-        return <div id="searchContainer">
-            <div id="sectionSearchContainer">
-                <span>Search by section:</span>
-                <div id="sectionSearchButtons">
-                    <button id="century" className="sectionSearchButton" onClick={() => handleSectionSearch("Centenarian")}>Century Club</button>
-                    <button id="heros" className="sectionSearchButton" onClick={() => handleSectionSearch("Heroes")}>Heroes</button>
-                    <button id="women" className="sectionSearchButton" onClick={() => handleSectionSearch("Golden Women")}>Golden Women of Rondo</button>
-                    <button id="friends" className="sectionSearchButton" onClick={() => handleSectionSearch("Family/Friends")}>Family/Friends</button>
-                    <button id="businesses" className="sectionSearchButton" onClick={() => handleSectionSearch("Businesses/Organizations")}>Businesses/Organizations</button>
-                </div>
+    const SearchBox = useMemo(() => (
+        <div id="searchContainer">
+            <div id="sectionSearchDropdown">
+                <label htmlFor="sectionSelect">Search by section:</label>
+                <select 
+                    id="sectionSelect" 
+                    onChange={(e) => handleSectionSearch(e.target.value)}
+                    value={section}
+                >
+                    <option value="all">Select a section...</option>
+                    <option value="Centenarian">Century Club</option>
+                    <option value="Heroes">Heroes</option>
+                    <option value="Golden Women">Golden Women of Rondo</option>
+                    <option value="Family/Friends">Family/Friends</option>
+                    <option value="Businesses/Organizations">Businesses/Organizations</option>
+                </select>
             </div>
 
-            <div id="nameSearchContainer">
-                <div id="searchInputsContainer">
-                    <label htmlFor="fname">Search by name of donor:</label>
-                    <br></br>
-                    <input type="text" id="fname" name="fname"></input>
-                    <button id="submitSearch" onClick={() => searchButton({ setHighlight })}>Search</button>
-                </div>
+            <div id="searchInputsContainer">
+                <label htmlFor="fname">Search by name of donor:</label>
+                <input 
+                    type="text" 
+                    id="fname" 
+                    name="fname" 
+                    value={searchValue}
+                    onChange={handleSearchInputChange}
+                />
+                <button id="submitSearch" onClick={searchButton}>Search</button>
             </div>
 
-            <button id="clearSearch" className="sectionSearchButton" onClick={() => handleSectionSearch("all")}>Clear all filters</button>
-
+            <button id="clearSearch" onClick={() => handleSectionSearch("all")}>Clear all filters</button>
         </div>
-    }
+    ), [section, searchValue, handleSectionSearch, searchButton, handleSearchInputChange]);
 
     if (display == "scroll") {
         return <>
@@ -138,7 +165,7 @@ export default function Search({ highlight, setHighlight, display, setDisplay, b
                 </div>
 
                 <div className="searchDropdown" style={{ height: 0 + "px" }}>
-                    <SearchBox />
+                    {SearchBox}
                 </div>
             </div>
             <p className="datasetNote">The dataset used to build this site is incomplete. If you find any missing information or errors, do not hesitate to <Link to={"/report"}>let us know!</Link></p>
@@ -149,7 +176,7 @@ export default function Search({ highlight, setHighlight, display, setDisplay, b
             <div id="customizeButtons">
                 <button id="displayToggle" className="headerButton" onClick={toggleDisplay}>{display == "scroll" ? "Show brick list" : "Show scrolling path"}</button>
             </div>
-            <SearchBox />
+            {SearchBox}
             <p className="datasetNote">The dataset used to build this site is incomplete. If you find any missing information or errors, do not hesitate to <Link to={"/report"}>let us know!</Link></p>
                 
             <div id="staticSearchLabel">
@@ -158,4 +185,6 @@ export default function Search({ highlight, setHighlight, display, setDisplay, b
 
         </>
     }
-}
+});
+
+export default Search;
