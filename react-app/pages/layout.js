@@ -39,11 +39,41 @@ function Header() {
 
 function Footer() {
     return <footer>
-        <div className="footerCol">
-            <h2>Contact</h2>
-            <p>Email: <a href="mailto:info@rondocommemorativeplaza.org">info@rondocommemorativeplaza.org</a></p>
-            <p>Phone: <a href="tel:+1234567890">(218) 726-8666</a></p>
-            <p>Address: 123 Main St, Minneapolis, MN 55403</p>
+        <div className="footer-content">
+            <div className="footer-section">
+                <h3>Rondo Commemorative Plaza</h3>
+                <p>Honoring the legacy of the Rondo community and preserving its rich history for future generations.</p>
+            </div>
+            
+            <div className="footer-section">
+                <h3>Contact Information</h3>
+                <div className="contact-item">
+                    <strong>Email:</strong> <a href="mailto:info@rondocommemorativeplaza.org">info@rondocommemorativeplaza.org</a>
+                </div>
+                <div className="contact-item">
+                    <strong>Phone:</strong> <a href="tel:+12187268666">(218) 726-8666</a>
+                </div>
+                <div className="contact-item">
+                    <strong>Address:</strong> 123 Main St, Minneapolis, MN 55403
+                </div>
+            </div>
+            
+            <div className="footer-section">
+                <h3>Hours</h3>
+                <div className="hours-item">
+                    <strong>Monday - Friday:</strong> 9:00 AM - 5:00 PM
+                </div>
+                <div className="hours-item">
+                    <strong>Saturday:</strong> 10:00 AM - 4:00 PM
+                </div>
+                <div className="hours-item">
+                    <strong>Sunday:</strong> Closed
+                </div>
+            </div>
+        </div>
+        
+        <div className="footer-bottom">
+            <p>&copy; 2024 Rondo Commemorative Plaza. All rights reserved.</p>
         </div>
     </footer>
 }
