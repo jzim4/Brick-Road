@@ -1,6 +1,6 @@
 import express from "express";
 import cors from "cors";
-import { getBricks } from "./bricks/server.js";
+import { getBricks, updateBrick } from "./bricks/server.js";
 import { signInWithEmail } from "./admin/server.js";
 import { saveReport, getReports } from "./report/server.js";
 import { createClient } from '@supabase/supabase-js'
@@ -57,6 +57,18 @@ app.get("/brick", async (req, res) => {
         console.error("Error fetching brick:", err);
         res.status(500).json({ error: "Failed to fetch bricks" });
     }
+});
+
+app.put("/bricks/:id", (req, res) => {
+    const { id } = req.params;
+    const { data } = req.body;
+    updateBrick(supabase, id, data).then(data => {
+        console.log("Brick updated:", data);
+        res.json(data);
+    }).catch(err => {
+        console.error("Error updating brick:", err);
+        res.status(500).json({ error: "Failed to update brick" });
+    });
 });
 
 

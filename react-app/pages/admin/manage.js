@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom';
 import Layout from '../layout.js';
 import { useAuth } from '../../contexts/AuthContext.js';
 import { useParams } from 'react-router-dom';
+import AdminHeader from './adminHeader.js';
 
 export default function ManageBricks() {
     const { panel, row, col } = useParams();
@@ -23,6 +24,7 @@ export default function ManageBricks() {
     });
 
     const [isSaving, setIsSaving] = useState(false);
+    const [isSuccess, setIsSuccess] = useState(null);
 
     useEffect(() => {
         async function fetchBrick() {
@@ -68,12 +70,15 @@ export default function ManageBricks() {
         setIsSaving(true);
         try {
             const brickId = `${selectedBrick.Panel_Number}-${selectedBrick.Row_Number}-${selectedBrick.Col_Number}`;
-            await axios.put(`http://localhost:8000/bricks/${brickId}`, editForm);
+            console.log("Edit form:", editForm);
+            await axios.put(`http://localhost:8000/bricks/${brickId}`, { data: editForm });
             // Optionally update state or show success message
         } catch (error) {
             console.error('Save error:', error);
+            setIsSuccess(false);
         } finally {
             setIsSaving(false);
+            setIsSuccess(true);
         }
     };
 
@@ -95,12 +100,21 @@ export default function ManageBricks() {
     return (
         <Layout>
             <div className="admin-container">
-                <div className="admin-header">
-                    <h1>Manage Bricks</h1>
-                    <div className="admin-user-info">
-                        <span>Logged in as: {user?.email}</span>
+                <AdminHeader
+                page="Manage Bricks"
+                />
+
+                {isSuccess === true && (
+                    <div className="success-message">
+                        <h3>Brick updated successfully</h3>
                     </div>
-                </div>
+                )}
+
+                {isSuccess === false && (
+                    <div className="error-message">
+                        <h3>Failed to update brick</h3>
+                    </div>
+                )}
 
                 {selectedBrick && (
                     <div className="admin-section">

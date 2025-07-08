@@ -145,7 +145,7 @@ export default function AdminDashboard() {
     return (
         <Layout>
             <div className="admin-container">
-                <AdminHeader/>
+                <AdminHeader page="Admin Dashboard"/>
 
                 <div className="admin-stats">
                     <div className="stat-card">
