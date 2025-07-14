@@ -14,9 +14,22 @@ const supabaseKey = process.env.SUPABASE_KEY
 const supabase = createClient(supabaseUrl, supabaseKey)
 
 
-app.use(cors({
-    origin: 'https://brick-road.vercel.app'
-}));
+const whitelist = ['https://brick-road.vercel.app'];
+const corsOptions = {
+    origin: function (origin, callback) {
+        // Allow Vercel preview URLs
+        if (origin && /https:\/\/brick-road-.*\.vercel\.app$/.test(origin)) {
+            return callback(null, true);
+        }
+        if (whitelist.indexOf(origin) !== -1 || !origin) {
+            callback(null, true);
+        } else {
+            callback(new Error('Not allowed by CORS'));
+        }
+    }
+};
+
+app.use(cors(corsOptions));
 app.use(express.json()); // Add this to parse JSON request bodies
 
 app.listen(8000, () => {
