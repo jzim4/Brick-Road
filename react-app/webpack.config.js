@@ -5,11 +5,15 @@ const webpack = require('webpack');
 module.exports = {
     entry: './pages/index.js', // Changed to index.js which contains ReactDOM.render
     output: {
-        path: path.resolve(__dirname, 'dist'),
-        filename: 'bundle.js'
+        path: path.resolve(__dirname, 'public'),
+        filename: 'bundle.js',
+        publicPath: '/'
     },
     mode: 'development',
     devtool: 'source-map', // Equivalent to browserify's debug: true
+    devServer: {
+        allowedHosts: 'https://brick-road-api.vercel.app/',
+    },
     module: {
         rules: [
             {
