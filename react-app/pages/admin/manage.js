@@ -29,7 +29,7 @@ export default function ManageBricks() {
     useEffect(() => {
         async function fetchBrick() {
             try {
-                const response = await axios.get(`http://localhost:8000/brick`, {
+                const response = await axios.get(`/api/brick`, {
                     params: {
                         Panel_Number: panel,
                         Col_Number: col,
@@ -71,7 +71,7 @@ export default function ManageBricks() {
         try {
             const brickId = `${selectedBrick.Panel_Number}-${selectedBrick.Row_Number}-${selectedBrick.Col_Number}`;
             console.log("Edit form:", editForm);
-            await axios.put(`http://localhost:8000/bricks/${brickId}`, { data: editForm });
+            await axios.put(`/api/bricks/${brickId}`, { data: editForm });
             // Optionally update state or show success message
         } catch (error) {
             console.error('Save error:', error);
