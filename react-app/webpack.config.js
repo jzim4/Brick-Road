@@ -2,8 +2,6 @@ const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const webpack = require('webpack');
 
-const isProduction = process.env.NODE_ENV === 'production';
-
 module.exports = {
     entry: './pages/index.js', // Changed to index.js which contains ReactDOM.render
     output: {
@@ -44,14 +42,14 @@ module.exports = {
         ]
     },
     resolve: {
-        extensions: ['.js', '.jsx'] // Same as browserify extensions
+        extensions: ['.js', '.jsx']
     },
     plugins: [
         new HtmlWebpackPlugin({
             template: './index.html'
         }),
         new webpack.DefinePlugin({
-            'process.env.REACT_APP_SERVER_URL': JSON.stringify(process.env.REACT_APP_SERVER_URL || 'http://localhost:8000')
+            'process.env.REACT_APP_SERVER_URL': JSON.stringify('https://brick-road-api.vercel.app/')
         })
     ]
 }
