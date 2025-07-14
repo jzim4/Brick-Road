@@ -2,6 +2,8 @@ const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const webpack = require('webpack');
 
+const isProduction = process.env.NODE_ENV === 'production';
+
 module.exports = {
     entry: './pages/index.js', // Changed to index.js which contains ReactDOM.render
     output: {
@@ -9,7 +11,7 @@ module.exports = {
         filename: 'bundle.js',
         publicPath: '/'
     },
-    mode: 'development',
+    mode: isProduction ? 'production' : 'development',
     devtool: 'source-map', // Equivalent to browserify's debug: true
     devServer: {
         allowedHosts: 'https://brick-road-api.vercel.app/',
@@ -49,7 +51,7 @@ module.exports = {
             template: './index.html'
         }),
         new webpack.DefinePlugin({
-            'process.env.REACT_APP_SERVER_URL': JSON.stringify('http://localhost:8000')
+            'process.env.REACT_APP_SERVER_URL': JSON.stringify(isProduction ? 'https://brick-road-api.vercel.app' : 'http://localhost:8000')
         })
     ]
 }
