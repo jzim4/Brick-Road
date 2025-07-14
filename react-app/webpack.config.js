@@ -9,7 +9,7 @@ module.exports = {
         filename: 'bundle.js',
         publicPath: '/'
     },
-    mode: isProduction ? 'production' : 'development',
+    mode: 'development',
     devtool: 'source-map', // Equivalent to browserify's debug: true
     devServer: {
         allowedHosts: 'https://brick-road-api.vercel.app/',
