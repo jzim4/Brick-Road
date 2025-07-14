@@ -4,6 +4,7 @@ import EditForm from './form.js';
 import axios from 'axios';
 
 export default function ReportPage() {
+    const serverUrl = process.env.REACT_APP_SERVER_URL;
     const [formData, setFormData] = useState({
         purchaserName: '',
         reporterEmail: '',
@@ -60,7 +61,7 @@ export default function ReportPage() {
         setIsSubmitting(true);
         setSubmissionStatus(null);
 
-        axios.post("http://localhost:8000/report",
+        axios.post(`${serverUrl}/report`,
             {
                 purchaserName: formData.purchaserName,
                 reporterEmail: formData.reporterEmail,

@@ -21,6 +21,9 @@ export const defaultBrick = {
 }
 
 export default function BrickRoadSite() {
+
+    const serverUrl = process.env.REACT_APP_SERVER_URL;
+
     const [currentBrick, setCurrentBrick] = useState(defaultBrick);
     const [highlight, setHighlight] = useState("all");
     const [highlightType, setHighlightType] = useState("all"); // can be "all", "section", or "donor"
@@ -34,7 +37,7 @@ export default function BrickRoadSite() {
     const [error, setError] = useState(null);
 
     useEffect(() => {
-        axios.get("http://localhost:8000/bricks")
+        axios.get(`${serverUrl}/bricks`)
             .then(response => {
                 setBricks(response.data);
             })

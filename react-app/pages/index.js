@@ -5,7 +5,6 @@ import { HashRouter, Routes, Route } from 'react-router-dom';
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import '../styles.css';
-import EditPage from './edit/editPage.js';
 import Signin from './admin/signin.js';
 import AdminDashboard from './admin/dashboard.js';
 import ManageBricks from './admin/manage.js';
@@ -24,7 +23,6 @@ root.render(
            <Route path="/" element={<BrickRoadSite />} />
            <Route path="/about" element={<About />} />
            <Route path="/report" element={<ReportPage />} />
-           <Route path="/edit" element={<EditPage />} />
            <Route path="/admin/signin" element={<Signin />} />
            <Route path="/admin/dashboard" element={
              <ProtectedRoute>

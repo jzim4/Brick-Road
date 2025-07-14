@@ -6,6 +6,7 @@ import axios from "axios";
 
 export default function Reports() {
 
+    const serverUrl = process.env.REACT_APP_SERVER_URL;
     const [reports, setReports] = useState([]);
     const [error, setError] = useState("");
     const [loading, setLoading] = useState(true);
@@ -17,7 +18,7 @@ export default function Reports() {
 
     useEffect(() => {
 
-        axios.get("http://localhost:8000/reports")
+        axios.get(`${serverUrl}/reports`)
             .then(response => {
                 const reports = response.data;
                 setReports(reports);

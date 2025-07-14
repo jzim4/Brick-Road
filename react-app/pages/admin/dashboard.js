@@ -6,6 +6,7 @@ import { createColumnHelper, useReactTable, getCoreRowModel, getFilteredRowModel
 import AdminHeader from './adminHeader.js';
 
 export default function AdminDashboard() {
+    const serverUrl = process.env.REACT_APP_SERVER_URL;
     const [bricks, setBricks] = useState([]);
     const [reports, setReports] = useState([]);
     const [brickLoading, setBrickLoading] = useState(true);
@@ -30,7 +31,7 @@ export default function AdminDashboard() {
 
     useEffect(() => {
         // Fetch bricks data for admin overview
-        axios.get("http://localhost:8000/bricks")
+        axios.get(`${serverUrl}/bricks`)
             .then(response => {
                 const bricksData = response.data;
                 setBricks(bricksData);
@@ -50,7 +51,7 @@ export default function AdminDashboard() {
                 setBrickLoading(false);
             });
 
-        axios.get("http://localhost:8000/reports")
+        axios.get(`${serverUrl}/reports`)
             .then(response => {
                 const reports = response.data;
                 setReports(reports);

@@ -1,5 +1,6 @@
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const webpack = require('webpack');
 
 module.exports = {
     entry: './pages/index.js', // Changed to index.js which contains ReactDOM.render
@@ -42,6 +43,9 @@ module.exports = {
     plugins: [
         new HtmlWebpackPlugin({
             template: './index.html'
+        }),
+        new webpack.DefinePlugin({
+            'process.env.REACT_APP_SERVER_URL': JSON.stringify('http://localhost:8000')
         })
     ]
 }

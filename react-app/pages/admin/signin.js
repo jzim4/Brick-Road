@@ -13,7 +13,7 @@ export default function Signin() {
     const { signIn } = useAuth();
     const navigate = useNavigate();
     const location = useLocation();
-    
+    const serverUrl = process.env.REACT_APP_SERVER_URL;
     // Get the page they were trying to visit, or default to dashboard
     const from = location.state?.from?.pathname || "/admin/dashboard";
 
@@ -67,7 +67,7 @@ export default function Signin() {
                 password: formData.password
             };
             
-            axios.post("http://localhost:8000/signin", sanitizedData)
+            axios.post(`${serverUrl}/signin`, sanitizedData)
                 .then(res => {
                     console.log("Sign in response:", res.data);
                     if (res.data.success) {
