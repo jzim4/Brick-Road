@@ -3,7 +3,6 @@ Author: Jonah Zimmer
 
 This is the main file. It holds the state changes, and brings together the components
 */
-import "../styles/global.css";
 
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';

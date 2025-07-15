@@ -6,6 +6,7 @@ This component is for when a user clicks on a brick on the path. It includes a c
 
 import React, { useEffect } from 'react';
 import { defaultBrick } from '../../app.js';
+import '../../../styles/selectedBrick.css';
 
 function closeBrick(setCurrentBrick) {
     setCurrentBrick(defaultBrick);

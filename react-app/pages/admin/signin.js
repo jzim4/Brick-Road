@@ -4,6 +4,7 @@ import { useNavigate, useLocation } from "react-router-dom";
 import Layout from "../layout.js";
 import { useAuth } from "../../contexts/AuthContext.js";
 import axios from "axios";
+import '../../styles/signin.css';
 
 export default function Signin() {
     const [formData, setFormData] = useState({

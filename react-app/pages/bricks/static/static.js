@@ -5,6 +5,7 @@ This is the static version of the site which does not have the scrolling bricks,
 making it accessible for screen readers and phone compatible.
 */
 import React from 'react';
+import '../../../styles/listDisplay.css';
 
 export default function AccessibleContent({ bricks }) {
     return <div id="accessibleBricksContainer">

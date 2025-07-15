@@ -24,10 +24,8 @@ export default function ReportPage() {
         }));
         // Clear error when user starts typing
         if (errors[name]) {
-            setErrors(prev => ({
-                ...prev,
-                [name]: ''
-            }));
+            delete errors[name];
+            setErrors(errors);
         }
         setSubmissionStatus(null); // Reset status on new input
     };

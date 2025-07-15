@@ -1,6 +1,7 @@
 import { useAuth } from '../../contexts/AuthContext.js';
 import React from 'react';
 import { Link, useLocation } from 'react-router-dom';
+import '../../styles/admin.css';
 
 export default function AdminHeader({ page }) {
     const { signOut } = useAuth();

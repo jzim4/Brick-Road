@@ -52,6 +52,13 @@
 .error-message {
     color: var(--brick-red);
     font-weight: bold;
+    background-color: #fdf0f2;
+    padding: 10px;
+    border-radius: 5px;
+    margin-bottom: 10px;
+}
+.error-message ul li {
+    list-style-position: inside;
 }
 
 .formSubTitle {

@@ -8,7 +8,7 @@ It imports the path and panel subcomponents
 import React from 'react';
 import Panels from './panels.js';
 import Path from './path.js';
-
+import '../../../styles/scrollDisplay.css';
 
 function scrollButtonFunction(goLeft) {
   const scroll = document.getElementById("scrollContainer");
