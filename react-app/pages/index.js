@@ -12,6 +12,7 @@ import { AuthProvider } from '../contexts/AuthContext.js';
 import ProtectedRoute from '../components/ProtectedRoute.js';
 import Reports from './admin/reports.js';
 import PageNotFound from './404.js';
+import CreateBrick from './admin/createBrick.js';
 
 const root = ReactDOM.createRoot(document.getElementById('mainContent'));
 
@@ -37,6 +38,11 @@ root.render(
            <Route path="/admin/requests" element={
              <ProtectedRoute>
                <Reports />
+             </ProtectedRoute>
+           } />
+           <Route path="/admin/create-brick" element={
+             <ProtectedRoute>
+               <CreateBrick />
              </ProtectedRoute>
            } />
            <Route path="*" element={<PageNotFound />} />

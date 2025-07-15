@@ -46,6 +46,14 @@ input {
     color: white;
 }
 
+#hamburger-menu {
+    display: none;
+    background: none;
+    border: none;
+    font-size: 2em;
+    cursor: pointer;
+}
+
 
 /* HEADING */
 header {
@@ -55,6 +63,7 @@ header {
     justify-content: space-between;
     align-items: center;
     background-color: var(--light-blue);
+    position: relative;
 }
 #navLinks {
     display: flex;
@@ -171,5 +180,42 @@ footer {
     
     footer {
         padding: 30px 20px 15px 20px;
+    }
+}
+
+/* Responsive Header */
+@media (max-width: 1150px) {
+    header {
+        padding: 0 20px;
+    }
+    
+    #title {
+        font-size: 1.5em;
+    }
+
+    #navLinks {
+        display: none;
+        flex-direction: column;
+        position: absolute;
+        top: 100%;
+        right: 0;
+        background-color: var(--light-blue);
+        width: 250px;
+        z-index: 10;
+        gap: 0;
+    }
+
+    #navLinks.show-nav {
+        display: flex;
+    }
+
+    #navLinks a {
+        padding: 10px;
+        border-bottom: 1px solid var(--dark-blue);
+        text-align: left;
+        width: auto;
+    }
+    #hamburger-menu {
+        display: block;
     }
 }

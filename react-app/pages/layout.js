@@ -13,14 +13,22 @@ export default function Layout({ children }) {
 function Header() {
     const { isAuthenticated, user, signOut } = useAuth();
     const location = useLocation();
+    const [isNavVisible, setIsNavVisible] = React.useState(false);
     
     const handleSignOut = () => {
         signOut();
     };
+
+    const toggleNav = () => {
+        setIsNavVisible(!isNavVisible);
+    };
     
     return <header>
         <h1 id="title">Rondo Commemorative Plaza</h1>
-        <div id="navLinks">
+        <button id="hamburger-menu" onClick={toggleNav}>
+            &#9776;
+        </button>
+        <div id="navLinks" className={isNavVisible ? "show-nav" : ""}>
             <Link className={"button-primary " + (location.pathname == "/" ? " activeNav" : "")} to={"/"}>Home</Link>
             <Link to={"/about"} className={"button-primary " + (location.pathname == "/about" ? " activeNav" : "")}>About</Link>
             <Link to={"/report"} className={"button-primary " + (location.pathname == "/report" ? " activeNav" : "")}>Report an Error</Link>

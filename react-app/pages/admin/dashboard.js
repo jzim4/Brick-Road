@@ -150,11 +150,11 @@ export default function AdminDashboard() {
 
                 <div className="admin-stats">
                     <div className="stat-card">
-                        <h3>Total Bricks</h3>
+                        <h3 className="stat-header">Total Bricks</h3>
                         <div className="stat-number">{brickStats.totalBricks}</div>
                     </div>
                     <div className="stat-card">
-                        <h3>Purchasers</h3>
+                        <h3 className="stat-header">Purchasers</h3>
                         <div className="stat-number">{brickStats.totalPurchasers}</div>
                     </div>
                     <div className="stat-card">
