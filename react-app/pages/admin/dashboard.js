@@ -2,8 +2,9 @@ import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import Layout from '../layout.js';
 import axios from 'axios';
-import { createColumnHelper, useReactTable, getCoreRowModel, getFilteredRowModel, getPaginationRowModel, flexRender } from '@tanstack/react-table';
+import { createColumnHelper, useReactTable, getCoreRowModel, getFilteredRowModel, getPaginationRowModel, getSortedRowModel, flexRender } from '@tanstack/react-table';
 import AdminHeader from './adminHeader.js';
+import '../../styles/admin.css';
 
 export default function AdminDashboard() {
     const serverUrl = process.env.REACT_APP_SERVER_URL;
@@ -23,10 +24,50 @@ export default function AdminDashboard() {
         pageIndex: 0,
         pageSize: 10,
     })
+    const [sorting, setSorting] = useState([{ id: 'Purchaser_Name', desc: false }]);
+
+    const [deleteModalOpen, setDeleteModalOpen] = useState(false);
+    const [brickToDelete, setBrickToDelete] = useState(null);
+    const [confirmationText, setConfirmationText] = useState('');
 
     function searchChange(e) {
         const val = e.target.value;
         setGlobalFilter(val);
+    }
+
+    function openDeleteModal(brick) {
+        setBrickToDelete(brick);
+        setDeleteModalOpen(true);
+    }
+
+    function closeDeleteModal() {
+        setBrickToDelete(null);
+        setDeleteModalOpen(false);
+        setConfirmationText('');
+    }
+
+    function confirmDelete() {
+        if (brickToDelete && confirmationText === brickToDelete.Purchaser_Name) {
+            axios.delete(`${serverUrl}/bricks/${brickToDelete.id}`)
+                .then(response => {
+                    console.log(response.data);
+                    setBricks(bricks.filter(b => b.id !== brickToDelete.id));
+                    closeDeleteModal();
+                })
+                .catch(err => {
+                    console.error(err);
+                });
+        }
+    }
+
+    function handleSortingChange(id) {
+        setSorting(prev => {
+            const isSorted = prev.some(sort => sort.id === id);
+            if (isSorted) {
+                return [{id: id, desc: !prev.find(sort => sort.id === id).desc}]
+            }
+            return [{ id, desc: false }];
+        });
     }
 
     useEffect(() => {
@@ -84,11 +125,11 @@ export default function AdminDashboard() {
         columnHelper.accessor('Panel_Number', {
             header: 'Panel',
         }),
-        columnHelper.accessor('Row_Number', {
-            header: 'Row',
-        }),
         columnHelper.accessor('Col_Number', {
             header: 'Column',
+        }),
+        columnHelper.accessor('Row_Number', {
+            header: 'Row',
         }),
         columnHelper.display({
             id: 'Edit',
@@ -104,6 +145,20 @@ export default function AdminDashboard() {
                     </Link>
                 );
             }
+        }),
+        columnHelper.display({
+            id: 'Delete',
+            header: 'Delete',
+            cell: ({ row }) => {
+                return (
+                    <button
+                        className="delete-button"
+                        onClick={() => openDeleteModal(row.original)}
+                    >
+                        Delete
+                    </button>
+                );
+            }
         })
     ];
 
@@ -114,12 +169,14 @@ export default function AdminDashboard() {
         getCoreRowModel: getCoreRowModel(),
         getFilteredRowModel: getFilteredRowModel(),
         getPaginationRowModel: getPaginationRowModel(),
+        getSortedRowModel: getSortedRowModel(),
         globalFilterFn: 'includesString',
         onGlobalFilterChange: setGlobalFilter,
         onPaginationChange: setPagination,
         state: {
             globalFilter,
-            pagination
+            pagination,
+            sorting
         }
     });
 
@@ -182,11 +239,14 @@ export default function AdminDashboard() {
                                     {table.getHeaderGroups().map(headerGroup => (
                                         <tr key={headerGroup.id}>
                                             {headerGroup.headers.map(header => (
-                                                <th key={header.id}>
+                                                <th key={header.id} onClick={() => handleSortingChange(header.id)}>
                                                     {header.isPlaceholder
                                                         ? null
                                                         : flexRender(
-                                                            header.column.columnDef.header,
+                                                            header.column.columnDef.header + (
+                                                                sorting.find(sort => sort.id === header.id) ?
+                                                                sorting.find(sort => sort.id === header.id).desc ? ' ▼' : ' ▲' : ''
+                                                            ),
                                                             header.getContext()
                                                         )}
                                                 </th>
@@ -245,6 +305,30 @@ export default function AdminDashboard() {
                     </div>
                 </div>
             </div>
+            {deleteModalOpen && brickToDelete && (
+                <div className="modal-overlay">
+                    <div className="modal">
+                        <h2>Confirm Deletion</h2>
+                        <p>To delete the brick purchased by <strong>{brickToDelete.Purchaser_Name}</strong>, please type the purchaser's full name below.</p>
+                        <input
+                            type="text"
+                            value={confirmationText}
+                            onChange={(e) => setConfirmationText(e.target.value)}
+                            placeholder="Purchaser's Name"
+                        />
+                        <div className="modal-actions">
+                            <button onClick={closeDeleteModal} className="cancel-button">Cancel</button>
+                            <button
+                                onClick={confirmDelete}
+                                disabled={confirmationText !== brickToDelete.Purchaser_Name}
+                                className="confirm-delete-button"
+                            >
+                                Delete Brick
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            )}
         </Layout>
     );
 } 

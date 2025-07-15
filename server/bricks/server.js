@@ -4,7 +4,6 @@ const getBricks = async (supabase) => {
         console.error(error);
         throw new Error(`Failed to fetch bricks: ${error.message}`);
     }
-    console.log("Bricks fetched from Supabase:", brick);
     return brick;
 }
 
@@ -21,4 +20,13 @@ const updateBrick = async (supabase, id, data) => {
     return brick;
 }
 
-export { getBricks, updateBrick };
+const deleteBrick = async (supabase, id) => {
+    const { error } = await supabase.from('brick').delete().eq('id', id);
+    if (error) {
+        console.error(error);
+        throw new Error(`Failed to delete brick: ${error.message}`);
+    }
+    return id;
+}
+
+export { getBricks, updateBrick, deleteBrick };

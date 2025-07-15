@@ -3,11 +3,11 @@ import { Link, BrowserRouter as Router, Route, Switch, useLocation } from 'react
 import { useAuth } from '../contexts/AuthContext.js';
 
 export default function Layout({ children }) {
-    return <>
+    return <div className="page-container">
         <Header />
         {children}
         <Footer />
-    </>
+    </div>
 }
 
 function Header() {

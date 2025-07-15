@@ -7,9 +7,11 @@ import { useParams } from 'react-router-dom';
 import AdminHeader from './adminHeader.js';
 
 export default function ManageBricks() {
-    const { panel, row, col } = useParams();
+    const { panel, col, row } = useParams();
     const { user } = useAuth();
+    const serverUrl = process.env.REACT_APP_SERVER_URL;
 
+    const [dataLoading, setDataLoading] = useState(true);
     const [selectedBrick, setSelectedBrick] = useState(null);
     const [editForm, setEditForm] = useState({
         Naming_Year: '',
@@ -29,7 +31,8 @@ export default function ManageBricks() {
     useEffect(() => {
         async function fetchBrick() {
             try {
-                const response = await axios.get(`/api/brick`, {
+                setDataLoading(true);
+                const response = await axios.get(`${serverUrl}/brick`, {
                     params: {
                         Panel_Number: panel,
                         Col_Number: col,
@@ -53,6 +56,8 @@ export default function ManageBricks() {
                 });
             } catch (error) {
                 console.error('Search error:', error);
+            } finally {
+                setDataLoading(false);
             }
         }
 
@@ -71,7 +76,7 @@ export default function ManageBricks() {
         try {
             const brickId = `${selectedBrick.Panel_Number}-${selectedBrick.Row_Number}-${selectedBrick.Col_Number}`;
             console.log("Edit form:", editForm);
-            await axios.put(`/api/bricks/${brickId}`, { data: editForm });
+            await axios.put(`${serverUrl}/bricks/${brickId}`, { data: editForm });
             // Optionally update state or show success message
         } catch (error) {
             console.error('Save error:', error);
@@ -116,6 +121,18 @@ export default function ManageBricks() {
                     </div>
                 )}
 
+                {dataLoading && (
+                    <div className="loading-message">
+                        <h3>Loading brick data...</h3>
+                    </div>
+                )}
+
+                {selectedBrick === null && !dataLoading && (
+                    <div className="error-message">
+                        <h3>Brick not found</h3>
+                    </div>
+                )}
+
                 {selectedBrick && (
                     <div className="admin-section">
                         <h3>Edit Brick</h3>
@@ -138,19 +155,19 @@ export default function ManageBricks() {
                                     />
                                 </div>
                                 <div className="form-group">
-                                    <label>Row Number:</label>
-                                    <input
-                                        type="number"
-                                        value={editForm.Row_Number}
-                                        onChange={(e) => handleInputChange('Row_Number', e.target.value)}
-                                    />
-                                </div>
-                                <div className="form-group">
                                     <label>Column Number:</label>
                                     <input
                                         type="number"
                                         value={editForm.Col_Number}
                                         onChange={(e) => handleInputChange('Col_Number', e.target.value)}
+                                    />
+                                </div>
+                                <div className="form-group">
+                                    <label>Row Number:</label>
+                                    <input
+                                        type="number"
+                                        value={editForm.Row_Number}
+                                        onChange={(e) => handleInputChange('Row_Number', e.target.value)}
                                     />
                                 </div>
                             </div>

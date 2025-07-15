@@ -21,7 +21,9 @@ button {
 input {
     font-size: 1.2em;
 }
-#mainContent {
+.page-container {
+    display: grid;
+    grid-template-rows: auto 1fr auto;
     min-height: 100vh;
 }
 .button-primary, .button-secondary {
@@ -112,7 +114,6 @@ footer {
     background-color: var(--light-blue);
     padding: 40px 30px 20px 30px;
     font-size: 16px;
-    margin-top: auto;
 }
 
 .footer-content {

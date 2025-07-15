@@ -39,7 +39,5 @@ export async function getReports(supabase) {
         console.error(error);
         throw new Error(`Failed to fetch reports: ${error.message}`);
     }
-
-    console.log("Reports fetched from Supabase:", reports);
     return reports;
 }
