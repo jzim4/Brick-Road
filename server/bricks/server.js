@@ -29,4 +29,23 @@ const deleteBrick = async (supabase, id) => {
     return id;
 }
 
-export { getBricks, updateBrick, deleteBrick };
+const createBrick = async (supabase, data) => {
+    console.log("Creating brick:", data);
+    const { data: brick, error } = await supabase.from('brick').insert(data);
+    if (error) {
+        console.error(error);
+        throw new Error(`Failed to create brick: ${error.message}`);
+    }
+    return brick;
+}
+
+const getBrickLocations = async (supabase) => {
+    const { data: brickLocations, error } = await supabase.from('brick').select('Panel_Number, Row_Number, Col_Number');
+    if (error) {
+        console.error(error);
+        throw new Error(`Failed to fetch brick locations: ${error.message}`);
+    }
+    return brickLocations;
+}
+
+export { getBricks, updateBrick, deleteBrick, createBrick, getBrickLocations };

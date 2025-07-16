@@ -2,8 +2,10 @@ import AdminHeader from './adminHeader.js';
 import Layout from '../layout.js';
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
+import axios from 'axios';
 
 export default function CreateBrick() {
+    const serverUrl = process.env.REACT_APP_SERVER_URL;
     const [brickData, setBrickData] = useState({
         Naming_Year: '',
         Panel_Number: '',
@@ -18,7 +20,7 @@ export default function CreateBrick() {
 
     const [isSaving, setIsSaving] = useState(false);
     const [isSuccess, setIsSuccess] = useState(null);
-    const [validationError, setValidationError] = useState('');
+    const [validationError, setValidationError] = useState([]);
 
     const handleInputChange = (field, value) => {
         setBrickData(prev => ({
@@ -28,11 +30,22 @@ export default function CreateBrick() {
     };
 
     const handleCreateBrick = async () => {
-        setValidationError('');
+        setValidationError([]);
         setIsSuccess(null);
 
         if (!brickData.Inscription_Line_1.trim()) {
-            setValidationError('Inscription Line 1 is required.');
+            setValidationError(['Inscription Line 1 is required.']);
+        }
+        const brickLocations = await axios.get(`${serverUrl}/brick-locations`);
+        const exists = brickLocations.data.some(loc =>
+            String(loc.Panel_Number) === String(brickData.Panel_Number) &&
+            String(loc.Row_Number) === String(brickData.Row_Number) &&
+            String(loc.Col_Number) === String(brickData.Col_Number)
+        );
+        if (exists) {
+            setValidationError([...validationError, `A brick already exists at this location (Panel ${brickData.Panel_Number}, Row ${brickData.Row_Number}, Col ${brickData.Col_Number}).`]);
+        }
+        if (validationError.length > 0) {
             return;
         }
 
@@ -41,7 +54,8 @@ export default function CreateBrick() {
             // TODO: Link this to the backend to create the brick
             console.log("Creating brick with data:", brickData);
             // This is where you would make your API call, e.g.:
-            // await axios.post('/api/bricks', brickData);
+            // await axios.post('/api/bricks', brickData);  
+            await axios.post(`${serverUrl}/create-brick`, { data: brickData });
             setIsSuccess(true);
             setBrickData({
                 Naming_Year: '',
@@ -67,9 +81,13 @@ export default function CreateBrick() {
             <div className="admin-container">
                 <AdminHeader page="Create Brick" />
                 <div className="admin-content">
-                    {validationError && (
+                    {validationError.length > 0 && (
                         <div className="error-message">
-                            <h3>{validationError}</h3>
+                            <ul>
+                                {validationError.map((error, index) => (
+                                    <li key={index}>{error}</li>
+                                ))}
+                            </ul>
                         </div>
                     )}
 
@@ -110,6 +128,8 @@ export default function CreateBrick() {
                                         type="number"
                                         value={brickData.Col_Number}
                                         onChange={(e) => handleInputChange('Col_Number', e.target.value)}
+                                        min="0"
+                                        max="9"
                                     />
                                 </div>
                                 <div className="form-group">
@@ -118,6 +138,8 @@ export default function CreateBrick() {
                                         type="number"
                                         value={brickData.Row_Number}
                                         onChange={(e) => handleInputChange('Row_Number', e.target.value)}
+                                        min="1"
+                                        max="15"
                                     />
                                 </div>
                             </div>

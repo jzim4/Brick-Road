@@ -5,6 +5,8 @@ import axios from 'axios';
 import { createColumnHelper, useReactTable, getCoreRowModel, getFilteredRowModel, getPaginationRowModel, getSortedRowModel, flexRender } from '@tanstack/react-table';
 import AdminHeader from './adminHeader.js';
 import '../../styles/admin.css';
+import { SquarePen } from 'lucide-react';
+
 
 export default function AdminDashboard() {
     const serverUrl = process.env.REACT_APP_SERVER_URL;
@@ -26,38 +28,9 @@ export default function AdminDashboard() {
     })
     const [sorting, setSorting] = useState([{ id: 'Purchaser_Name', desc: false }]);
 
-    const [deleteModalOpen, setDeleteModalOpen] = useState(false);
-    const [brickToDelete, setBrickToDelete] = useState(null);
-    const [confirmationText, setConfirmationText] = useState('');
-
     function searchChange(e) {
         const val = e.target.value;
         setGlobalFilter(val);
-    }
-
-    function openDeleteModal(brick) {
-        setBrickToDelete(brick);
-        setDeleteModalOpen(true);
-    }
-
-    function closeDeleteModal() {
-        setBrickToDelete(null);
-        setDeleteModalOpen(false);
-        setConfirmationText('');
-    }
-
-    function confirmDelete() {
-        if (brickToDelete && confirmationText === brickToDelete.Purchaser_Name) {
-            axios.delete(`${serverUrl}/bricks/${brickToDelete.id}`)
-                .then(response => {
-                    console.log(response.data);
-                    setBricks(bricks.filter(b => b.id !== brickToDelete.id));
-                    closeDeleteModal();
-                })
-                .catch(err => {
-                    console.error(err);
-                });
-        }
     }
 
     function handleSortingChange(id) {
@@ -133,30 +106,17 @@ export default function AdminDashboard() {
         }),
         columnHelper.display({
             id: 'Edit',
-            header: 'Edit',
+            header: '',
             cell: ({ row }) => {
                 const brick = row.original;
                 return (
                     <Link
-                        className="edit-button"
+                        className="edit-cell"
                         to={`/admin/manage/${brick.Panel_Number}/${brick.Col_Number}/${brick.Row_Number}`}
+                        title="Edit Brick"
                     >
-                        Edit
+                        <SquarePen size={25} />
                     </Link>
-                );
-            }
-        }),
-        columnHelper.display({
-            id: 'Delete',
-            header: 'Delete',
-            cell: ({ row }) => {
-                return (
-                    <button
-                        className="delete-button"
-                        onClick={() => openDeleteModal(row.original)}
-                    >
-                        Delete
-                    </button>
                 );
             }
         })
@@ -239,7 +199,10 @@ export default function AdminDashboard() {
                                     {table.getHeaderGroups().map(headerGroup => (
                                         <tr key={headerGroup.id}>
                                             {headerGroup.headers.map(header => (
-                                                <th key={header.id} onClick={() => handleSortingChange(header.id)}>
+                                                <th key={header.id} 
+                                                    onClick={() => header.id !== 'Edit' && handleSortingChange(header.id)} 
+                                                    className={header.id === 'Edit' ? 'edit-header-cell' : 'sortable-header'} 
+                                                    title={header.id === 'Edit' ? '' : `Click to sort by ${header.column.columnDef.header}`}>
                                                     {header.isPlaceholder
                                                         ? null
                                                         : flexRender(
@@ -258,7 +221,7 @@ export default function AdminDashboard() {
                                     {table.getRowModel().rows.map(row => (
                                         <tr key={row.id}>
                                             {row.getVisibleCells().map(cell => (
-                                                <td key={cell.id}>
+                                                <td key={cell.id} className={cell.column.id === 'Edit' ? 'edit-cell' : ''}>
                                                     {flexRender(cell.column.columnDef.cell, cell.getContext())}
                                                 </td>
                                             ))}
@@ -305,30 +268,6 @@ export default function AdminDashboard() {
                     </div>
                 </div>
             </div>
-            {deleteModalOpen && brickToDelete && (
-                <div className="modal-overlay">
-                    <div className="modal">
-                        <h2>Confirm Deletion</h2>
-                        <p>To delete the brick purchased by <strong>{brickToDelete.Purchaser_Name}</strong>, please type the purchaser's full name below.</p>
-                        <input
-                            type="text"
-                            value={confirmationText}
-                            onChange={(e) => setConfirmationText(e.target.value)}
-                            placeholder="Purchaser's Name"
-                        />
-                        <div className="modal-actions">
-                            <button onClick={closeDeleteModal} className="cancel-button">Cancel</button>
-                            <button
-                                onClick={confirmDelete}
-                                disabled={confirmationText !== brickToDelete.Purchaser_Name}
-                                className="confirm-delete-button"
-                            >
-                                Delete Brick
-                            </button>
-                        </div>
-                    </div>
-                </div>
-            )}
         </Layout>
     );
 } 

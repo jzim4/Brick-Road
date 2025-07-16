@@ -3,7 +3,7 @@
 .admin-container {
     padding: 20px;
     max-width: 95vw;
-    width: 1000px;
+    width: 1200px;
     margin: 0 auto;
     font-family: 'Courier New', Courier, monospace;
 }
@@ -115,11 +115,29 @@
     text-align: left;
 }
 
+.bricks-table .edit-header-cell,
+.bricks-table .edit-cell {
+    border: none;
+    background-color: transparent !important;
+}
+
+.bricks-table .edit-cell {
+    padding: 0 0 0 10px;
+}
+
 .bricks-table th,
 .report-table th {
     background-color: var(--brick-red);
     color: black;
     font-weight: bold;
+}
+
+.sortable-header {
+    cursor: pointer;
+}
+
+.sortable-header:hover {
+    background-color: #c53030;
 }
 
 .bricks-table tr:hover,
@@ -138,21 +156,14 @@
     color: red;
 }
 
-.edit-button {
-    padding: 8px 16px;
-    background-color: #007bff;
-    color: white;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-    font-size: 14px;
-    transition: background-color 0.3s;
-    margin: 0 auto;
+.edit-cell {
+    color: var(--brick-red);
     text-decoration: none;
+    font-size: 25px;
 }
 
-.edit-button:hover {
-    background-color: #0056b3;
+.edit-cell:hover {
+    color: #0056b3;
 }
 
 #pagination {
@@ -319,8 +330,19 @@
     }
 } 
 
+.delete-button {
+    padding: 12px 24px;
+    background-color: #dc3545;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s;
+}
+
 .delete-button:hover {
-    background-color: #c82333;
+    background-color: #c53030;
 }
 
 /* Delete confirmation modal */

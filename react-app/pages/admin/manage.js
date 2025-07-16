@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import Layout from '../layout.js';
 import { useAuth } from '../../contexts/AuthContext.js';
 import { useParams } from 'react-router-dom';
@@ -10,6 +10,7 @@ export default function ManageBricks() {
     const { panel, col, row } = useParams();
     const { user } = useAuth();
     const serverUrl = process.env.REACT_APP_SERVER_URL;
+    const navigate = useNavigate();
 
     const [dataLoading, setDataLoading] = useState(true);
     const [selectedBrick, setSelectedBrick] = useState(null);
@@ -27,6 +28,12 @@ export default function ManageBricks() {
 
     const [isSaving, setIsSaving] = useState(false);
     const [isSuccess, setIsSuccess] = useState(null);
+    const [validationError, setValidationError] = useState([]);
+
+    const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
+    const [deleteConfirmationName, setDeleteConfirmationName] = useState('');
+    const [isDeleting, setIsDeleting] = useState(false);
+    const [deleteError, setDeleteError] = useState(null);
 
     useEffect(() => {
         async function fetchBrick() {
@@ -72,18 +79,72 @@ export default function ManageBricks() {
     };
 
     const handleSaveBrick = async () => {
+        setValidationError([]);
+        setIsSuccess(null);
+        const errors = [];
+
+        if (!editForm.Inscription_Line_1.trim()) {
+            errors.push('Inscription Line 1 is required.');
+        }
+
+        const locationChanged =
+            String(editForm.Panel_Number) !== String(selectedBrick.Panel_Number) ||
+            String(editForm.Row_Number) !== String(selectedBrick.Row_Number) ||
+            String(editForm.Col_Number) !== String(selectedBrick.Col_Number);
+
+        if (locationChanged) {
+            try {
+                const brickLocations = await axios.get(`${serverUrl}/brick-locations`);
+                const exists = brickLocations.data.some(loc =>
+                    String(loc.Panel_Number) === String(editForm.Panel_Number) &&
+                    String(loc.Row_Number) === String(editForm.Row_Number) &&
+                    String(loc.Col_Number) === String(editForm.Col_Number)
+                );
+                if (exists) {
+                    errors.push(`A brick already exists at this location (Panel ${editForm.Panel_Number}, Row ${editForm.Row_Number}, Col ${editForm.Col_Number}).`);
+                }
+            } catch (error) {
+                console.error('Error fetching brick locations:', error);
+                errors.push('Could not validate brick location. Please try again.');
+            }
+        }
+
+        if (errors.length > 0) {
+            setValidationError(errors);
+            return;
+        }
+
         setIsSaving(true);
         try {
-            const brickId = `${selectedBrick.Panel_Number}-${selectedBrick.Row_Number}-${selectedBrick.Col_Number}`;
+            const brickId = selectedBrick.id;
             console.log("Edit form:", editForm);
             await axios.put(`${serverUrl}/bricks/${brickId}`, { data: editForm });
-            // Optionally update state or show success message
+            setIsSuccess(true);
         } catch (error) {
             console.error('Save error:', error);
             setIsSuccess(false);
         } finally {
             setIsSaving(false);
-            setIsSuccess(true);
+        }
+    };
+
+    const handleDeleteBrick = async () => {
+        if (deleteConfirmationName !== selectedBrick.Purchaser_Name) {
+            setDeleteError("Purchaser's name does not match.");
+            return;
+        }
+
+        setDeleteError(null);
+        setIsDeleting(true);
+
+        try {
+            const brickId = selectedBrick.id;
+            await axios.delete(`${serverUrl}/bricks/${brickId}`);
+            navigate('/admin/dashboard');
+        } catch (error) {
+            console.error('Delete error:', error);
+            setDeleteError('Failed to delete brick.');
+            setIsDeleting(false);
         }
     };
 
@@ -108,6 +169,16 @@ export default function ManageBricks() {
                 <AdminHeader
                 page="Manage Bricks"
                 />
+
+                {validationError.length > 0 && (
+                    <div className="error-message">
+                        <ul>
+                            {validationError.map((error, index) => (
+                                <li key={index}>{error}</li>
+                            ))}
+                        </ul>
+                    </div>
+                )}
 
                 {isSuccess === true && (
                     <div className="success-message">
@@ -160,6 +231,8 @@ export default function ManageBricks() {
                                         type="number"
                                         value={editForm.Col_Number}
                                         onChange={(e) => handleInputChange('Col_Number', e.target.value)}
+                                        min="0"
+                                        max="9"
                                     />
                                 </div>
                                 <div className="form-group">
@@ -168,6 +241,8 @@ export default function ManageBricks() {
                                         type="number"
                                         value={editForm.Row_Number}
                                         onChange={(e) => handleInputChange('Row_Number', e.target.value)}
+                                        min="1"
+                                        max="15"
                                     />
                                 </div>
                             </div>
@@ -234,12 +309,61 @@ export default function ManageBricks() {
                                 >
                                     {isSaving ? 'Saving...' : 'Save Changes'}
                                 </button>
+                                <button
+                                    onClick={() => setIsDeleteModalOpen(true)}
+                                    className="delete-button"
+                                    disabled={isSaving}
+                                >
+                                    Delete Brick
+                                </button>
                                 <Link
                                     to="/admin/dashboard"
                                     className="cancel-button"
                                 >
                                     Cancel
                                 </Link>
+                            </div>
+                        </div>
+                    </div>
+                )}
+
+                {isDeleteModalOpen && selectedBrick && (
+                    <div className="modal-overlay">
+                        <div className="modal">
+                            <h3>Confirm Deletion</h3>
+                            <p>To delete this brick, please type the purchaser's name,  
+                            <strong> {selectedBrick.Purchaser_Name}</strong>,
+                             to confirm.</p>
+                            
+                            <div className="form-group">
+                                <label>Purchaser Name:</label>
+                                <input
+                                    type="text"
+                                    value={deleteConfirmationName}
+                                    onChange={(e) => setDeleteConfirmationName(e.target.value)}
+                                    placeholder="Enter purchaser's name"
+                                />
+                            </div>
+                            {deleteError && <p className="error-message">{deleteError}</p>}
+                            <div className="modal-actions">
+                                <button
+                                    onClick={handleDeleteBrick}
+                                    disabled={isDeleting}
+                                    className="delete-button"
+                                >
+                                    {isDeleting ? 'Deleting...' : 'Confirm Delete'}
+                                </button>
+                                <button
+                                    onClick={() => {
+                                        setIsDeleteModalOpen(false);
+                                        setDeleteConfirmationName('');
+                                        setDeleteError(null);
+                                    }}
+                                    className="cancel-button"
+                                    disabled={isDeleting}
+                                >
+                                    Cancel
+                                </button>
                             </div>
                         </div>
                     </div>
