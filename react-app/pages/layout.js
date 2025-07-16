@@ -15,10 +15,6 @@ function Header() {
     const location = useLocation();
     const [isNavVisible, setIsNavVisible] = React.useState(false);
     
-    const handleSignOut = () => {
-        signOut();
-    };
-
     const toggleNav = () => {
         setIsNavVisible(!isNavVisible);
     };
@@ -56,13 +52,13 @@ function Footer() {
             <div className="footer-section">
                 <h3>Contact Information</h3>
                 <div className="contact-item">
-                    <strong>Email:</strong> <a href="mailto:info@rondocommemorativeplaza.org">info@rondocommemorativeplaza.org</a>
+                    <strong>Email:</strong> <a href="mailto:email@sample.com">email@sample.com</a>
                 </div>
                 <div className="contact-item">
-                    <strong>Phone:</strong> <a href="tel:+12187268666">(218) 726-8666</a>
+                    <strong>Phone:</strong> <a href="tel:+1234567890">(123)-456-7890</a>
                 </div>
                 <div className="contact-item">
-                    <strong>Address:</strong> 123 Main St, Minneapolis, MN 55403
+                    <strong>Address:</strong> 123 Address St, City, State 12345
                 </div>
             </div>
             
@@ -81,7 +77,7 @@ function Footer() {
         </div>
         
         <div className="footer-bottom">
-            <p>&copy; 2024 Rondo Commemorative Plaza. All rights reserved.</p>
+            <p>2025 Rondo Commemorative Plaza.</p>
         </div>
     </footer>
 }
