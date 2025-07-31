@@ -101,7 +101,7 @@ export default function Panel() {
         <img id="zoomImg"></img>
       </div>
     </div>
-      <img onClick={() => zoom(2694, 332.8)} className="panel" width="332.8" height="363" src="/panels/small/IMG_2694.jpeg" style={{marginLeft:"283px"}}></img>
+      <img onClick={() => zoom(2694, 332.8)} className="panel" width="332.8" height="363" src="/panels/small/IMG_2694.jpeg"></img>
       <img onClick={() => zoom(2698, 326)} className="panel" width="326" height="363" src="/panels/small/IMG_2698.jpeg"></img>
       <img onClick={() => zoom(2700, 326)}className="panel" width="327" height="363" src="/panels/small/IMG_2700.jpeg"></img>
       <img onClick={() => zoom(2701, 326)} className="panel" width="320.7" height="363" src="/panels/small/IMG_2701.jpeg"></img>

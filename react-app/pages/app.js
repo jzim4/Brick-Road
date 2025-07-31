@@ -11,6 +11,7 @@ import Layout from './layout.js';
 import Search from './bricks/search.js';
 import SelectedBrick from './bricks/scrolling/selectedBrick.js';
 import ScrollContent from './bricks/scrolling/scrollContent.js';
+import VertScrollContent from './bricks/vertScrolling/vertScrollContent.js';
 import AccessibleContent from './bricks/static/static.js';
 
 export const defaultBrick = {
@@ -27,7 +28,8 @@ export default function BrickRoadSite() {
     const [highlight, setHighlight] = useState("all");
     const [highlightType, setHighlightType] = useState("all"); // can be "all", "section", or "donor"
 
-    const [displayType, setDisplayType] = useState("scroll");
+    const [viewMode, setViewMode] = useState("scroll"); // 'scroll' or 'list'
+    const [isWide, setIsWide] = useState(true);
 
     const [bricks, setBricks] = useState([]);
 
@@ -63,31 +65,20 @@ export default function BrickRoadSite() {
         }
         
         setDisplayedBricks(getDisplayedBricks());
-    }, [bricks, displayType, highlight])
+    }, [bricks, highlight])
 
     useEffect(() => {
         const handleResize = () => {
-            if (window.innerWidth < 1000) {
-                setDisplayType("static");
-                setCurrentBrick(defaultBrick);
-                const cover = document.getElementById("selectedBrickPageCover");
-                if (cover) {
-                    cover.style.display = "none";
-                }
-                document.body.style.overflow = 'auto';
-            }
+            setIsWide(window.innerWidth > 700);
         };
 
-        if (window.innerWidth < 1000 && displayType !== "static") {
-            handleResize();
-        }
-
+        handleResize();
         window.addEventListener('resize', handleResize);
         return () => window.removeEventListener('resize', handleResize);
-    }, [displayType]);
+    }, []);
 
     if (loading) {
-        return <div>Loading...</div>;
+        return <div className="loading-container"><div className="loader"></div></div>;
     }
 
     if (error) {
@@ -97,13 +88,29 @@ export default function BrickRoadSite() {
         return <div>No bricks found</div>;
     }
 
-    return <Layout>
-        <Search highlight={highlight} setHighlight={setHighlight} display={displayType} setDisplay={setDisplayType} bricks={bricks} />
+    const searchComponent = <Search 
+                                highlight={highlight} 
+                                setHighlight={setHighlight} 
+                                viewMode={viewMode}
+                                setViewMode={setViewMode}
+                                bricks={bricks} 
+                                isWide={isWide}
+                            />;
 
+    return <Layout>
+        {viewMode === 'list' || isWide ? searchComponent : null}
+        
         <SelectedBrick brick={currentBrick} setCurrentBrick={setCurrentBrick} bricks={displayedBricks} />
-        {displayType === "scroll" ?
-            <ScrollContent highlight={highlight} currentBrick={currentBrick} bricks={displayedBricks} /> :
+        
+        {viewMode === 'list' ? (
             <AccessibleContent highlight={highlight} bricks={displayedBricks} />
-        }
+        ) : isWide ? (
+            <ScrollContent highlight={highlight} currentBrick={currentBrick} setCurrentBrick={setCurrentBrick} bricks={displayedBricks} />
+        ) : (
+            <div className="vertPathContainer">
+                {searchComponent}
+                <VertScrollContent highlight={highlight} currentBrick={currentBrick} setCurrentBrick={setCurrentBrick} bricks={displayedBricks} isWide={isWide} />
+            </div>
+        )}
     </Layout>
 }

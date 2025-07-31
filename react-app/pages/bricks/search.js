@@ -7,7 +7,7 @@ import "../../styles/search.css";
 import React, { useState, useEffect, useCallback, useMemo } from 'react';
 import { Link } from 'react-router-dom';
 
-const Search = React.memo(function Search({ highlight, setHighlight, display, setDisplay, bricks }) {
+const Search = React.memo(function Search({ highlight, setHighlight, viewMode, setViewMode, bricks, isWide }) {
 
     const [section, setSection] = useState("");
     const [searchValue, setSearchValue] = useState("");
@@ -19,19 +19,23 @@ const Search = React.memo(function Search({ highlight, setHighlight, display, se
     
     // hide search section
     const collapseSearch = useCallback(() => {
-        const dropdown = document.getElementsByClassName("searchDropdown")[0];
-        const btn = document.getElementsByClassName("accordion")[0];
-        btn.classList.remove("active");
-        dropdown.style.height = "0px";
-        dropdown.style.paddingBottom = "5px";
-    }, []);
+        if (isWide) {
+            const dropdown = document.getElementsByClassName("searchDropdown")[0];
+            const btn = document.getElementsByClassName("accordion")[0];
+            btn.classList.remove("active");
+            dropdown.style.height = "0px";
+            dropdown.style.paddingBottom = "5px";
+        }
+    }, [isWide]);
 
     // collapse search section if click outside of search
     useEffect(() => {
         const handleClickOutside = (e) => {
-            const panel = document.getElementsByClassName("searchDropdown")[0];
-            if (panel && !panel.contains(e.target) && !e.target.classList.contains("accordion")) {
-                collapseSearch();
+            if (isWide) {
+                const panel = document.getElementsByClassName("searchDropdown")[0];
+                if (panel && !panel.contains(e.target) && !e.target.classList.contains("accordion")) {
+                    collapseSearch();
+                }
             }
         };
 
@@ -40,14 +44,14 @@ const Search = React.memo(function Search({ highlight, setHighlight, display, se
         return () => {
             document.removeEventListener("click", handleClickOutside);
         };
-    }, [collapseSearch]);
+    }, [collapseSearch, isWide]);
 
     // either open or close search section when "filter" button is clicked
     const handleDropdownClick = useCallback((e) => {
         const clicked = e.target;
         clicked.classList.toggle("active");
         const panel = document.getElementsByClassName("searchDropdown")[0];
-        if (panel.style.height != "0px") {
+        if (panel.style.height !== "0px") {
             collapseSearch();
         }
         else {
@@ -56,21 +60,16 @@ const Search = React.memo(function Search({ highlight, setHighlight, display, se
     }, [collapseSearch]);
 
     const toggleDisplay = useCallback(() => {
-        if (display == "scroll") {
-            setDisplay("static");
-        }
-        else if (display == "static") {
-            setDisplay("scroll");
-        }
-    }, [display, setDisplay]);
+        setViewMode(prevMode => prevMode === 'scroll' ? 'list' : 'scroll');
+    }, [setViewMode]);
 
     // takes text field input then sets the highlight value to update other components
     const searchButton = useCallback(() => {
-        if (display == "scroll") { 
+        if (viewMode === "scroll") { 
             collapseSearch(); 
         }
         setHighlight(searchValue);
-    }, [display, collapseSearch, searchValue, setHighlight]);
+    }, [viewMode, collapseSearch, searchValue, setHighlight]);
 
     // takes section name then sets the highlight value to update other components
     const handleSectionSearch = useCallback((section) => {
@@ -78,9 +77,9 @@ const Search = React.memo(function Search({ highlight, setHighlight, display, se
         if (section === "all") {
             setSearchValue(""); // Clear search input when clearing all filters
         }
-        if (display == "scroll") { collapseSearch(); }
+        if (viewMode === "scroll") { collapseSearch(); }
         setHighlight(section);
-    }, [display, collapseSearch, setHighlight]);
+    }, [viewMode, collapseSearch, setHighlight]);
 
     // Component that labels the red brick in the key
     const Label = useMemo(() => {
@@ -91,17 +90,17 @@ const Search = React.memo(function Search({ highlight, setHighlight, display, se
             for (let b of bricks) {
                 if (typeof (b.Panel_Number) == "number") {
                     let highlightMatch = b.Purchaser_Name.toLowerCase().includes(highlight.toLowerCase());
-                    if (highlight == "all" || b.Paver_Assigned_Section == highlight || highlightMatch) {
+                    if (highlight === "all" || b.Paver_Assigned_Section === highlight || highlightMatch) {
                         num++;
                     }
                 }
             }
             let countPhrase = "[" + num + " bricks]";
-            if (num == 1) {
+            if (num === 1) {
                 countPhrase = "[1 brick]";
             }
 
-            if (section == "all") {
+            if (section === "all") {
                 return <span>All purchased bricks {countPhrase}</span>
             }
             else if (sections.includes(section)) {
@@ -148,15 +147,16 @@ const Search = React.memo(function Search({ highlight, setHighlight, display, se
         </div>
     ), [section, searchValue, handleSectionSearch, searchButton, handleSearchInputChange]);
 
-    if (display == "scroll") {
+    if (viewMode === "scroll") {
         return <>
             <div id="searchHeader">
-                <button id="displayToggle" className="headerButton" onClick={toggleDisplay}>{display == "scroll" ? "Show brick list" : "Show scrolling path"}</button>
+                <button id="displayToggle" className="headerButton" onClick={toggleDisplay}>Show brick list</button>
 
                 <div id="keysContainer">
                     <div className="keyContainer">
                         <div id="redKeyBox" className="keyBox"></div>
-                        <div id="redKeyText"><Label section={highlight} /></div> <button onClick={handleDropdownClick} tabIndex={0} className="accordion">Filter</button>
+                        <div id="redKeyText"><Label section={highlight} /></div> 
+                        {isWide && <button onClick={handleDropdownClick} tabIndex={0} className="accordion">Filter</button>}
                     </div>
                     <div className="keyContainer">
                         <div id="greyKeyBox" className="keyBox"></div>
@@ -164,7 +164,7 @@ const Search = React.memo(function Search({ highlight, setHighlight, display, se
                     </div>
                 </div>
 
-                <div className="searchDropdown" style={{ height: 0 + "px" }}>
+                <div className={`searchDropdown ${isWide ? 'is-wide' : ''}`} style={{ height: isWide ? "0px" : "auto" }}>
                     {SearchBox}
                 </div>
             </div>
@@ -174,7 +174,7 @@ const Search = React.memo(function Search({ highlight, setHighlight, display, se
     else {
         return <>
             <div id="customizeButtons">
-                <button id="displayToggle" className="headerButton" onClick={toggleDisplay}>{display == "scroll" ? "Show brick list" : "Show scrolling path"}</button>
+                <button id="displayToggle" className="headerButton" onClick={toggleDisplay}>Show scrolling path</button>
             </div>
             {SearchBox}
             <p className="datasetNote">The dataset used to build this site is incomplete. If you find any missing information or errors, do not hesitate to <Link to={"/report"}>let us know!</Link></p>

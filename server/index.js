@@ -1,8 +1,8 @@
 import express from "express";
 import cors from "cors";
-import { getBricks, updateBrick } from "./bricks/server.js";
+import { getBricks, updateBrick, deleteBrick, createBrick, getBrickLocations } from "./bricks/server.js";
 import { signInWithEmail } from "./admin/server.js";
-import { saveReport, getReports } from "./report/server.js";
+import { saveReport, getReports, updateReport } from "./report/server.js";
 import { createClient } from '@supabase/supabase-js'
 import dotenv from 'dotenv';
 
@@ -14,7 +14,7 @@ const supabaseKey = process.env.SUPABASE_KEY
 const supabase = createClient(supabaseUrl, supabaseKey)
 
 
-app.use(cors({ origin: 'https://brick-road.vercel.app' }));
+app.use(cors({ origin: 'http://localhost:8080' }));
 app.use(express.json()); // Add this to parse JSON request bodies
 
 app.listen(8000, () => {
@@ -27,7 +27,6 @@ app.get("/", (req, res) => {
 
 app.get("/bricks", (req, res) => {
     getBricks(supabase).then(data => {
-        console.log("Sending bricks data to frontend:", data);
         res.json(data);
     }).catch(err => {
         console.log("Error fetching bricks:", err);
@@ -37,14 +36,14 @@ app.get("/bricks", (req, res) => {
 
 app.get("/brick", async (req, res) => {
     try {
-        const { Panel_Number, Row_Number, Col_Number } = req.query;
+        const { Panel_Number, Col_Number, Row_Number } = req.query;
 
         const data = await getBricks(supabase);
 
         const matchingBrick = data.find(brick =>
             String(brick.Panel_Number) === String(Panel_Number) &&
-            String(brick.Row_Number) === String(Row_Number) &&
-            String(brick.Col_Number) === String(Col_Number)
+            String(brick.Col_Number) === String(Col_Number) &&
+            String(brick.Row_Number) === String(Row_Number)
         );
 
         if (matchingBrick) {
@@ -71,6 +70,31 @@ app.put("/bricks/:id", (req, res) => {
     });
 });
 
+app.delete("/bricks/:id", (req, res) => {
+    const { id } = req.params;
+    deleteBrick(supabase, id).then(data => {
+        console.log("Brick deleted:", data);
+        res.json(data);
+    }).catch(err => {
+        console.error("Error deleting brick:", err);
+        res.status(500).json({ error: "Failed to delete brick" });
+    });
+});
+
+app.post("/create-brick", (req, res) => {
+    const { data } = req.body;
+    createBrick(supabase, data).then(data => {
+        console.log("Brick created:", data);
+        res.json(data);
+    });
+});
+
+app.get("/brick-locations", (req, res) => {
+    getBrickLocations(supabase).then(data => {
+        console.log("Brick locations:", data);
+        res.json(data);
+    });
+});
 
 app.post("/signin", (req, res) => {
     const { email, password } = req.body;
@@ -107,10 +131,24 @@ app.post("/report", (req, res) => {
 
 app.get("/reports", (req, res) => {
     getReports(supabase).then(data => {
-        console.log("Sending reports data to frontend:", data);
         res.json(data);
     }).catch(err => {
         console.log("Error fetching reports:", err);
+        res.status(500).json({ error: err.message });
+    });
+})
+
+app.put("/update-report/:id", (req, res) => {
+    const { id } = req.params;
+    const { isFixed } = req.body;
+    console.log("Updating report:", id, isFixed);
+    updateReport(supabase, id, isFixed)
+    .then(data => {
+        console.log("Report updated:", data);
+        res.json(data);
+    })
+    .catch(err => {
+        console.log("Error updating report:", err);
         res.status(500).json({ error: err.message });
     });
 })
