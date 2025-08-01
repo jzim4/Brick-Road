@@ -88,15 +88,8 @@ export default function BrickRoadSite() {
         }
     }, [currentBrick]);
 
-    if (loading) {
-        return <div className="loading-container"><div className="loader"></div></div>;
-    }
-
     if (error) {
         return <div>Error: {error.message}</div>;
-    }
-    if (bricks.length === 0) {
-        return <div>No bricks found</div>;
     }
 
 
@@ -106,12 +99,12 @@ export default function BrickRoadSite() {
         <SelectedBrick brick={currentBrick} setCurrentBrick={setCurrentBrick} />
         
         {viewMode === 'list' ? (
-            <ListContent highlight={highlight} bricks={displayedBricks} setCurrentBrick={setCurrentBrick} />
+            <ListContent highlight={highlight} bricks={displayedBricks} setCurrentBrick={setCurrentBrick} loading={loading} />
         ) : isWide ? (
-            <ScrollContent highlight={highlight} currentBrick={currentBrick} setCurrentBrick={setCurrentBrick} bricks={displayedBricks} />
+            <ScrollContent highlight={highlight} currentBrick={currentBrick} setCurrentBrick={setCurrentBrick} bricks={displayedBricks} loading={loading} />
         ) : (
             <div className="vertPathContainer">
-                <VertScrollContent highlight={highlight} currentBrick={currentBrick} setCurrentBrick={setCurrentBrick} bricks={displayedBricks} isWide={isWide} />
+                <VertScrollContent highlight={highlight} currentBrick={currentBrick} setCurrentBrick={setCurrentBrick} bricks={displayedBricks} isWide={isWide} loading={loading} />
             </div>
         )}
     </Layout>

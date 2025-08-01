@@ -23,11 +23,15 @@ function scrollButtonFunction(goUp) {
   })
 }
 
-export default function VertScrollContent({ highlight, currentBrick, setCurrentBrick, bricks, isWide }) {
+export default function VertScrollContent({ highlight, currentBrick, setCurrentBrick, bricks, isWide, loading }) {
   return <div id="vertFullPathContainer">
     <div id="vertScrollContainer">
-      <VertPath highlight={highlight} currentBrick={currentBrick} setCurrentBrick={setCurrentBrick} bricks={bricks} isWide={isWide} />
-      <VertPanels />
+      {loading ? <div className="loading-container"><div className="loader"></div></div> :
+        <>
+          <VertPath highlight={highlight} currentBrick={currentBrick} setCurrentBrick={setCurrentBrick} bricks={bricks} isWide={isWide} />
+          <VertPanels />
+        </>
+      }
     </div>
   </div>
 }

@@ -7,7 +7,7 @@ making it accessible for screen readers and phone compatible.
 import React from 'react';
 import '../../../styles/listDisplay.css';
 
-export default function ListContent({ bricks, setCurrentBrick }) {
+export default function ListContent({ bricks, setCurrentBrick, loading }) {
 
     const handleBrickClick = (brick) => {
         console.log("brick in static", brick);
@@ -23,6 +23,10 @@ export default function ListContent({ bricks, setCurrentBrick }) {
         }
         return a.Panel_Number - b.Panel_Number;
     });
+
+    if (loading) {
+        return <div className="loading-container"><div className="loader"></div></div>;
+    }
 
     return (
         <div id="accessibleBricksContainer">
