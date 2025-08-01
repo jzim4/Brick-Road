@@ -1,0 +1,27 @@
+<svg width="256" height="256" viewBox="0 0 256 256" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <g fill="#dd7e6b" stroke="black" stroke-width="3">
+        <!-- Stem -->
+        <rect x="40" y="40" width="30" height="30" />
+        <rect x="40" y="70" width="30" height="30" />
+        <rect x="40" y="100" width="30" height="30" />
+        <rect x="40" y="130" width="30" height="30" />
+        <rect x="40" y="160" width="30" height="30" />
+        <rect x="40" y="190" width="30" height="30" />
+
+        <!-- Top bar -->
+        <rect x="70" y="40" width="30" height="30" />
+        <rect x="100" y="40" width="30" height="30" />
+
+        <!-- P loop vertical -->
+        <rect x="130" y="70" width="30" height="30" />
+        <rect x="130" y="100" width="30" height="30" />
+
+        <!-- Middle bar -->
+        <rect x="70" y="130" width="30" height="30" />
+        <rect x="100" y="130" width="30" height="30" />
+
+        <!-- Leg -->
+        <rect x="100" y="160" width="30" height="30" />
+        <rect x="130" y="190" width="30" height="30" />
+    </g>
+</svg>

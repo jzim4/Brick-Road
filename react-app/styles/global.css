@@ -70,6 +70,12 @@ header {
     background-color: var(--light-blue);
     position: relative;
 }
+
+#logo {
+    width: 50px;
+    height: 50px;
+}
+
 #navLinks {
     display: flex;
     gap: 15px;
