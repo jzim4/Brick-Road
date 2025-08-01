@@ -30,13 +30,33 @@ export default function SelectedBrick({ brick, setCurrentBrick }) {
             {brick.Inscription_Line_3 ? <p>{brick.Inscription_Line_3}</p> : ""}
         </div>
         <div id="selectedBrickDescr">
-            <p>Naming Year: {brick.Naming_Year}</p>
-            <p>Purchaser Name: {brick.Purchaser_Name}</p>
-            <p>Panel Number: {brick.Panel_Number}</p>
-            <p>Row Number: {brick.Row_Number}</p>
-            <p>Col Number: {brick.Col_Number}</p>
-            {brick.Paver_Assigned_Section ? <p>Section: {brick.Paver_Assigned_Section}</p> : <p></p>}
-            {brick.link ? <p>{brick.link}</p> : ""}
+            <div className="description-grid">
+                <p data-label="Purchaser Name:">{brick.Purchaser_Name}</p>
+                <p data-label="Naming Year:">{brick.Naming_Year}</p>
+                {brick.Paver_Assigned_Section ? <p data-label="Section:">{brick.Paver_Assigned_Section}</p> : ""}
+            </div>
+
+            <div className="location-grid">
+                <div className="location-item">
+                    <span>Panel</span>
+                    <strong>{brick.Panel_Number}</strong>
+                </div>
+                <div className="location-item">
+                    <span>Row</span>
+                    <strong>{brick.Row_Number}</strong>
+                </div>
+                <div className="location-item">
+                    <span>Col</span>
+                    <strong>{brick.Col_Number}</strong>
+                </div>
+                
+            </div>
+
+            {brick.link && (
+                <a href={brick.link} target="_blank" rel="noopener noreferrer" className="brick-link-button">
+                    Learn More
+                </a>
+            )}
         </div>
     </div>
     </div>

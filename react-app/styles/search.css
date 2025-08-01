@@ -1,40 +1,5 @@
 /* Styles for the search box */
 
-
-#displayToggle {
-    margin: 15px auto 0;
-    display: flex;
-    width: fit-content;
-    border-radius: 8px;
-    background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
-    border: 2px solid #dee2e6;
-    overflow: hidden;
-}
-
-.toggle-option {
-    padding: 8px 16px;
-    border: none;
-    background-color: transparent;
-    cursor: pointer;
-    transition: background-color 0.3s, color 0.3s;
-    font-size: 15px;
-    font-weight: 500;
-    color: #343a40;
-}
-
-.toggle-option + .toggle-option {
-    border-left: 2px solid #dee2e6;
-}
-
-.toggle-option.active {
-    background-color: var(--brick-red);
-    color: white;
-}
-
-.toggle-option:not(.active):hover {
-    background-color: #dee2e6;
-}
-
 #searchHeader {
     width: fit-content;
     position: relative;

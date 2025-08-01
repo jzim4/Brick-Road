@@ -12,7 +12,8 @@ import Search from './bricks/search.js';
 import SelectedBrick from './bricks/selectedBrick.js';
 import ScrollContent from './bricks/scrolling/scrollContent.js';
 import VertScrollContent from './bricks/vertScrolling/vertScrollContent.js';
-import AccessibleContent from './bricks/static/static.js';
+import ListContent from './bricks/static/static.js';
+import ViewToggle from './bricks/viewToggle.js';
 
 export const defaultBrick = {
     Panel_Number: 20,
@@ -98,27 +99,18 @@ export default function BrickRoadSite() {
         return <div>No bricks found</div>;
     }
 
-    const searchComponent = <Search 
-                                highlight={highlight} 
-                                setHighlight={setHighlight} 
-                                viewMode={viewMode}
-                                setViewMode={setViewMode}
-                                bricks={bricks} 
-                                isWide={isWide}
-                            />;
 
     return <Layout>
-        {viewMode === 'list' || isWide ? searchComponent : null}
-        
+        <ViewToggle viewMode={viewMode} setViewMode={setViewMode} />
+        <Search highlight={highlight} setHighlight={setHighlight} viewMode={viewMode} setViewMode={setViewMode} bricks={bricks} isWide={isWide} />
         <SelectedBrick brick={currentBrick} setCurrentBrick={setCurrentBrick} />
         
         {viewMode === 'list' ? (
-            <AccessibleContent highlight={highlight} bricks={displayedBricks} setCurrentBrick={setCurrentBrick} />
+            <ListContent highlight={highlight} bricks={displayedBricks} setCurrentBrick={setCurrentBrick} />
         ) : isWide ? (
             <ScrollContent highlight={highlight} currentBrick={currentBrick} setCurrentBrick={setCurrentBrick} bricks={displayedBricks} />
         ) : (
             <div className="vertPathContainer">
-                {searchComponent}
                 <VertScrollContent highlight={highlight} currentBrick={currentBrick} setCurrentBrick={setCurrentBrick} bricks={displayedBricks} isWide={isWide} />
             </div>
         )}

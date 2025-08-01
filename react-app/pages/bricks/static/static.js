@@ -7,12 +7,22 @@ making it accessible for screen readers and phone compatible.
 import React from 'react';
 import '../../../styles/listDisplay.css';
 
-export default function AccessibleContent({ bricks, setCurrentBrick }) {
+export default function ListContent({ bricks, setCurrentBrick }) {
 
     const handleBrickClick = (brick) => {
         console.log("brick in static", brick);
         setCurrentBrick(brick);
     };
+
+    bricks.sort((a, b) => {
+        if (a.Panel_Number === b.Panel_Number) {
+            if (a.Col_Number === b.Col_Number) {
+                return a.Row_Number - b.Row_Number;
+            }
+            return a.Col_Number - b.Col_Number;
+        }
+        return a.Panel_Number - b.Panel_Number;
+    });
 
     return (
         <div id="accessibleBricksContainer">

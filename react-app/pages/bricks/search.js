@@ -93,20 +93,6 @@ const Search = React.memo(function Search({ highlight, setHighlight, viewMode, s
     return (
         <>
             <div id="searchHeader">
-                <div id="displayToggle" className="toggle-switch">
-                    <button
-                        className={`toggle-option ${viewMode === 'scroll' ? 'active' : ''}`}
-                        onClick={() => setViewMode('scroll')}
-                    >
-                        Path View
-                    </button>
-                    <button
-                        className={`toggle-option ${viewMode === 'list' ? 'active' : ''}`}
-                        onClick={() => setViewMode('list')}
-                    >
-                        List View
-                    </button>
-                </div>
                 {viewMode === 'scroll' && (
                     <div id="keysContainer">
                         <div className="keyContainer">
