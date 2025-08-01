@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom';
 import Layout from '../layout.js';
 import { useAuth } from '../../contexts/AuthContext.js';
 import { useParams } from 'react-router-dom';
+import { serverLink } from '../app.js';
 
 export default function ManageBricks() {
     const { panel, row, col } = useParams();
@@ -27,7 +28,7 @@ export default function ManageBricks() {
     useEffect(() => {
         async function fetchBrick() {
             try {
-                const response = await axios.get(`http://localhost:8000/brick`, {
+                const response = await axios.get(serverLink + `/brick`, {
                     params: {
                         Panel_Number: panel,
                         Col_Number: col,
@@ -68,7 +69,7 @@ export default function ManageBricks() {
         setIsSaving(true);
         try {
             const brickId = `${selectedBrick.Panel_Number}-${selectedBrick.Row_Number}-${selectedBrick.Col_Number}`;
-            await axios.put(`http://localhost:8000/bricks/${brickId}`, editForm);
+            await axios.put(`${serverLink}/bricks/${brickId}`, editForm);
             // Optionally update state or show success message
         } catch (error) {
             console.error('Save error:', error);

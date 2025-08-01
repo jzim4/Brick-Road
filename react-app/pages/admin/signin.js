@@ -4,6 +4,7 @@ import { useNavigate, useLocation } from "react-router-dom";
 import Layout from "../layout.js";
 import { useAuth } from "../../contexts/AuthContext.js";
 import axios from "axios";
+import {serverLink} from '../app.js'
 
 export default function Signin() {
     const [formData, setFormData] = useState({
@@ -67,7 +68,7 @@ export default function Signin() {
                 password: formData.password
             };
             
-            axios.post("http://localhost:8000/signin", sanitizedData)
+            axios.post(serverLink + "/signin", sanitizedData)
                 .then(res => {
                     console.log("Sign in response:", res.data);
                     if (res.data.success) {

@@ -3,6 +3,7 @@ import AdminHeader from "./adminHeader"
 import Layout from "../layout"
 import { createColumnHelper, useReactTable, getCoreRowModel, getFilteredRowModel, getPaginationRowModel, flexRender } from '@tanstack/react-table';
 import axios from "axios";
+import {serverLink} from '../app.js'
 
 export default function Reports() {
 
@@ -17,7 +18,7 @@ export default function Reports() {
 
     useEffect(() => {
 
-        axios.get("http://localhost:8000/reports")
+        axios.get(serverLink + "/reports")
             .then(response => {
                 const reports = response.data;
                 setReports(reports);

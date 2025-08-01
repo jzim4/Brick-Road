@@ -20,6 +20,8 @@ export const defaultBrick = {
     Col_Number: 11
 }
 
+export const serverLink = "https://brick-road-api.vercel.app/";
+
 export default function BrickRoadSite() {
     const [currentBrick, setCurrentBrick] = useState(defaultBrick);
     const [highlight, setHighlight] = useState("all");
@@ -34,7 +36,7 @@ export default function BrickRoadSite() {
     const [error, setError] = useState(null);
 
     useEffect(() => {
-        axios.get("http://localhost:8000/bricks")
+        axios.get(serverLink + "/bricks")
             .then(response => {
                 setBricks(response.data);
             })

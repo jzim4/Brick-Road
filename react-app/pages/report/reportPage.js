@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import Layout from '../layout.js';
 import EditForm from './form.js';
 import axios from 'axios';
+import {serverLink } from '../app.js';
 
 export default function ReportPage() {
     const [formData, setFormData] = useState({
@@ -60,7 +61,7 @@ export default function ReportPage() {
         setIsSubmitting(true);
         setSubmissionStatus(null);
 
-        axios.post("http://localhost:8000/report",
+        axios.post(serverLink + "/report",
             {
                 purchaserName: formData.purchaserName,
                 reporterEmail: formData.reporterEmail,

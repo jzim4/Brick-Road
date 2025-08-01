@@ -4,6 +4,7 @@ import Layout from '../layout.js';
 import axios from 'axios';
 import { createColumnHelper, useReactTable, getCoreRowModel, getFilteredRowModel, getPaginationRowModel, flexRender } from '@tanstack/react-table';
 import AdminHeader from './adminHeader.js';
+import {serverLink} from '../app.js'
 
 export default function AdminDashboard() {
     const [bricks, setBricks] = useState([]);
@@ -30,7 +31,7 @@ export default function AdminDashboard() {
 
     useEffect(() => {
         // Fetch bricks data for admin overview
-        axios.get("http://localhost:8000/bricks")
+        axios.get(serverLink + "/bricks")
             .then(response => {
                 const bricksData = response.data;
                 setBricks(bricksData);
@@ -50,7 +51,7 @@ export default function AdminDashboard() {
                 setBrickLoading(false);
             });
 
-        axios.get("http://localhost:8000/reports")
+        axios.get(serverLink + "/reports")
             .then(response => {
                 const reports = response.data;
                 setReports(reports);
