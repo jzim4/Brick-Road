@@ -49,7 +49,7 @@ module.exports = {
             template: './index.html'
         }),
         new webpack.DefinePlugin({
-            'process.env.REACT_APP_SERVER_URL': JSON.stringify('http://localhost:8000')
+            'process.env.REACT_APP_SERVER_URL': JSON.stringify('https://brick-road-api.vercel.app/')
         })
     ]
 }
