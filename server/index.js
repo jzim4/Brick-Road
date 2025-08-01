@@ -14,7 +14,12 @@ const supabaseKey = process.env.SUPABASE_KEY
 const supabase = createClient(supabaseUrl, supabaseKey)
 
 
-app.use(cors({ origin: 'http://localhost:8080' }));
+app.use(cors({
+    origin: [
+        'http://localhost:8080',
+        'https://brick-road.vercel.app'
+    ]
+}));
 app.use(express.json()); // Add this to parse JSON request bodies
 
 app.listen(8000, () => {
