@@ -15,8 +15,6 @@ export default function Path({ highlight, currentBrick, setCurrentBrick, bricks 
   function handleBrickClick(brickData) {
     console.log("clicked brick", brickData);
     setCurrentBrick(brickData);
-    document.getElementById("selectedBrickPageCover").style.display = "block";
-    document.body.style.overflow = 'hidden';
   }
 
   /* this component determines if the brick should be highlighted or shown as the selected brick to determine 

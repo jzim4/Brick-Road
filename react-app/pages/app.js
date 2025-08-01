@@ -9,7 +9,7 @@ import axios from 'axios';
 import Layout from './layout.js';
 
 import Search from './bricks/search.js';
-import SelectedBrick from './bricks/scrolling/selectedBrick.js';
+import SelectedBrick from './bricks/selectedBrick.js';
 import ScrollContent from './bricks/scrolling/scrollContent.js';
 import VertScrollContent from './bricks/vertScrolling/vertScrollContent.js';
 import AccessibleContent from './bricks/static/static.js';
@@ -77,6 +77,16 @@ export default function BrickRoadSite() {
         return () => window.removeEventListener('resize', handleResize);
     }, []);
 
+    useEffect(() => {
+        if (currentBrick && currentBrick.Panel_Number !== 20) {
+            const modal = document.getElementById("selectedBrickPageCover");
+            if (modal) {
+                modal.style.display = "block";
+                document.body.style.overflow = 'hidden';
+            }
+        }
+    }, [currentBrick]);
+
     if (loading) {
         return <div className="loading-container"><div className="loader"></div></div>;
     }
@@ -100,10 +110,10 @@ export default function BrickRoadSite() {
     return <Layout>
         {viewMode === 'list' || isWide ? searchComponent : null}
         
-        <SelectedBrick brick={currentBrick} setCurrentBrick={setCurrentBrick} bricks={displayedBricks} />
+        <SelectedBrick brick={currentBrick} setCurrentBrick={setCurrentBrick} />
         
         {viewMode === 'list' ? (
-            <AccessibleContent highlight={highlight} bricks={displayedBricks} />
+            <AccessibleContent highlight={highlight} bricks={displayedBricks} setCurrentBrick={setCurrentBrick} />
         ) : isWide ? (
             <ScrollContent highlight={highlight} currentBrick={currentBrick} setCurrentBrick={setCurrentBrick} bricks={displayedBricks} />
         ) : (

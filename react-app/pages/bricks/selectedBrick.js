@@ -5,8 +5,8 @@ This component is for when a user clicks on a brick on the path. It includes a c
 */
 
 import React from 'react';
-import { defaultBrick } from '../../app.js';
-import '../../../styles/selectedBrick.css';
+import { defaultBrick } from '../app.js';
+import '../../styles/selectedBrick.css';
 
 function closeBrick(setCurrentBrick) {
     setCurrentBrick(defaultBrick);
@@ -20,6 +20,7 @@ function closeBrick(setCurrentBrick) {
 
 // content within selected brick
 export default function SelectedBrick({ brick, setCurrentBrick }) {
+    console.log("brick in selectedBrick", brick);
     return <div id="selectedBrickPageCover">
         <div id="selectedBrickContainer">
         <button id="selectedCloseButton" aria-label="Close selected brick" title="Close selected brick" onClick={() => closeBrick(setCurrentBrick)}>&times;</button>
@@ -31,6 +32,9 @@ export default function SelectedBrick({ brick, setCurrentBrick }) {
         <div id="selectedBrickDescr">
             <p>Naming Year: {brick.Naming_Year}</p>
             <p>Purchaser Name: {brick.Purchaser_Name}</p>
+            <p>Panel Number: {brick.Panel_Number}</p>
+            <p>Row Number: {brick.Row_Number}</p>
+            <p>Col Number: {brick.Col_Number}</p>
             {brick.Paver_Assigned_Section ? <p>Section: {brick.Paver_Assigned_Section}</p> : <p></p>}
             {brick.link ? <p>{brick.link}</p> : ""}
         </div>
