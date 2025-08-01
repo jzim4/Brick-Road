@@ -9,7 +9,7 @@ import React, { useState } from 'react';
 
 export default function VertPath({ highlight, currentBrick, setCurrentBrick, bricks, isWide }) {
   const numRows = 170;
-  const numCols = isWide ? 15 : 10;
+  const numCols = 15;
   const bricksPerPanel = 10;
 
   const [previewBrick, setPreviewBrick] = useState(null);
@@ -72,7 +72,7 @@ export default function VertPath({ highlight, currentBrick, setCurrentBrick, bri
 
     </div>
     {Array(numCols).fill(0).map((_, colIndex) => (
-      <div className={colIndex % 2 === 0 ? 'vertBrickColumn bottomShiftColumn' : 'vertBrickColumn topShiftColumn'} key={"col" + colIndex}>
+      <div className={colIndex % 2 === 0 ? 'vertBrickColumn topShiftColumn' : 'vertBrickColumn bottomShiftColumn'} key={"col" + colIndex}>
         {Array(numRows).fill(0).map((_, rowIndex) => (
           <Brick rowIndex={rowIndex} colIndex={colIndex} key={"row"+rowIndex+"col"+colIndex}/>
         ))}

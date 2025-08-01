@@ -4,62 +4,11 @@ Author: Jonah Zimmer
 This single component holds the search bar and includes all functionality for buttons within search bar
 */
 import "../../styles/search.css";
-import React, { useState, useCallback, useMemo } from 'react';
+import React, { useState, useCallback, useMemo, useRef } from 'react';
 import { Link } from 'react-router-dom';
 
-const Search = React.memo(function Search({ highlight, setHighlight, viewMode, setViewMode, bricks }) {
-
-    const [section, setSection] = useState("all");
-    const [searchValue, setSearchValue] = useState("");
-    const [isModalOpen, setIsModalOpen] = useState(false);
-    
-    const handleSearchInputChange = useCallback((e) => {
-        setSearchValue(e.target.value);
-    }, []);
-
-    const openModal = useCallback(() => {
-        setIsModalOpen(true);
-    }, []);
-
-    const closeModal = useCallback(() => {
-        setIsModalOpen(false);
-    }, []);
-
-    const toggleDisplay = useCallback(() => {
-        setViewMode(prevMode => prevMode === 'scroll' ? 'list' : 'scroll');
-    }, [setViewMode]);
-
-    const handleSearch = useCallback(() => {
-        setHighlight(searchValue);
-        closeModal();
-    }, [searchValue, setHighlight, closeModal]);
-
-    const handleSectionSearch = useCallback((newSection) => {
-        setSection(newSection);
-        setHighlight(newSection);
-        if (newSection === "all") {
-            setSearchValue("");
-        }
-        closeModal();
-    }, [setHighlight, closeModal]);
-
-    const Label = useMemo(() => {
-        return ({ section }) => {
-            const sections = ["Centenarian", "Heroes", "Golden Women", "Family/Friends", "Businesses/Organizations"];
-            let num = bricks.filter(b => {
-                if (typeof(b.Panel_Number) !== "number") return false;
-                const highlightMatch = b.Purchaser_Name.toLowerCase().includes(highlight.toLowerCase());
-                return highlight === "all" || b.Paver_Assigned_Section === highlight || highlightMatch;
-            }).length;
-
-            let countPhrase = `[${num} brick${num !== 1 ? 's' : ''}]`;
-            if (section === "all") return <span>All purchased bricks {countPhrase}</span>;
-            if (sections.includes(section)) return <span>Bricks in the section {section} {countPhrase}</span>;
-            return <span>Bricks purchased by {section} {countPhrase}</span>;
-        };
-    }, [bricks, highlight]);
-
-    const SearchBox = useMemo(() => (
+const SearchBox = React.memo(function SearchBox({ section, searchValue, handleSectionSearch, handleSearch, handleSearchInputChange }) {
+    return (
         <div id="searchContainer">
             <div id="sectionSearchDropdown">
                 <label htmlFor="sectionSelect">Search by section:</label>
@@ -79,31 +28,90 @@ const Search = React.memo(function Search({ highlight, setHighlight, viewMode, s
             </div>
             <button id="clearSearch" onClick={() => handleSectionSearch("all")}>Clear all filters</button>
         </div>
-    ), [section, searchValue, handleSectionSearch, handleSearch, handleSearchInputChange]);
+    );
+});
 
-    const FilterModal = ({ isOpen, onClose, children }) => {
-        if (!isOpen) return null;
-        return (
-            <div className="filter-modal-overlay" onClick={onClose}>
-                <div className="filter-modal-content" onClick={e => e.stopPropagation()}>
-                    <button className="close-modal-button" onClick={onClose}>&times;</button>
-                    {children}
-                </div>
+const FilterModal = React.memo(function FilterModal({ isOpen, onClose, children }) {
+    if (!isOpen) return null;
+    return (
+        <div className="filter-modal-overlay" onClick={onClose}>
+            <div className="filter-modal-content" onClick={e => e.stopPropagation()}>
+                <button className="close-modal-button" onClick={onClose}>&times;</button>
+                {children}
             </div>
-        );
-    };
+        </div>
+    );
+});
+
+const Label = React.memo(function Label({ section, bricks, highlight }) {
+    const sections = ["Centenarian", "Heroes", "Golden Women", "Family/Friends", "Businesses/Organizations"];
+    let num = bricks.filter(b => {
+        if (typeof(b.Panel_Number) !== "number") return false;
+        const highlightMatch = b.Purchaser_Name.toLowerCase().includes(highlight.toLowerCase());
+        return highlight === "all" || b.Paver_Assigned_Section === highlight || highlightMatch;
+    }).length;
+
+    let countPhrase = `[${num} brick${num !== 1 ? 's' : ''}]`;
+    if (section === "all") return <span>All purchased bricks {countPhrase}</span>;
+    if (sections.includes(section)) return <span>Bricks in the section {section} {countPhrase}</span>;
+    return <span>Bricks purchased by {section} {countPhrase}</span>;
+});
+
+
+const Search = React.memo(function Search({ highlight, setHighlight, viewMode, setViewMode, bricks }) {
+
+    const [section, setSection] = useState("all");
+    const [searchValue, setSearchValue] = useState("");
+    const [isModalOpen, setIsModalOpen] = useState(false);
+    
+    const handleSearchInputChange = useCallback((e) => {
+        setSearchValue(e.target.value);
+    }, []);
+
+    const openModal = useCallback(() => {
+        setIsModalOpen(true);
+    }, []);
+
+    const closeModal = useCallback(() => {
+        setIsModalOpen(false);
+    }, []);
+
+    const handleSearch = useCallback(() => {
+        setHighlight(searchValue);
+        closeModal();
+    }, [searchValue, setHighlight, closeModal]);
+
+    const handleSectionSearch = useCallback((newSection) => {
+        setSection(newSection);
+        setHighlight(newSection);
+        if (newSection === "all") {
+            setSearchValue("");
+        }
+        closeModal();
+    }, [setHighlight, closeModal]);
 
     return (
         <>
             <div id="searchHeader">
-                <button id="displayToggle" className="headerButton" onClick={toggleDisplay}>
-                    {viewMode === 'scroll' ? 'Show Brick List' : 'Show Scrolling Path'}
-                </button>
+                <div id="displayToggle" className="toggle-switch">
+                    <button
+                        className={`toggle-option ${viewMode === 'scroll' ? 'active' : ''}`}
+                        onClick={() => setViewMode('scroll')}
+                    >
+                        Path View
+                    </button>
+                    <button
+                        className={`toggle-option ${viewMode === 'list' ? 'active' : ''}`}
+                        onClick={() => setViewMode('list')}
+                    >
+                        List View
+                    </button>
+                </div>
                 {viewMode === 'scroll' && (
                     <div id="keysContainer">
                         <div className="keyContainer">
                             <div id="redKeyBox" className="keyBox"></div>
-                            <div id="redKeyText"><Label section={highlight} /></div> 
+                            <div id="redKeyText"><Label section={highlight} bricks={bricks} highlight={highlight} /></div> 
                             <button onClick={openModal} tabIndex={0} className="accordion">Filter</button>
                         </div>
                         <div className="keyContainer">
@@ -120,7 +128,13 @@ const Search = React.memo(function Search({ highlight, setHighlight, viewMode, s
             </div>
 
             <FilterModal isOpen={isModalOpen} onClose={closeModal}>
-                {SearchBox}
+                <SearchBox 
+                    section={section}
+                    searchValue={searchValue}
+                    handleSectionSearch={handleSectionSearch}
+                    handleSearch={handleSearch}
+                    handleSearchInputChange={handleSearchInputChange}
+                />
             </FilterModal>
             
             <p className="datasetNote">
@@ -129,7 +143,7 @@ const Search = React.memo(function Search({ highlight, setHighlight, viewMode, s
 
             {viewMode === 'list' && (
                 <div id="staticSearchLabel">
-                    <Label section={highlight} />
+                    <Label section={highlight} bricks={bricks} highlight={highlight}/>
                 </div>
             )}
         </>
