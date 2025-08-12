@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react"
 import AdminHeader from "./adminHeader"
 import Layout from "../layout"
 import axios from "axios";
+import { useAuth } from "../../contexts/AuthContext.js";
 
 const ReportModal = ({ report, onClose, onUpdate }) => {
     if (!report) return null;
@@ -43,6 +44,7 @@ const ReportModal = ({ report, onClose, onUpdate }) => {
 export default function Reports() {
 
     const serverUrl = process.env.REACT_APP_SERVER_URL;
+    const { getToken } = useAuth();
     const [reports, setReports] = useState([]);
     const [error, setError] = useState("");
     const [loading, setLoading] = useState(true);
@@ -51,7 +53,8 @@ export default function Reports() {
 
     useEffect(() => {
 
-        axios.get(`${serverUrl}/reports`)
+        const token = getToken?.();
+        axios.get(`${serverUrl}/reports`, { headers: token ? { Authorization: `Bearer ${token}` } : {} })
             .then(response => {
                 const reports = response.data.map((r, index) => ({...r, id: r.id || index}));
                 setReports(reports);
@@ -67,7 +70,10 @@ export default function Reports() {
 
     const handleUpdateReport = (updatedReport) => {
         console.log("Updating report:", updatedReport);
-        axios.put(`${serverUrl}/update-report/${updatedReport.id}`, { isFixed: updatedReport.isFixed })
+        const token = getToken?.();
+        axios.put(`${serverUrl}/update-report/${updatedReport.id}`, { isFixed: updatedReport.isFixed }, {
+            headers: token ? { Authorization: `Bearer ${token}` } : {}
+        })
             .then((response) => {
                 console.log("Response:", response);
                 const updatedFromServer = response.data[0];

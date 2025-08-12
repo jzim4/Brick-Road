@@ -22,31 +22,26 @@ export const AuthProvider = ({ children }) => {
     useEffect(() => {
         const checkAuthStatus = () => {
             try {
-                const storedUser = localStorage.getItem('authUser');
-                const storedSession = localStorage.getItem('authSession');
-                
-                if (storedUser && storedSession) {
-                    const userData = JSON.parse(storedUser);
-                    const sessionData = JSON.parse(storedSession);
-                    
-                    // Check if session is still valid (not expired)
-                    const sessionExpiry = new Date(sessionData.expires_at);
+                const token = localStorage.getItem('authToken');
+                const tokenExpiryRaw = localStorage.getItem('authTokenExpiry');
+
+                if (token && tokenExpiryRaw) {
+                    const expiryDate = new Date(tokenExpiryRaw);
                     const now = new Date();
-                    
-                    if (sessionExpiry > now) {
-                        setUser(userData);
+
+                    if (expiryDate > now) {
                         setIsAuthenticated(true);
                     } else {
-                        // Session expired, clear storage
-                        localStorage.removeItem('authUser');
-                        localStorage.removeItem('authSession');
+                        localStorage.removeItem('authToken');
+                        localStorage.removeItem('authTokenExpiry');
+                        setIsAuthenticated(false);
                     }
                 }
             } catch (error) {
                 console.error('Error checking auth status:', error);
-                // Clear potentially corrupted data
-                localStorage.removeItem('authUser');
-                localStorage.removeItem('authSession');
+                localStorage.removeItem('authToken');
+                localStorage.removeItem('authTokenExpiry');
+                setIsAuthenticated(false);
             } finally {
                 setLoading(false);
             }
@@ -58,16 +53,26 @@ export const AuthProvider = ({ children }) => {
     // Sign in function
     const signIn = (userData, sessionData) => {
         try {
-            setUser(userData);
+            // Only store the access token and its expiry
+            const accessToken = sessionData?.access_token;
+            const expiresAt = sessionData?.expires_at; // Could be epoch seconds or ISO string
+
+            if (!accessToken || !expiresAt) {
+                throw new Error('Invalid session data');
+            }
+
+            const expiryDate = typeof expiresAt === 'number'
+                ? new Date(expiresAt * 1000)
+                : new Date(expiresAt);
+
+            localStorage.setItem('authToken', accessToken);
+            localStorage.setItem('authTokenExpiry', expiryDate.toISOString());
+
+            setUser(null); // We are not persisting user client-side
             setIsAuthenticated(true);
-            
-            // Store authentication data in localStorage
-            localStorage.setItem('authUser', JSON.stringify(userData));
-            localStorage.setItem('authSession', JSON.stringify(sessionData));
-            
             return true;
         } catch (error) {
-            console.error('Error storing auth data:', error);
+            console.error('Error storing auth token:', error);
             return false;
         }
     };
@@ -77,18 +82,21 @@ export const AuthProvider = ({ children }) => {
         setUser(null);
         setIsAuthenticated(false);
         
-        // Clear stored authentication data
-        localStorage.removeItem('authUser');
-        localStorage.removeItem('authSession');
+        // Clear stored authentication token
+        localStorage.removeItem('authToken');
+        localStorage.removeItem('authTokenExpiry');
     };
 
     // Get current session from storage
-    const getSession = () => {
+    const getToken = () => {
         try {
-            const storedSession = localStorage.getItem('authSession');
-            return storedSession ? JSON.parse(storedSession) : null;
+            const token = localStorage.getItem('authToken');
+            const expiry = localStorage.getItem('authTokenExpiry');
+            if (!token || !expiry) return null;
+            if (new Date(expiry) <= new Date()) return null;
+            return token;
         } catch (error) {
-            console.error('Error getting session:', error);
+            console.error('Error getting token:', error);
             return null;
         }
     };
@@ -99,7 +107,7 @@ export const AuthProvider = ({ children }) => {
         loading,
         signIn,
         signOut,
-        getSession
+        getToken
     };
 
     return (

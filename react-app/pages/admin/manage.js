@@ -8,7 +8,7 @@ import AdminHeader from './adminHeader.js';
 
 export default function ManageBricks() {
     const { panel, col, row } = useParams();
-    const { user } = useAuth();
+    const { user, getToken } = useAuth();
     const serverUrl = process.env.REACT_APP_SERVER_URL;
     const navigate = useNavigate();
 
@@ -118,7 +118,10 @@ export default function ManageBricks() {
         try {
             const brickId = selectedBrick.id;
             console.log("Edit form:", editForm);
-            await axios.put(`${serverUrl}/bricks/${brickId}`, { data: editForm });
+            const token = getToken?.();
+            await axios.put(`${serverUrl}/bricks/${brickId}`, { data: editForm }, {
+                headers: token ? { Authorization: `Bearer ${token}` } : {}
+            });
             setIsSuccess(true);
         } catch (error) {
             console.error('Save error:', error);
@@ -139,7 +142,10 @@ export default function ManageBricks() {
 
         try {
             const brickId = selectedBrick.id;
-            await axios.delete(`${serverUrl}/bricks/${brickId}`);
+            const token = getToken?.();
+            await axios.delete(`${serverUrl}/bricks/${brickId}`, {
+                headers: token ? { Authorization: `Bearer ${token}` } : {}
+            });
             navigate('/admin/dashboard');
         } catch (error) {
             console.error('Delete error:', error);

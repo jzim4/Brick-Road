@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import Layout from '../layout.js';
 import axios from 'axios';
+import { useAuth } from '../../contexts/AuthContext.js';
 import { createColumnHelper, useReactTable, getCoreRowModel, getFilteredRowModel, getPaginationRowModel, getSortedRowModel, flexRender } from '@tanstack/react-table';
 import AdminHeader from './adminHeader.js';
 import '../../styles/admin.css';
@@ -10,6 +11,7 @@ import { SquarePen } from 'lucide-react';
 
 export default function AdminDashboard() {
     const serverUrl = process.env.REACT_APP_SERVER_URL;
+    const { getToken } = useAuth();
     const [bricks, setBricks] = useState([]);
     const [reports, setReports] = useState([]);
     const [brickLoading, setBrickLoading] = useState(true);
@@ -65,7 +67,8 @@ export default function AdminDashboard() {
                 setBrickLoading(false);
             });
 
-        axios.get(`${serverUrl}/reports`)
+        const token = getToken?.();
+        axios.get(`${serverUrl}/reports`, { headers: token ? { Authorization: `Bearer ${token}` } : {} })
             .then(response => {
                 const reports = response.data;
                 setReports(reports);

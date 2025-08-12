@@ -72,8 +72,8 @@ export default function Signin() {
                 .then(res => {
                     console.log("Sign in response:", res.data);
                     if (res.data.success) {
-                        // Store authentication data using the auth context
-                        const success = signIn(res.data.user, res.data.session);
+                        // Store only the token via the auth context
+                        const success = signIn(null, res.data.session);
                         
                         if (success) {
                             console.log("Successfully authenticated, redirecting to:", from);

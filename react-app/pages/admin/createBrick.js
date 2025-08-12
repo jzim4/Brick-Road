@@ -3,9 +3,11 @@ import Layout from '../layout.js';
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
+import { useAuth } from '../../contexts/AuthContext.js';
 
 export default function CreateBrick() {
     const serverUrl = process.env.REACT_APP_SERVER_URL;
+    const { getToken } = useAuth();
     const [brickData, setBrickData] = useState({
         Naming_Year: '',
         Panel_Number: '',
@@ -53,9 +55,10 @@ export default function CreateBrick() {
         try {
             // TODO: Link this to the backend to create the brick
             console.log("Creating brick with data:", brickData);
-            // This is where you would make your API call, e.g.:
-            // await axios.post('/api/bricks', brickData);  
-            await axios.post(`${serverUrl}/create-brick`, { data: brickData });
+            const token = getToken?.();
+            await axios.post(`${serverUrl}/create-brick`, { data: brickData }, {
+                headers: token ? { Authorization: `Bearer ${token}` } : {}
+            });
             setIsSuccess(true);
             setBrickData({
                 Naming_Year: '',

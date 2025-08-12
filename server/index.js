@@ -22,6 +22,28 @@ app.use(cors({
 }));
 app.use(express.json()); // Add this to parse JSON request bodies
 
+// Simple auth middleware to protect routes using Supabase JWT
+async function verifyAuth(req, res, next) {
+    try {
+        const authHeader = req.headers.authorization || '';
+        const [scheme, token] = authHeader.split(' ');
+        if (scheme !== 'Bearer' || !token) {
+            return res.status(401).json({ error: 'Unauthorized' });
+        }
+
+        const { data, error } = await supabase.auth.getUser(token);
+        if (error || !data?.user) {
+            return res.status(401).json({ error: 'Invalid or expired token' });
+        }
+
+        req.user = data.user;
+        next();
+    } catch (err) {
+        console.error('Auth verification failed:', err);
+        return res.status(401).json({ error: 'Unauthorized' });
+    }
+}
+
 app.listen(8000, () => {
     console.log("Server is running on port 8000");
 })
@@ -63,7 +85,7 @@ app.get("/brick", async (req, res) => {
     }
 });
 
-app.put("/bricks/:id", (req, res) => {
+app.put("/bricks/:id", verifyAuth, (req, res) => {
     const { id } = req.params;
     const { data } = req.body;
     updateBrick(supabase, id, data).then(data => {
@@ -75,7 +97,7 @@ app.put("/bricks/:id", (req, res) => {
     });
 });
 
-app.delete("/bricks/:id", (req, res) => {
+app.delete("/bricks/:id", verifyAuth, (req, res) => {
     const { id } = req.params;
     deleteBrick(supabase, id).then(data => {
         console.log("Brick deleted:", data);
@@ -86,7 +108,7 @@ app.delete("/bricks/:id", (req, res) => {
     });
 });
 
-app.post("/create-brick", (req, res) => {
+app.post("/create-brick", verifyAuth, (req, res) => {
     const { data } = req.body;
     createBrick(supabase, data).then(data => {
         console.log("Brick created:", data);
@@ -134,7 +156,7 @@ app.post("/report", (req, res) => {
     });
 })
 
-app.get("/reports", (req, res) => {
+app.get("/reports", verifyAuth, (req, res) => {
     getReports(supabase).then(data => {
         res.json(data);
     }).catch(err => {
@@ -143,7 +165,7 @@ app.get("/reports", (req, res) => {
     });
 })
 
-app.put("/update-report/:id", (req, res) => {
+app.put("/update-report/:id", verifyAuth, (req, res) => {
     const { id } = req.params;
     const { isFixed } = req.body;
     console.log("Updating report:", id, isFixed);
