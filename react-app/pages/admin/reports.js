@@ -3,7 +3,7 @@ import AdminHeader from "./adminHeader"
 import Layout from "../layout"
 import axios from "axios";
 import { useAuth } from "../../contexts/AuthContext.js";
-
+import { useNavigate } from "react-router-dom";
 const ReportModal = ({ report, onClose, onUpdate }) => {
     if (!report) return null;
 
@@ -42,7 +42,7 @@ const ReportModal = ({ report, onClose, onUpdate }) => {
 
 
 export default function Reports() {
-
+    const navigate = useNavigate();
     const serverUrl = process.env.REACT_APP_SERVER_URL;
     const { getToken } = useAuth();
     const [reports, setReports] = useState([]);
@@ -61,6 +61,9 @@ export default function Reports() {
                 console.log(reports);
             })
             .catch(err => {
+                if (err?.response?.status === 401) {
+                    navigate('/admin/signin');
+                }
                 setError(err.message);
             })
             .finally(() => {
@@ -73,6 +76,11 @@ export default function Reports() {
         const token = getToken?.();
         axios.put(`${serverUrl}/update-report/${updatedReport.id}`, { isFixed: updatedReport.isFixed }, {
             headers: token ? { Authorization: `Bearer ${token}` } : {}
+        }).catch((err) => {
+            if (err?.response?.status === 401) {
+                navigate("/admin/signin");
+            }
+            throw err;
         })
             .then((response) => {
                 console.log("Response:", response);

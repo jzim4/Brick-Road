@@ -160,6 +160,10 @@ app.get("/reports", verifyAuth, (req, res) => {
     getReports(supabase).then(data => {
         res.json(data);
     }).catch(err => {
+        if (err.message === "User not authenticated") {
+            res.status(401).json({ error: "Unauthorized" });
+            return;
+        }
         console.log("Error fetching reports:", err);
         res.status(500).json({ error: err.message });
     });

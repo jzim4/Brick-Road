@@ -39,8 +39,8 @@
     padding: 10px 20px;
     border: var(--brick-red) solid 10px;
     margin: 0 0 40px 0;
-    height: 560px;
-    width: calc(100vw - 200px);
+    height: 600px;
+    width: calc(100% - 200px);
     overflow-x: scroll;
     scrollbar-width: none; /* Firefox */
     -ms-overflow-style: none; /* Internet Explorer 10+ */
@@ -233,8 +233,8 @@
     margin-right: -2px;
     display: inline-block;
     border: 2px solid black;
-    width: 34.3px;
-    height: 10px;
+    width: 38.3px;
+    height: 14px;
 }
 
 .existingBrick {

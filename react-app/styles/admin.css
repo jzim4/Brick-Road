@@ -471,6 +471,10 @@ input:checked + .slider:before {
     .stat-number {
         font-size: 2em;
     }
+    .stat-message {
+        font-size: 1.2em;
+        color: #666;
+    }
     
     .bricks-table, .report-table {
         font-size: 0.9em;

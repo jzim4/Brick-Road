@@ -58,6 +58,11 @@ export default function CreateBrick() {
             const token = getToken?.();
             await axios.post(`${serverUrl}/create-brick`, { data: brickData }, {
                 headers: token ? { Authorization: `Bearer ${token}` } : {}
+            }).catch((err) => {
+                if (err?.response?.status === 401) {
+                    window.location.hash = '#/admin/signin';
+                }
+                throw err;
             });
             setIsSuccess(true);
             setBrickData({

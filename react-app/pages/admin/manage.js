@@ -121,6 +121,11 @@ export default function ManageBricks() {
             const token = getToken?.();
             await axios.put(`${serverUrl}/bricks/${brickId}`, { data: editForm }, {
                 headers: token ? { Authorization: `Bearer ${token}` } : {}
+            }).catch((err) => {
+                if (err?.response?.status === 401) {
+                   navigate("/admin/signin");
+                }
+                throw err;
             });
             setIsSuccess(true);
         } catch (error) {
@@ -145,6 +150,11 @@ export default function ManageBricks() {
             const token = getToken?.();
             await axios.delete(`${serverUrl}/bricks/${brickId}`, {
                 headers: token ? { Authorization: `Bearer ${token}` } : {}
+            }).catch((err) => {
+                if (err?.response?.status === 401) {
+                    navigate("/admin/signin");
+                }
+                throw err;
             });
             navigate('/admin/dashboard');
         } catch (error) {

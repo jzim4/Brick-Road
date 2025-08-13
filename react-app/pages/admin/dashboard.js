@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import Layout from '../layout.js';
 import axios from 'axios';
 import { useAuth } from '../../contexts/AuthContext.js';
@@ -11,12 +11,12 @@ import { SquarePen } from 'lucide-react';
 
 export default function AdminDashboard() {
     const serverUrl = process.env.REACT_APP_SERVER_URL;
-    const { getToken } = useAuth();
+    const { getToken, isAuthenticated, loading } = useAuth();
     const [bricks, setBricks] = useState([]);
     const [reports, setReports] = useState([]);
     const [brickLoading, setBrickLoading] = useState(true);
     const [reportLoading, setReportLoading] = useState(true);
-
+    const navigate = useNavigate();
     const [brickError, setBrickError] = useState(null);
     const [reportError, setReportError] = useState(null);
     const [brickStats, setBrickStats] = useState({
@@ -66,20 +66,30 @@ export default function AdminDashboard() {
             .finally(() => {
                 setBrickLoading(false);
             });
+    }, []);
 
+    // Fetch reports only after auth state is ready and a token exists
+    useEffect(() => {
+        if (loading) return; // wait for auth provider to initialize
         const token = getToken?.();
-        axios.get(`${serverUrl}/reports`, { headers: token ? { Authorization: `Bearer ${token}` } : {} })
+        if (!token) return; // not authenticated yet; do not call
+
+        setReportLoading(true);
+        axios.get(`${serverUrl}/reports`, { headers: { Authorization: `Bearer ${token}` } })
             .then(response => {
                 const reports = response.data;
                 setReports(reports);
             })
             .catch(err => {
                 setReportError(err.message);
+                if (err?.response?.status === 401) {
+                    navigate("/admin/signin");
+                }
             })
             .finally(() => {
                 setReportLoading(false);
             })
-    }, []);
+    }, [loading, isAuthenticated]);
 
     const columnHelper = createColumnHelper()
 
@@ -180,7 +190,9 @@ export default function AdminDashboard() {
                     <div className="stat-card">
                         <Link to="/admin/requests">
                         <h3 className="stat-header">Open Requests</h3>
-                        <div className="stat-number">{reports.filter(r => !r.isFixed).length}</div>
+                        <div className="stat-number">{
+                            reports ? reports.filter(r => !r.isFixed).length : ""
+                        }</div>
                         </Link>
                     </div>
                 </div>

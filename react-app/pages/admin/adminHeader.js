@@ -1,11 +1,12 @@
 import { useAuth } from '../../contexts/AuthContext.js';
 import React from 'react';
-import { Link, useLocation } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import '../../styles/admin.css';
 
 export default function AdminHeader({ page }) {
     const { signOut } = useAuth();
     const path = useLocation();
+    const navigate = useNavigate();
 
     const handleSignOut = () => {
         signOut();
