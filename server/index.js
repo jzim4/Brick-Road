@@ -44,9 +44,14 @@ async function verifyAuth(req, res, next) {
     }
 }
 
-app.listen(8000, () => {
-    console.log("Server is running on port 8000");
-})
+// For local development, start the server. On Vercel, just export the app for the serverless runtime.
+if (!process.env.VERCEL) {
+    app.listen(8000, () => {
+        console.log("Server is running on port 8000");
+    });
+}
+
+export default app;
 
 app.get("/", (req, res) => {
     res.send("Yay backend is working");
