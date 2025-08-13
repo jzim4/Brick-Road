@@ -1,5 +1,5 @@
 import React from "react";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
 import Layout from "../layout.js";
 import { useAuth } from "../../contexts/AuthContext.js";
@@ -11,12 +11,21 @@ export default function Signin() {
         email: "",
         password: ""
     });
-    const { signIn } = useAuth();
+    const [submitting, setSubmitting] = useState(false);
+    const { signIn, isAuthenticated } = useAuth();
     const navigate = useNavigate();
     const location = useLocation();
     const serverUrl = process.env.REACT_APP_SERVER_URL;
     // Get the page they were trying to visit, or default to dashboard
     const from = location.state?.from?.pathname || "/admin/dashboard";
+    const [pendingRedirect, setPendingRedirect] = useState(null);
+
+    // After sign-in, wait until auth context reflects authenticated state, then navigate
+    useEffect(() => {
+        if (pendingRedirect && isAuthenticated) {
+            navigate(pendingRedirect, { replace: true });
+        }
+    }, [pendingRedirect, isAuthenticated, navigate]);
 
     const handleInputChange = (e) => {
         const { name, value } = e.target;
@@ -55,6 +64,7 @@ export default function Signin() {
 
     const handleSubmit = (e) => {
         e.preventDefault();
+        if (submitting) return; // prevent double submit
         
         try {
             // Client-side validation
@@ -68,6 +78,7 @@ export default function Signin() {
                 password: formData.password
             };
             
+            setSubmitting(true);
             axios.post(`${serverUrl}/signin`, sanitizedData)
                 .then(res => {
                     console.log("Sign in response:", res.data);
@@ -76,8 +87,8 @@ export default function Signin() {
                         const success = signIn(null, res.data.session);
                         
                         if (success) {
-                            console.log("Successfully authenticated, redirecting to:", from);
-                            navigate(from, { replace: true });
+                            console.log("Successfully authenticated, preparing redirect to:", from);
+                            setPendingRedirect(from);
                         } else {
                             alert("Error storing authentication data");
                         }
@@ -89,7 +100,8 @@ export default function Signin() {
                     console.log("Sign in error:", err);
                     const errorMessage = err.response?.data?.message || "Network error occurred";
                     alert("Sign in failed: " + errorMessage);
-                });
+                })
+                .finally(() => setSubmitting(false));
         } catch (validationError) {
             alert("Validation error: " + validationError.message);
         }
@@ -125,8 +137,8 @@ export default function Signin() {
                         />
                     </div>
                     
-                    <button type="submit" className="signin-button">
-                        Sign In
+                    <button type="submit" className="signin-button" disabled={submitting} aria-busy={submitting}>
+                        {submitting ? "Signing in…" : "Sign In"}
                     </button>
                 </form>
             </div>

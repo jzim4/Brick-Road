@@ -3,7 +3,7 @@ import { Navigate, useLocation } from 'react-router-dom';
 import { useAuth } from '../contexts/AuthContext.js';
 
 const ProtectedRoute = ({ children }) => {
-    const { isAuthenticated, loading } = useAuth();
+    const { isAuthenticated, loading, getToken } = useAuth();
     const location = useLocation();
 
     // Show loading while checking authentication status
@@ -23,7 +23,8 @@ const ProtectedRoute = ({ children }) => {
     }
 
     // Redirect to signin if not authenticated
-    if (!isAuthenticated) {
+    const token = getToken?.();
+    if (!isAuthenticated && !token) {
         // Save the attempted location so we can redirect back after login
         return <Navigate to="/admin/signin" state={{ from: location }} replace />;
     }
