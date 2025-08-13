@@ -14,6 +14,7 @@ import ScrollContent from './bricks/scrolling/scrollContent.js';
 import VertScrollContent from './bricks/vertScrolling/vertScrollContent.js';
 import ListContent from './bricks/static/static.js';
 import ViewToggle from './bricks/viewToggle.js';
+import { filterBricks, SECTIONS } from './bricks/filter.js';
 
 export const defaultBrick = {
     Panel_Number: 20,
@@ -52,20 +53,7 @@ export default function BrickRoadSite() {
     }, []); // Empty dependency array means this runs only once on mount
 
     useEffect(() => {
-        function getDisplayedBricks() {
-            if (highlight === "all") {
-                return bricks;
-            }
-            if (["Centenarian", "Heroes", "Golden Women", "Family/Friends", "Businesses/Organizations"].includes(highlight)) {
-                return bricks.filter(brick => brick.Paver_Assigned_Section === highlight);
-            }
-            if (highlightType === "donor") {
-                return bricks.filter(brick => brick.Purchaser_Name === highlight);
-            }
-            return bricks;
-        }
-        
-        setDisplayedBricks(getDisplayedBricks());
+        setDisplayedBricks(filterBricks(bricks, highlight));
     }, [bricks, highlight])
 
     useEffect(() => {

@@ -4,15 +4,16 @@ Author: Jonah Zimmer
 This single component holds the search bar and includes all functionality for buttons within search bar
 */
 import "../../styles/search.css";
-import React, { useState, useCallback, useMemo, useRef } from 'react';
+import React, { useState, useCallback, useMemo, useRef, useEffect } from 'react';
+import { SECTIONS, matchesHighlight } from './filter';
 import { Link } from 'react-router-dom';
 
-const SearchBox = React.memo(function SearchBox({ section, searchValue, handleSectionSearch, handleSearch, handleSearchInputChange }) {
+const SearchBox = React.memo(function SearchBox({ section, donorName, inscription, handleSectionSearch, handleDonorInputChange, handleInscriptionSearch, handleSearch, handleClear, isLoading }) {
     return (
         <div id="searchContainer">
             <div id="sectionSearchDropdown">
                 <label htmlFor="sectionSelect">Search by section:</label>
-                <select id="sectionSelect" onChange={(e) => handleSectionSearch(e.target.value)} value={section}>
+				<select id="sectionSelect" onChange={(e) => handleSectionSearch(e.target.value)} value={section} disabled={isLoading}>
                     <option value="all">Select a section...</option>
                     <option value="Centenarian">Century Club</option>
                     <option value="Heroes">Heroes</option>
@@ -21,12 +22,25 @@ const SearchBox = React.memo(function SearchBox({ section, searchValue, handleSe
                     <option value="Businesses/Organizations">Businesses/Organizations</option>
                 </select>
             </div>
+			<div className="searchOr" aria-hidden="true">OR</div>
             <div id="searchInputsContainer">
                 <label htmlFor="fname">Search by name of donor:</label>
-                <input type="text" id="fname" name="fname" value={searchValue} onChange={handleSearchInputChange} />
-                <button id="submitSearch" onClick={handleSearch}>Search</button>
+				<input type="text" className="searchInput" id="fname" name="fname" value={donorName} onChange={handleDonorInputChange} disabled={isLoading} />
             </div>
-            <button id="clearSearch" onClick={() => handleSectionSearch("all")}>Clear all filters</button>
+			<div className="searchOr" aria-hidden="true">OR</div>
+            <div id="searchInputsContainer">
+                <label htmlFor="inscription">Search by inscription:</label>
+				<input type="text" className="searchInput" id="inscription" name="inscription" value={inscription} onChange={handleInscriptionSearch} disabled={isLoading} />
+            </div>
+			<div id="searchInputsContainer">
+				<button id="submitSearch" onClick={handleSearch} disabled={isLoading} className={isLoading ? 'is-loading' : ''}>
+					{isLoading && <span className="spinner" aria-hidden="true"></span>}
+					<span>{isLoading ? 'Searching…' : 'Search'}</span>
+				</button>
+			</div>
+            <div id="searchInputsContainer">
+				<button id="clearSearch" onClick={handleClear} disabled={isLoading}>Clear all filters</button>
+            </div>
         </div>
     );
 });
@@ -43,30 +57,57 @@ const FilterModal = React.memo(function FilterModal({ isOpen, onClose, children 
     );
 });
 
-const Label = React.memo(function Label({ section, bricks, highlight }) {
-    const sections = ["Centenarian", "Heroes", "Golden Women", "Family/Friends", "Businesses/Organizations"];
-    let num = bricks.filter(b => {
-        if (typeof(b.Panel_Number) !== "number") return false;
-        const highlightMatch = b.Purchaser_Name.toLowerCase().includes(highlight.toLowerCase());
-        return highlight === "all" || b.Paver_Assigned_Section === highlight || highlightMatch;
-    }).length;
-
-    let countPhrase = `[${num} brick${num !== 1 ? 's' : ''}]`;
-    if (section === "all") return <span>All purchased bricks {countPhrase}</span>;
-    if (sections.includes(section)) return <span>Bricks in the section {section} {countPhrase}</span>;
-    return <span>Bricks purchased by {section} {countPhrase}</span>;
+const Label = React.memo(function Label({ highlight, bricks, committedType, isLoading }) {
+	if (isLoading && committedType === "inscription") {
+		return <span>Searching inscription…</span>;
+	}
+    const sections = SECTIONS;
+    const num = bricks.filter(b => typeof b.Panel_Number === "number" && matchesHighlight(b, highlight)).length;
+    const countPhrase = `[${num} brick${num !== 1 ? 's' : ''}]`;
+    let labelPhrase = "";
+    if (committedType === "section") {
+        labelPhrase = `Bricks in the section ${highlight}`;
+    }
+    if (committedType === "donor") {
+        labelPhrase = `Bricks purchased by ${highlight}`;
+    }
+    if (committedType === "inscription") {
+        labelPhrase = `Bricks with inscription "${highlight}"`;
+    }
+    if (committedType === "all") {
+        labelPhrase = "All purchased bricks";
+    }
+    return <div className="labelContainer">
+        <span className="labelText">{labelPhrase}</span>
+        <span className="countPhrase">{countPhrase}</span>
+    </div>
 });
 
 
-const Search = React.memo(function Search({ highlight, setHighlight, viewMode, setViewMode, bricks }) {
+const Search = React.memo(function Search({ highlight, setHighlight, viewMode, bricks }) {
 
     const [section, setSection] = useState("all");
-    const [searchValue, setSearchValue] = useState("");
+    const [donorName, setDonorName] = useState("");
+    const [inscription, setInscription] = useState("");
     const [isModalOpen, setIsModalOpen] = useState(false);
+	const [committedType, setCommittedType] = useState("all"); // "all" | "section" | "donor" | "inscription"
+	const [isLoading, setIsLoading] = useState(false);
     
-    const handleSearchInputChange = useCallback((e) => {
-        setSearchValue(e.target.value);
+    const handleDonorInputChange = useCallback((e) => {
+        if (e.target.value !== "") {
+            setSection("all");
+            setInscription("");
+        }
+        setDonorName(e.target.value);
     }, []);
+
+    const handleSectionSearch = useCallback((newSection) => {
+        if (newSection !== "all") {
+            setDonorName("");
+            setInscription("");
+        }
+        setSection(newSection);
+    }, [setSection, setDonorName]);
 
     const openModal = useCallback(() => {
         setIsModalOpen(true);
@@ -76,19 +117,54 @@ const Search = React.memo(function Search({ highlight, setHighlight, viewMode, s
         setIsModalOpen(false);
     }, []);
 
-    const handleSearch = useCallback(() => {
-        setHighlight(searchValue);
-        closeModal();
-    }, [searchValue, setHighlight, closeModal]);
-
-    const handleSectionSearch = useCallback((newSection) => {
-        setSection(newSection);
-        setHighlight(newSection);
-        if (newSection === "all") {
-            setSearchValue("");
+	const handleSearch = useCallback(() => {
+        const inscriptionQuery = inscription.trim();
+        const donorQuery = donorName.trim();
+        if (inscriptionQuery) {
+			setIsLoading(true);
+			setTimeout(() => {
+				setHighlight(inscriptionQuery);
+				setCommittedType("inscription");
+				closeModal();
+			}, 0);
+        } else if (donorQuery) {
+            setHighlight(donorQuery);
+            setCommittedType("donor");
+			closeModal();
+        } else if (section !== "all") {
+            setHighlight(section);
+            setCommittedType("section");
+			closeModal();
+        } else {
+            setHighlight("all");
+            setCommittedType("all");
+			closeModal();
         }
+    }, [donorName, inscription, setHighlight, closeModal, section]);
+
+	useEffect(() => {
+		if (committedType === "inscription" && highlight && isLoading) {
+			const id = setTimeout(() => setIsLoading(false), 800);
+			return () => clearTimeout(id);
+		}
+	}, [highlight, committedType, isLoading]);
+
+    const handleInscriptionSearch = useCallback((e) => {
+        if (e.target.value !== "") {
+            setSection("all");
+            setDonorName("");
+        }
+        setInscription(e.target.value);
+    }, []);
+
+    const handleClear = useCallback(() => {
+        setSection("all");
+        setDonorName("");
+        setInscription("");
+        setHighlight("all");
+        setCommittedType("all");
         closeModal();
-    }, [setHighlight, closeModal]);
+    }, [setHighlight]);
 
     return (
         <>
@@ -97,7 +173,7 @@ const Search = React.memo(function Search({ highlight, setHighlight, viewMode, s
                     <div id="keysContainer">
                         <div className="keyContainer">
                             <div id="redKeyBox" className="keyBox"></div>
-                            <div id="redKeyText"><Label section={highlight} bricks={bricks} highlight={highlight} /></div> 
+                            <div id="redKeyText"><Label highlight={highlight} bricks={bricks} committedType={committedType} /></div> 
                             <button onClick={openModal} tabIndex={0} className="accordion">Filter</button>
                         </div>
                         <div className="keyContainer">
@@ -116,10 +192,14 @@ const Search = React.memo(function Search({ highlight, setHighlight, viewMode, s
             <FilterModal isOpen={isModalOpen} onClose={closeModal}>
                 <SearchBox 
                     section={section}
-                    searchValue={searchValue}
+                    donorName={donorName}
+                    inscription={inscription}
                     handleSectionSearch={handleSectionSearch}
+                    handleDonorInputChange={handleDonorInputChange}
+                    handleInscriptionSearch={handleInscriptionSearch}
                     handleSearch={handleSearch}
-                    handleSearchInputChange={handleSearchInputChange}
+					handleClear={handleClear}
+					isLoading={isLoading}
                 />
             </FilterModal>
             
@@ -127,9 +207,9 @@ const Search = React.memo(function Search({ highlight, setHighlight, viewMode, s
                 The dataset used to build this site is incomplete. If you find any missing information or errors, do not hesitate to <Link to={"/report"}>let us know!</Link>
             </p>
 
-            {viewMode === 'list' && (
+				{viewMode === 'list' && (
                 <div id="staticSearchLabel">
-                    <Label section={highlight} bricks={bricks} highlight={highlight}/>
+						<Label highlight={highlight} bricks={bricks} committedType={committedType} isLoading={isLoading} />
                 </div>
             )}
         </>

@@ -224,7 +224,7 @@ export default function ManageBricks() {
                                     />
                                 </div>
                                 <div className="form-group">
-                                    <label>Panel Number:</label>
+                                    <label>Panel Number: <span className="subText">(-1 - 20ish)</span></label>
                                     <input
                                         type="number"
                                         value={editForm.Panel_Number}
@@ -232,7 +232,7 @@ export default function ManageBricks() {
                                     />
                                 </div>
                                 <div className="form-group">
-                                    <label>Column Number:</label>
+                                    <label>Column Number: <span className="subText">(0 - 9)</span></label>
                                     <input
                                         type="number"
                                         value={editForm.Col_Number}
@@ -242,7 +242,7 @@ export default function ManageBricks() {
                                     />
                                 </div>
                                 <div className="form-group">
-                                    <label>Row Number:</label>
+                                    <label>Row Number: <span className="subText">(1 - 15)</span></label>
                                     <input
                                         type="number"
                                         value={editForm.Row_Number}
@@ -254,7 +254,7 @@ export default function ManageBricks() {
                             </div>
 
                             <div className="form-group">
-                                <label>Inscription Line 1:</label>
+                                <label>Inscription Line 1: <span className="subText">(required)</span></label>
                                 <input
                                     type="text"
                                     value={editForm.Inscription_Line_1}

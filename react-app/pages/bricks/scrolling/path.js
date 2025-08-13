@@ -6,6 +6,7 @@ This component is all of the content in the scrollable path. It takes into accou
 */
 
 import React from 'react';
+import { matchesHighlight } from '../filter';
 
 export default function Path({ highlight, currentBrick, setCurrentBrick, bricks }) {
   const numRows = 15;
@@ -25,8 +26,7 @@ export default function Path({ highlight, currentBrick, setCurrentBrick, bricks 
     // find selected brick
     for (let b of bricks) {
       const col = 8 + (b.Panel_Number - 1) * bricksPerPanel + b.Col_Number;
-      let highlightMatch = b.Purchaser_Name.toLowerCase().includes(highlight.toLowerCase());
-      if (highlight == "all" || b.Paver_Assigned_Section == highlight || highlightMatch) {
+      if (matchesHighlight(b, highlight)) {
         if (b.Row_Number == rowIndex + 1 && col == colIndex + 1) {
           bData = b;
           break;

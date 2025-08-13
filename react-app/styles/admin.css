@@ -92,6 +92,13 @@
     border-radius: 15px;
     padding: 3px 8px;
 }
+
+.subText {
+    font-size: 12px;
+    color: #666;
+    font-style: italic;
+}
+
 #searchSubtext {
     margin-bottom: 15px;
 }

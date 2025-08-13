@@ -6,6 +6,7 @@ This component is all of the content in the scrollable path. It takes into accou
 */
 
 import React, { useState } from 'react';
+import { matchesHighlight } from '../filter';
 
 export default function VertPath({ highlight, currentBrick, setCurrentBrick, bricks, isWide }) {
   const numRows = 170;
@@ -34,8 +35,7 @@ export default function VertPath({ highlight, currentBrick, setCurrentBrick, bri
     // find selected brick
     for (let b of bricks) {
       const row = 8 + (b.Panel_Number - 1) * bricksPerPanel + b.Col_Number;
-      let highlightMatch = b.Purchaser_Name.toLowerCase().includes(highlight.toLowerCase());
-      if (highlight == "all" || b.Paver_Assigned_Section == highlight || highlightMatch) {
+      if (matchesHighlight(b, highlight)) {
         if (b.Row_Number == numCols - colIndex && row == rowIndex + 1) {
           bData = b;
           break;

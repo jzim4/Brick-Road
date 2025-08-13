@@ -118,7 +118,7 @@ export default function CreateBrick() {
                                     />
                                 </div>
                                 <div className="form-group">
-                                    <label>Panel Number:</label>
+                                    <label>Panel Number: <span className="subText">(-1 - 20ish)</span></label>
                                     <input
                                         type="number"
                                         value={brickData.Panel_Number}
@@ -126,7 +126,7 @@ export default function CreateBrick() {
                                     />
                                 </div>
                                 <div className="form-group">
-                                    <label>Column Number:</label>
+                                    <label>Column Number: <span className="subText">(0 - 9)</span></label>
                                     <input
                                         type="number"
                                         value={brickData.Col_Number}
@@ -136,7 +136,7 @@ export default function CreateBrick() {
                                     />
                                 </div>
                                 <div className="form-group">
-                                    <label>Row Number:</label>
+                                    <label>Row Number: <span className="subText">(1 - 15)</span></label>
                                     <input
                                         type="number"
                                         value={brickData.Row_Number}
@@ -148,7 +148,7 @@ export default function CreateBrick() {
                             </div>
 
                             <div className="form-group">
-                                <label>Inscription Line 1: <span className="required">(required)</span></label>
+                                <label>Inscription Line 1: <span className="subText">(required)</span></label>
                                 <input
                                     type="text"
                                     value={brickData.Inscription_Line_1}
