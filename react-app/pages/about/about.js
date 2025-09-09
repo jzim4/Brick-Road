@@ -15,11 +15,18 @@ export default function About() {
 function TheSite() {
     return <div className="aboutComponent">
         <h3 className="aboutHeader">How to navigate the site</h3>
-        <p>On the home page, there are two views: scrollable path and brick list. The full path is only available on larger devices.
-            To navigate the path, you can hover over the bricks to see their messages, and click to learn more information about the purchaser.
-            For the brick list, you are able to simply see all of the bricks expanded at once. This view is accessible on both smaller and larger devices.
-            In either view, you can click the "filter" dropdown in order to show only bricks within a donor group or purchased by a specific purchaser.
-            If you are interested in learning more about Rondo, in addition to this page, you can click on the panels on the full path in order to zoom in and read.
+        <p>On the home page, there are two views: scrollable path and brick list. 
+            The scrollable path is a near accurate representation of the path at the plaza! You can scroll through and click on bricks 
+            to see their messages and more information. You can also click on the panels in order to zoom in and see their information 
+            and images more clearly.
+
+            The brick list view is meant to see all of the bricks in one place; these are ordered generally according to the 
+            path, where the top of the list is the furthest to the left when facing the panels. 
+
+            In each of the views, you are able to filter according to the purchaser name or group.
+
+            If you find a typo, or want to provide any other feedback, please navigate to the "Report an Error" page that you 
+            will find linked at the top.
         </p>
     </div>
 }
