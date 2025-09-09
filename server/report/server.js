@@ -25,8 +25,6 @@ export async function getReports(supabase) {
         error: userError
     } = await supabase.auth.getUser();
 
-    console.log(user);
-
     if (userError || !user) {
         throw new Error("User not authenticated");
     }
@@ -39,7 +37,23 @@ export async function getReports(supabase) {
         console.error(error);
         throw new Error(`Failed to fetch reports: ${error.message}`);
     }
-
-    console.log("Reports fetched from Supabase:", reports);
     return reports;
+}
+
+export async function updateReport(supabase, reportId, isFixed) {
+    const { data, error } = await supabase
+        .from('report')
+        .update({ isFixed: isFixed })
+        .eq('id', reportId)
+        .select('*')
+
+    if (error) {
+        console.error("Supabase update error:", error);
+        throw new Error(`Failed to update report: ${error.message}`);
+    }
+    if (data.length == 0) {
+        throw new Error("Report not found");
+    }
+    console.log("Report updated:", data);
+    return data;
 }

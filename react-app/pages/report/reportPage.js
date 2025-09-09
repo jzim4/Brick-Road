@@ -5,6 +5,7 @@ import axios from 'axios';
 import {serverLink } from '../app.js';
 
 export default function ReportPage() {
+    const serverUrl = process.env.REACT_APP_SERVER_URL;
     const [formData, setFormData] = useState({
         purchaserName: '',
         reporterEmail: '',
@@ -24,10 +25,8 @@ export default function ReportPage() {
         }));
         // Clear error when user starts typing
         if (errors[name]) {
-            setErrors(prev => ({
-                ...prev,
-                [name]: ''
-            }));
+            delete errors[name];
+            setErrors(errors);
         }
         setSubmissionStatus(null); // Reset status on new input
     };
@@ -61,7 +60,7 @@ export default function ReportPage() {
         setIsSubmitting(true);
         setSubmissionStatus(null);
 
-        axios.post(serverLink + "/report",
+        axios.post(`${serverUrl}/report`,
             {
                 purchaserName: formData.purchaserName,
                 reporterEmail: formData.reporterEmail,

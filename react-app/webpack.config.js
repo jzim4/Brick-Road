@@ -1,14 +1,19 @@
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const webpack = require('webpack');
 
 module.exports = {
     entry: './pages/index.js', // Changed to index.js which contains ReactDOM.render
     output: {
-        path: path.resolve(__dirname, 'dist'),
-        filename: 'bundle.js'
+        path: path.resolve(__dirname, 'public'),
+        filename: 'bundle.js',
+        publicPath: '/'
     },
     mode: 'development',
     devtool: 'source-map', // Equivalent to browserify's debug: true
+    devServer: {
+        allowedHosts: 'https://brick-road-api.vercel.app/',
+    },
     module: {
         rules: [
             {
@@ -37,11 +42,14 @@ module.exports = {
         ]
     },
     resolve: {
-        extensions: ['.js', '.jsx'] // Same as browserify extensions
+        extensions: ['.js', '.jsx']
     },
     plugins: [
         new HtmlWebpackPlugin({
             template: './index.html'
+        }),
+        new webpack.DefinePlugin({
+            'process.env.REACT_APP_SERVER_URL': JSON.stringify('https://brick-road-api.vercel.app')
         })
     ]
 }

@@ -6,11 +6,17 @@ This component is all of the content in the scrollable path. It takes into accou
 */
 
 import React from 'react';
+import { matchesHighlight } from '../filter';
 
-export default function Path({ highlight, currentBrick, bricks }) {
+export default function Path({ highlight, currentBrick, setCurrentBrick, bricks }) {
   const numRows = 15;
   const numCols = 170;
   const bricksPerPanel = 10;
+
+  function handleBrickClick(brickData) {
+    console.log("clicked brick", brickData);
+    setCurrentBrick(brickData);
+  }
 
   /* this component determines if the brick should be highlighted or shown as the selected brick to determine 
     class names and conditionally add the pop-up
@@ -20,8 +26,7 @@ export default function Path({ highlight, currentBrick, bricks }) {
     // find selected brick
     for (let b of bricks) {
       const col = 8 + (b.Panel_Number - 1) * bricksPerPanel + b.Col_Number;
-      let highlightMatch = b.Purchaser_Name.toLowerCase().includes(highlight.toLowerCase());
-      if (highlight == "all" || b.Paver_Assigned_Section == highlight || highlightMatch) {
+      if (matchesHighlight(b, highlight)) {
         if (b.Row_Number == rowIndex + 1 && col == colIndex + 1) {
           bData = b;
           break;
@@ -31,7 +36,9 @@ export default function Path({ highlight, currentBrick, bricks }) {
     // if brick should be highlighted, either return the existing or clicked format
     if (bData) {
       const col = (bData.Panel_Number - 1) * bricksPerPanel + bData.Col_Number;
-      return <div className={'existingBrick brick ' + (bData == currentBrick ? "clickedBrick" : "")} key={100 * rowIndex + colIndex}>
+      return <div className={'existingBrick brick ' + (bData == currentBrick ? "clickedBrick" : "")} key={100 * rowIndex + colIndex}
+      onClick={() => handleBrickClick(bData)}
+      >
         <span className={"popupText " + (col < 3 ? "popupTextLeft" : col > numCols - 4 ? "popupTextRight" : "")}>
           {bData.Inscription_Line_1}<br></br>
           {bData.Inscription_Line_2}<br></br>

@@ -1,17 +1,22 @@
 import React, { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import Layout from '../layout.js';
 import axios from 'axios';
-import { createColumnHelper, useReactTable, getCoreRowModel, getFilteredRowModel, getPaginationRowModel, flexRender } from '@tanstack/react-table';
+import { useAuth } from '../../contexts/AuthContext.js';
+import { createColumnHelper, useReactTable, getCoreRowModel, getFilteredRowModel, getPaginationRowModel, getSortedRowModel, flexRender } from '@tanstack/react-table';
 import AdminHeader from './adminHeader.js';
-import {serverLink} from '../app.js'
+import '../../styles/admin.css';
+import { SquarePen } from 'lucide-react';
+
 
 export default function AdminDashboard() {
+    const serverUrl = process.env.REACT_APP_SERVER_URL;
+    const { getToken, isAuthenticated, loading } = useAuth();
     const [bricks, setBricks] = useState([]);
     const [reports, setReports] = useState([]);
     const [brickLoading, setBrickLoading] = useState(true);
     const [reportLoading, setReportLoading] = useState(true);
-
+    const navigate = useNavigate();
     const [brickError, setBrickError] = useState(null);
     const [reportError, setReportError] = useState(null);
     const [brickStats, setBrickStats] = useState({
@@ -23,15 +28,26 @@ export default function AdminDashboard() {
         pageIndex: 0,
         pageSize: 10,
     })
+    const [sorting, setSorting] = useState([{ id: 'Purchaser_Name', desc: false }]);
 
     function searchChange(e) {
         const val = e.target.value;
         setGlobalFilter(val);
     }
 
+    function handleSortingChange(id) {
+        setSorting(prev => {
+            const isSorted = prev.some(sort => sort.id === id);
+            if (isSorted) {
+                return [{id: id, desc: !prev.find(sort => sort.id === id).desc}]
+            }
+            return [{ id, desc: false }];
+        });
+    }
+
     useEffect(() => {
         // Fetch bricks data for admin overview
-        axios.get(serverLink + "/bricks")
+        axios.get(`${serverUrl}/bricks`)
             .then(response => {
                 const bricksData = response.data;
                 setBricks(bricksData);
@@ -50,19 +66,30 @@ export default function AdminDashboard() {
             .finally(() => {
                 setBrickLoading(false);
             });
+    }, []);
 
-        axios.get(serverLink + "/reports")
+    // Fetch reports only after auth state is ready and a token exists
+    useEffect(() => {
+        if (loading) return; // wait for auth provider to initialize
+        const token = getToken?.();
+        if (!token) return; // not authenticated yet; do not call
+
+        setReportLoading(true);
+        axios.get(`${serverUrl}/reports`, { headers: { Authorization: `Bearer ${token}` } })
             .then(response => {
                 const reports = response.data;
                 setReports(reports);
             })
             .catch(err => {
                 setReportError(err.message);
+                if (err?.response?.status === 401) {
+                    navigate("/admin/signin");
+                }
             })
             .finally(() => {
                 setReportLoading(false);
             })
-    }, []);
+    }, [loading, isAuthenticated]);
 
     const columnHelper = createColumnHelper()
 
@@ -84,23 +111,24 @@ export default function AdminDashboard() {
         columnHelper.accessor('Panel_Number', {
             header: 'Panel',
         }),
-        columnHelper.accessor('Row_Number', {
-            header: 'Row',
-        }),
         columnHelper.accessor('Col_Number', {
             header: 'Column',
         }),
+        columnHelper.accessor('Row_Number', {
+            header: 'Row',
+        }),
         columnHelper.display({
             id: 'Edit',
-            header: 'Edit',
+            header: '',
             cell: ({ row }) => {
                 const brick = row.original;
                 return (
                     <Link
-                        className="edit-button"
+                        className="edit-cell"
                         to={`/admin/manage/${brick.Panel_Number}/${brick.Col_Number}/${brick.Row_Number}`}
+                        title="Edit Brick"
                     >
-                        Edit
+                        <SquarePen size={25} />
                     </Link>
                 );
             }
@@ -114,12 +142,14 @@ export default function AdminDashboard() {
         getCoreRowModel: getCoreRowModel(),
         getFilteredRowModel: getFilteredRowModel(),
         getPaginationRowModel: getPaginationRowModel(),
+        getSortedRowModel: getSortedRowModel(),
         globalFilterFn: 'includesString',
         onGlobalFilterChange: setGlobalFilter,
         onPaginationChange: setPagination,
         state: {
             globalFilter,
-            pagination
+            pagination,
+            sorting
         }
     });
 
@@ -146,21 +176,23 @@ export default function AdminDashboard() {
     return (
         <Layout>
             <div className="admin-container">
-                <AdminHeader/>
+                <AdminHeader page="Admin Dashboard"/>
 
                 <div className="admin-stats">
                     <div className="stat-card">
-                        <h3>Total Bricks</h3>
+                        <h3 className="stat-header">Total Bricks</h3>
                         <div className="stat-number">{brickStats.totalBricks}</div>
                     </div>
                     <div className="stat-card">
-                        <h3>Purchasers</h3>
+                        <h3 className="stat-header">Purchasers</h3>
                         <div className="stat-number">{brickStats.totalPurchasers}</div>
                     </div>
                     <div className="stat-card">
                         <Link to="/admin/requests">
                         <h3 className="stat-header">Open Requests</h3>
-                        <div className="stat-number">{reports.filter(r => !r.isFixed).length}</div>
+                        <div className="stat-number">{
+                            reports ? reports.filter(r => !r.isFixed).length : ""
+                        }</div>
                         </Link>
                     </div>
                 </div>
@@ -182,11 +214,17 @@ export default function AdminDashboard() {
                                     {table.getHeaderGroups().map(headerGroup => (
                                         <tr key={headerGroup.id}>
                                             {headerGroup.headers.map(header => (
-                                                <th key={header.id}>
+                                                <th key={header.id} 
+                                                    onClick={() => header.id !== 'Edit' && handleSortingChange(header.id)} 
+                                                    className={header.id === 'Edit' ? 'edit-header-cell' : 'sortable-header'} 
+                                                    title={header.id === 'Edit' ? '' : `Click to sort by ${header.column.columnDef.header}`}>
                                                     {header.isPlaceholder
                                                         ? null
                                                         : flexRender(
-                                                            header.column.columnDef.header,
+                                                            header.column.columnDef.header + (
+                                                                sorting.find(sort => sort.id === header.id) ?
+                                                                sorting.find(sort => sort.id === header.id).desc ? ' ▼' : ' ▲' : ''
+                                                            ),
                                                             header.getContext()
                                                         )}
                                                 </th>
@@ -198,7 +236,7 @@ export default function AdminDashboard() {
                                     {table.getRowModel().rows.map(row => (
                                         <tr key={row.id}>
                                             {row.getVisibleCells().map(cell => (
-                                                <td key={cell.id}>
+                                                <td key={cell.id} className={cell.column.id === 'Edit' ? 'edit-cell' : ''}>
                                                     {flexRender(cell.column.columnDef.cell, cell.getContext())}
                                                 </td>
                                             ))}

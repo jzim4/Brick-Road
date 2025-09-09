@@ -7,32 +7,154 @@
     display: none;
     top: 0;
     left: 0;
-    background-color: #bbbbbbcc;
-    z-index: 4;
+    background-color: rgba(0, 0, 0, 0.5); /* Slightly lighter backdrop */
+    backdrop-filter: blur(8px); /* Frosted glass effect */
+    -webkit-backdrop-filter: blur(8px); /* For Safari */
+    z-index: 100;
+    animation: fadeIn 0.3s ease-out;
 }
+
 #selectedBrickContainer {
-    background-color: #ddd;
-    border: black solid 2px;
+    background-color: #f8f8f8; /* Softer white */
+    border-radius: 24px; /* More rounded corners */
+    box-shadow: 0 16px 48px rgba(0,0,0,0.2); /* Deeper, softer shadow */
     position: fixed;
-    z-index: 1;
-    top: 100px;
+    z-index: 101;
+    top: 50%;
     left: 50%;
-    transform: translateX(-50%);
-    padding: 20px 50px;
-    z-index: 6;
+    transform: translate(-50%, -50%);
+    padding: 32px;
+    width: 90%;
+    max-width: 550px;
+    animation: slideUp 0.5s cubic-bezier(0.165, 0.84, 0.44, 1); /* Smoother animation */
 }
+
 #selectedBrick {
-    margin-top: 10px;
-    width: 400px;
-    height: 200px;
-    background-color: var(--brick-red);
-    background-image: var(--noise);
+    margin-top: 20px;
+    width: 100%;
+    min-height: 180px; /* Use min-height to adapt to content */
+    background: var(--noise), linear-gradient(145deg, var(--brick-red), #b55a4c); /* More realistic brick gradient */
     text-align: center;
     display: flex;
     flex-direction: column;
     justify-content: center;
-    color: white;
+    align-items: center;
+    color: #ffffff;
+    border-radius: 12px; /* Consistent rounding */
+    font-size: 1.3rem; /* Larger font for inscription */
+    font-weight: 500;
+    padding: 24px;
+    letter-spacing: 0.5px;
+    text-shadow: 1px 1px 3px rgba(0,0,0,0.2);
+    box-sizing: border-box; /* Ensure padding is included in width */
 }
+
+#selectedBrickDescr {
+    margin-top: 28px;
+    display: flex;
+    flex-direction: column;
+    gap: 24px; /* Space between description sections */
+}
+
+.description-grid {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap: 8px 16px;
+    color: #444;
+    font-size: 1rem;
+    align-items: center;
+    margin-left: 5px;
+}
+
+.description-grid > p {
+    margin: 0;
+    padding: 4px 0;
+    display: contents;
+}
+
+.description-grid > p::before {
+    content: attr(data-label);
+    font-weight: 600;
+    color: #666;
+}
+
+.location-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(80px, 1fr));
+    gap: 16px;
+    background-color: #edebe8;
+    padding: 16px;
+    border-radius: 12px;
+}
+
+.location-item {
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.location-item span {
+    font-size: 0.85rem;
+    color: #777;
+    margin-bottom: 4px;
+}
+
+.location-item strong {
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: #333;
+}
+
+.brick-link-button {
+    display: block;
+    width: 100%;
+    padding: 16px;
+    background-color: #3498db;
+    color: white;
+    text-align: center;
+    text-decoration: none;
+    border-radius: 12px;
+    font-size: 1.1rem;
+    font-weight: 600;
+    transition: background-color 0.3s, transform 0.2s;
+}
+
+.brick-link-button:hover {
+    background-color: #2980b9;
+    transform: translateY(-2px);
+}
+
 #selectedCloseButton {
-    background-color: var(--brick-red);
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    background-color: #e0e0e0;
+    border: none;
+    border-radius: 50%;
+    width: 36px;
+    height: 36px;
+    font-size: 1.5rem;
+    line-height: 36px; /* Center the 'x' */
+    text-align: center;
+    color: #888;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+#selectedCloseButton:hover {
+    background-color: #d0d0d0;
+    color: #333;
+    transform: rotate(90deg) scale(1.1);
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+@keyframes slideUp {
+    from { transform: translate(-50%, -45%); opacity: 0; }
+    to { transform: translate(-50%, -50%); opacity: 1; }
 }
