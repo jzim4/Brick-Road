@@ -17,6 +17,7 @@ export const AuthProvider = ({ children }) => {
     const [user, setUser] = useState(null);
     const [isAuthenticated, setIsAuthenticated] = useState(false);
     const [loading, setLoading] = useState(true);
+    const [pendingSignIn, setPendingSignIn] = useState(false);
 
     // Check for existing authentication on app load
     useEffect(() => {
@@ -53,25 +54,39 @@ export const AuthProvider = ({ children }) => {
     // Sign in function
     const signIn = (userData, sessionData) => {
         try {
+            setPendingSignIn(true);
             // Only store the access token and its expiry
             const accessToken = sessionData?.access_token;
-            const expiresAt = sessionData?.expires_at; // Could be epoch seconds or ISO string
+            let expiresAt = sessionData?.expires_at; // Could be epoch seconds or ISO string
 
             if (!accessToken || !expiresAt) {
                 throw new Error('Invalid session data');
             }
 
-            const expiryDate = typeof expiresAt === 'number'
-                ? new Date(expiresAt * 1000)
-                : new Date(expiresAt);
+            // If expiresAt is a string and not a number, try to parse as ISO, else as epoch seconds
+            let expiryDate;
+            if (typeof expiresAt === 'number') {
+                expiryDate = new Date(expiresAt * 1000);
+            } else if (!isNaN(Number(expiresAt))) {
+                expiryDate = new Date(Number(expiresAt) * 1000);
+            } else {
+                expiryDate = new Date(expiresAt);
+            }
+
+            // If expiry is invalid or in the past, fail sign-in
+            if (!(expiryDate instanceof Date) || isNaN(expiryDate.getTime()) || expiryDate <= new Date()) {
+                throw new Error('Session expiry is invalid or expired');
+            }
 
             localStorage.setItem('authToken', accessToken);
             localStorage.setItem('authTokenExpiry', expiryDate.toISOString());
 
             setUser(null); // We are not persisting user client-side
             setIsAuthenticated(true);
+            setPendingSignIn(false);
             return true;
         } catch (error) {
+            setPendingSignIn(false);
             console.error('Error storing auth token:', error);
             return false;
         }
@@ -102,12 +117,13 @@ export const AuthProvider = ({ children }) => {
     };
 
     const value = {
-        user,
-        isAuthenticated,
-        loading,
-        signIn,
-        signOut,
-        getToken
+    user,
+    isAuthenticated,
+    loading,
+    pendingSignIn,
+    signIn,
+    signOut,
+    getToken
     };
 
     return (

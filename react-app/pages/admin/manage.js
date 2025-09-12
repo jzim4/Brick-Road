@@ -81,7 +81,7 @@ export default function ManageBricks() {
     const handleSaveBrick = async () => {
         setValidationError([]);
         setIsSuccess(null);
-        const errors = [];
+        let errors = [];
 
         if (!editForm.Inscription_Line_1.trim()) {
             errors.push('Inscription Line 1 is required.');
@@ -108,6 +108,8 @@ export default function ManageBricks() {
                 errors.push('Could not validate brick location. Please try again.');
             }
         }
+
+        console.log(errors);
 
         if (errors.length > 0) {
             setValidationError(errors);

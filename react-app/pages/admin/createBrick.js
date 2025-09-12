@@ -32,11 +32,12 @@ export default function CreateBrick() {
     };
 
     const handleCreateBrick = async () => {
-        setValidationError([]);
+
+        let errors = [];
         setIsSuccess(null);
 
         if (!brickData.Inscription_Line_1.trim()) {
-            setValidationError(['Inscription Line 1 is required.']);
+            errors.push('Inscription Line 1 is required.');
         }
         const brickLocations = await axios.get(`${serverUrl}/brick-locations`);
         const exists = brickLocations.data.some(loc =>
@@ -45,9 +46,10 @@ export default function CreateBrick() {
             String(loc.Col_Number) === String(brickData.Col_Number)
         );
         if (exists) {
-            setValidationError([...validationError, `A brick already exists at this location (Panel ${brickData.Panel_Number}, Row ${brickData.Row_Number}, Col ${brickData.Col_Number}).`]);
+            errors.push(`A brick already exists at this location (Panel ${brickData.Panel_Number}, Row ${brickData.Row_Number}, Col ${brickData.Col_Number}).`);
         }
-        if (validationError.length > 0) {
+        setValidationError(errors);
+        if (errors.length > 0) {
             return;
         }
 

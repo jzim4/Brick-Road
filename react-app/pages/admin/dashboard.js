@@ -68,9 +68,9 @@ export default function AdminDashboard() {
             });
     }, []);
 
-    // Fetch reports only after auth state is ready and a token exists
+    // Fetch reports only after auth state is ready, isAuthenticated is true, and a token exists
     useEffect(() => {
-        if (loading) return; // wait for auth provider to initialize
+        if (loading || !isAuthenticated) return; // wait for auth provider and authentication
         const token = getToken?.();
         if (!token) return; // not authenticated yet; do not call
 
@@ -83,7 +83,8 @@ export default function AdminDashboard() {
             .catch(err => {
                 setReportError(err.message);
                 if (err?.response?.status === 401) {
-                    navigate("/admin/signin");
+                    // Only redirect if user is not authenticated
+                    if (isAuthenticated) navigate("/admin/signin");
                 }
             })
             .finally(() => {

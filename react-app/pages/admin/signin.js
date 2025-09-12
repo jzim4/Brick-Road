@@ -27,6 +27,13 @@ export default function Signin() {
         }
     }, [pendingRedirect, isAuthenticated, navigate]);
 
+    // If already authenticated, redirect immediately to dashboard
+    useEffect(() => {
+        if (isAuthenticated) {
+            navigate(from, { replace: true });
+        }
+    }, [isAuthenticated, navigate, from]);
+
     const handleInputChange = (e) => {
         const { name, value } = e.target;
         setFormData(prev => ({
@@ -131,6 +138,7 @@ export default function Signin() {
                             type="password"
                             id="password"
                             name="password"
+                            autocomplete="on"
                             value={formData.password}
                             onChange={handleInputChange}
                             required
