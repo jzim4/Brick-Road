@@ -51,6 +51,8 @@ export const AuthProvider = ({ children }) => {
         checkAuthStatus();
     }, []);
 
+    // No global event wiring — keep auth simple and local.
+
     // Sign in function
     const signIn = (userData, sessionData) => {
         try {
@@ -81,14 +83,15 @@ export const AuthProvider = ({ children }) => {
             localStorage.setItem('authToken', accessToken);
             localStorage.setItem('authTokenExpiry', expiryDate.toISOString());
 
+
             setUser(null); // We are not persisting user client-side
             setIsAuthenticated(true);
             setPendingSignIn(false);
             return true;
         } catch (error) {
-            setPendingSignIn(false);
-            console.error('Error storing auth token:', error);
-            return false;
+                setPendingSignIn(false);
+                console.error('Error storing auth token:', error);
+                return false;
         }
     };
 
@@ -98,8 +101,9 @@ export const AuthProvider = ({ children }) => {
         setIsAuthenticated(false);
         
         // Clear stored authentication token
-        localStorage.removeItem('authToken');
-        localStorage.removeItem('authTokenExpiry');
+    localStorage.removeItem('authToken');
+    localStorage.removeItem('authTokenExpiry');
+    // keep it simple: local clear only
     };
 
     // Get current session from storage

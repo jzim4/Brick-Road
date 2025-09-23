@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import Layout from '../layout.js';
 import axios from 'axios';
+import apiClient from '../../utils/apiClient';
 import { useAuth } from '../../contexts/AuthContext.js';
 import { createColumnHelper, useReactTable, getCoreRowModel, getFilteredRowModel, getPaginationRowModel, getSortedRowModel, flexRender } from '@tanstack/react-table';
 import AdminHeader from './adminHeader.js';
@@ -75,16 +76,16 @@ export default function AdminDashboard() {
         if (!token) return; // not authenticated yet; do not call
 
         setReportLoading(true);
-        axios.get(`${serverUrl}/reports`, { headers: { Authorization: `Bearer ${token}` } })
+        apiClient.get('/reports')
             .then(response => {
                 const reports = response.data;
                 setReports(reports);
             })
             .catch(err => {
                 setReportError(err.message);
-                if (err?.response?.status === 401) {
-                    // Only redirect if user is not authenticated
-                    if (isAuthenticated) navigate("/admin/signin");
+                if (err.isAuthError || err?.response?.status === 401) {
+                    // Central handler will sign out and redirect; nothing more here
+                    return;
                 }
             })
             .finally(() => {

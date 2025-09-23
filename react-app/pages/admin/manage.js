@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import apiClient from '../../utils/apiClient';
 import { Link, useNavigate } from 'react-router-dom';
 import Layout from '../layout.js';
 import { useAuth } from '../../contexts/AuthContext.js';
@@ -120,15 +121,7 @@ export default function ManageBricks() {
         try {
             const brickId = selectedBrick.id;
             console.log("Edit form:", editForm);
-            const token = getToken?.();
-            await axios.put(`${serverUrl}/bricks/${brickId}`, { data: editForm }, {
-                headers: token ? { Authorization: `Bearer ${token}` } : {}
-            }).catch((err) => {
-                if (err?.response?.status === 401) {
-                   navigate("/admin/signin");
-                }
-                throw err;
-            });
+            await apiClient.put(`/bricks/${brickId}`, { data: editForm });
             setIsSuccess(true);
         } catch (error) {
             console.error('Save error:', error);
@@ -149,15 +142,13 @@ export default function ManageBricks() {
 
         try {
             const brickId = selectedBrick.id;
-            const token = getToken?.();
-            await axios.delete(`${serverUrl}/bricks/${brickId}`, {
-                headers: token ? { Authorization: `Bearer ${token}` } : {}
-            }).catch((err) => {
-                if (err?.response?.status === 401) {
-                    navigate("/admin/signin");
-                }
-                throw err;
-            });
+            // debug: log token presence
+            try {
+                const t = getToken && typeof getToken === 'function' ? getToken() : null;
+                console.debug('Deleting brick, client token present:', !!t);
+                console.debug('LocalStorage authToken:', localStorage.getItem('authToken') ? '[present]' : '[missing]');
+            } catch (e) {}
+            await apiClient.delete(`/bricks/${brickId}`);
             navigate('/admin/dashboard');
         } catch (error) {
             console.error('Delete error:', error);

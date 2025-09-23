@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react"
 import AdminHeader from "./adminHeader"
 import Layout from "../layout"
 import axios from "axios";
+import apiClient from '../../utils/apiClient';
 import { useAuth } from "../../contexts/AuthContext.js";
 import { useNavigate } from "react-router-dom";
 const ReportModal = ({ report, onClose, onUpdate }) => {
@@ -52,19 +53,18 @@ export default function Reports() {
     const [showAddressed, setShowAddressed] = useState(true);
 
     useEffect(() => {
-
-        const token = getToken?.();
-        axios.get(`${serverUrl}/reports`, { headers: token ? { Authorization: `Bearer ${token}` } : {} })
+        apiClient.get('/reports')
             .then(response => {
                 const reports = response.data.map((r, index) => ({...r, id: r.id || index}));
                 setReports(reports);
                 console.log(reports);
             })
             .catch(err => {
-                if (err?.response?.status === 401) {
-                    navigate('/admin/signin');
+                if (err.isAuthError || err?.response?.status === 401) {
+                    // Central handler will clear token and redirect; stop further handling here
+                    return;
                 }
-                setError(err.message);
+                setError(err.message || 'Failed to load reports');
             })
             .finally(() => {
                 setLoading(false);
@@ -73,15 +73,13 @@ export default function Reports() {
 
     const handleUpdateReport = (updatedReport) => {
         console.log("Updating report:", updatedReport);
-        const token = getToken?.();
-        axios.put(`${serverUrl}/update-report/${updatedReport.id}`, { isFixed: updatedReport.isFixed }, {
-            headers: token ? { Authorization: `Bearer ${token}` } : {}
-        }).catch((err) => {
-            if (err?.response?.status === 401) {
-                navigate("/admin/signin");
-            }
-            throw err;
-        })
+        apiClient.put(`/update-report/${updatedReport.id}`, { isFixed: updatedReport.isFixed })
+            .catch((err) => {
+                if (err.isAuthError || err?.response?.status === 401) {
+                    return Promise.reject(err);
+                }
+                return Promise.reject(err);
+            })
             .then((response) => {
                 console.log("Response:", response);
                 const updatedFromServer = response.data[0];

@@ -3,6 +3,7 @@ import Layout from '../layout.js';
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
+import apiClient from '../../utils/apiClient';
 import { useAuth } from '../../contexts/AuthContext.js';
 
 export default function CreateBrick() {
@@ -39,7 +40,7 @@ export default function CreateBrick() {
         if (!brickData.Inscription_Line_1.trim()) {
             errors.push('Inscription Line 1 is required.');
         }
-        const brickLocations = await axios.get(`${serverUrl}/brick-locations`);
+    const brickLocations = await axios.get(`${serverUrl}/brick-locations`);
         const exists = brickLocations.data.some(loc =>
             String(loc.Panel_Number) === String(brickData.Panel_Number) &&
             String(loc.Row_Number) === String(brickData.Row_Number) &&
@@ -57,15 +58,7 @@ export default function CreateBrick() {
         try {
             // TODO: Link this to the backend to create the brick
             console.log("Creating brick with data:", brickData);
-            const token = getToken?.();
-            await axios.post(`${serverUrl}/create-brick`, { data: brickData }, {
-                headers: token ? { Authorization: `Bearer ${token}` } : {}
-            }).catch((err) => {
-                if (err?.response?.status === 401) {
-                    window.location.hash = '#/admin/signin';
-                }
-                throw err;
-            });
+            await apiClient.post('/create-brick', { data: brickData });
             setIsSuccess(true);
             setBrickData({
                 Naming_Year: '',
