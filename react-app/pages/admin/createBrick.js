@@ -40,6 +40,24 @@ export default function CreateBrick() {
         if (!brickData.Inscription_Line_1.trim()) {
             errors.push('Inscription Line 1 is required.');
         }
+        if (isNaN(parseInt(brickData.Row_Number))) {
+            errors.push('Row number is required.');
+        }
+        else if (parseInt(brickData.Row_Number) < 1 || parseInt(brickData.Row_Number) > 15) {
+            errors.push('Row number is out of range.');
+        }
+        if (isNaN(parseInt(brickData.Col_Number))) {
+            errors.push('Column number is required.');
+        }
+        else if (parseInt(brickData.Col_Number) < 0 || parseInt(brickData.Col_Number) > 9) {
+            errors.push('Column number is out of range.');
+        }
+        if (isNaN(parseInt(brickData.Panel_Number))) {
+            errors.push('Panel number is required.');
+        }
+        else if (parseInt(brickData.Panel_Number) < -1 || parseInt(brickData.Panel_Number) > 25) {
+            errors.push('Panel number is out of range.');
+        }
     const brickLocations = await axios.get(`${serverUrl}/brick-locations`);
         const exists = brickLocations.data.some(loc =>
             String(loc.Panel_Number) === String(brickData.Panel_Number) &&
@@ -57,7 +75,6 @@ export default function CreateBrick() {
         setIsSaving(true);
         try {
             // TODO: Link this to the backend to create the brick
-            console.log("Creating brick with data:", brickData);
             await apiClient.post('/create-brick', { data: brickData });
             setIsSuccess(true);
             setBrickData({
@@ -113,7 +130,7 @@ export default function CreateBrick() {
                                     <label>Naming Year:</label>
                                     <input
                                         type="text"
-                                        value={brickData.Naming_Year}
+                                        value={brickData.Naming_Year || ""}
                                         onChange={(e) => handleInputChange('Naming_Year', e.target.value)}
                                     />
                                 </div>

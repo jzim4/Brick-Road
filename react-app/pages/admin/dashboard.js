@@ -47,27 +47,29 @@ export default function AdminDashboard() {
     }
 
     useEffect(() => {
-        // Fetch bricks data for admin overview
-        axios.get(`${serverUrl}/bricks`)
-            .then(response => {
-                const bricksData = response.data;
-                setBricks(bricksData);
-
-                // Calculate statistics
-                const uniquePurchasers = new Set(bricksData.map(brick => brick.Purchaser_Name));
-
-                setBrickStats({
-                    totalBricks: bricksData.length,
-                    totalPurchasers: uniquePurchasers.size
+        if (isAuthenticated) {
+            // Fetch bricks data for admin overview
+            axios.get(`${serverUrl}/bricks`)
+                .then(response => {
+                    const bricksData = response.data;
+                    setBricks(bricksData);
+    
+                    // Calculate statistics
+                    const uniquePurchasers = new Set(bricksData.map(brick => brick.Purchaser_Name));
+    
+                    setBrickStats({
+                        totalBricks: bricksData.length,
+                        totalPurchasers: uniquePurchasers.size
+                    });
+                })
+                .catch(err => {
+                    setBrickError(err.message);
+                })
+                .finally(() => {
+                    setBrickLoading(false);
                 });
-            })
-            .catch(err => {
-                setBrickError(err.message);
-            })
-            .finally(() => {
-                setBrickLoading(false);
-            });
-    }, []);
+        }
+    }, [isAuthenticated]);
 
     // Fetch reports only after auth state is ready, isAuthenticated is true, and a token exists
     useEffect(() => {

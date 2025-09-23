@@ -17,14 +17,8 @@ export function getAuthTokenSafely() {
 }
 
 export function handleAuthError() {
-  try {
-  localStorage.removeItem('authToken');
-  localStorage.removeItem('authTokenExpiry');
-  } catch (err) {
-    console.error('Error clearing auth token:', err);
-  }
-
-  // Dispatch a global event so React can respond and update context
+  // Do not remove auth tokens here. Higher-level logic can decide whether to
+  // keep or clear tokens. Just notify the app that an auth error occurred.
   try {
     if (typeof window !== 'undefined' && typeof window.dispatchEvent === 'function') {
       window.dispatchEvent(new CustomEvent('app:signout'));

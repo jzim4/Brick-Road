@@ -52,6 +52,21 @@ export const AuthProvider = ({ children }) => {
     }, []);
 
     // No global event wiring — keep auth simple and local.
+    // Listen for global signout events (dispatched by authHelpers.handleAuthError)
+    useEffect(() => {
+        const handler = () => {
+            setUser(null);
+            setIsAuthenticated(false);
+        };
+        if (typeof window !== 'undefined' && typeof window.addEventListener === 'function') {
+            window.addEventListener('app:signout', handler);
+        }
+        return () => {
+            if (typeof window !== 'undefined' && typeof window.removeEventListener === 'function') {
+                window.removeEventListener('app:signout', handler);
+            }
+        };
+    }, []);
 
     // Sign in function
     const signIn = (userData, sessionData) => {
