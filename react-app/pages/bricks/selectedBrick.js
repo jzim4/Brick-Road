@@ -18,9 +18,20 @@ function closeBrick(setCurrentBrick) {
     }
 }
 
+function getPanelNumber(num) {
+    if (num < 1) {
+        return "Left of panels"
+    }
+    else if (num > 13) {
+        return "Right of panels"
+    }
+    else {
+        return num
+    }
+}
+
 // content within selected brick
 export default function SelectedBrick({ brick, setCurrentBrick }) {
-    console.log("brick in selectedBrick", brick);
     return <div id="selectedBrickPageCover">
         <div id="selectedBrickContainer">
         <button id="selectedCloseButton" aria-label="Close selected brick" title="Close selected brick" onClick={() => closeBrick(setCurrentBrick)}>&times;</button>
@@ -39,7 +50,7 @@ export default function SelectedBrick({ brick, setCurrentBrick }) {
             <div className="location-grid">
                 <div className="location-item">
                     <span>Panel</span>
-                    <strong>{brick.Panel_Number}</strong>
+                    <strong>{getPanelNumber(brick.Panel_Number)}</strong>
                 </div>
                 <div className="location-item">
                     <span>Row</span>
