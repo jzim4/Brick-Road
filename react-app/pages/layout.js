@@ -62,7 +62,7 @@ function Footer() {
             <div className="footer-section">
                 <h3>Hours</h3>
                 <div className="hours-item">
-                    Come visit the Plaza anytime! 
+                    Visit the Plaza from dusk til dawn! 
                     <br></br>
                     <br></br>
                     Marvin&nbsp;(<a href="mailto:marvin@rcodemn.org">marvin@rcodemn.org</a>) and Katie&nbsp;(<a href="mailto:katie@rcodemn.org">katie@rcodemn.org</a>) are available by appointment.
@@ -72,6 +72,8 @@ function Footer() {
         
         <div className="footer-bottom">
             <p>2025 Rondo Commemorative Plaza.</p>
+            <br></br>
+            <p><small>Site by <a target="_blank" href="https://jzim4.github.io">Jonah Zimmer</a>.</small></p>
         </div>
     </footer>
 }
