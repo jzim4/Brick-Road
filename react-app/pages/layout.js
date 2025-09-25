@@ -52,26 +52,20 @@ function Footer() {
             <div className="footer-section">
                 <h3>Contact Information</h3>
                 <div className="contact-item">
-                    <strong>Email:</strong> <a href="mailto:email@sample.com">email@sample.com</a>
+                    <strong>Email:</strong> <a href="mailto:info@rcodemn.org">info@rcodemn.org</a>
                 </div>
                 <div className="contact-item">
-                    <strong>Phone:</strong> <a href="tel:+1234567890">(123)-456-7890</a>
-                </div>
-                <div className="contact-item">
-                    <strong>Address:</strong> 123 Address St, City, State 12345
+                    <strong>Address:</strong> 820 Concordia Ave, St Paul, MN 55104
                 </div>
             </div>
             
             <div className="footer-section">
                 <h3>Hours</h3>
                 <div className="hours-item">
-                    <strong>Monday - Friday:</strong> 9:00 AM - 5:00 PM
-                </div>
-                <div className="hours-item">
-                    <strong>Saturday:</strong> 10:00 AM - 4:00 PM
-                </div>
-                <div className="hours-item">
-                    <strong>Sunday:</strong> Closed
+                    Come visit the Plaza anytime! 
+                    <br></br>
+                    <br></br>
+                    Marvin&nbsp;(<a href="mailto:marvin@rcodemn.org">marvin@rcodemn.org</a>) and Katie&nbsp;(<a href="mailto:katie@rcodemn.org">katie@rcodemn.org</a>) are available by appointment.
                 </div>
             </div>
         </div>

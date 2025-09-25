@@ -34,7 +34,7 @@ function TheSite() {
 function TheTeam() {
     return <div className="aboutComponent">
         <h3 className="aboutHeader">A note from the site developer</h3>
-        <p>This site was designed and built by sophomore Macalester College student, Jonah Zimmer. If you would like to see
+        <p>This site was designed and built by Macalester College student, Jonah Zimmer. If you would like to see
             more of my work, please check out <a href="https://jzim4.github.io" target="_blank">my portfolio</a>!
         </p>
         <p>
