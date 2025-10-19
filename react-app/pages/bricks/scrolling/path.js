@@ -25,7 +25,7 @@ export default function Path({ highlight, currentBrick, setCurrentBrick, bricks 
     let bData = null;
     // find selected brick
     for (let b of bricks) {
-      const col = 8 + (b.Panel_Number - 1) * bricksPerPanel + b.Col_Number;
+      const col = b.Col_Number;
       if (matchesHighlight(b, highlight)) {
         if (b.Row_Number == rowIndex + 1 && col == colIndex + 1) {
           bData = b;

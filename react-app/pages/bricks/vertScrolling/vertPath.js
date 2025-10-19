@@ -34,7 +34,7 @@ export default function VertPath({ highlight, currentBrick, setCurrentBrick, bri
     let bData = null;
     // find selected brick
     for (let b of bricks) {
-      const row = 8 + (b.Panel_Number - 1) * bricksPerPanel + b.Col_Number;
+      const row = b.Col_Number;
       if (matchesHighlight(b, highlight)) {
         if (b.Row_Number == numCols - colIndex && row == rowIndex + 1) {
           bData = b;
