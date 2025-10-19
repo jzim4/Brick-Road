@@ -56,11 +56,6 @@ export default function SelectedBrick({ brick, setCurrentBrick }) {
                     <span>Row</span>
                     <strong>{brick.Row_Number}</strong>
                 </div>
-                <div className="location-item">
-                    <span>Col</span>
-                    <strong>{brick.Col_Number}</strong>
-                </div>
-                
             </div>
 
             {brick.link && (
