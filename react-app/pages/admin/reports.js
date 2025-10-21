@@ -2,8 +2,8 @@ import React, { useEffect, useState } from "react"
 import AdminHeader from "./adminHeader"
 import Layout from "../layout"
 import axios from "axios";
-import apiClient from '../../utils/apiClient';
-import { useAuth } from "../../contexts/AuthContext.js";
+import apiClient from '../../auth/apiClient.js';
+import { useAuth } from "../../auth/AuthContext.js";
 import { useNavigate } from "react-router-dom";
 const ReportModal = ({ report, onClose, onUpdate }) => {
     if (!report) return null;

@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import Layout from '../layout.js';
 import axios from 'axios';
-import apiClient from '../../utils/apiClient';
-import { useAuth } from '../../contexts/AuthContext.js';
+import apiClient from '../../auth/apiClient';
+import { useAuth } from '../../auth/AuthContext.js';
 import { createColumnHelper, useReactTable, getCoreRowModel, getFilteredRowModel, getPaginationRowModel, getSortedRowModel, flexRender } from '@tanstack/react-table';
 import AdminHeader from './adminHeader.js';
 import '../../styles/admin.css';
@@ -12,12 +12,11 @@ import { SquarePen } from 'lucide-react';
 
 export default function AdminDashboard() {
     const serverUrl = process.env.REACT_APP_SERVER_URL;
-    const { getToken, isAuthenticated, loading } = useAuth();
+    const { token, isAuthenticated, loading } = useAuth();
     const [bricks, setBricks] = useState([]);
     const [reports, setReports] = useState([]);
     const [brickLoading, setBrickLoading] = useState(true);
     const [reportLoading, setReportLoading] = useState(true);
-    const navigate = useNavigate();
     const [brickError, setBrickError] = useState(null);
     const [reportError, setReportError] = useState(null);
     const [brickStats, setBrickStats] = useState({
@@ -74,7 +73,6 @@ export default function AdminDashboard() {
     // Fetch reports only after auth state is ready, isAuthenticated is true, and a token exists
     useEffect(() => {
         if (loading || !isAuthenticated) return; // wait for auth provider and authentication
-        const token = getToken?.();
         if (!token) return; // not authenticated yet; do not call
 
         setReportLoading(true);

@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import apiClient from '../../utils/apiClient';
+import apiClient from '../../auth/apiClient.js';
 import { Link, useNavigate } from 'react-router-dom';
 import Layout from '../layout.js';
-import { useAuth } from '../../contexts/AuthContext.js';
+import { useAuth } from '../../auth/AuthContext.js';
 import { useParams } from 'react-router-dom';
 import AdminHeader from './adminHeader.js';
 
@@ -145,31 +145,13 @@ export default function ManageBricks() {
             // debug: log token presence
             try {
                 const t = getToken && typeof getToken === 'function' ? getToken() : null;
-                console.debug('Deleting brick, client token present:', !!t);
-                console.debug('LocalStorage authToken:', localStorage.getItem('authToken') ? '[present]' : '[missing]');
             } catch (e) {}
             await apiClient.delete(`/bricks/${brickId}`);
             navigate('/admin/dashboard');
         } catch (error) {
-            console.error('Delete error:', error);
             setDeleteError('Failed to delete brick.');
             setIsDeleting(false);
         }
-    };
-
-    const handleCancelEdit = () => {
-        setSelectedBrick(null);
-        setEditForm({
-            Naming_Year: '',
-            Panel_Number: '',
-            Row_Number: '',
-            Col_Number: '',
-            Inscription_Line_1: '',
-            Inscription_Line_2: '',
-            Inscription_Line_3: '',
-            Purchaser_Name: '',
-            Paver_Assigned_Section: ''
-        });
     };
 
     return (

@@ -20,15 +20,6 @@ export async function saveReport(supabase, purchaserName, reporterEmail, panel, 
 }
 
 export async function getReports(supabase) {
-    const {
-        data: { user },
-        error: userError
-    } = await supabase.auth.getUser();
-
-    if (userError || !user) {
-        throw new Error("User not authenticated");
-    }
-
     const { data: reports, error } = await supabase
         .from('report')
         .select('*')

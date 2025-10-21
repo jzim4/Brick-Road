@@ -1,4 +1,4 @@
-import { useAuth } from '../../contexts/AuthContext.js';
+import { useAuth } from '../../auth/AuthContext.js';
 import React from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import '../../styles/admin.css';

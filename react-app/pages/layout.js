@@ -1,6 +1,6 @@
 import React from "react";
 import { Link, BrowserRouter as Router, Route, Switch, useLocation } from 'react-router-dom';
-import { useAuth } from '../contexts/AuthContext.js';
+import { useAuth } from '../auth/AuthContext.js';
 
 export default function Layout({ children }) {
     return <div className="page-container">

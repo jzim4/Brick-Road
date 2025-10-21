@@ -3,12 +3,10 @@ import Layout from '../layout.js';
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
-import apiClient from '../../utils/apiClient';
-import { useAuth } from '../../contexts/AuthContext.js';
+import apiClient from '../../auth/apiClient.js';
 
 export default function CreateBrick() {
     const serverUrl = process.env.REACT_APP_SERVER_URL;
-    const { getToken } = useAuth();
     const [brickData, setBrickData] = useState({
         Naming_Year: '',
         Panel_Number: '',
@@ -74,7 +72,6 @@ export default function CreateBrick() {
 
         setIsSaving(true);
         try {
-            // TODO: Link this to the backend to create the brick
             await apiClient.post('/create-brick', { data: brickData });
             setIsSuccess(true);
             setBrickData({
@@ -135,7 +132,7 @@ export default function CreateBrick() {
                                     />
                                 </div>
                                 <div className="form-group">
-                                    <label>Panel Number: <span className="subText">(-1 - 20ish)</span></label>
+                                    <label>Panel Number: <span className="subText">(1-13, -1 or 14)</span></label>
                                     <input
                                         type="number"
                                         value={brickData.Panel_Number}
@@ -143,7 +140,7 @@ export default function CreateBrick() {
                                     />
                                 </div>
                                 <div className="form-group">
-                                    <label>Column Number: <span className="subText">(0 - 9)</span></label>
+                                    <label>Column Number: <span className="subText">(0 - a lot...)</span></label>
                                     <input
                                         type="number"
                                         value={brickData.Col_Number}

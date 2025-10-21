@@ -61,7 +61,7 @@ app.get("/bricks", (req, res) => {
     getBricks(supabase).then(data => {
         res.json(data);
     }).catch(err => {
-        console.log("Error fetching bricks:", err);
+        console.error("Error fetching bricks:", err);
         res.status(500).json({ error: "Failed to fetch bricks" });
     });
 });
@@ -94,7 +94,7 @@ app.put("/bricks/:id", verifyAuth, (req, res) => {
     const { id } = req.params;
     const { data } = req.body;
     updateBrick(supabase, id, data).then(data => {
-        console.log("Brick updated:", data);
+        console.error("Brick updated:", data);
         res.json(data);
     }).catch(err => {
         console.error("Error updating brick:", err);
@@ -105,7 +105,6 @@ app.put("/bricks/:id", verifyAuth, (req, res) => {
 app.delete("/bricks/:id", verifyAuth, (req, res) => {
     const { id } = req.params;
     deleteBrick(supabase, id).then(data => {
-        console.log("Brick deleted:", data);
         res.json(data);
     }).catch(err => {
         console.error("Error deleting brick:", err);
@@ -116,47 +115,22 @@ app.delete("/bricks/:id", verifyAuth, (req, res) => {
 app.post("/create-brick", verifyAuth, (req, res) => {
     const { data } = req.body;
     createBrick(supabase, data).then(data => {
-        console.log("Brick created:", data);
         res.json(data);
     });
 });
 
 app.get("/brick-locations", (req, res) => {
     getBrickLocations(supabase).then(data => {
-        console.log("Brick locations:", data);
         res.json(data);
-    });
-});
-
-app.post("/signin", (req, res) => {
-    const { email, password } = req.body;
-    
-    // Add some logging for debugging
-    console.log("Sign in attempt for email:", email);
-    
-    if (!email || !password) {
-        return res.status(400).json({ error: "Email and password are required" });
-    }
-    
-    signInWithEmail(supabase, email, password).then(data => {
-        console.log("Sign in successful");
-        res.json(data);
-    }).catch(err => {
-        console.log("Sign in error:", err);
-        res.status(500).json({ 
-            error: "Failed to sign in",
-            message: err.message || "Unknown error"
-        });
     });
 });
 
 app.post("/report", (req, res) => {
     const { purchaserName, reporterEmail, panel, errorExplanation, comment } = req.body;
     saveReport(supabase, purchaserName, reporterEmail, panel, errorExplanation, comment).then(data => {
-        console.log("Saving report message:" + purchaserName + reporterEmail + panel + errorExplanation + comment);
         res.send("Success");
     }).catch(err => {
-        console.log("Error saving report:", err);
+        console.error("Error saving report:", err);
         res.status(500).json({ error: err.message });
     });
 })
@@ -169,7 +143,7 @@ app.get("/reports", verifyAuth, (req, res) => {
             res.status(401).json({ error: "Unauthorized" });
             return;
         }
-        console.log("Error fetching reports:", err);
+        console.error("Error fetching reports:", err);
         res.status(500).json({ error: err.message });
     });
 })
@@ -177,14 +151,12 @@ app.get("/reports", verifyAuth, (req, res) => {
 app.put("/update-report/:id", verifyAuth, (req, res) => {
     const { id } = req.params;
     const { isFixed } = req.body;
-    console.log("Updating report:", id, isFixed);
     updateReport(supabase, id, isFixed)
     .then(data => {
-        console.log("Report updated:", data);
         res.json(data);
     })
     .catch(err => {
-        console.log("Error updating report:", err);
+        console.error("Error updating report:", err);
         res.status(500).json({ error: err.message });
     });
 })
