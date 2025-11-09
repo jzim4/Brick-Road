@@ -47,13 +47,18 @@ export default function CreateBrick() {
         if (isNaN(parseInt(brickData.Col_Number))) {
             errors.push('Column number is required.');
         }
-        else if (parseInt(brickData.Col_Number) < 0 || parseInt(brickData.Col_Number) > 9) {
+        else if (parseInt(brickData.Col_Number) < 0) {
             errors.push('Column number is out of range.');
         }
-        if (isNaN(parseInt(brickData.Panel_Number))) {
+        const panelNum = parseInt(brickData.Panel_Number);
+        console.log("Panel number:", panelNum);
+        console.log("isNaN(panelNum):", isNaN(panelNum));
+        console.log("panelNum == -1:", panelNum == -1);
+        console.log("1 <= panelNum <= 14:", 1 >= 1 <= panelNum <= 14);
+        if (isNaN(panelNum)) {
             errors.push('Panel number is required.');
         }
-        else if (parseInt(brickData.Panel_Number) < -1 || parseInt(brickData.Panel_Number) > 25) {
+        else if (!(panelNum == -1 || 1 <= panelNum <= 14)) {
             errors.push('Panel number is out of range.');
         }
     const brickLocations = await axios.get(`${serverUrl}/brick-locations`);

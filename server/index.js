@@ -13,7 +13,6 @@ const supabaseUrl = process.env.SUPABASE_URL
 const supabaseKey = process.env.SUPABASE_KEY
 const supabase = createClient(supabaseUrl, supabaseKey)
 
-
 app.use(cors({
     origin: [
         'http://localhost:8080',
@@ -32,11 +31,28 @@ async function verifyAuth(req, res, next) {
         }
 
         const { data, error } = await supabase.auth.getUser(token);
+        console.log(data, error);
         if (error || !data?.user) {
             return res.status(401).json({ error: 'Invalid or expired token' });
         }
 
-        req.user = data.user;
+            // attach verified user and raw access token to the request so
+            // route handlers can create a per-request Supabase client that
+            // forwards the user's JWT for Row Level Security (RLS) checks
+            req.user = data.user;
+        req.accessToken = token;
+
+        // Build and attach a per-request Supabase client that forwards
+        // the user's access token in the Authorization header. Attaching
+        // the client here avoids creating it in every route and keeps
+        // routes clean while still ensuring per-request headers.
+        req.supabase = createClient(supabaseUrl, supabaseKey, {
+            global: {
+                headers: {
+                    Authorization: `Bearer ${token}`,
+                }
+            }
+        });
         next();
     } catch (err) {
         console.error('Auth verification failed:', err);
@@ -93,7 +109,7 @@ app.get("/brick", async (req, res) => {
 app.put("/bricks/:id", verifyAuth, (req, res) => {
     const { id } = req.params;
     const { data } = req.body;
-    updateBrick(supabase, id, data).then(data => {
+    updateBrick(req.supabase, id, data).then(data => {
         console.error("Brick updated:", data);
         res.json(data);
     }).catch(err => {
@@ -104,7 +120,7 @@ app.put("/bricks/:id", verifyAuth, (req, res) => {
 
 app.delete("/bricks/:id", verifyAuth, (req, res) => {
     const { id } = req.params;
-    deleteBrick(supabase, id).then(data => {
+    deleteBrick(req.supabase, id).then(data => {
         res.json(data);
     }).catch(err => {
         console.error("Error deleting brick:", err);
@@ -114,7 +130,7 @@ app.delete("/bricks/:id", verifyAuth, (req, res) => {
 
 app.post("/create-brick", verifyAuth, (req, res) => {
     const { data } = req.body;
-    createBrick(supabase, data).then(data => {
+    createBrick(req.supabase, data).then(data => {
         res.json(data);
     });
 });
@@ -136,7 +152,9 @@ app.post("/report", (req, res) => {
 })
 
 app.get("/reports", verifyAuth, (req, res) => {
-    getReports(supabase).then(data => {
+    // Use the per-request client created in verifyAuth so RLS policies
+    // run with the authenticated user's identity.
+    getReports(req.supabase).then(data => {
         res.json(data);
     }).catch(err => {
         if (err.message === "User not authenticated") {
@@ -151,7 +169,7 @@ app.get("/reports", verifyAuth, (req, res) => {
 app.put("/update-report/:id", verifyAuth, (req, res) => {
     const { id } = req.params;
     const { isFixed } = req.body;
-    updateReport(supabase, id, isFixed)
+    updateReport(req.supabase, id, isFixed)
     .then(data => {
         res.json(data);
     })

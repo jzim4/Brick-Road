@@ -1,9 +1,9 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useCallback } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
 import Layout from "../layout.js";
 import { useAuth } from "../../auth/AuthContext.js";
 import '../../styles/signin.css';
-import {supabase} from '../../auth/supabaseClient.js';
+import { supabase } from '../../auth/supabaseClient.js';
 
 export default function Signin() {
     const [formData, setFormData] = useState({ email: "", password: "" });
@@ -13,8 +13,6 @@ export default function Signin() {
     const location = useLocation();
     const from = location.state?.from?.pathname || "/admin/dashboard";
     const [pendingRedirect, setPendingRedirect] = useState(null);
-
-    console.log(formData.password);
 
     useEffect(() => {
         if (pendingRedirect && isAuthenticated) {
@@ -45,33 +43,26 @@ export default function Signin() {
         }
     };
 
-    const handleSubmit = async (e) => {
+    const handleSubmit = React.useCallback(async (e) => {
         e.preventDefault();
         if (submitting) return;
 
         try {
             validateInput(formData.email, formData.password);
-
             setSubmitting(true);
 
-            const { data, error } = await supabase.auth.signInWithPassword({
-                email: formData.email.trim().toLowerCase(),
-                password: formData.password
-            });
+            const email = String(formData.email).trim().toLowerCase();
+            const password = String(formData.password);
 
-            if (error) {
-                alert("Sign in failed: " + error.message);
-                console.error(error);
-            } else {
-                signIn(null, data.session); // store the session in auth context
-                setPendingRedirect(from);
-            }
-        } catch (validationError) {
-            alert("Validation error: " + validationError.message);
+            await signIn(email, password);
+            setPendingRedirect(from);
+        } catch (err) {
+            alert(err.message);
         } finally {
             setSubmitting(false);
         }
-    };
+    }, [formData, submitting, from, signIn]);
+
 
     return (
         <Layout>

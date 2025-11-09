@@ -1,10 +1,7 @@
 import React, { useEffect, useState } from "react"
 import AdminHeader from "./adminHeader"
 import Layout from "../layout"
-import axios from "axios";
 import apiClient from '../../auth/apiClient.js';
-import { useAuth } from "../../auth/AuthContext.js";
-import { useNavigate } from "react-router-dom";
 const ReportModal = ({ report, onClose, onUpdate }) => {
     if (!report) return null;
 
@@ -43,14 +40,11 @@ const ReportModal = ({ report, onClose, onUpdate }) => {
 
 
 export default function Reports() {
-    const navigate = useNavigate();
-    const serverUrl = process.env.REACT_APP_SERVER_URL;
-    const { getToken } = useAuth();
     const [reports, setReports] = useState([]);
     const [error, setError] = useState("");
     const [loading, setLoading] = useState(true);
     const [selectedReport, setSelectedReport] = useState(null);
-    const [showAddressed, setShowAddressed] = useState(true);
+    const [showAddressed, setShowAddressed] = useState(false);
 
     useEffect(() => {
         apiClient.get('/reports')

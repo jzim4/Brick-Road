@@ -209,7 +209,7 @@ export default function ManageBricks() {
                                     />
                                 </div>
                                 <div className="form-group">
-                                    <label>Panel Number: <span className="subText">(-1 - 20ish)</span></label>
+                                    <label>Panel Number: <span className="subText">(1-13, -1 or 14)</span></label>
                                     <input
                                         type="number"
                                         value={editForm.Panel_Number}
@@ -217,7 +217,7 @@ export default function ManageBricks() {
                                     />
                                 </div>
                                 <div className="form-group">
-                                    <label>Column Number: <span className="subText">(0 - 9)</span></label>
+                                    <label>Column Number: <span className="subText">(0 - a lot...)</span></label>
                                     <input
                                         type="number"
                                         value={editForm.Col_Number}
