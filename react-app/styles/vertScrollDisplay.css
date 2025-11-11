@@ -57,10 +57,10 @@
 #vertPanelsContainer {
     display: flex;
     flex-direction: column;
-    gap: 54px;
+    gap: 23.4px;
     margin-left: 10px;
     height: fit-content;
-    padding-top: 450px;
+    padding-top: 377px;
 }
 .vertPanel {
     padding: 5px;
@@ -68,6 +68,7 @@
     background-color: lightyellow;
     writing-mode: vertical-rl;
     text-orientation: mixed;
+    height: 432.64px;
 }
 .vertPanel > p {
     margin: 5px;
@@ -91,22 +92,23 @@
 }
 .vertBrickColumn {
     width: 18px;
+    margin-right: -2.6px;
 }
 .topShiftColumn {
-    margin-top: -15px;
+    margin-top: -13px;
 }
 .bottomShiftColumn {
-    margin-top: 15px;
+    margin-top: 13px;
 }
 
 .vertBrick {
     background-image: var(--noise);
     background-color: #d9d9d9;
-    margin-bottom: -2px;
+    margin-bottom: -2.6px;
     display: block;
-    border: 2px solid black;
-    height: 55.45px;
-    width: 19px;
+    border: 2.6px solid black;
+    height: 52px;
+    width: 18px;
     z-index: 1;
 }
 .existingBrick {
@@ -160,6 +162,22 @@
     cursor: pointer;
     z-index: 5;
 }
+.closePreviewBtn {
+    position: absolute;
+    top: -8px;
+    right: -8px;
+    background-color: #fff;
+    border: 1px solid #000;
+    border-radius: 50%;
+    width: 25px;
+    height: 25px;
+    text-align: center;
+    line-height: 14px;
+    font-weight: bold;
+    cursor: pointer;
+    padding: 2px;
+}
+
 .clickedBrick {
     background-color: red;
 }

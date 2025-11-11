@@ -14,7 +14,6 @@ export default function VertPath({ highlight, currentBrick, setCurrentBrick, bri
   const bricksPerPanel = 10;
 
   const [previewBrick, setPreviewBrick] = useState(null);
-  console.log("previewBrick", previewBrick);
 
   function handleBrickClick(brickData) {
     if (previewBrick && previewBrick.id === brickData.id) {
@@ -25,6 +24,10 @@ export default function VertPath({ highlight, currentBrick, setCurrentBrick, bri
     } else {
       setPreviewBrick(brickData);
     }
+  }
+
+  function closePreview() {
+    setPreviewBrick(null);
   }
 
   /* this component determines if the brick should be highlighted or shown as the selected brick to determine 
@@ -53,10 +56,19 @@ export default function VertPath({ highlight, currentBrick, setCurrentBrick, bri
         }
       return <div className={brickClassName  + (previewBrick && previewBrick.id === bData.id ? " previewing" : "")} key={100 * rowIndex + colIndex} onClick={() => handleBrickClick(bData)}>
         <span className={"popupTextVert " + (row < 3 ? "popupTextVertTop" : row > numRows - 4 ? "popupTextVertBottom" : "")}>
+          {previewBrick && previewBrick.id === bData.id && (
+            <button 
+              className="closePreviewBtn" 
+              onClick={(e) => { e.stopPropagation(); closePreview(); }}
+              aria-label="Close preview"
+            >
+              ✕
+            </button>
+          )}
           {bData.Inscription_Line_1}<br></br>
           {bData.Inscription_Line_2}<br></br>
           {bData.Inscription_Line_3}<br></br>
-          Click for more info!
+          {!previewBrick || previewBrick.id !== bData.id ? "Click for more info!" : "Click again for full details"}
         </span>
       </div>
     }
