@@ -213,7 +213,9 @@ export default function ManageBricks() {
                                     <input
                                         type="number"
                                         value={editForm.Panel_Number}
-                                        onChange={(e) => handleInputChange(parseInt('Panel_Number'), e.target.value)}
+                                        onChange={(e) => handleInputChange('Panel_Number', e.target.value)}
+                                        min="-1"
+                                        max="14"
                                     />
                                 </div>
                                 <div className="form-group">
@@ -221,9 +223,8 @@ export default function ManageBricks() {
                                     <input
                                         type="number"
                                         value={editForm.Col_Number}
-                                        onChange={(e) => handleInputChange(parseInt('Col_Number'), e.target.value)}
+                                        onChange={(e) => handleInputChange('Col_Number', e.target.value)}
                                         min="0"
-                                        max="9"
                                     />
                                 </div>
                                 <div className="form-group">
@@ -231,7 +232,7 @@ export default function ManageBricks() {
                                     <input
                                         type="number"
                                         value={editForm.Row_Number}
-                                        onChange={(e) => handleInputChange(parseInt('Row_Number'), e.target.value)}
+                                        onChange={(e) => handleInputChange('Row_Number', e.target.value)}
                                         min="1"
                                         max="15"
                                     />

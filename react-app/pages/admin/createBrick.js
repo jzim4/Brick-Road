@@ -142,6 +142,8 @@ export default function CreateBrick() {
                                         type="number"
                                         value={brickData.Panel_Number}
                                         onChange={(e) => handleInputChange('Panel_Number', e.target.value)}
+                                        min="-1"
+                                        max="14"
                                     />
                                 </div>
                                 <div className="form-group">
@@ -151,7 +153,6 @@ export default function CreateBrick() {
                                         value={brickData.Col_Number}
                                         onChange={(e) => handleInputChange('Col_Number', e.target.value)}
                                         min="0"
-                                        max="9"
                                     />
                                 </div>
                                 <div className="form-group">
