@@ -97,9 +97,9 @@ All the data for the commemorative bricks is stored in Supabase and accessed via
 ### Brick Data Schema and Layout
 
 Each brick in Supabase has the following structure:
--   `panel`: The panel number the brick is in front of (1-13). Numbers outside this range are for bricks not in front of a main panel.
+-   `panel`: The panel number the brick is in front of (1-13). Numbers outside this range are for bricks not in front of a main panel. This is purely informative it doesn't impact location.
 -   `row`: The row number (1-15), with row 1 being closest to the panels.
--   `col`: The column number (0-9) within a panel section.
+-   `col`: The column number (0-a lot) this is the determining factor of where the brick shows up. It is strictly just either left to right/top to bottom depending on scrolling view.
 -   `namingYear`: The year the brick was named.
 -   `inscriptionLine1`, `inscriptionLine2`, `inscriptionLine3`: The three lines of text on the brick. Empty strings should be used for unused lines.
 -   `purchaser`: The name of the person or group who purchased the brick.
